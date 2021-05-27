@@ -1,3 +1,4 @@
+---
 auth_enabled: false  # Enables authentication through the X-Scope-OrgID header. Defaults to true
 
 server:
@@ -29,6 +30,7 @@ schema_config:
       schema: v11
       index:
         prefix: loki_
+        period: 24h
 
 storage_config:
   boltdb_shipper:
@@ -37,7 +39,7 @@ storage_config:
     cache_ttl: 24h         # Can be increased for faster performance over longer query periods, uses more disk space
     shared_store: s3
   aws:
-    s3: {{ "key \"loki-s3-storage\"" }}
+    s3: {{ key "loki-s3-storage" }}
 
 compactor:
   working_directory: /tmp/loki/boltdb-shipper-compactor
