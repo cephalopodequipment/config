@@ -37,7 +37,7 @@ storage_config:
     cache_ttl: 24h         # Can be increased for faster performance over longer query periods, uses more disk space
     shared_store: s3
   aws:
-    s3: {{ "s3_bucket" }}
+    s3: {{ "key \"loki-s3-storage\"" }}
 
 compactor:
   working_directory: /tmp/loki/boltdb-shipper-compactor
