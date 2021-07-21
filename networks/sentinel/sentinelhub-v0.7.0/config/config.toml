@@ -215,10 +215,10 @@ flush_throttle_timeout = "100ms"
 max_packet_msg_payload_size = 1024
 
 # Rate at which packets can be sent, in bytes/second
-send_rate = 5120000
+send_rate = 51200000
 
 # Rate at which packets can be received, in bytes/second
-recv_rate = 5120000
+recv_rate = 51200000
 
 # Set true to enable the peer-exchange reactor
 pex = true
@@ -378,7 +378,7 @@ indexer = "kv"
 # When true, Prometheus metrics are served under /metrics on
 # PrometheusListenAddr.
 # Check out the documentation for the list of available metrics.
-prometheus = false
+prometheus = true
 
 # Address to listen for Prometheus collector(s) connections
 prometheus_listen_addr = ":26660"
