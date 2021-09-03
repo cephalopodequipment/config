@@ -4,19 +4,14 @@ log_level = 'debug'
 filter = true
 clear_packets_interval = 100
 
-[telemetry]
-enabled = true
-host = '127.0.0.1'
-port = 3001
-
 [[chains]]
 id='cosmoshub-4'
-rpc_addr='http://10.10.51.251:26657'
-grpc_addr='http://10.10.51.251:9090'
-websocket_addr='ws://10.10.51.251:26657/websocket'
-rpc_timeout='8s'
+rpc_addr='http://144.217.252.148:26657'
+grpc_addr='http://144.217.252.148:9090'
+websocket_addr='ws://144.217.252.148:26657/websocket'
+rpc_timeout='20s'
 account_prefix='cosmos'
-key_name='hw-gaiad'
+key_name='cosmoshub-troubleshooting'
 store_prefix='ibc'
 gas_price = { price = 0.02, denom = 'uatom' }
 max_gas=1100000
@@ -37,9 +32,9 @@ id='irishub-1'
 rpc_addr='http://10.10.51.66:26657'
 grpc_addr='http://10.10.51.66:9090'
 websocket_addr='ws://10.10.51.66:26657/websocket'
-rpc_timeout='8s'
+rpc_timeout='20s'
 account_prefix='iaa'
-key_name='hw-irishub'
+key_name='irishub-troubleshooting'
 store_prefix='ibc'
 gas_price = { price = 0.01, denom = 'uiris' }
 max_gas=800000
@@ -59,9 +54,9 @@ id='core-1'
 rpc_addr='http://10.10.51.40:26657'
 grpc_addr='http://10.10.51.40:9090'
 websocket_addr='ws://10.10.51.40:26657/websocket'
-rpc_timeout='8s'
+rpc_timeout='20s'
 account_prefix='persistence'
-key_name='hw-persistenceOne'
+key_name='persistenceOne-troubleshooting'
 store_prefix='ibc'
 gas_price = { price = 0.01, denom = 'uxprt' }
 max_gas=1000000
@@ -81,9 +76,9 @@ id='sentinelhub-2'
 rpc_addr='http://10.10.51.31:26657'
 grpc_addr='http://10.10.51.31:9090'
 websocket_addr='ws://10.10.51.31:26657/websocket'
-rpc_timeout='8s'
+rpc_timeout='20s'
 account_prefix='sent'
-key_name='hw-sentinel'
+key_name='sentinel-troubleshooting'
 store_prefix='ibc'
 gas_price = { price = 0.01, denom = 'udvpn' }
 max_gas=1000000
@@ -104,9 +99,9 @@ id='crypto-org-chain-mainnet-1'
 rpc_addr='http://10.10.51.76:26657'
 grpc_addr='http://10.10.51.76:9090'
 websocket_addr='ws://10.10.51.76:26657/websocket'
-rpc_timeout='8s'
+rpc_timeout='20s'
 account_prefix='cro'
-key_name='hw-cryptoCom'
+key_name='cryptoCom-troubleshooting'
 store_prefix='ibc'
 gas_price = { price = 0.01, denom = 'basecro' }
 max_gas=1200000
@@ -124,15 +119,12 @@ denominator='3'
 
 [[chains]]
 id='osmosis-1'
-rpc_addr='http://10.10.51.151:26657'
-grpc_addr='http://10.10.51.151:9090'
-websocket_addr='ws://10.10.51.151:26657/websocket'
-#rpc_addr='http://144.217.79.221:26657'
-#grpc_addr='http://144.217.79.221:9090'
-#websocket_addr='ws://144.217.79.221:26657/websocket'
-rpc_timeout='8s'
+rpc_addr='http://144.217.79.221:26657'
+grpc_addr='http://144.217.79.221:9090'
+websocket_addr='ws://144.217.79.221:26657/websocket'
+rpc_timeout='20s'
 account_prefix='osmo'
-key_name='hw-osmosis'
+key_name='osmosis-troubleshooting'
 store_prefix='ibc'
 gas_price = { price = 0, denom = 'uosmo' }
 max_gas=5000000
@@ -153,9 +145,9 @@ id='akashnet-2'
 rpc_addr='http://10.10.51.69:26657'
 grpc_addr='http://10.10.51.69:9090'
 websocket_addr='ws://10.10.51.69:26657/websocket'
-rpc_timeout='8s'
+rpc_timeout='20s'
 account_prefix='akash'
-key_name='hw-akash'
+key_name='akash-troubleshooting'
 store_prefix='ibc'
 gas_price = { price = 0.01, denom = 'uakt' }
 max_gas=800000
@@ -175,9 +167,9 @@ id='regen-1'
 rpc_addr='http://10.10.51.245:26657'
 grpc_addr='http://10.10.51.245:9090'
 websocket_addr='ws://10.10.51.245:26657/websocket'
-rpc_timeout='8s'
+rpc_timeout='20s'
 account_prefix='regen'
-key_name='hw-regen'
+key_name='regen-troubleshooting'
 store_prefix='ibc'
 gas_price = { price = 0.01, denom = 'uregen' }
 max_gas=800000
@@ -198,9 +190,9 @@ id='iov-mainnet-ibc'
 rpc_addr='http://10.10.51.23:26657'
 grpc_addr='http://10.10.51.23:9090'
 websocket_addr='ws://10.10.51.23:26657/websocket'
-rpc_timeout='8s'
+rpc_timeout='20s'
 account_prefix='star'
-key_name='iov-wallet'
+key_name='iov-troubleshooting'
 store_prefix='ibc'
 gas_price = { price = 0.02, denom = 'uiov' }
 max_gas=1100000
