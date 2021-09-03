@@ -68,6 +68,7 @@ store_prefix='ibc'
 gas_price = { price = 0.01, denom = 'basecro' }
 max_gas=1200000
 max_msg_num=15
+max_tx_size=450000
 clock_drift='7200s'
 trusting_period='14days'
 
@@ -91,6 +92,7 @@ key_name='hw-irishub'
 store_prefix='ibc'
 gas_price = { price = 0.01, denom = 'uiris' }
 max_gas=800000
+max_tx_size=1800000
 clock_drift='7200s'
 trusting_period='14days'
 
@@ -114,6 +116,7 @@ key_name='hw-persistenceOne'
 store_prefix='ibc'
 gas_price = { price = 0.01, denom = 'uxprt' }
 max_gas=1000000
+max_tx_size=180000
 clock_drift='7200s'
 trusting_period='14days'
 
@@ -138,6 +141,7 @@ store_prefix='ibc'
 gas_price = { price = 0.01, denom = 'uregen' }
 max_gas=800000
 max_msg_num=15
+max_tx_size=180000
 clock_drift='7200s'
 trusting_period='14days'
 
