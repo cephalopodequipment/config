@@ -197,10 +197,10 @@ addr_book_file = "config/addrbook.json"
 addr_book_strict = true
 
 # Maximum number of inbound peers
-max_num_inbound_peers = 50
+max_num_inbound_peers = 40
 
 # Maximum number of outbound peers to connect to, excluding persistent peers
-max_num_outbound_peers = 100
+max_num_outbound_peers = 40
 
 # List of node IDs, to which a connection will be (re)established ignoring any existing limits
 unconditional_peer_ids = ""
@@ -249,7 +249,7 @@ broadcast = true
 wal_dir = ""
 
 # Maximum number of transactions in the mempool
-size = 5000
+size = 10000
 
 # Limit the total size of all txs in the mempool.
 # This only accounts for raw transactions (e.g. given 1MB transactions and
@@ -293,7 +293,7 @@ enable = false
 rpc_servers = ""
 trust_height = 0
 trust_hash = ""
-trust_period = "168h0m0s"
+trust_period = "112h0m0s"
 
 # Time to spend discovering snapshots before initiating a restore.
 discovery_time = "15s"

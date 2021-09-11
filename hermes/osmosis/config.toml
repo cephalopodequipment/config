@@ -11,9 +11,9 @@ port = 3001
 
 [[chains]]
 id='cosmoshub-4'
-rpc_addr='http://10.10.51.251:26657'
-grpc_addr='http://10.10.51.251:9090'
-websocket_addr='ws://10.10.51.251:26657/websocket'
+rpc_addr='http://10.10.51.86:26657'
+grpc_addr='http://10.10.51.86:9090'
+websocket_addr='ws://10.10.51.86:26657/websocket'
 rpc_timeout='8s'
 account_prefix='cosmos'
 key_name='hw-gaiad'
