@@ -87,9 +87,9 @@ denominator='3'
 
 [[chains]]
 id='crypto-org-chain-mainnet-1'
-rpc_addr='http://10.10.51.76:26657'
-grpc_addr='http://10.10.51.76:9090'
-websocket_addr='ws://10.10.51.76:26657/websocket'
+rpc_addr='http://10.10.51.95:26657'
+grpc_addr='http://10.10.51.95:9090'
+websocket_addr='ws://10.10.51.95:26657/websocket'
 rpc_timeout='8s'
 account_prefix='cro'
 key_name='aw3'
