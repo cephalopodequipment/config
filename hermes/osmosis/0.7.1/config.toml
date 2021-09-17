@@ -209,7 +209,7 @@ denominator='3'
 
 [[chains]]
 id='osmosis-1'
-rpc_addr='http://10.10.51.13:26657' # node: osmosis1
+rpc_addr='http://10.10.51.13:26657' # node: osmosis0
 grpc_addr='http://10.10.51.13:9090'
 websocket_addr='ws://10.10.51.13:26657/websocket'
 rpc_timeout='8s'
