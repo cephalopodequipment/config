@@ -2,7 +2,7 @@
 strategy = 'packets'
 filter = true
 log_level='debug'
-clear_packets_interval = 100
+clear_packets_interval = 20
 
 [rest]
 enabled = true
@@ -12,12 +12,12 @@ port    = 3000
 
 [[chains]]
 id='cosmoshub-4'
-rpc_addr='http://10.10.51.186:26657' # cosmoshub1
-grpc_addr='http://10.10.51.186:9090'
-websocket_addr='ws://10.10.51.186:26657/websocket'
+rpc_addr='http://10.10.51.117:26657' # cosmoshub1
+grpc_addr='http://10.10.51.117:9090'
+websocket_addr='ws://10.10.51.117:26657/websocket'
 rpc_timeout='8s'
 account_prefix='cosmos'
-key_name='aw2'
+key_name='aw1'
 store_prefix='ibc'
 gas_price = { price = 0.0005, denom = 'uatom' }
 max_gas=1500000
@@ -42,7 +42,7 @@ grpc_addr='http://10.10.51.69:9090'
 websocket_addr='ws://10.10.51.69:26657/websocket'
 rpc_timeout='8s'
 account_prefix='akash'
-key_name='aw2'
+key_name='aw1'
 store_prefix='ibc'
 gas_price = { price = 0.005, denom = 'uakt' }
 max_gas=800000
@@ -65,7 +65,7 @@ grpc_addr='http://10.10.51.47:9090'
 websocket_addr='ws://10.10.51.47:26657/websocket'
 rpc_timeout='8s'
 account_prefix='sent'
-key_name='aw2'
+key_name='aw1'
 store_prefix='ibc'
 gas_price = { price = 0.05, denom = 'udvpn' }
 max_gas=1000000
@@ -89,9 +89,9 @@ grpc_addr='http://10.10.51.95:9090'
 websocket_addr='ws://10.10.51.95:26657/websocket'
 rpc_timeout='8s'
 account_prefix='cro'
-key_name='aw2'
+key_name='aw1'
 store_prefix='ibc'
-gas_price = { price = 0.005, denom = 'basecro' }
+gas_price = { price = 0.03, denom = 'basecro' }
 max_gas=1200000
 max_msg_num=15
 max_tx_size=450000
@@ -114,7 +114,7 @@ grpc_addr='http://10.10.51.245:9090'
 websocket_addr='ws://10.10.51.245:26657/websocket'
 rpc_timeout='8s'
 account_prefix='regen'
-key_name='aw2'
+key_name='aw1'
 store_prefix='ibc'
 gas_price = { price = 0.02, denom = 'uregen' }
 max_gas=800000
@@ -139,7 +139,7 @@ grpc_addr='http://10.10.51.66:9090'
 websocket_addr='ws://10.10.51.66:26657/websocket'
 rpc_timeout='8s'
 account_prefix='iaa'
-key_name='aw2'
+key_name='aw1'
 store_prefix='ibc'
 gas_price = { price = 0.005, denom = 'uiris' }
 max_gas=800000
@@ -164,7 +164,7 @@ grpc_addr='http://10.10.51.40:9090'
 websocket_addr='ws://10.10.51.40:26657/websocket'
 rpc_timeout='8s'
 account_prefix='persistence'
-key_name='aw2'
+key_name='aw1'
 store_prefix='ibc'
 gas_price = { price = 0.002, denom = 'uxprt' }
 max_gas=2000000
@@ -189,7 +189,7 @@ grpc_addr='http://10.10.51.23:9090'
 websocket_addr='ws://10.10.51.23:26657/websocket'
 rpc_timeout='8s'
 account_prefix='star'
-key_name='aw2'
+key_name='aw1'
 store_prefix='ibc'
 gas_price = { price = 0.02, denom = 'uiov' }
 max_gas=1100000
@@ -214,7 +214,7 @@ grpc_addr='http://10.10.51.13:9090'
 websocket_addr='ws://10.10.51.13:26657/websocket'
 rpc_timeout='8s'
 account_prefix='osmo'
-key_name='aw2'
+key_name='aw1'
 store_prefix='ibc'
 gas_price = { price = 0.001, denom = 'uosmo' }
 max_gas=5000000

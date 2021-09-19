@@ -1,26 +1,26 @@
 [global]
 strategy = 'packets'
-log_level = 'debug'
 filter = true
+log_level='debug'
 clear_packets_interval = 20
 
 [rest]
 enabled = true
-host = '0.0.0.0'
-port = 3000
+host    = '0.0.0.0'
+port    = 3000
 
 
 [[chains]]
 id='cosmoshub-4'
-rpc_addr='http://10.10.51.86:26657' # cosmoshub0
-grpc_addr='http://10.10.51.86:9090'
-websocket_addr='ws://10.10.51.86:26657/websocket'
+rpc_addr='http://10.10.51.186:26657' # cosmoshub1
+grpc_addr='http://10.10.51.186:9090'
+websocket_addr='ws://10.10.51.186:26657/websocket'
 rpc_timeout='8s'
 account_prefix='cosmos'
-key_name='aw3'
+key_name='aw2'
 store_prefix='ibc'
 gas_price = { price = 0.0005, denom = 'uatom' }
-max_gas=1100000
+max_gas=1500000
 max_msg_num=15
 max_tx_size=180000
 clock_drift='7200s'
@@ -28,8 +28,7 @@ trusting_period='14days'
 
 [chains.packet_filter]
 policy = 'allow'
-# [akash, crypto-org, iris, persistence, regen, sentinel]
-list = [['transfer', 'channel-184'], ['transfer', 'channel-187'], ['transfer', 'channel-182'], ['transfer', 'channel-190'], ['transfer', 'channel-185'], ['transfer', 'channel-186']]
+list = [['transfer', 'channel-141']]
 
 [chains.trust_threshold]
 numerator='1'
@@ -43,17 +42,16 @@ grpc_addr='http://10.10.51.69:9090'
 websocket_addr='ws://10.10.51.69:26657/websocket'
 rpc_timeout='8s'
 account_prefix='akash'
-key_name='aw3'
+key_name='aw2'
 store_prefix='ibc'
 gas_price = { price = 0.005, denom = 'uakt' }
-max_gas=1500000
+max_gas=800000
 clock_drift='7200s'
 trusting_period='14days'
 
 [chains.packet_filter]
 policy = 'allow'
-# [cosmos-hub, crypto-org, iris, persistence, regen, sentinel, osmosis]
-list = [['transfer', 'channel-17'], ['transfer', 'channel-18'], ['transfer', 'channel-16'], ['transfer', 'channel-20'], ['transfer', 'channel-21'], ['transfer', 'channel-22'], ['transfer', 'channel-9']]
+list = [['transfer', 'channel-9']]
 
 [chains.trust_threshold]
 numerator='1'
@@ -67,7 +65,7 @@ grpc_addr='http://10.10.51.47:9090'
 websocket_addr='ws://10.10.51.47:26657/websocket'
 rpc_timeout='8s'
 account_prefix='sent'
-key_name='aw3'
+key_name='aw2'
 store_prefix='ibc'
 gas_price = { price = 0.05, denom = 'udvpn' }
 max_gas=1000000
@@ -77,8 +75,7 @@ trusting_period='14days'
 
 [chains.packet_filter]
 policy = 'allow'
-# [akash, cosmos-hub, crypto-org, iris, persistence, regen]
-list = [['transfer', 'channel-10'], ['transfer', 'channel-12'], ['transfer', 'channel-13'], ['transfer', 'channel-9'], ['transfer', 'channel-15'], ['transfer', 'channel-11']]
+list = [['transfer', 'channel-0']]
 
 [chains.trust_threshold]
 numerator='1'
@@ -87,12 +84,12 @@ denominator='3'
 
 [[chains]]
 id='crypto-org-chain-mainnet-1'
-rpc_addr='http://10.10.51.174:26657'
-grpc_addr='http://10.10.51.174:9090'
-websocket_addr='ws://10.10.51.174:26657/websocket'
+rpc_addr='http://10.10.51.95:26657'
+grpc_addr='http://10.10.51.95:9090'
+websocket_addr='ws://10.10.51.95:26657/websocket'
 rpc_timeout='8s'
 account_prefix='cro'
-key_name='aw3'
+key_name='aw2'
 store_prefix='ibc'
 gas_price = { price = 0.03, denom = 'basecro' }
 max_gas=1200000
@@ -103,8 +100,7 @@ trusting_period='14days'
 
 [chains.packet_filter]
 policy = 'allow'
-# [akash, cosmos-hub, iris, persistence, regen, sentinel]
-list = [['transfer', 'channel-24'], ['transfer', 'channel-27'], ['transfer', 'channel-23'], ['transfer', 'channel-29'], ['transfer', 'channel-25'], ['transfer', 'channel-26']]
+list = [['transfer', 'channel-10']]
 
 [chains.trust_threshold]
 numerator='1'
@@ -118,7 +114,7 @@ grpc_addr='http://10.10.51.245:9090'
 websocket_addr='ws://10.10.51.245:26657/websocket'
 rpc_timeout='8s'
 account_prefix='regen'
-key_name='aw3'
+key_name='aw2'
 store_prefix='ibc'
 gas_price = { price = 0.02, denom = 'uregen' }
 max_gas=800000
@@ -129,8 +125,7 @@ trusting_period='14days'
 
 [chains.packet_filter]
 policy = 'allow'
-# [akash, cosmos-hub, crypto-org, iris, persistence, sentinel]
-list = [['transfer', 'channel-10'], ['transfer', 'channel-11'], ['transfer', 'channel-12'], ['transfer', 'channel-9'], ['transfer', 'channel-14'], ['transfer', 'channel-15']]
+list = [['transfer', 'channel-1']]
 
 [chains.trust_threshold]
 numerator='1'
@@ -144,18 +139,18 @@ grpc_addr='http://10.10.51.66:9090'
 websocket_addr='ws://10.10.51.66:26657/websocket'
 rpc_timeout='8s'
 account_prefix='iaa'
-key_name='aw3'
+key_name='aw2'
 store_prefix='ibc'
 gas_price = { price = 0.005, denom = 'uiris' }
 max_gas=800000
+max_msg_num=15
 max_tx_size=1800000
 clock_drift='7200s'
 trusting_period='14days'
 
 [chains.packet_filter]
 policy = 'allow'
-# [akash, cosmos-hub, crypto-org, persistence, regen, sentinel]
-list = [['transfer', 'channel-11'], ['transfer', 'channel-12'], ['transfer', 'channel-13'], ['transfer', 'channel-15'], ['transfer', 'channel-16'], ['transfer', 'channel-17']]
+list = [['transfer', 'channel-3']]
 
 [chains.trust_threshold]
 numerator='1'
@@ -169,28 +164,54 @@ grpc_addr='http://10.10.51.40:9090'
 websocket_addr='ws://10.10.51.40:26657/websocket'
 rpc_timeout='8s'
 account_prefix='persistence'
-key_name='aw3'
+key_name='aw2'
 store_prefix='ibc'
 gas_price = { price = 0.002, denom = 'uxprt' }
-max_gas=1000000
+max_gas=2000000
+max_msg_num=15
 max_tx_size=180000
 clock_drift='7200s'
 trusting_period='14days'
 
 [chains.packet_filter]
 policy = 'allow'
-# [akash, cosmos-hub, crypto-org, iris, regen, sentinel]
-list = [['transfer', 'channel-20'], ['transfer', 'channel-24'], ['transfer', 'channel-23'], ['transfer', 'channel-19'], ['transfer', 'channel-21'], ['transfer', 'channel-22']]
+list = [['transfer', 'channel-6']]
 
 [chains.trust_threshold]
 numerator='1'
 denominator='3'
 
+
+[[chains]]
+id='iov-mainnet-ibc'
+rpc_addr='http://10.10.51.23:26657'
+grpc_addr='http://10.10.51.23:9090'
+websocket_addr='ws://10.10.51.23:26657/websocket'
+rpc_timeout='8s'
+account_prefix='star'
+key_name='aw2'
+store_prefix='ibc'
+gas_price = { price = 0.02, denom = 'uiov' }
+max_gas=1100000
+max_msg_num=15
+max_tx_size=450000
+clock_drift='7200s'
+trusting_period='14days'
+
+[chains.packet_filter]
+policy = 'allow'
+list = [['transfer', 'channel-2']]
+
+[chains.trust_threshold]
+numerator='1'
+denominator='3'
+
+
 [[chains]]
 id='osmosis-1'
-rpc_addr='http://10.10.51.169:26657' # node: osmosis1
-grpc_addr='http://10.10.51.169:9090'
-websocket_addr='ws://10.10.51.169:26657/websocket'
+rpc_addr='http://10.10.51.13:26657' # node: osmosis0
+grpc_addr='http://10.10.51.13:9090'
+websocket_addr='ws://10.10.51.13:26657/websocket'
 rpc_timeout='8s'
 account_prefix='osmo'
 key_name='aw2'
@@ -203,7 +224,9 @@ trusting_period='14days'
 
 [chains.packet_filter]
 policy = 'allow'
-## akash, sentinel, crypto, regen, iris, iov, persistence
-list = [['transfer', 'channel-1'],['transfer', 'channel-2'],['transfer', 'channel-5'],['transfer', 'channel-8'],['transfer', 'channel-6'],['transfer', 'channel-15'],['transfer', 'channel-4']]
+## akash, sentinel, crypto, regen, iris, iov, persistence, cosmoshub
+list = [['transfer', 'channel-1'],['transfer', 'channel-2'],['transfer', 'channel-5'],['transfer', 'channel-8'],['transfer', 'channel-6'],['transfer', 'channel-15'],['transfer', 'channel-4'],['transfer', 'channel-0']]
 
-
+[chains.trust_threshold]
+numerator='1'
+denominator='3'
