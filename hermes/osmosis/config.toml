@@ -37,9 +37,9 @@ denominator='3'
 
 [[chains]]
 id='akashnet-2'
-rpc_addr='http://10.10.51.69:26657'
-grpc_addr='http://10.10.51.69:9090'
-websocket_addr='ws://10.10.51.69:26657/websocket'
+rpc_addr='http://10.10.51.79:26657' # akashnet0
+grpc_addr='http://10.10.51.79:9090'
+websocket_addr='ws://10.10.51.79:26657/websocket'
 rpc_timeout='8s'
 account_prefix='akash'
 key_name='aw2'

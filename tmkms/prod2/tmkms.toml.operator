@@ -1,0 +1,13 @@
+# Tendermint KMS configuration file
+
+## Chain Configuration
+
+## Signing Provider Configuration
+
+### YubiHSM2 Provider Configuration
+
+[[providers.yubihsm]]
+adapter = { type = "usb" }
+auth = { key = 2, password_file = "/home/tmkms/secrets/operator-password" }
+serial_number = "0008085303" # serial number of a specific YubiHSM to connect to (optional)
+keys = []
