@@ -60,7 +60,7 @@ denominator='3'
 
 [[chains]]
 id='sentinelhub-2'
-rpc_addr='http://10.10.51.47:26657'
+rpc_addr='http://10.10.51.47:26657' # sentinelhub0
 grpc_addr='http://10.10.51.47:9090'
 websocket_addr='ws://10.10.51.47:26657/websocket'
 rpc_timeout='8s'
@@ -84,7 +84,7 @@ denominator='3'
 
 [[chains]]
 id='crypto-org-chain-mainnet-1'
-rpc_addr='http://10.10.51.95:26657'
+rpc_addr='http://10.10.51.95:26657' # crypto0
 grpc_addr='http://10.10.51.95:9090'
 websocket_addr='ws://10.10.51.95:26657/websocket'
 rpc_timeout='8s'
@@ -159,9 +159,9 @@ denominator='3'
 
 [[chains]]
 id='core-1'
-rpc_addr='http://10.10.51.40:26657'
-grpc_addr='http://10.10.51.40:9090'
-websocket_addr='ws://10.10.51.40:26657/websocket'
+rpc_addr='http://10.10.51.84:26657' # core0 
+grpc_addr='http://10.10.51.84:9090'
+websocket_addr='ws://10.10.51.84:26657/websocket'
 rpc_timeout='8s'
 account_prefix='persistence'
 key_name='aw2'

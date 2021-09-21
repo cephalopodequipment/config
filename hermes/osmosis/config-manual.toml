@@ -12,7 +12,7 @@ port    = 3000
 
 [[chains]]
 id='cosmoshub-4'
-rpc_addr='http://10.10.51.117:26657' # cosmoshub1
+rpc_addr='http://10.10.51.117:26657' # cosmoshub2
 grpc_addr='http://10.10.51.117:9090'
 websocket_addr='ws://10.10.51.117:26657/websocket'
 rpc_timeout='8s'
@@ -37,9 +37,9 @@ denominator='3'
 
 [[chains]]
 id='akashnet-2'
-rpc_addr='http://10.10.51.69:26657'
-grpc_addr='http://10.10.51.69:9090'
-websocket_addr='ws://10.10.51.69:26657/websocket'
+rpc_addr='http://10.10.51.201:26657' # akashnet1
+grpc_addr='http://10.10.51.201:9090'
+websocket_addr='ws://10.10.51.201:26657/websocket'
 rpc_timeout='8s'
 account_prefix='akash'
 key_name='aw1'
@@ -60,9 +60,9 @@ denominator='3'
 
 [[chains]]
 id='sentinelhub-2'
-rpc_addr='http://10.10.51.47:26657'
-grpc_addr='http://10.10.51.47:9090'
-websocket_addr='ws://10.10.51.47:26657/websocket'
+rpc_addr='http://10.10.51.199:26657' # sentinelhub1
+grpc_addr='http://10.10.51.199:9090'
+websocket_addr='ws://10.10.51.199:26657/websocket'
 rpc_timeout='8s'
 account_prefix='sent'
 key_name='aw1'
@@ -84,9 +84,9 @@ denominator='3'
 
 [[chains]]
 id='crypto-org-chain-mainnet-1'
-rpc_addr='http://10.10.51.95:26657'
-grpc_addr='http://10.10.51.95:9090'
-websocket_addr='ws://10.10.51.95:26657/websocket'
+rpc_addr='http://10.10.51.174:26657' # crypto1
+grpc_addr='http://10.10.51.174:9090'
+websocket_addr='ws://10.10.51.174:26657/websocket'
 rpc_timeout='8s'
 account_prefix='cro'
 key_name='aw1'
@@ -159,9 +159,9 @@ denominator='3'
 
 [[chains]]
 id='core-1'
-rpc_addr='http://10.10.51.40:26657'
-grpc_addr='http://10.10.51.40:9090'
-websocket_addr='ws://10.10.51.40:26657/websocket'
+rpc_addr='http://10.10.51.189:26657' # core1
+grpc_addr='http://10.10.51.189:9090'
+websocket_addr='ws://10.10.51.189:26657/websocket'
 rpc_timeout='8s'
 account_prefix='persistence'
 key_name='aw1'
