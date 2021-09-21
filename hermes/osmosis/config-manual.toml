@@ -134,9 +134,9 @@ denominator='3'
 
 [[chains]]
 id='irishub-1'
-rpc_addr='http://10.10.51.66:26657'
-grpc_addr='http://10.10.51.66:9090'
-websocket_addr='ws://10.10.51.66:26657/websocket'
+rpc_addr='http://10.10.51.215:26657' # irishub1
+grpc_addr='http://10.10.51.215:9090'
+websocket_addr='ws://10.10.51.215:26657/websocket'
 rpc_timeout='8s'
 account_prefix='iaa'
 key_name='aw1'
@@ -209,9 +209,9 @@ denominator='3'
 
 [[chains]]
 id='osmosis-1'
-rpc_addr='http://10.10.51.13:26657' # node: osmosis0
-grpc_addr='http://10.10.51.13:9090'
-websocket_addr='ws://10.10.51.13:26657/websocket'
+rpc_addr='http://10.10.51.169:26657' # node: osmosis1
+grpc_addr='http://10.10.51.169:9090'
+websocket_addr='ws://10.10.51.169:26657/websocket'
 rpc_timeout='8s'
 account_prefix='osmo'
 key_name='aw1'
