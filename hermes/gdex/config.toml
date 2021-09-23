@@ -46,8 +46,8 @@ rpc_timeout='8s'
 account_prefix='akash'
 key_name='aw3'
 store_prefix='ibc'
-gas_price = { price = 0.005, denom = 'uakt' }
-max_gas=1500000
+gas_price = { price = 0.001, denom = 'uakt' }
+max_gas=1000000
 clock_drift='7200s'
 trusting_period='14days'
 
