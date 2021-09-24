@@ -167,8 +167,8 @@ rpc_timeout='8s'
 account_prefix='persistence'
 key_name='aw2'
 store_prefix='ibc'
-gas_price = { price = 0.002, denom = 'uxprt' }
-max_gas=2000000
+gas_price = { price = 0.001, denom = 'uxprt' }
+max_gas=1000000
 max_msg_num=15
 max_tx_size=180000
 clock_drift='7200s'
@@ -218,7 +218,7 @@ account_prefix='osmo'
 key_name='aw2'
 store_prefix='ibc'
 gas_price = { price = 0.001, denom = 'uosmo' }
-max_gas=1000000
+max_gas=2000000
 max_msg_num=8
 clock_drift='7200s'
 trusting_period='14days'

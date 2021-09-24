@@ -11,10 +11,10 @@
 
 ### Osmosis Network
 
-#[[chain]]
-#id = "osmosis-1"
-#key_format = { type = "bech32", account_key_prefix = "osmopub", consensus_key_prefix = "osmovalconspub" }
-#state_file = "/home/tmkms/state/osmosis-1-consensus.json"
+[[chain]]
+id = "osmosis-1"
+key_format = { type = "bech32", account_key_prefix = "osmopub", consensus_key_prefix = "osmovalconspub" }
+state_file = "/home/tmkms/state/osmosis-1-consensus.json"
 
 ### Cosmos Hub
 
@@ -43,7 +43,7 @@ keys = [
 #    { key = 1, type = "consensus", chain_ids = ["cosmoshub-4"] }, 
 #    { key = 2, type = "consensus", chain_ids = ["regen-1"] }, 
     { key = 3, type = "consensus", chain_ids = ["impacthub-3"] }, 
-#    { key = 4, type = "consensus", chain_ids = ["osmosis-1"] }, 
+    { key = 4, type = "consensus", chain_ids = ["osmosis-1"] }, 
 ]
 
 ## Validator Configuration
@@ -57,21 +57,21 @@ reconnect = true
 
 #[[validator]]
 #chain_id = "cosmoshub-4"
-#addr = "10.10.10.101:27000"
+#addr = "10.10.10.100:27000"
 #secret_key = "/home/tmkms/secrets/kms-identity.key"
 #protocol_version = "v0.34"
 #reconnect = true
 
 #[[validator]]
 #chain_id = "regen-1"
-#addr = "10.10.10.101:28000"
+#addr = "10.10.10.100:28000"
 #secret_key = "/home/tmkms/secrets/kms-identity.key"
 #protocol_version = "v0.34"
 #reconnect = true
 
-#[[validator]]
-#chain_id = "osmosis-1"
-#addr = "10.10.10.101:29000"
-#secret_key = "/home/tmkms/secrets/kms-identity.key"
-#protocol_version = "v0.34"
-#reconnect = true
+[[validator]]
+chain_id = "osmosis-1"
+addr = "10.10.10.101:29000"
+secret_key = "/home/tmkms/secrets/kms-identity.key"
+protocol_version = "v0.34"
+reconnect = true
