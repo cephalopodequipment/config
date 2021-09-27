@@ -181,7 +181,7 @@ laddr = '{{ "tcp://0.0.0.0" }}:{{ env "NOMAD_PORT_rgn_p2p" }}'
 external_address = '{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_rgn_p2p" }}'
 
 # Comma separated list of seed nodes to connect to
-seeds = {{ keyOrDefault "regen/p2p.seeds" "" }}
+seeds = ""
 
 # Comma separated list of nodes to keep persistent connections to
 persistent_peers = {{ keyOrDefault "regen/p2p.persistent_peers" "" }}
@@ -230,7 +230,7 @@ pex = true
 seed_mode = false
 
 # Comma separated list of peer IDs to keep private (will not be gossiped to other peers)
-private_peer_ids = {{ keyOrDefault "regen/p2p.private_peer_ids" "" }}
+private_peer_ids = ""
 
 # Toggle to disable guard against peers connecting from the same ip.
 allow_duplicate_ip = false
@@ -282,7 +282,7 @@ max_batch_bytes = 0
 # the network to take and serve state machine snapshots. State sync is not attempted if the node
 # has any local state (LastBlockHeight > 0). The node will have a truncated block history,
 # starting from the height of the snapshot.
-enable = {{ keyOrDefault "regen/state-sync.enable" "false" }}
+enable = false
 
 # RPC servers (comma-separated) for light client verification of the synced state machine and
 # retrieval of state data for node bootstrapping. Also needs a trusted height and corresponding
@@ -290,9 +290,9 @@ enable = {{ keyOrDefault "regen/state-sync.enable" "false" }}
 #
 # For Cosmos SDK-based chains, trust_period should usually be about 2/3 of the unbonding time (~2
 # weeks) during which they can be financially punished (slashed) for misbehavior.
-rpc_servers = {{ keyOrDefault "regen/state-sync.rpc_servers" "" }}
-trust_height = {{ keyOrDefault "regen/state-sync.trust_height" "0" }}
-trust_hash = {{ keyOrDefault "regen/state-sync.trust_hash" "" }}
+rpc_servers = ""
+trust_height = 0
+trust_hash = ""
 trust_period = "168h0m0s"
 
 # Time to spend discovering snapshots before initiating a restore.
