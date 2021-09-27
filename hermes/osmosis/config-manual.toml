@@ -115,7 +115,7 @@ grpc_addr='http://10.10.51.245:9090'
 websocket_addr='ws://10.10.51.245:26657/websocket'
 rpc_timeout='8s'
 account_prefix='regen'
-key_name='aw1'
+key_name='aw2'
 store_prefix='ibc'
 gas_price = { price = 0.02, denom = 'uregen' }
 max_gas=800000
@@ -218,7 +218,7 @@ account_prefix='osmo'
 key_name='aw1'
 store_prefix='ibc'
 gas_price = { price = 0.001, denom = 'uosmo' }
-max_gas=5000000
+max_gas=8000000
 max_msg_num=8
 clock_drift='7200s'
 trusting_period='14days'
