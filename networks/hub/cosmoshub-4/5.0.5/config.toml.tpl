@@ -282,7 +282,7 @@ max_batch_bytes = 0
 # the network to take and serve state machine snapshots. State sync is not attempted if the node
 # has any local state (LastBlockHeight > 0). The node will have a truncated block history,
 # starting from the height of the snapshot.
-enable = {{ keyOrDefault "hub/prometheus.enable" "true" }}
+enable = {{ keyOrDefault "hub/state-sync.enable" "false" }}
 
 # RPC servers (comma-separated) for light client verification of the synced state machine and
 # retrieval of state data for node bootstrapping. Also needs a trusted height and corresponding
@@ -290,9 +290,9 @@ enable = {{ keyOrDefault "hub/prometheus.enable" "true" }}
 #
 # For Cosmos SDK-based chains, trust_period should usually be about 2/3 of the unbonding time (~2
 # weeks) during which they can be financially punished (slashed) for misbehavior.
-rpc_servers = ""
-trust_height = 0
-trust_hash = ""
+rpc_servers = {{ keyOrDefault "hub/state-sync.rpc_servers" "\"\"" }}
+trust_height = {{ keyOrDefault "hub/state-sync.trust_height" "0" }}
+trust_hash = {{ keyOrDefault "hub/state-sync.trust_hash" "\"\"" }}
 trust_period = "168h0m0s"
 
 # Time to spend discovering snapshots before initiating a restore.
