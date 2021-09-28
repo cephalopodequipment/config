@@ -88,7 +88,7 @@ filter_peers = false
 [rpc]
 
 # TCP or UNIX socket address for the RPC server to listen on
-laddr = "tcp://127.0.0.1:26657"
+laddr = '{{ "tcp://0.0.0.0" }}:{{ env "NOMAD_PORT_hub_rpc" }}'
 
 # A list of origins a cross-domain request can be executed from
 # Default value '[]' disables cors support
@@ -172,19 +172,19 @@ pprof_laddr = "localhost:6060"
 [p2p]
 
 # Address to listen for incoming connections
-laddr = "tcp://0.0.0.0:26656"
+laddr = '{{ "tcp://0.0.0.0" }}:{{ env "NOMAD_PORT_hub_p2p" }}'
 
 # Address to advertise to peers for them to dial
 # If empty, will use the same port as the laddr,
 # and will introspect on the listener or use UPnP
 # to figure out the address.
-external_address = ""
+external_address = '{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_hub_p2p" }}'
 
 # Comma separated list of seed nodes to connect to
 seeds = ""
 
 # Comma separated list of nodes to keep persistent connections to
-persistent_peers = ""
+persistent_peers = {{ keyOrDefault "hub/p2p.persistent_peers" "\"\"" }}
 
 # UPNP port forwarding
 upnp = false
@@ -197,13 +197,13 @@ addr_book_file = "config/addrbook.json"
 addr_book_strict = true
 
 # Maximum number of inbound peers
-max_num_inbound_peers = 100
+max_num_inbound_peers = {{ keyOrDefault "hub/p2p.max_num_inbound_peers" "100" }}
 
 # Maximum number of outbound peers to connect to, excluding persistent peers
-max_num_outbound_peers = 50
+max_num_outbound_peers = {{ keyOrDefault "hub/p2p.max_num_outbound_peers" "50" }}
 
 # List of node IDs, to which a connection will be (re)established ignoring any existing limits
-unconditional_peer_ids = ""
+unconditional_peer_ids = {{ keyOrDefault "hub/p2p.unconditional_peer_ids" "\"\"" }}
 
 # Maximum pause when redialing a persistent peer (if zero, exponential backoff is used)
 persistent_peers_max_dial_period = "0s"
@@ -215,10 +215,10 @@ flush_throttle_timeout = "100ms"
 max_packet_msg_payload_size = 1024
 
 # Rate at which packets can be sent, in bytes/second
-send_rate = 51200000
+send_rate = 512000000
 
 # Rate at which packets can be received, in bytes/second
-recv_rate = 51200000
+recv_rate = 512000000
 
 # Set true to enable the peer-exchange reactor
 pex = true
@@ -282,7 +282,7 @@ max_batch_bytes = 0
 # the network to take and serve state machine snapshots. State sync is not attempted if the node
 # has any local state (LastBlockHeight > 0). The node will have a truncated block history,
 # starting from the height of the snapshot.
-enable = true
+enable = {{ keyOrDefault "hub/prometheus.enable" "true" }}
 
 # RPC servers (comma-separated) for light client verification of the synced state machine and
 # retrieval of state data for node bootstrapping. Also needs a trusted height and corresponding
@@ -385,10 +385,10 @@ indexer = "kv"
 # When true, Prometheus metrics are served under /metrics on
 # PrometheusListenAddr.
 # Check out the documentation for the list of available metrics.
-prometheus = true
+prometheus = {{ keyOrDefault "hub/prometheus.enable" "true" }}
 
 # Address to listen for Prometheus collector(s) connections
-prometheus_listen_addr = ":26660"
+prometheus_listen_addr = '{{ "tcp://0.0.0.0" }}:{{ env "NOMAD_PORT_hub_prom" }}'
 
 # Maximum number of simultaneous connections.
 # If you want to accept a larger number than the default, make sure

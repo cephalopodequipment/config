@@ -15,7 +15,7 @@
 proxy_app = "tcp://127.0.0.1:26658"
 
 # A custom human readable name for this node
-moniker = "Template Node"
+moniker = "20k leagues under the sea"
 
 # If this node is many blocks behind the tip of the chain, FastSync
 # allows them to catchup quickly by downloading blocks in parallel
@@ -184,7 +184,7 @@ external_address = '{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_rgn_p2p" }}'
 seeds = ""
 
 # Comma separated list of nodes to keep persistent connections to
-persistent_peers = {{ keyOrDefault "regen/p2p.persistent_peers" "" }}
+persistent_peers = {{ keyOrDefault "regen/p2p.persistent_peers" "\"\"" }}
 
 # UPNP port forwarding
 upnp = false
@@ -203,7 +203,7 @@ max_num_inbound_peers = {{ keyOrDefault "regen/p2p.max_num_inbound_peers" "100" 
 max_num_outbound_peers = {{ keyOrDefault "regen/p2p.max_num_outbound_peers" "50" }}
 
 # List of node IDs, to which a connection will be (re)established ignoring any existing limits
-unconditional_peer_ids = {{ keyOrDefault "regen/p2p.unconditional_peer_ids" "" }}
+unconditional_peer_ids = {{ keyOrDefault "regen/p2p.unconditional_peer_ids" "\"\"" }}
 
 # Maximum pause when redialing a persistent peer (if zero, exponential backoff is used)
 persistent_peers_max_dial_period = "0s"
@@ -282,7 +282,7 @@ max_batch_bytes = 0
 # the network to take and serve state machine snapshots. State sync is not attempted if the node
 # has any local state (LastBlockHeight > 0). The node will have a truncated block history,
 # starting from the height of the snapshot.
-enable = false
+enable = {{ keyOrDefault "regen/prometheus.enable" "true" }}
 
 # RPC servers (comma-separated) for light client verification of the synced state machine and
 # retrieval of state data for node bootstrapping. Also needs a trusted height and corresponding
