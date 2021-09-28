@@ -25,7 +25,7 @@ pruning-interval = "0"
 # halt and shutdown that can be used to assist upgrades and testing.
 #
 # Note: Commitment of state will be attempted on the corresponding block.
-halt-height = 0
+halt-height = {{ keyOrDefault "crypto/halt-height" "0" }}
 
 # HaltTime contains a non-zero minimum block time (in Unix seconds) at which
 # a node will gracefully halt and shutdown that can be used to assist upgrades
@@ -101,13 +101,13 @@ global-labels = [
 [api]
 
 # Enable defines if the API server should be enabled.
-enable = false
+enable = true
 
 # Swagger defines if swagger documentation should automatically be registered.
-swagger = false
+swagger = true
 
 # Address defines the API server to listen on.
-address = "tcp://0.0.0.0:1317"
+address = '{{ "tcp://0.0.0.0" }}:{{ env "NOMAD_PORT_crypto_leet" }}'
 
 # MaxOpenConnections defines the number of maximum open connections.
 max-open-connections = 1000
@@ -158,7 +158,7 @@ offline = false
 enable = true
 
 # Address defines the gRPC server address to bind to.
-address = "0.0.0.0:9090"
+address = '{{ "0.0.0.0" }}:{{ env "NOMAD_PORT_crypto_grpc" }}'
 
 ###############################################################################
 ###                        gRPC Web Configuration                           ###
