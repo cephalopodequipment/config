@@ -215,10 +215,10 @@ flush_throttle_timeout = "100ms"
 max_packet_msg_payload_size = 1024
 
 # Rate at which packets can be sent, in bytes/second
-send_rate = 512000000
+send_rate = 51200000
 
 # Rate at which packets can be received, in bytes/second
-recv_rate = 512000000
+recv_rate = 51200000
 
 # Set true to enable the peer-exchange reactor
 pex = true
@@ -290,9 +290,9 @@ enable = {{ keyOrDefault "regen/state-sync.enable" "false" }}
 #
 # For Cosmos SDK-based chains, trust_period should usually be about 2/3 of the unbonding time (~2
 # weeks) during which they can be financially punished (slashed) for misbehavior.
-rpc_servers = ""
-trust_height = 0
-trust_hash = ""
+rpc_servers = {{ keyOrDefault "regen/state-sync.rpc_servers" "\"\"" }}
+trust_height = {{ keyOrDefault "regen/state-sync.trust_height" "0" }}
+trust_hash = {{ keyOrDefault "regen/state-sync.trust_hash" "\"\"" }}
 trust_period = "168h0m0s"
 
 # Time to spend discovering snapshots before initiating a restore.

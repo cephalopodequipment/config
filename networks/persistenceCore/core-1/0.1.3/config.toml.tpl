@@ -184,7 +184,7 @@ external_address = '{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_core_p2p" }}'
 seeds = ""
 
 # Comma separated list of nodes to keep persistent connections to
-persistent_peers = {{ keyOrDefault "core/p2p.persistent_peers" "" }}
+persistent_peers = {{ keyOrDefault "core/p2p.persistent_peers" "\"\"" }}
 
 # UPNP port forwarding
 upnp = false
@@ -203,7 +203,7 @@ max_num_inbound_peers = {{ keyOrDefault "core/p2p.max_num_inbound_peers" "100" }
 max_num_outbound_peers = {{ keyOrDefault "core/p2p.max_num_outbound_peers" "50" }}
 
 # List of node IDs, to which a connection will be (re)established ignoring any existing limits
-unconditional_peer_ids = {{ keyOrDefault "core/p2p.unconditional_peer_ids" "" }}
+unconditional_peer_ids = {{ keyOrDefault "core/p2p.unconditional_peer_ids" "\"\"" }}
 
 # Maximum pause when redialing a persistent peer (if zero, exponential backoff is used)
 persistent_peers_max_dial_period = "0s"
@@ -215,10 +215,10 @@ flush_throttle_timeout = "100ms"
 max_packet_msg_payload_size = 1024
 
 # Rate at which packets can be sent, in bytes/second
-send_rate = 512000000
+send_rate = 51200000
 
 # Rate at which packets can be received, in bytes/second
-recv_rate = 512000000
+recv_rate = 51200000
 
 # Set true to enable the peer-exchange reactor
 pex = true
@@ -282,7 +282,7 @@ max_batch_bytes = 0
 # the network to take and serve state machine snapshots. State sync is not attempted if the node
 # has any local state (LastBlockHeight > 0). The node will have a truncated block history,
 # starting from the height of the snapshot.
-enable = false
+enable = {{ keyOrDefault "core/state-sync.enable" "false" }}
 
 # RPC servers (comma-separated) for light client verification of the synced state machine and
 # retrieval of state data for node bootstrapping. Also needs a trusted height and corresponding
@@ -290,9 +290,9 @@ enable = false
 #
 # For Cosmos SDK-based chains, trust_period should usually be about 2/3 of the unbonding time (~2
 # weeks) during which they can be financially punished (slashed) for misbehavior.
-rpc_servers = ""
-trust_height = 0
-trust_hash = ""
+rpc_servers = {{ keyOrDefault "core/state-sync.rpc_servers" "\"\"" }}
+trust_height = {{ keyOrDefault "core/state-sync.trust_height" "0" }}
+trust_hash = {{ keyOrDefault "core/state-sync.trust_hash" "\"\"" }}
 trust_period = "168h0m0s"
 
 # Time to spend discovering snapshots before initiating a restore.
