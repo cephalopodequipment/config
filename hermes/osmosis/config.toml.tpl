@@ -13,9 +13,9 @@ port    = 3000
 
 [[chains]]
 id='cosmoshub-4'
-rpc_addr='http://10.10.51.186:26657' # cosmoshub1
-grpc_addr='http://10.10.51.186:9090'
-websocket_addr='ws://10.10.51.186:26657/websocket'
+rpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_hub_rpc" }}'
+grpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_hub_grpc" }}'
+websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_hub_rpc" }}/websocket'
 rpc_timeout='8s'
 account_prefix='cosmos'
 key_name='aw2'
@@ -38,9 +38,9 @@ denominator='3'
 
 [[chains]]
 id='akashnet-2'
-rpc_addr='http://10.10.51.79:26657' # akashnet0
-grpc_addr='http://10.10.51.79:9090'
-websocket_addr='ws://10.10.51.79:26657/websocket'
+rpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_akash_rpc" }}'
+grpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_akash_grpc" }}'
+websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_akash_rpc" }}/websocket'
 rpc_timeout='8s'
 account_prefix='akash'
 key_name='aw2'
@@ -61,9 +61,9 @@ denominator='3'
 
 [[chains]]
 id='sentinelhub-2'
-rpc_addr='http://10.10.51.47:26657' # sentinelhub0
-grpc_addr='http://10.10.51.47:9090'
-websocket_addr='ws://10.10.51.47:26657/websocket'
+rpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_dvpn_rpc" }}'
+grpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_dvpn_grpc" }}'
+websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_dvpn_rpc" }}/websocket'
 rpc_timeout='8s'
 account_prefix='sent'
 key_name='aw2'
@@ -85,9 +85,9 @@ denominator='3'
 
 [[chains]]
 id='crypto-org-chain-mainnet-1'
-rpc_addr='http://10.10.51.95:26657' # crypto0
-grpc_addr='http://10.10.51.95:9090'
-websocket_addr='ws://10.10.51.95:26657/websocket'
+rpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_crypto_rpc" }}'
+grpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_crypto_grpc" }}'
+websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_crypto_rpc" }}/websocket'
 rpc_timeout='8s'
 account_prefix='cro'
 key_name='aw2'
@@ -110,9 +110,9 @@ denominator='3'
 
 [[chains]]
 id='regen-1'
-rpc_addr='http://10.10.51.245:26657'
-grpc_addr='http://10.10.51.245:9090'
-websocket_addr='ws://10.10.51.245:26657/websocket'
+rpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_rgn_rpc" }}'
+grpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_rgn_grpc" }}'
+websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_rgn_rpc" }}/websocket'
 rpc_timeout='8s'
 account_prefix='regen'
 key_name='aw2'
@@ -135,9 +135,9 @@ denominator='3'
 
 [[chains]]
 id='irishub-1'
-rpc_addr='http://10.10.51.58:26657' # irishub0
-grpc_addr='http://10.10.51.58:9090'
-websocket_addr='ws://10.10.51.58:26657/websocket'
+rpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_iris_rpc" }}'
+grpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_iris_grpc" }}'
+websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_iris_rpc" }}/websocket'
 rpc_timeout='8s'
 account_prefix='iaa'
 key_name='aw2'
@@ -160,9 +160,9 @@ denominator='3'
 
 [[chains]]
 id='core-1'
-rpc_addr='http://10.10.51.84:26657' # core0 
-grpc_addr='http://10.10.51.84:9090'
-websocket_addr='ws://10.10.51.84:26657/websocket'
+rpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_core_rpc" }}'
+grpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_core_grpc" }}'
+websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_core_rpc" }}/websocket'
 rpc_timeout='8s'
 account_prefix='persistence'
 key_name='aw2'
@@ -185,9 +185,9 @@ denominator='3'
 
 [[chains]]
 id='iov-mainnet-ibc'
-rpc_addr='http://10.10.51.23:26657'
-grpc_addr='http://10.10.51.23:9090'
-websocket_addr='ws://10.10.51.23:26657/websocket'
+rpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_iov_rpc" }}'
+grpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_iov_grpc" }}'
+websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_iov_rpc" }}/websocket'
 rpc_timeout='8s'
 account_prefix='star'
 key_name='aw2'
@@ -210,9 +210,9 @@ denominator='3'
 
 [[chains]]
 id='osmosis-1'
-rpc_addr='http://10.10.51.13:26657' # node: osmosis0
-grpc_addr='http://10.10.51.13:9090'
-websocket_addr='ws://10.10.51.13:26657/websocket'
+rpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_osmo_rpc" }}'
+grpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_osmo_grpc" }}'
+websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_osmo_rpc" }}/websocket'
 rpc_timeout='8s'
 account_prefix='osmo'
 key_name='aw2'
