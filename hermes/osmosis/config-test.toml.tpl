@@ -13,9 +13,9 @@ port    = 3000
 
 [[chains]]
 id='cosmoshub-4'
-rpc_addr='http://127.0.0.1:{{ env "NOMAD_PORT_hub_rpc" }}'
-grpc_addr='http://127.0.0.1:{{ env "NOMAD_PORT_hub_grpc" }}'
-websocket_addr='ws://127.0.0.1:{{ env "NOMAD_PORT_hub_rpc" }}/websocket'
+rpc_addr='http://{{ env "NOMAD_ADDR_gaiad_hub_rpc" }}'
+grpc_addr='http://{{ env "NOMAD_ADDR_gaiad_hub_grpc" }}'
+websocket_addr='ws://{{ env "NOMAD_ADDR_gaiad_hub_rpc" }}/websocket'
 rpc_timeout='8s'
 account_prefix='cosmos'
 key_name='aw2'
