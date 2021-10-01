@@ -209,6 +209,31 @@ denominator='3'
 
 
 [[chains]]
+id='juno-1'
+rpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_juno_rpc" }}'
+grpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_juno_grpc" }}'
+websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_juno_rpc" }}/websocket'
+rpc_timeout='8s'
+account_prefix='juno'
+key_name='aw2'
+store_prefix='ibc'
+gas_price = { price = 0.02, denom = 'ujuno' }
+max_gas=1000000
+max_msg_num=15
+max_tx_size=450000
+clock_drift='7200s'
+trusting_period='14days'
+
+[chains.packet_filter]
+policy = 'allow'
+list = [['transfer', 'channel-0']]
+
+[chains.trust_threshold]
+numerator='1'
+denominator='3'
+
+
+[[chains]]
 id='osmosis-1'
 rpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_osmo_rpc" }}'
 grpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_osmo_grpc" }}'
@@ -225,8 +250,8 @@ trusting_period='14days'
 
 [chains.packet_filter]
 policy = 'allow'
-## akash, sentinel, crypto, regen, iris, iov, persistence, cosmoshub
-list = [['transfer', 'channel-1'],['transfer', 'channel-2'],['transfer', 'channel-5'],['transfer', 'channel-8'],['transfer', 'channel-6'],['transfer', 'channel-15'],['transfer', 'channel-4'],['transfer', 'channel-0']]
+## akash, sentinel, crypto, regen, iris, iov, persistence, cosmoshub, juno
+list = [['transfer', 'channel-1'],['transfer', 'channel-2'],['transfer', 'channel-5'],['transfer', 'channel-8'],['transfer', 'channel-6'],['transfer', 'channel-15'],['transfer', 'channel-4'],['transfer', 'channel-0'],['transfer', 'channel-42']]
 
 [chains.trust_threshold]
 numerator='1'
