@@ -158,7 +158,7 @@ offline = false
 enable = true
 
 # Address defines the gRPC server address to bind to.
-address = '{{ "0.0.0.0" }}:{{ env "NOMAD_PORT_juno_grpc" }}'
+address = "0.0.0.0:9090"
 
 ###############################################################################
 ###                        gRPC Web Configuration                           ###
