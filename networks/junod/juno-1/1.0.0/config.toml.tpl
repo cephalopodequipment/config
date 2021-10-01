@@ -179,7 +179,7 @@ laddr = '{{ "tcp://0.0.0.0" }}:{{ env "NOMAD_PORT_juno_p2p" }}'
 # and will introspect on the listener or use UPnP
 # to figure out the address. ip and port are required
 # example: 159.89.10.97:26656
-external_address = '{{ envOrDefault "EXTERNAL_ADDRESS" "\"\""}}'
+external_address = '{{ or (env "EXTERNAL_ADDRESS") "\"\"" }}'
 
 # Comma separated list of seed nodes to connect to
 seeds = ""
