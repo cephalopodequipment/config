@@ -21,7 +21,7 @@ account_prefix='cosmos'
 key_name='aw3'
 store_prefix='ibc'
 gas_price = { price = 0.0001, denom = 'uatom' }
-max_gas=1000000
+max_gas=5500000
 max_msg_num=15
 max_tx_size=180000
 clock_drift='7200s'
@@ -212,4 +212,26 @@ list = [['transfer', 'channel-7'], ['transfer', 'channel-0'], ['transfer', 'chan
 [chains.trust_threshold]
 numerator='1'
 denominator='3'
+
+
+[[chains]]
+id='impacthub-3'
+rpc_addr='http://10.10.51.30:26657' # impacthub0
+grpc_addr='http://10.10.51.30:9090'
+websocket_addr='ws://10.10.51.30:26657/websocket'
+rpc_timeout='8s'
+account_prefix='ixo'
+key_name='aw3'
+store_prefix='ibc'
+gas_price = { price = 0.0001, denom = 'uixo' }
+max_gas=1500000
+max_msg_num=15
+max_tx_size=180000
+clock_drift='7200s'
+trusting_period='14days'
+
+[chains.packet_filter]
+policy = 'allow'
+# akash, crypto-org, iris, persistence, regen, sentinel, starname
+list = [['transfer', 'channel-184']]
 
