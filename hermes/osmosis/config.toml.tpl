@@ -208,6 +208,28 @@ numerator='1'
 denominator='3'
 
 
+#[[chains]]
+#id='impacthub-3'
+#rpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_ixo_rpc" }}'
+#grpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_ixo_grpc" }}'
+#websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_ixo_rpc" }}/websocket'
+#rpc_timeout='8s'
+#account_prefix='ixo'
+#key_name='aw3'
+#store_prefix='ibc'
+#gas_price = { price = 0.0001, denom = 'uixo' }
+#max_gas=1500000
+#max_msg_num=15
+#max_tx_size=180000
+#clock_drift='7200s'
+#trusting_period='14days'
+
+#[chains.packet_filter]
+#policy = 'allow'
+# akash, cosmos-hub, crypto-org, iris, microtick, persistence, regen, sentinel, starname
+#list = []
+
+
 [[chains]]
 id='juno-1'
 rpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_juno_rpc" }}'
