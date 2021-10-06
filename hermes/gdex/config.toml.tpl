@@ -31,7 +31,6 @@ trusting_period='14days'
 policy = 'allow'
 # akash, crypto-org, iris, ixo, microtick, persistence, regen, sentinel, starname
 list = [['transfer', 'channel-184'], ['transfer', 'channel-187'], ['transfer', 'channel-182'], ['transfer', 'channel-204'], ['transfer', 'channel-201'], ['transfer', 'channel-190'], ['transfer', 'channel-185'], ['transfer', 'channel-186'], ['transfer', 'channel-158']]
-list = [ ]
 
 [chains.trust_threshold]
 numerator='1'
