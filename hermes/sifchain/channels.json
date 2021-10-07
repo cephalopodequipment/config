@@ -1,0 +1,72 @@
+{
+   "chains": [
+      {
+         "chain_name":"akash",
+         "primary_channel": "channel-24",
+         "client_id": "07-tendermint-61"
+      },
+      {
+         "chain_name":"cosmos-hub",
+         "primary_channel": "channel-192",
+         "client_id": "07-tendermint-395"
+      },
+      {
+         "chain_name":"crypto-org",
+         "primary_channel": "channel-33",
+         "client_id": "07-tendermint-1103"
+      },
+      {
+         "chain_name":"iris",
+         "primary_channel": "channel-19",
+         "client_id": "07-tendermint-42"
+      },
+      {
+         "chain_name":"osmosis",
+         "primary_channel": ""
+      },
+      {
+         "chain_name":"persistence",
+         "primary_channel": "channel-26",
+         "client_id": "07-tendermint-38"
+      },
+      {
+         "chain_name":"regen",
+         "primary_channel": "channel-28",
+         "client_id": "07-tendermint-73"
+      },
+      {
+         "chain_name":"sentinel",
+         "primary_channel": "channel-36",
+         "client_id": "07-tendermint-84"
+      },
+      {
+         "chain_name":"ixo",
+         "primary_channel": ""
+      },
+      {
+         "chain_name":"juno",
+         "primary_channel": ""
+      },
+      {
+         "chain_name":"sifchain",
+         "primary_channel": {
+            "cosmoshub": "channel-0",
+            "akash": "channel-2",
+            "crypto-org": "channel-9",
+            "iris": "channel-8",
+            "persistence": "channel-7",
+            "sentinelhub": "channel-1",
+            "regen": "channel-10"
+         },
+         "client_id": {
+            "cosmoshub": "07-tendermint-0",
+            "akash": "07-tendermint-11",
+            "crypto-org": "07-tendermint-20",
+            "iris": "07-tendermint-19",
+            "persistence": "07-tendermint-18",
+            "sentinelhub": "07-tendermint-9",
+            "regen": "07-tendermint-31"
+         }
+      }
+   ]
+}
