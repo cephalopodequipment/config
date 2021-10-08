@@ -182,6 +182,26 @@ denominator='3'
 
 
 [[chains]]
+id='osmosis-1'
+rpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_osmo_rpc" }}'
+grpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_osmo_grpc" }}'
+websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_osmo_rpc" }}/websocket'
+rpc_timeout='8s'
+account_prefix='osmo'
+key_name='aw2'
+store_prefix='ibc'
+gas_price = { price = 0.001, denom = 'uosmo' }
+max_gas=2000000
+max_msg_num=8
+clock_drift='7200s'
+trusting_period='14days'
+
+[chains.packet_filter]
+policy = 'allow'
+list = [['transfer', 'channel-47']]
+
+
+[[chains]]
 id='sifchain-1'
 rpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_sif_rpc" }}'
 grpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_sif_grpc" }}'
@@ -190,8 +210,8 @@ rpc_timeout='8s'
 account_prefix='rowan'
 key_name='aw4'
 store_prefix='ibc'
-gas_price = { price = 0.001, denom = 'rowan' }
-max_gas=1500000
+gas_price = { price = 1000000000000, denom = 'rowan' }
+max_gas=300000
 max_msg_num=15
 max_tx_size=180000
 clock_drift='7200s'
@@ -199,8 +219,8 @@ trusting_period='14days'
 
 [chains.packet_filter]
 policy = 'allow'
-# cosmoshub, akash, crypto-org, iris, persistence, regen, sentinel, regen
-list = [['transfer', 'channel-0'], ['transfer', 'channel-2'], ['transfer', 'channel-9'], ['transfer', 'channel-8'], ['transfer', 'channel-7'], ['transfer', 'channel-1'], ['transfer', 'channel-10']]
+# cosmoshub, akash, crypto-org, iris, persistence, regen, sentinel, regen, osmosis
+list = [['transfer', 'channel-0'], ['transfer', 'channel-2'], ['transfer', 'channel-9'], ['transfer', 'channel-8'], ['transfer', 'channel-7'], ['transfer', 'channel-1'], ['transfer', 'channel-10'], ['transfer', 'channel-17']]
 
 [chains.trust_threshold]
 numerator='1'
