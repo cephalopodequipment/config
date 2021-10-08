@@ -207,7 +207,7 @@ rpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_sif_rpc" }}'
 grpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_sif_grpc" }}'
 websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_sif_rpc" }}/websocket'
 rpc_timeout='8s'
-account_prefix='rowan'
+account_prefix='sif'
 key_name='aw4'
 store_prefix='ibc'
 gas_price = { price = 1000000000000, denom = 'rowan' }
