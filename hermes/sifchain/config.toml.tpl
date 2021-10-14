@@ -260,8 +260,8 @@ rpc_timeout='8s'
 account_prefix='sif'
 key_name='aw4'
 store_prefix='ibc'
-gas_price = { price = 1000000000000, denom = 'rowan' }
-max_gas=300000
+gas_price = { price = 100000000000, denom = 'rowan' }
+max_gas=1000000
 max_msg_num=15
 max_tx_size=180000
 clock_drift='7200s'
