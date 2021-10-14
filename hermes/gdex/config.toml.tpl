@@ -235,6 +235,10 @@ policy = 'allow'
 # akash, cosmos-hub, crypto-org, iris, microtick, persistence, regen, sentinel, starname
 list = [['transfer', 'channel-0'], ['transfer', 'channel-1'], ['transfer', 'channel-2'], ['transfer', 'channel-3'], ['transfer', 'channel-9'], ['transfer', 'channel-5'], ['transfer', 'channel-6'], ['transfer', 'channel-7'], ['transfer', 'channel-8']]
 
+[chains.trust_threshold]
+numerator='1'
+denominator='3'
+
 
 #[[chains]]
 #id='microtick-1'

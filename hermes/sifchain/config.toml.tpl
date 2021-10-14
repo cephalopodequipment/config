@@ -202,6 +202,56 @@ list = [['transfer', 'channel-47']]
 
 
 [[chains]]
+id='juno-1'
+rpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_juno_rpc" }}'
+grpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_juno_grpc" }}'
+websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_juno_rpc" }}/websocket'
+rpc_timeout='8s'
+account_prefix='juno'
+key_name='aw2'
+store_prefix='ibc'
+gas_price = { price = 0.02, denom = 'ujuno' }
+max_gas=1000000
+max_msg_num=15
+max_tx_size=450000
+clock_drift='7200s'
+trusting_period='14days'
+
+[chains.packet_filter]
+policy = 'allow'
+list = [['transfer', 'channel-5']]
+
+[chains.trust_threshold]
+numerator='1'
+denominator='3'
+
+
+[[chains]]
+id='impacthub-3'
+rpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_ixo_rpc" }}'
+grpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_ixo_grpc" }}'
+websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_ixo_rpc" }}/websocket'
+rpc_timeout='8s'
+account_prefix='ixo'
+key_name='aw3'
+store_prefix='ibc'
+gas_price = { price = 0.0001, denom = 'uixo' }
+max_gas=1500000
+max_msg_num=15
+max_tx_size=180000
+clock_drift='7200s'
+trusting_period='14days'
+
+[chains.packet_filter]
+policy = 'allow'
+list = [['transfer', 'channel-11']]
+
+[chains.trust_threshold]
+numerator='1'
+denominator='3'
+
+
+[[chains]]
 id='sifchain-1'
 rpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_sif_rpc" }}'
 grpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_sif_grpc" }}'
@@ -219,8 +269,8 @@ trusting_period='14days'
 
 [chains.packet_filter]
 policy = 'allow'
-# cosmoshub, akash, crypto-org, iris, persistence, regen, sentinel, regen, osmosis
-list = [['transfer', 'channel-0'], ['transfer', 'channel-2'], ['transfer', 'channel-9'], ['transfer', 'channel-8'], ['transfer', 'channel-7'], ['transfer', 'channel-1'], ['transfer', 'channel-10'], ['transfer', 'channel-17']]
+# cosmoshub, akash, crypto-org, iris, persistence, regen, sentinel, regen, osmosis, juno, ixo
+list = [['transfer', 'channel-0'], ['transfer', 'channel-2'], ['transfer', 'channel-9'], ['transfer', 'channel-8'], ['transfer', 'channel-7'], ['transfer', 'channel-1'], ['transfer', 'channel-10'], ['transfer', 'channel-17'], ['transfer', 'channel-13'], ['transfer', 'channel-14'], ['transfer', 'channel-15']]
 
 [chains.trust_threshold]
 numerator='1'

@@ -156,7 +156,7 @@ account_prefix='sif'
 key_name='aw4'
 store_prefix='ibc'
 gas_price = { price = 1000000000000, denom = 'rowan' }
-max_gas=500000
+max_gas=2500000
 max_msg_num=15
 max_tx_size=180000
 clock_drift='7200s'
@@ -166,6 +166,47 @@ trusting_period='14days'
 numerator='1'
 denominator='3'
 
+
+[[chains]]
+id='juno-1'
+rpc_addr='http://juno0:26657'
+grpc_addr='http://juno0:9090'
+websocket_addr='ws://juno0:26657/websocket'
+rpc_timeout='8s'
+account_prefix='juno'
+key_name='aw2'
+store_prefix='ibc'
+gas_price = { price = 0.02, denom = 'ujuno' }
+max_gas=1000000
+max_msg_num=15
+max_tx_size=450000
+clock_drift='7200s'
+trusting_period='14days'
+
+[chains.trust_threshold]
+numerator='1'
+denominator='3'
+
+
+[[chains]]
+id='impacthub-3'
+rpc_addr='http://impacthub0:26657'
+grpc_addr='http://impacthub0:9090'
+websocket_addr='ws://impacthub0:26657/websocket'
+rpc_timeout='8s'
+account_prefix='ixo'
+key_name='aw3'
+store_prefix='ibc'
+gas_price = { price = 0.0001, denom = 'uixo' }
+max_gas=1500000
+max_msg_num=15
+max_tx_size=180000
+clock_drift='7200s'
+trusting_period='14days'
+
+[chains.trust_threshold]
+numerator='1'
+denominator='3'
 
 [[chains]]
 id='osmosis-1'
