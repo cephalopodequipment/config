@@ -3,7 +3,7 @@ strategy = 'packets'
 filter = true
 log_level='debug'
 clear_packets_interval = 20
-tx_confirmation = false
+tx_confirmation = true
 
 [rest]
 enabled = true
@@ -226,8 +226,7 @@ denominator='3'
 
 #[chains.packet_filter]
 #policy = 'allow'
-# akash, cosmos-hub, crypto-org, iris, microtick, persistence, regen, sentinel, starname
-#list = []
+list = [['transfer', 'channel-4']]
 
 
 [[chains]]
@@ -272,8 +271,8 @@ trusting_period='14days'
 
 [chains.packet_filter]
 policy = 'allow'
-## akash, sentinel, crypto, regen, iris, iov, persistence, cosmoshub, juno
-list = [['transfer', 'channel-1'],['transfer', 'channel-2'],['transfer', 'channel-5'],['transfer', 'channel-8'],['transfer', 'channel-6'],['transfer', 'channel-15'],['transfer', 'channel-4'],['transfer', 'channel-0'],['transfer', 'channel-42']]
+## akash, sentinel, crypto, regen, iris, iov, persistence, cosmoshub, juno, ixo
+list = [['transfer', 'channel-1'],['transfer', 'channel-2'],['transfer', 'channel-5'],['transfer', 'channel-8'],['transfer', 'channel-6'],['transfer', 'channel-15'],['transfer', 'channel-4'],['transfer', 'channel-0'],['transfer', 'channel-42'],['transfer','channel-38']]
 
 [chains.trust_threshold]
 numerator='1'
