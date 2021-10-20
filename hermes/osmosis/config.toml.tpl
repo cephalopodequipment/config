@@ -224,8 +224,8 @@ max_tx_size=180000
 clock_drift='7200s'
 trusting_period='14days'
 
-#[chains.packet_filter]
-#policy = 'allow'
+[chains.packet_filter]
+policy = 'allow'
 list = [['transfer', 'channel-4']]
 
 
