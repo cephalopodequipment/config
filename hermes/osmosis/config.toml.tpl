@@ -19,6 +19,7 @@ websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_hub_rpc" }}/webs
 rpc_timeout='8s'
 account_prefix='cosmos'
 key_name='aw2'
+memo_prefix = 'Secure the network. Align your incentives. :squid:'
 store_prefix='ibc'
 gas_price = { price = 0.0001, denom = 'uatom' }
 max_gas=1000000
@@ -44,6 +45,7 @@ websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_akash_rpc" }}/we
 rpc_timeout='8s'
 account_prefix='akash'
 key_name='aw2'
+memo_prefix = 'Secure the network. Align your incentives. :squid:'
 store_prefix='ibc'
 gas_price = { price = 0.001, denom = 'uakt' }
 max_gas=1000000
@@ -67,6 +69,7 @@ websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_dvpn_rpc" }}/web
 rpc_timeout='8s'
 account_prefix='sent'
 key_name='aw2'
+memo_prefix = 'Secure the network. Align your incentives. :squid:'
 store_prefix='ibc'
 gas_price = { price = 0.05, denom = 'udvpn' }
 max_gas=1000000
@@ -91,6 +94,7 @@ websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_crypto_rpc" }}/w
 rpc_timeout='8s'
 account_prefix='cro'
 key_name='aw2'
+memo_prefix = 'Secure the network. Align your incentives. :squid:'
 store_prefix='ibc'
 gas_price = { price = 0.03, denom = 'basecro' }
 max_gas=1200000
@@ -116,6 +120,7 @@ websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_rgn_rpc" }}/webs
 rpc_timeout='8s'
 account_prefix='regen'
 key_name='aw2'
+memo_prefix = 'Secure the network. Align your incentives. :squid:'
 store_prefix='ibc'
 gas_price = { price = 0.02, denom = 'uregen' }
 max_gas=800000
@@ -141,6 +146,7 @@ websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_iris_rpc" }}/web
 rpc_timeout='8s'
 account_prefix='iaa'
 key_name='aw2'
+memo_prefix = 'Secure the network. Align your incentives. :squid:'
 store_prefix='ibc'
 gas_price = { price = 0.005, denom = 'uiris' }
 max_gas=800000
@@ -166,6 +172,7 @@ websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_core_rpc" }}/web
 rpc_timeout='8s'
 account_prefix='persistence'
 key_name='aw2'
+memo_prefix = 'Secure the network. Align your incentives. :squid:'
 store_prefix='ibc'
 gas_price = { price = 0.001, denom = 'uxprt' }
 max_gas=1000000
@@ -191,6 +198,7 @@ websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_iov_rpc" }}/webs
 rpc_timeout='8s'
 account_prefix='star'
 key_name='aw2'
+memo_prefix = 'Secure the network. Align your incentives. :squid:'
 store_prefix='ibc'
 gas_price = { price = 0.02, denom = 'uiov' }
 max_gas=1100000
@@ -215,7 +223,8 @@ grpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_ixo_grpc" }}'
 websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_ixo_rpc" }}/websocket'
 rpc_timeout='8s'
 account_prefix='ixo'
-key_name='aw3'
+key_name='aw2'
+memo_prefix = 'Secure the network. Align your incentives. :squid:'
 store_prefix='ibc'
 gas_price = { price = 0.0001, denom = 'uixo' }
 max_gas=1500000
@@ -237,6 +246,7 @@ websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_juno_rpc" }}/web
 rpc_timeout='8s'
 account_prefix='juno'
 key_name='aw2'
+memo_prefix = 'Secure the network. Align your incentives. :squid:'
 store_prefix='ibc'
 gas_price = { price = 0.02, denom = 'ujuno' }
 max_gas=1000000
@@ -262,6 +272,7 @@ websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_osmo_rpc" }}/web
 rpc_timeout='8s'
 account_prefix='osmo'
 key_name='aw2'
+memo_prefix = 'Secure the network. Align your incentives. :squid:'
 store_prefix='ibc'
 gas_price = { price = 0.001, denom = 'uosmo' }
 max_gas=2000000
