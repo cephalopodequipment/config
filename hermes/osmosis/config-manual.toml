@@ -155,9 +155,9 @@ denominator='3'
 
 [[chains]]
 id='iov-mainnet-ibc'
-rpc_addr='http://10.10.51.23:26657'
-grpc_addr='http://10.10.51.23:9090'
-websocket_addr='ws://10.10.51.23:26657/websocket'
+rpc_addr='http://iov0:26657'
+grpc_addr='http://iov0:9090'
+websocket_addr='ws://iov0:26657/websocket'
 rpc_timeout='8s'
 account_prefix='star'
 key_name='aw1'
