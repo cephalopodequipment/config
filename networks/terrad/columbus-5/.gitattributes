@@ -1,0 +1,1 @@
+genesis.json.xz filter=lfs diff=lfs merge=lfs -text
