@@ -25,7 +25,7 @@ pruning-interval = "0"
 # halt and shutdown that can be used to assist upgrades and testing.
 #
 # Note: Commitment of state will be attempted on the corresponding block.
-halt-height = {{ keyOrDefault "columbus/halt-height" "0" }
+halt-height = {{ keyOrDefault "columbus/halt-height" "0" }}
 
 # HaltTime contains a non-zero minimum block time (in Unix seconds) at which
 # a node will gracefully halt and shutdown that can be used to assist upgrades
