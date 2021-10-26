@@ -107,7 +107,7 @@ enable = true
 swagger = true
 
 # Address defines the API server to listen on.
-address = '{{ "tcp://0.0.0.0" }}:{{ env "NOMAD_PORT_terra_leet" }}'
+address = '{{ "tcp://0.0.0.0" }}:{{ env "NOMAD_PORT_leet" }}'
 
 # MaxOpenConnections defines the number of maximum open connections.
 max-open-connections = 1000
@@ -158,7 +158,7 @@ offline = false
 enable = true
 
 # Address defines the gRPC server address to bind to.
-address = '{{ "0.0.0.0" }}:{{ env "NOMAD_PORT_terra_grpc" }}'
+address = '{{ "0.0.0.0" }}:{{ env "NOMAD_PORT_grpc" }}'
 
 ###############################################################################
 ###                        gRPC Web Configuration                           ###

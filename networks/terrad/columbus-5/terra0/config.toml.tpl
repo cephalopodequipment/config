@@ -88,7 +88,7 @@ filter_peers = false
 [rpc]
 
 # TCP or UNIX socket address for the RPC server to listen on
-laddr = '{{ "tcp://0.0.0.0" }}:{{ env "NOMAD_PORT_terra_rpc" }}'
+laddr = '{{ "tcp://0.0.0.0" }}:{{ env "NOMAD_PORT_rpc" }}'
 
 # A list of origins a cross-domain request can be executed from
 # Default value '[]' disables cors support
@@ -172,14 +172,14 @@ pprof_laddr = "localhost:6060"
 [p2p]
 
 # Address to listen for incoming connections
-laddr = '{{ "tcp://0.0.0.0" }}:{{ env "NOMAD_PORT_terra_p2p" }}'
+laddr = '{{ "tcp://0.0.0.0" }}:{{ env "NOMAD_PORT_p2p" }}'
 
 # Address to advertise to peers for them to dial
 # If empty, will use the same port as the laddr,
 # and will introspect on the listener or use UPnP
 # to figure out the address. ip and port are required
 # example: 159.89.10.97:26656
-external_address = '{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_terra_p2p" }}'
+external_address = '{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_p2p" }}'
 
 # Comma separated list of seed nodes to connect to
 seeds = ""
@@ -389,7 +389,7 @@ indexer = "kv"
 prometheus = {{ keyOrDefault "terra0/prometheus.enable" "true" }}
 
 # Address to listen for Prometheus collector(s) connections
-prometheus_listen_addr = '{{ "tcp://0.0.0.0" }}:{{ env "NOMAD_PORT_terra_prom" }}'
+prometheus_listen_addr = '{{ "tcp://0.0.0.0" }}:{{ env "NOMAD_PORT_prom" }}'
 
 # Maximum number of simultaneous connections.
 # If you want to accept a larger number than the default, make sure
