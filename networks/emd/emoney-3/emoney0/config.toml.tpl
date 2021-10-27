@@ -185,7 +185,7 @@ external_address = '{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_p2p" }}'
 seeds = ""
 
 # Comma separated list of nodes to keep persistent connections to
-persistent_peers = ""
+persistent_peers = {{ keyOrDefault "emoney/p2p.persistent_peers" "\"\"" }}
 
 # UPNP port forwarding
 upnp = false
