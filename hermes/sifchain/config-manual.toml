@@ -1,15 +1,17 @@
 [global]
 strategy = 'packets'
 log_level = 'debug'
-#tx_confirmation = true
+filter = true
+clear_packets_interval = 20
+tx_confirmation = true
 
 
 [[chains]]
 id='cosmoshub-4'
-rpc_addr='http://10.10.51.186:26657' # cosmoshub1
-grpc_addr='http://10.10.51.186:9090'
-websocket_addr='ws://10.10.51.186:26657/websocket'
-rpc_timeout='30s'
+rpc_addr='http://cosmoshub1:26657'
+grpc_addr='http://cosmoshub1:9090'
+websocket_addr='ws://cosmoshub1:26657/websocket'
+rpc_timeout='8s'
 account_prefix='cosmos'
 key_name='aw4'
 store_prefix='ibc'
@@ -20,6 +22,10 @@ max_tx_size=180000
 clock_drift='7200s'
 trusting_period='14days'
 
+[chains.packet_filter]
+policy = 'allow'
+list = [['transfer', 'channel-192']]
+
 [chains.trust_threshold]
 numerator='1'
 denominator='3'
@@ -27,10 +33,10 @@ denominator='3'
 
 [[chains]]
 id='akashnet-2'
-rpc_addr='http://10.10.51.79:26657' # akashnet0
-grpc_addr='http://10.10.51.79:9090'
-websocket_addr='ws://10.10.51.79:26657/websocket'
-rpc_timeout='30s'
+rpc_addr='http://akashnet0:26657' # akashnet0
+grpc_addr='http://akashnet0:9090'
+websocket_addr='ws://akashnet0:26657/websocket'
+rpc_timeout='8s'
 account_prefix='akash'
 key_name='aw4'
 store_prefix='ibc'
@@ -38,6 +44,10 @@ gas_price = { price = 0.001, denom = 'uakt' }
 max_gas=1000000
 clock_drift='7200s'
 trusting_period='14days'
+
+[chains.packet_filter]
+policy = 'allow'
+list = [['transfer', 'channel-24']]
 
 [chains.trust_threshold]
 numerator='1'
@@ -49,7 +59,7 @@ id='sentinelhub-2'
 rpc_addr='http://10.10.51.47:26657' # sentinelhub0
 grpc_addr='http://10.10.51.47:9090'
 websocket_addr='ws://10.10.51.47:26657/websocket'
-rpc_timeout='30s'
+rpc_timeout='8s'
 account_prefix='sent'
 key_name='aw4'
 store_prefix='ibc'
@@ -58,6 +68,10 @@ max_gas=1000000
 max_msg_num=15
 clock_drift='7200s'
 trusting_period='14days'
+
+[chains.packet_filter]
+policy = 'allow'
+list = [['transfer', 'channel-36']]
 
 [chains.trust_threshold]
 numerator='1'
@@ -69,7 +83,7 @@ id='crypto-org-chain-mainnet-1'
 rpc_addr='http://10.10.51.95:26657' # crypto1
 grpc_addr='http://10.10.51.95:9090'
 websocket_addr='ws://10.10.51.95:26657/websocket'
-rpc_timeout='30s'
+rpc_timeout='8s'
 account_prefix='cro'
 key_name='aw4'
 store_prefix='ibc'
@@ -79,6 +93,10 @@ max_msg_num=15
 max_tx_size=450000
 clock_drift='7200s'
 trusting_period='14days'
+
+[chains.packet_filter]
+policy = 'allow'
+list = [['transfer', 'channel-33']]
 
 [chains.trust_threshold]
 numerator='1'
@@ -90,7 +108,7 @@ id='regen-1'
 rpc_addr='http://10.10.51.245:26657'
 grpc_addr='http://10.10.51.245:9090'
 websocket_addr='ws://10.10.51.245:26657/websocket'
-rpc_timeout='30s'
+rpc_timeout='8s'
 account_prefix='regen'
 key_name='aw4'
 store_prefix='ibc'
@@ -100,6 +118,10 @@ max_msg_num=15
 max_tx_size=180000
 clock_drift='7200s'
 trusting_period='14days'
+
+[chains.packet_filter]
+policy = 'allow'
+list = [['transfer', 'channel-28']]
 
 [chains.trust_threshold]
 numerator='1'
@@ -111,7 +133,7 @@ id='irishub-1'
 rpc_addr='http://10.10.51.58:26657' # irishub0
 grpc_addr='http://10.10.51.58:9090'
 websocket_addr='ws://10.10.51.58:26657/websocket'
-rpc_timeout='30s'
+rpc_timeout='8s'
 account_prefix='iaa'
 key_name='aw4'
 store_prefix='ibc'
@@ -120,6 +142,10 @@ max_gas=800000
 max_tx_size=1800000
 clock_drift='7200s'
 trusting_period='14days'
+
+[chains.packet_filter]
+policy = 'allow'
+list = [['transfer', 'channel-19']]
 
 [chains.trust_threshold]
 numerator='1'
@@ -131,7 +157,7 @@ id='core-1'
 rpc_addr='http://10.10.51.84:26657' # core0
 grpc_addr='http://10.10.51.84:9090'
 websocket_addr='ws://10.10.51.84:26657/websocket'
-rpc_timeout='30s'
+rpc_timeout='8s'
 account_prefix='persistence'
 key_name='aw4'
 store_prefix='ibc'
@@ -140,6 +166,10 @@ max_gas=1000000
 max_tx_size=180000
 clock_drift='7200s'
 trusting_period='14days'
+
+[chains.packet_filter]
+policy = 'allow'
+list = [['transfer', 'channel-26']]
 
 [chains.trust_threshold]
 numerator='1'
@@ -151,7 +181,7 @@ id='sifchain-1'
 rpc_addr='http://sif0.cec:26657'
 grpc_addr='http://sif0.cec:9090'
 websocket_addr='ws://sif0.cec:26657/websocket'
-rpc_timeout='30s'
+rpc_timeout='8s'
 account_prefix='sif'
 key_name='aw4'
 store_prefix='ibc'
@@ -161,6 +191,11 @@ max_msg_num=15
 max_tx_size=180000
 clock_drift='7200s'
 trusting_period='14days'
+
+[chains.packet_filter]
+policy = 'allow'
+# cosmoshub, akash, crypto-org, iris, persistence, regen, sentinel, regen, osmosis, juno, ixo
+list = [['transfer', 'channel-0'], ['transfer', 'channel-2'], ['transfer', 'channel-9'], ['transfer', 'channel-8'], ['transfer', 'channel-7'], ['transfer', 'channel-1'], ['transfer', 'channel-10'], ['transfer', 'channel-17'], ['transfer', 'channel-13'], ['transfer', 'channel-14'], ['transfer', 'channel-15']]
 
 [chains.trust_threshold]
 numerator='1'
@@ -174,7 +209,7 @@ grpc_addr='http://juno0:9090'
 websocket_addr='ws://juno0:26657/websocket'
 rpc_timeout='8s'
 account_prefix='juno'
-key_name='aw2'
+key_name='aw4'
 store_prefix='ibc'
 gas_price = { price = 0.02, denom = 'ujuno' }
 max_gas=1000000
@@ -182,6 +217,10 @@ max_msg_num=15
 max_tx_size=450000
 clock_drift='7200s'
 trusting_period='14days'
+
+[chains.packet_filter]
+policy = 'allow'
+list = [['transfer', 'channel-5']]
 
 [chains.trust_threshold]
 numerator='1'
@@ -195,7 +234,7 @@ grpc_addr='http://impacthub0:9090'
 websocket_addr='ws://impacthub0:26657/websocket'
 rpc_timeout='8s'
 account_prefix='ixo'
-key_name='aw3'
+key_name='aw4'
 store_prefix='ibc'
 gas_price = { price = 0.0001, denom = 'uixo' }
 max_gas=1500000
@@ -204,16 +243,21 @@ max_tx_size=180000
 clock_drift='7200s'
 trusting_period='14days'
 
+[chains.packet_filter]
+policy = 'allow'
+list = [['transfer', 'channel-11']]
+
 [chains.trust_threshold]
 numerator='1'
 denominator='3'
 
+
 [[chains]]
 id='osmosis-1'
-rpc_addr='http://10.10.51.169:26657' # node: osmosis1
-grpc_addr='http://10.10.51.169:9090'
-websocket_addr='ws://10.10.51.169:26657/websocket'
-rpc_timeout='30s'
+rpc_addr='http://osmosis0:26657'
+grpc_addr='http://osmosis0:9090'
+websocket_addr='ws://osmosis0:26657/websocket'
+rpc_timeout='8s'
 account_prefix='osmo'
 key_name='aw4'
 store_prefix='ibc'
@@ -222,6 +266,10 @@ max_gas=8000000
 max_msg_num=8
 clock_drift='7200s'
 trusting_period='8days'
+
+[chains.packet_filter]
+policy = 'allow'
+list = [['transfer', 'channel-47']]
 
 [chains.trust_threshold]
 numerator='1'
