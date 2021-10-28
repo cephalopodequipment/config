@@ -10,7 +10,6 @@ enabled = true
 host = '0.0.0.0'
 port = 3000
 
-
 [[chains]]
 id='cosmoshub-4'
 rpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_hub_rpc" }}'
@@ -26,14 +25,11 @@ max_msg_num=15
 max_tx_size=180000
 clock_drift='7200s'
 trusting_period='14days'
+trust_threshold = { numerator = '1', denominator = '3' }
 
 [chains.packet_filter]
 policy = 'allow'
 list = [['transfer', 'channel-192']]
-
-[chains.trust_threshold]
-numerator='1'
-denominator='3'
 
 
 [[chains]]
@@ -49,14 +45,11 @@ gas_price = { price = 0.001, denom = 'uakt' }
 max_gas=1000000
 clock_drift='7200s'
 trusting_period='14days'
+trust_threshold = { numerator = '1', denominator = '3' }
 
 [chains.packet_filter]
 policy = 'allow'
 list = [['transfer', 'channel-24']]
-
-[chains.trust_threshold]
-numerator='1'
-denominator='3'
 
 
 [[chains]]
@@ -73,14 +66,11 @@ max_gas=1000000
 max_msg_num=15
 clock_drift='7200s'
 trusting_period='14days'
+trust_threshold = { numerator = '1', denominator = '3' }
 
 [chains.packet_filter]
 policy = 'allow'
 list = [['transfer', 'channel-36']]
-
-[chains.trust_threshold]
-numerator='1'
-denominator='3'
 
 
 [[chains]]
@@ -98,14 +88,11 @@ max_msg_num=15
 max_tx_size=450000
 clock_drift='7200s'
 trusting_period='14days'
+trust_threshold = { numerator = '1', denominator = '3' }
 
 [chains.packet_filter]
 policy = 'allow'
 list = [['transfer', 'channel-33']]
-
-[chains.trust_threshold]
-numerator='1'
-denominator='3'
 
 
 [[chains]]
@@ -123,14 +110,11 @@ max_msg_num=15
 max_tx_size=180000
 clock_drift='7200s'
 trusting_period='14days'
+trust_threshold = { numerator = '1', denominator = '3' }
 
 [chains.packet_filter]
 policy = 'allow'
 list = [['transfer', 'channel-28']]
-
-[chains.trust_threshold]
-numerator='1'
-denominator='3'
 
 
 [[chains]]
@@ -147,14 +131,11 @@ max_gas=800000
 max_tx_size=1800000
 clock_drift='7200s'
 trusting_period='14days'
+trust_threshold = { numerator = '1', denominator = '3' }
 
 [chains.packet_filter]
 policy = 'allow'
 list = [['transfer', 'channel-19']]
-
-[chains.trust_threshold]
-numerator='1'
-denominator='3'
 
 
 [[chains]]
@@ -171,14 +152,11 @@ max_gas=1000000
 max_tx_size=180000
 clock_drift='7200s'
 trusting_period='14days'
+trust_threshold = { numerator = '1', denominator = '3' }
 
 [chains.packet_filter]
 policy = 'allow'
 list = [['transfer', 'channel-26']]
-
-[chains.trust_threshold]
-numerator='1'
-denominator='3'
 
 
 [[chains]]
@@ -195,6 +173,7 @@ max_gas=2000000
 max_msg_num=8
 clock_drift='7200s'
 trusting_period='14days'
+trust_threshold = { numerator = '1', denominator = '3' }
 
 [chains.packet_filter]
 policy = 'allow'
@@ -216,14 +195,11 @@ max_msg_num=15
 max_tx_size=450000
 clock_drift='7200s'
 trusting_period='14days'
+trust_threshold = { numerator = '1', denominator = '3' }
 
 [chains.packet_filter]
 policy = 'allow'
 list = [['transfer', 'channel-5']]
-
-[chains.trust_threshold]
-numerator='1'
-denominator='3'
 
 
 [[chains]]
@@ -241,14 +217,33 @@ max_msg_num=15
 max_tx_size=180000
 clock_drift='7200s'
 trusting_period='14days'
+trust_threshold = { numerator = '1', denominator = '3' }
 
 [chains.packet_filter]
 policy = 'allow'
 list = [['transfer', 'channel-11']]
 
-[chains.trust_threshold]
-numerator='1'
-denominator='3'
+
+[[chains]]
+id = 'columbus-5'
+rpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_terra_rpc" }}'
+grpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_terra_grpc" }}'
+websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_terra_rpc" }}/websocket'
+rpc_timeout = '8s'
+account_prefix = 'terra'
+key_name = ''
+memo_prefix = 'Connecting the Interchain. Delegate to Cephalopod. 🐙'
+store_prefix = 'ibc'
+gas_price = { price = 0.001, denom = 'uluna' }
+max_gas = 1000000
+max_msg_num=15
+clock_drift ='7200s'
+trusting_period = '14days'
+trust_threshold = { numerator = '1', denominator = '3' }
+
+[chains.packet_filter]
+policy = 'allow'
+list = [['transfer', '']]
 
 
 [[chains]]
@@ -266,12 +261,9 @@ max_msg_num=15
 max_tx_size=180000
 clock_drift='7200s'
 trusting_period='14days'
+trust_threshold = { numerator = '1', denominator = '3' }
 
 [chains.packet_filter]
 policy = 'allow'
-# cosmoshub, akash, crypto-org, iris, persistence, regen, sentinel, regen, osmosis, juno, ixo
-list = [['transfer', 'channel-0'], ['transfer', 'channel-2'], ['transfer', 'channel-9'], ['transfer', 'channel-8'], ['transfer', 'channel-7'], ['transfer', 'channel-1'], ['transfer', 'channel-10'], ['transfer', 'channel-17'], ['transfer', 'channel-13'], ['transfer', 'channel-14'], ['transfer', 'channel-15']]
-
-[chains.trust_threshold]
-numerator='1'
-denominator='3'
+# cosmoshub, akash, crypto-org, iris, persistence, regen, sentinel, regen, osmosis, juno, ixo, terra
+list = [['transfer', 'channel-0'], ['transfer', 'channel-2'], ['transfer', 'channel-9'], ['transfer', 'channel-8'], ['transfer', 'channel-7'], ['transfer', 'channel-1'], ['transfer', 'channel-10'], ['transfer', 'channel-17'], ['transfer', 'channel-13'], ['transfer', 'channel-14'], ['transfer', 'channel-15'], ['transfer', 'channel-']]
