@@ -18,7 +18,7 @@ websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_hub_rpc" }}/webs
 rpc_timeout='8s'
 account_prefix='cosmos'
 key_name='aw2'
-memo_prefix = 'Connecting the Interchain. Delegate to Cephalopod. 🐙'
+memo_prefix = 'Connect the Interchain. Delegate to Cephalopod. 🐙'
 store_prefix='ibc'
 gas_price = { price = 0.0001, denom = 'uatom' }
 max_gas=5000000
@@ -41,9 +41,9 @@ websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_akash_rpc" }}/we
 rpc_timeout='8s'
 account_prefix='akash'
 key_name='aw2'
-memo_prefix = 'Connecting the Interchain. Delegate to Cephalopod. 🐙'
+memo_prefix = 'Connect the Interchain. Delegate to Cephalopod. 🐙'
 store_prefix='ibc'
-gas_price = { price = 0.001, denom = 'uakt' }
+gas_price = { price = {{ keyOrDefault "akash/min-gas-prices" "0.001" }}, denom = 'uakt' }
 max_gas=1000000
 clock_drift='7200s'
 trusting_period='14days'
@@ -62,7 +62,7 @@ websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_dvpn_rpc" }}/web
 rpc_timeout='8s'
 account_prefix='sent'
 key_name='aw2'
-memo_prefix = 'Connecting the Interchain. Delegate to Cephalopod. 🐙'
+memo_prefix = 'Connect the Interchain. Delegate to Cephalopod. 🐙'
 store_prefix='ibc'
 gas_price = { price = 0.05, denom = 'udvpn' }
 max_gas=1000000
@@ -84,7 +84,7 @@ websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_crypto_rpc" }}/w
 rpc_timeout='8s'
 account_prefix='cro'
 key_name='aw2'
-memo_prefix = 'Connecting the Interchain. Delegate to Cephalopod. 🐙'
+memo_prefix = 'Connect the Interchain. Delegate to Cephalopod. 🐙'
 store_prefix='ibc'
 gas_price = { price = 0.03, denom = 'basecro' }
 max_gas=1200000
@@ -107,7 +107,7 @@ websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_rgn_rpc" }}/webs
 rpc_timeout='8s'
 account_prefix='regen'
 key_name='aw2'
-memo_prefix = 'Connecting the Interchain. Delegate to Cephalopod. 🐙'
+memo_prefix = 'Connect the Interchain. Delegate to Cephalopod. 🐙'
 store_prefix='ibc'
 gas_price = { price = 0.001, denom = 'uregen' }
 max_gas=2000000
@@ -130,7 +130,7 @@ websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_iris_rpc" }}/web
 rpc_timeout='8s'
 account_prefix='iaa'
 key_name='aw2'
-memo_prefix = 'Connecting the Interchain. Delegate to Cephalopod. 🐙'
+memo_prefix = 'Connect the Interchain. Delegate to Cephalopod. 🐙'
 store_prefix='ibc'
 gas_price = { price = 0.005, denom = 'uiris' }
 max_gas=800000
@@ -153,7 +153,7 @@ websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_core_rpc" }}/web
 rpc_timeout='8s'
 account_prefix='persistence'
 key_name='aw2'
-memo_prefix = 'Connecting the Interchain. Delegate to Cephalopod. 🐙'
+memo_prefix = 'Connect the Interchain. Delegate to Cephalopod. 🐙'
 store_prefix='ibc'
 gas_price = { price = 0.001, denom = 'uxprt' }
 max_gas=1000000
@@ -176,7 +176,7 @@ websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_iov_rpc" }}/webs
 rpc_timeout='8s'
 account_prefix='star'
 key_name='aw2'
-memo_prefix = 'Connecting the Interchain. Delegate to Cephalopod. 🐙'
+memo_prefix = 'Connect the Interchain. Delegate to Cephalopod. 🐙'
 store_prefix='ibc'
 gas_price = { price = 0.02, denom = 'uiov' }
 max_gas=1100000
@@ -199,7 +199,7 @@ websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_ixo_rpc" }}/webs
 rpc_timeout='8s'
 account_prefix='ixo'
 key_name='aw2'
-memo_prefix = 'Connecting the Interchain. Delegate to Cephalopod. 🐙'
+memo_prefix = 'Connect the Interchain. Delegate to Cephalopod. 🐙'
 store_prefix='ibc'
 gas_price = { price = 0.0001, denom = 'uixo' }
 max_gas=1500000
@@ -222,7 +222,7 @@ websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_juno_rpc" }}/web
 rpc_timeout='8s'
 account_prefix='juno'
 key_name='aw2'
-memo_prefix = 'Connecting the Interchain. Delegate to Cephalopod. 🐙'
+memo_prefix = 'Connect the Interchain. Delegate to Cephalopod. 🐙'
 store_prefix='ibc'
 gas_price = { price = 0.02, denom = 'ujuno' }
 max_gas=1000000
@@ -245,10 +245,10 @@ websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_osmo_rpc" }}/web
 rpc_timeout='8s'
 account_prefix='osmo'
 key_name='aw2'
-memo_prefix = 'Connecting the Interchain. Delegate to Cephalopod. 🐙'
+memo_prefix = 'Connect the Interchain. Delegate to Cephalopod. 🐙'
 store_prefix='ibc'
 gas_price = { price = 0.0001, denom = 'uosmo' }
-max_gas=500000,['transfer','channel-38']0
+max_gas=500000,
 max_msg_num=15
 clock_drift='7200s'
 trusting_period='10days'
