@@ -147,8 +147,8 @@ rpc_timeout='8s'
 account_prefix='iaa'
 key_name='aw3'
 store_prefix='ibc'
-gas_price = { price = 0.005, denom = 'uiris' }
-max_gas=800000
+gas_price = { price = 0.001, denom = 'uiris' }
+max_gas=1500000
 max_tx_size=1800000
 clock_drift='7200s'
 trusting_period='14days'
