@@ -122,7 +122,7 @@ account_prefix='regen'
 key_name='aw3'
 store_prefix='ibc'
 gas_price = { price = 0.02, denom = 'uregen' }
-max_gas=800000
+max_gas=1800000
 max_msg_num=15
 max_tx_size=180000
 clock_drift='7200s'
