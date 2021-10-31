@@ -225,28 +225,6 @@ list = [['transfer', 'channel-11']]
 
 
 [[chains]]
-id = 'columbus-5'
-rpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_terra_rpc" }}'
-grpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_terra_grpc" }}'
-websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_terra_rpc" }}/websocket'
-rpc_timeout = '8s'
-account_prefix = 'terra'
-key_name = ''
-memo_prefix = 'Connecting the Interchain. Delegate to Cephalopod. 🐙'
-store_prefix = 'ibc'
-gas_price = { price = 0.001, denom = 'uluna' }
-max_gas = 1000000
-max_msg_num=15
-clock_drift ='7200s'
-trusting_period = '14days'
-trust_threshold = { numerator = '1', denominator = '3' }
-
-[chains.packet_filter]
-policy = 'allow'
-list = [['transfer', '']]
-
-
-[[chains]]
 id='sifchain-1'
 rpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_sif_rpc" }}'
 grpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_sif_grpc" }}'
