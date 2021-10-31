@@ -20,7 +20,7 @@ rpc_timeout='8s'
 account_prefix='cosmos'
 key_name='aw3'
 store_prefix='ibc'
-memo_prefix = 'Connecting the Interchain. Delegate to Cephalopod. 🐙'
+memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
 gas_price = { price = 0.0001, denom = 'uatom' }
 max_gas=5000000
 max_msg_num=15
@@ -44,9 +44,9 @@ rpc_timeout='8s'
 account_prefix='akash'
 key_name='aw3'
 store_prefix='ibc'
-memo_prefix = 'Connecting the Interchain. Delegate to Cephalopod. 🐙'
-gas_price = { price = 0.001, denom = 'uakt' }
-max_gas=1000000
+memo_prefix='Connect the Interchain. Stake with Cephalopod 🐙'
+gas_price={ price = {{ keyOrDefault "akash/min-gas-prices" "0.001" }}, denom = 'uakt' }
+max_gas={{ keyOrDefault "akash/hermes-max-gas" "1000000" }}
 clock_drift='7200s'
 trusting_period='14days'
 trust_threshold = { numerator = '1', denominator = '3' }
@@ -66,7 +66,7 @@ rpc_timeout='8s'
 account_prefix='sent'
 key_name='aw3'
 store_prefix='ibc'
-memo_prefix = 'Connecting the Interchain. Delegate to Cephalopod. 🐙'
+memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
 gas_price = { price = 0.05, denom = 'udvpn' }
 max_gas=1000000
 max_msg_num=15
@@ -89,7 +89,7 @@ rpc_timeout='8s'
 account_prefix='cro'
 key_name='aw3'
 store_prefix='ibc'
-memo_prefix = 'Connecting the Interchain. Delegate to Cephalopod. 🐙'
+memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
 gas_price = { price = 0.03, denom = 'basecro' }
 max_gas=1200000
 max_msg_num=15
@@ -113,7 +113,7 @@ rpc_timeout='8s'
 account_prefix='regen'
 key_name='aw3'
 store_prefix='ibc'
-memo_prefix = 'Connecting the Interchain. Delegate to Cephalopod. 🐙'
+memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
 gas_price = { price = 0.001, denom = 'uregen' }
 max_gas=1800000
 max_msg_num=15
@@ -137,7 +137,7 @@ rpc_timeout='8s'
 account_prefix='iaa'
 key_name='aw3'
 store_prefix='ibc'
-memo_prefix = 'Connecting the Interchain. Delegate to Cephalopod. 🐙'
+memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
 gas_price = { price = 0.005, denom = 'uiris' }
 max_gas=800000
 max_tx_size=1800000
@@ -160,7 +160,7 @@ rpc_timeout='8s'
 account_prefix='persistence'
 key_name='aw3'
 store_prefix='ibc'
-memo_prefix = 'Connecting the Interchain. Delegate to Cephalopod. 🐙'
+memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
 gas_price = { price = 0.001, denom = 'uxprt' }
 max_gas=1000000
 max_tx_size=180000
@@ -183,7 +183,7 @@ rpc_timeout='8s'
 account_prefix='star'
 key_name='aw3'
 store_prefix='ibc'
-memo_prefix = 'Connecting the Interchain. Delegate to Cephalopod. 🐙'
+memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
 gas_price = { price = 0.02, denom = 'uiov' }
 max_gas=1100000
 max_msg_num=15
@@ -207,7 +207,7 @@ rpc_timeout='8s'
 account_prefix='ixo'
 key_name='aw3'
 store_prefix='ibc'
-memo_prefix = 'Connecting the Interchain. Delegate to Cephalopod. 🐙'
+memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
 gas_price = { price = 0.0001, denom = 'uixo' }
 max_gas=1500000
 max_msg_num=15
