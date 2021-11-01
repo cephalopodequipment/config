@@ -106,9 +106,9 @@ list = [['transfer', 'channel-24'], ['transfer', 'channel-27'], ['transfer', 'ch
 
 [[chains]]
 id='regen-1'
-rpc_addr='http://sent-prd-rgn0:26657'
-grpc_addr='http://sent-prd-rgn0:9090'
-websocket_addr='ws://sent-prd-rgn0:26657/websocket'
+rpc_addr='http://sent-prd-rgn1:26657'
+grpc_addr='http://sent-prd-rgn1:9090'
+websocket_addr='ws://sent-prd-rgn1:26657/websocket'
 rpc_timeout='8s'
 account_prefix='regen'
 key_name='aw3'
