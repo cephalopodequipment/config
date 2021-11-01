@@ -8,24 +8,24 @@
 # The minimum gas prices a validator is willing to accept for processing a
 # transaction. A transaction's fees must meet the minimum of any denomination
 # specified in this config (e.g. 0.25token1;0.0001token2).
-minimum-gas-prices = "0.01uluna"
+minimum-gas-prices = "{{ keyOrDefault "sifchain/relayer/min-gas-prices" "0.1" }}rowan"
 
 # default: the last 100 states are kept in addition to every 500th state; pruning at 10 block intervals
 # nothing: all historic states will be saved, nothing will be deleted (i.e. archiving node)
 # everything: all saved states will be deleted, storing only the current state; pruning at 10 block intervals
 # custom: allow pruning options to be manually specified through 'pruning-keep-recent', 'pruning-keep-every', and 'pruning-interval'
-pruning = "default"
+pruning = "custom"
 
 # These are applied if and only if the pruning strategy is custom.
-pruning-keep-recent = "0"
+pruning-keep-recent = "2000"
 pruning-keep-every = "0"
-pruning-interval = "0"
+pruning-interval = "50"
 
 # HaltHeight contains a non-zero block height at which a node will gracefully
 # halt and shutdown that can be used to assist upgrades and testing.
 #
 # Note: Commitment of state will be attempted on the corresponding block.
-halt-height = {{ keyOrDefault "columbus/halt-height" "0" }}
+halt-height = {{ keyOrDefault "sifchain/halt-height" "0" }}
 
 # HaltTime contains a non-zero minimum block time (in Unix seconds) at which
 # a node will gracefully halt and shutdown that can be used to assist upgrades
@@ -107,7 +107,7 @@ enable = true
 swagger = true
 
 # Address defines the API server to listen on.
-address = '{{ "tcp://0.0.0.0" }}:{{ env "NOMAD_PORT_terra_leet" }}'
+address = '{{ "tcp://0.0.0.0" }}:{{ env "NOMAD_PORT_sif_leet" }}'
 
 # MaxOpenConnections defines the number of maximum open connections.
 max-open-connections = 1000
@@ -125,30 +125,6 @@ rpc-max-body-bytes = 1000000
 enabled-unsafe-cors = false
 
 ###############################################################################
-###                           Rosetta Configuration                         ###
-###############################################################################
-
-[rosetta]
-
-# Enable defines if the Rosetta API server should be enabled.
-enable = false
-
-# Address defines the Rosetta API server to listen on.
-address = ":8080"
-
-# Network defines the name of the blockchain that will be returned by Rosetta.
-blockchain = "app"
-
-# Network defines the name of the network that will be returned by Rosetta.
-network = "network"
-
-# Retries defines the number of retries when connecting to the node before failing.
-retries = 3
-
-# Offline defines if Rosetta server should run in offline mode.
-offline = false
-
-###############################################################################
 ###                           gRPC Configuration                            ###
 ###############################################################################
 
@@ -158,23 +134,7 @@ offline = false
 enable = true
 
 # Address defines the gRPC server address to bind to.
-address = '{{ "0.0.0.0" }}:{{ env "NOMAD_PORT_terra_grpc" }}'
-
-###############################################################################
-###                        gRPC Web Configuration                           ###
-###############################################################################
-
-[grpc-web]
-
-# GRPCWebEnable defines if the gRPC-web should be enabled.
-# NOTE: gRPC must also be enabled, otherwise, this configuration is a no-op.
-enable = true
-
-# Address defines the gRPC-web server address to bind to.
-address = "0.0.0.0:9091"
-
-# EnableUnsafeCORS defines if CORS should be enabled (unsafe - use it at your own risk).
-enable-unsafe-cors = false
+address = '{{ "0.0.0.0" }}:{{ env "NOMAD_PORT_sif_grpc" }}'
 
 ###############################################################################
 ###                        State Sync Configuration                         ###
@@ -190,21 +150,3 @@ snapshot-interval = 0
 
 # snapshot-keep-recent specifies the number of recent snapshots to keep and serve (0 to keep all).
 snapshot-keep-recent = 2
-
-[wasm]
-# The maximum gas amount can be spent for contract query.
-# The contract query will invoke contract execution vm,
-# so we need to restrict the max usage to prevent DoS attack
-contract-query-gas-limit = "3000000"
-
-# The flag to specify whether print contract logs or not
-contract-debug-mode = "false"
-
-# The write WASM VM memory cache size in MiB not bytes
-write-vm-memory-cache-size = "500"
-
-# The read WASM VM memory cache size in MiB not bytes
-read-vm-memory-cache-size = "300"
-
-# The number of read WASM VMs
-num-read-vms = "1"
