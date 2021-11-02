@@ -248,7 +248,7 @@ key_name='aw2'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
 store_prefix='ibc'
 gas_price = { price = 0.0001, denom = 'uosmo' }
-max_gas=2000000
+max_gas=4000000
 max_msg_num=15
 clock_drift='7200s'
 trusting_period='10days'
