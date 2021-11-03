@@ -161,8 +161,8 @@ account_prefix='persistence'
 key_name='aw3'
 store_prefix='ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = 0.001, denom = 'uxprt' }
-max_gas=1000000
+gas_price = { price = {{ keyOrDefault "core/relayer/min-gas-prices" "0.1" }}, denom = 'uxprt' }
+max_gas={{ keyOrDefault "hub/relayer/max-gas" "1000000" }}
 max_tx_size=180000
 clock_drift='7200s'
 trusting_period='14days'
