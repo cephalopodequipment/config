@@ -197,10 +197,10 @@ addr_book_file = "config/addrbook.json"
 addr_book_strict = true
 
 # Maximum number of inbound peers
-max_num_inbound_peers = {{ keyOrDefault "hub/p2p.max_num_inbound_peers" "5" }}
+max_num_inbound_peers = {{ keyOrDefault "hub/relayer/p2p.max_num_inbound_peers" "5" }}
 
 # Maximum number of outbound peers to connect to, excluding persistent peers
-max_num_outbound_peers = {{ keyOrDefault "hub/p2p.max_num_outbound_peers" "50" }}
+max_num_outbound_peers = {{ keyOrDefault "hub/relayer/p2p.max_num_outbound_peers" "50" }}
 
 # List of node IDs, to which a connection will be (re)established ignoring any existing limits
 unconditional_peer_ids = {{ keyOrDefault "hub/p2p.unconditional_peer_ids" "\"\"" }}
