@@ -41,10 +41,10 @@ websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_akash_rpc" }}/we
 rpc_timeout='8s'
 account_prefix='akash'
 key_name='aw2'
-memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
 store_prefix='ibc'
-gas_price = { price = {{ keyOrDefault "akash/min-gas-prices" "0.001" }}, denom = 'uakt' }
-max_gas=1000000
+memo_prefix='Connect the Interchain. Stake with Cephalopod 🐙'
+gas_price={ price = {{ keyOrDefault "akash/relayer/min-gas-prices" "0.0001" }}, denom = 'uakt' }
+max_gas={{ keyOrDefault "akash/relayer/max-gas" "1000000" }}
 clock_drift='7200s'
 trusting_period='14days'
 trust_threshold = { numerator = '1', denominator = '3' }
@@ -84,10 +84,10 @@ websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_crypto_rpc" }}/w
 rpc_timeout='8s'
 account_prefix='cro'
 key_name='aw2'
-memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
 store_prefix='ibc'
-gas_price = { price = 0.03, denom = 'basecro' }
-max_gas=1200000
+memo_prefix='Connect the Interchain. Stake with Cephalopod 🐙'
+gas_price={ price = {{ keyOrDefault "crypto/relayer/min-gas-prices" "0.0001" }}, denom = 'basecro' }
+max_gas={{ keyOrDefault "crypto/relayer/max-gas" "1000000" }}
 max_msg_num=15
 max_tx_size=450000
 clock_drift='7200s'

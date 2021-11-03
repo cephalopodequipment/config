@@ -8,7 +8,7 @@
 # The minimum gas prices a validator is willing to accept for processing a
 # transaction. A transaction's fees must meet the minimum of any denomination
 # specified in this config (e.g. 0.25token1;0.0001token2).
-minimum-gas-prices = "{{ keyOrDefault "akash/min-gas-prices" "0.001" }}uakt"
+minimum-gas-prices = "{{ keyOrDefault "akash/relayer/min-gas-prices" "0.1" }}uakt"
 
 # default: the last 100 states are kept in addition to every 500th state; pruning at 10 block intervals
 # nothing: all historic states will be saved, nothing will be deleted (i.e. archiving node)

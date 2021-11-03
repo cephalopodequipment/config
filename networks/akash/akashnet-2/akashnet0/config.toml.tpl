@@ -197,7 +197,7 @@ addr_book_file = "config/addrbook.json"
 addr_book_strict = true
 
 # Maximum number of inbound peers
-max_num_inbound_peers = {{ keyOrDefault "akash/p2p.max_num_inbound_peers" "100" }}
+max_num_inbound_peers = {{ keyOrDefault "akash/p2p.max_num_inbound_peers" "20" }}
 
 # Maximum number of outbound peers to connect to, excluding persistent peers
 max_num_outbound_peers = {{ keyOrDefault "akash/p2p.max_num_outbound_peers" "50" }}
