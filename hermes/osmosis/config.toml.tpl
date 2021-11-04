@@ -56,9 +56,9 @@ list = [['transfer', 'channel-9']]
 
 [[chains]]
 id='sentinelhub-2'
-rpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_dvpn_rpc" }}'
-grpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_dvpn_grpc" }}'
-websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_dvpn_rpc" }}/websocket'
+rpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_sentinel_rpc" }}'
+grpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_sentinel_grpc" }}'
+websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_sentinel_rpc" }}/websocket'
 rpc_timeout='8s'
 account_prefix='sent'
 key_name='aw2'
