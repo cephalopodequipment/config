@@ -8,18 +8,18 @@
 # The minimum gas prices a validator is willing to accept for processing a
 # transaction. A transaction's fees must meet the minimum of any denomination
 # specified in this config (e.g. 0.25token1;0.0001token2).
-minimum-gas-prices = "0.0001uosmo"
+minimum-gas-prices = "{{ keyOrDefault "osmo/relayer/min-gas-prices" "0.1" }}uosmo"
 
 # default: the last 100 states are kept in addition to every 500th state; pruning at 10 block intervals
 # nothing: all historic states will be saved, nothing will be deleted (i.e. archiving node)
 # everything: all saved states will be deleted, storing only the current state; pruning at 10 block intervals
 # custom: allow pruning options to be manually specified through 'pruning-keep-recent', 'pruning-keep-every', and 'pruning-interval'
-pruning = "default"
+pruning = "custom"
 
 # These are applied if and only if the pruning strategy is custom.
-pruning-keep-recent = "0"
+pruning-keep-recent = "2000"
 pruning-keep-every = "0"
-pruning-interval = "0"
+pruning-interval = "50"
 
 # HaltHeight contains a non-zero block height at which a node will gracefully
 # halt and shutdown that can be used to assist upgrades and testing.
