@@ -175,7 +175,7 @@ gas_price = { price = 0.001, denom = 'uosmo' }
 max_gas=2000000
 max_msg_num=8
 clock_drift='7200s'
-trusting_period='14days'
+trusting_period='10days'
 trust_threshold = { numerator = '1', denominator = '3' }
 
 [chains.packet_filter]
@@ -229,12 +229,12 @@ list = [['transfer', 'channel-11']]
 
 [[chains]]
 id='emoney-3'
-rpc_addr='http://127.0.0.1:2141'
-grpc_addr='http://127.0.0.1:2142'
-websocket_addr='ws://127.0.0.1:2141/websocket'
+rpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_emoney_rpc" }}'
+grpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_emoney_grpc" }}'
+websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_emoney_rpc" }}/websocket'
 rpc_timeout='8s'
 account_prefix='emoney'
-key_name = ''
+key_name = 'aw4'
 store_prefix='ibc'
 max_tx_size=180000
 max_gas=2000000
@@ -246,7 +246,7 @@ trust_threshold={ numerator = '1', denominator = '3' }
 
 [chains.packet_filter]
 policy='allow'
-list=[['transfer', 'channel-0'],['transfer', 'channel-1'],['transfer', 'channel-2']]
+list=[['transfer', 'channel-14']]
 
 
 [[chains]]
@@ -268,5 +268,5 @@ trust_threshold = { numerator = '1', denominator = '3' }
 
 [chains.packet_filter]
 policy = 'allow'
-# cosmoshub, akash, crypto-org, iris, persistence, regen, sentinel, regen, osmosis, juno, ixo, terra
-list = [['transfer', 'channel-0'], ['transfer', 'channel-2'], ['transfer', 'channel-9'], ['transfer', 'channel-8'], ['transfer', 'channel-7'], ['transfer', 'channel-1'], ['transfer', 'channel-10'], ['transfer', 'channel-17'], ['transfer', 'channel-13'], ['transfer', 'channel-14'], ['transfer', 'channel-15'], ['transfer', 'channel-']]
+# cosmoshub, akash, crypto-org, iris, persistence, regen, sentinel, regen, osmosis, juno, ixo, emoney
+list = [['transfer', 'channel-0'], ['transfer', 'channel-2'], ['transfer', 'channel-9'], ['transfer', 'channel-8'], ['transfer', 'channel-7'], ['transfer', 'channel-1'], ['transfer', 'channel-10'], ['transfer', 'channel-17'], ['transfer', 'channel-13'], ['transfer', 'channel-14'], ['transfer', 'channel-15'], ['transfer', 'channel-19']]

@@ -17,7 +17,7 @@ grpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_terra_grpc" }}'
 websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_terra_rpc" }}/websocket'
 rpc_timeout = '8s'
 account_prefix = 'terra'
-key_name = ''
+key_name = 'aw4'
 memo_prefix = 'Connecting the Interchain. Delegate to Cephalopod. 🐙'
 store_prefix = 'ibc'
 gas_price = { price = 0.001, denom = 'uluna' }
@@ -29,7 +29,7 @@ trust_threshold = { numerator = '1', denominator = '3' }
 
 [chains.packet_filter]
 policy = 'allow'
-list = [['transfer', '']]
+list = [['transfer', 'channel-7']]
 
 
 [[chains]]
@@ -41,8 +41,8 @@ rpc_timeout='8s'
 account_prefix='sif'
 key_name='aw4'
 store_prefix='ibc'
-gas_price = { price = 1000000, denom = 'rowan' }
-max_gas=5000000
+gas_price = { price = 1000000000000, denom = 'rowan' }
+max_gas=2000000
 max_msg_num=15
 max_tx_size=180000
 clock_drift='7200s'
@@ -51,5 +51,4 @@ trust_threshold = { numerator = '1', denominator = '3' }
 
 [chains.packet_filter]
 policy = 'allow'
-# cosmoshub, akash, crypto-org, iris, persistence, regen, sentinel, regen, osmosis, juno, ixo, terra
-list = [['transfer', 'channel-0'], ['transfer', 'channel-2'], ['transfer', 'channel-9'], ['transfer', 'channel-8'], ['transfer', 'channel-7'], ['transfer', 'channel-1'], ['transfer', 'channel-10'], ['transfer', 'channel-17'], ['transfer', 'channel-13'], ['transfer', 'channel-14'], ['transfer', 'channel-15'], ['transfer', 'channel-']]
+list = [['transfer', 'channel-21']]
