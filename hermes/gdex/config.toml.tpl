@@ -77,7 +77,7 @@ trust_threshold = { numerator = '1', denominator = '3' }
 [chains.packet_filter]
 policy = 'allow'
 # akash, cosmos-hub, crypto-org, emoney, iris, ixo, microtick, persistence, regen, starname
-list = [['transfer', 'channel-10'], ['transfer', 'channel-12'], ['transfer', 'channel-13'], ['transfer', 'channel-43'] ['transfer', 'channel-9'], ['transfer', 'channel-42'], ['transfer', 'channel-41'], ['transfer', 'channel-15'], ['transfer', 'channel-11'], ['transfer', 'channel-40']]
+list = [['transfer', 'channel-10'], ['transfer', 'channel-12'], ['transfer', 'channel-13'], ['transfer', 'channel-43'], ['transfer', 'channel-9'], ['transfer', 'channel-42'], ['transfer', 'channel-41'], ['transfer', 'channel-15'], ['transfer', 'channel-11'], ['transfer', 'channel-40']]
 
 
 [[chains]]

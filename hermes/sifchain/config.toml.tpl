@@ -11,41 +11,42 @@ host = '0.0.0.0'
 port = 3000
 
 [[chains]]
-id='cosmoshub-4'
-rpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_hub_rpc" }}'
-grpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_hub_grpc" }}'
-websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_hub_rpc" }}/websocket'
-rpc_timeout='8s'
-account_prefix='cosmos'
-key_name='aw4'
-store_prefix='ibc'
-gas_price = { price = 0.0001, denom = 'uatom' }
-max_gas=5000000
-max_msg_num=15
-max_tx_size=180000
-clock_drift='7200s'
-trusting_period='14days'
+id              = 'cosmoshub-4'
+rpc_addr        = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_hub_rpc" }}'
+grpc_addr       = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_hub_grpc" }}'
+websocket_addr  = 'ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_hub_rpc" }}/websocket'
+rpc_timeout     = '8s'
+account_prefix  = 'cosmos'
+key_name        = 'aw4'
+store_prefix    = 'ibc'
+memo_prefix     = 'Connect the Interchain. Stake with Cephalopod 🐙'
+gas_price       = { price = {{ keyOrDefault "hub/relayer/min-gas-prices" "0.0001" }}, denom = 'uatom' }
+max_gas         = {{ keyOrDefault "hub/relayer/max-gas" "1000000" }}
+max_msg_num     = 15
+max_tx_size     = 180000
+clock_drift     = '7200s'
+trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
 
 [chains.packet_filter]
-policy = 'allow'
-list = [['transfer', 'channel-192']]
+policy  = 'allow'
+list    = [['transfer', 'channel-192']]
 
 
 [[chains]]
-id='akashnet-2'
-rpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_akash_rpc" }}'
-grpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_akash_grpc" }}'
-websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_akash_rpc" }}/websocket'
-rpc_timeout='8s'
-account_prefix='akash'
-key_name='aw4'
-store_prefix='ibc'
-memo_prefix='Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price={ price = {{ keyOrDefault "akash/relayer/min-gas-prices" "0.0001" }}, denom = 'uakt' }
-max_gas={{ keyOrDefault "akash/relayer/max-gas" "1000000" }}
-clock_drift='7200s'
-trusting_period='14days'
+id = 'akashnet-2'
+rpc_addr = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_akash_rpc" }}'
+grpc_addr = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_akash_grpc" }}'
+websocket_addr = 'ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_akash_rpc" }}/websocket'
+rpc_timeout = '8s'
+account_prefix = 'akash'
+key_name = 'aw4'
+store_prefix = 'ibc'
+memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
+gas_price = { price = {{ keyOrDefault "akash/relayer/min-gas-prices" "0.0001" }}, denom = 'uakt' }
+max_gas = {{ keyOrDefault "akash/relayer/max-gas" "1000000" }}
+clock_drift = '7200s'
+trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
 
 [chains.packet_filter]
@@ -224,6 +225,28 @@ trust_threshold = { numerator = '1', denominator = '3' }
 [chains.packet_filter]
 policy = 'allow'
 list = [['transfer', 'channel-11']]
+
+
+[[chains]]
+id='emoney-3'
+rpc_addr='http://127.0.0.1:2141'
+grpc_addr='http://127.0.0.1:2142'
+websocket_addr='ws://127.0.0.1:2141/websocket'
+rpc_timeout='8s'
+account_prefix='emoney'
+key_name = ''
+store_prefix='ibc'
+max_tx_size=180000
+max_gas=2000000
+max_msg_num=15
+gas_price={ price = 0.001, denom = 'ungm' }
+clock_drift='70s'
+trusting_period='10days'
+trust_threshold={ numerator = '1', denominator = '3' }
+
+[chains.packet_filter]
+policy='allow'
+list=[['transfer', 'channel-0'],['transfer', 'channel-1'],['transfer', 'channel-2']]
 
 
 [[chains]]
