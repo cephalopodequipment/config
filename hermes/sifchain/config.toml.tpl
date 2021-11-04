@@ -237,10 +237,10 @@ account_prefix='emoney'
 key_name = 'aw4'
 store_prefix='ibc'
 max_tx_size=180000
-max_gas=2000000
 max_msg_num=15
-gas_adjustment=2
-gas_price={ price = 0.001, denom = 'ungm' }
+memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
+gas_price = { price = {{ keyOrDefault "emoney/relayer/min-gas-prices" "0.1" }}, denom = 'ungm' }
+max_gas = {{ keyOrDefault "emoney/relayer/max-gas" "1000000" }}
 clock_drift='70s'
 trusting_period='10days'
 trust_threshold={ numerator = '1', denominator = '3' }
