@@ -239,6 +239,7 @@ store_prefix='ibc'
 max_tx_size=180000
 max_gas=2000000
 max_msg_num=15
+gas_adjustment=2
 gas_price={ price = 0.001, denom = 'ungm' }
 clock_drift='70s'
 trusting_period='10days'
