@@ -185,8 +185,8 @@ rpc_timeout='8s'
 account_prefix='sif'
 key_name='aw4'
 store_prefix='ibc'
-gas_price = { price = 1000000, denom = 'rowan' }
-max_gas=5500000
+gas_price = { price = 1000000000000, denom = 'rowan' }
+max_gas=5000000
 max_msg_num=15
 max_tx_size=180000
 clock_drift='7200s'
@@ -254,14 +254,14 @@ denominator='3'
 
 [[chains]]
 id='osmosis-1'
-rpc_addr='http://osmosis0:26657'
-grpc_addr='http://osmosis0:9090'
+rpc_addr='http://osmosis1:26657'
+grpc_addr='http://osmosis1:9090'
 websocket_addr='ws://osmosis0:26657/websocket'
 rpc_timeout='8s'
 account_prefix='osmo'
 key_name='aw4'
 store_prefix='ibc'
-gas_price = { price = 0.001, denom = 'uosmo' }
+gas_price = { price = 0.1, denom = 'uosmo' }
 max_gas=8000000
 max_msg_num=8
 clock_drift='7200s'
@@ -274,3 +274,19 @@ list = [['transfer', 'channel-47']]
 [chains.trust_threshold]
 numerator='1'
 denominator='3'
+
+
+[[chains]]
+id = 'columbus-5'
+rpc_addr = 'http://terra0:26657'
+grpc_addr = 'http://terra0:9090'
+websocket_addr = 'ws://terra0:26657/websocket'
+rpc_timeout = '8s'
+account_prefix = 'terra'
+key_name = 'aw4'
+store_prefix = 'ibc'
+gas_price = { price = 0.001, denom = 'uluna' }
+max_gas = 2000000
+clock_drift ='5s'
+trusting_period = '14days'
+trust_threshold = { numerator = '1', denominator = '3' }
