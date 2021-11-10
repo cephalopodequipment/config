@@ -77,9 +77,9 @@ list = [['transfer', 'channel-36']]
 
 [[chains]]
 id='crypto-org-chain-mainnet-1'
-rpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_crypto_rpc" }}'
-grpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_crypto_grpc" }}'
-websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_crypto_rpc" }}/websocket'
+rpc_addr='http://{{ keyOrDefault "crypto/relayer/node" "10.10.51.95" }}:{{ env "NOMAD_PORT_crypto_rpc" }}'
+grpc_addr='http://{{ keyOrDefault "crypto/relaye/node" "10.10.51.95" }}:{{ env "NOMAD_PORT_crypto_grpc" }}'
+websocket_addr='ws://{{ keyOrDefault "crypto/relayer/node" "10.10.51.95" }}:{{ env "NOMAD_PORT_crypto_rpc" }}/websocket'
 rpc_timeout='8s'
 account_prefix='cro'
 key_name='aw4'
