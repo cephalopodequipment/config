@@ -179,13 +179,13 @@ laddr = "tcp://0.0.0.0:26656"
 # and will introspect on the listener or use UPnP
 # to figure out the address. ip and port are required
 # example: 159.89.10.97:26656
-external_address = "{{ env "EXTERNAL_IP" }}:26656"
+external_address = ""
 
 # Comma separated list of seed nodes to connect to
 seeds = ""
 
 # Comma separated list of nodes to keep persistent connections to
-persistent_peers = {{ keyOrDefault "regen/p2p.persistent_peers" "\"\"" }}
+persistent_peers = {{ keyOrDefault "regen/archive/p2p.persistent_peers" "\"\"" }}
 
 # UPNP port forwarding
 upnp = false
@@ -198,10 +198,10 @@ addr_book_file = "config/addrbook.json"
 addr_book_strict = true
 
 # Maximum number of inbound peers
-max_num_inbound_peers = {{ keyOrDefault "regen/ec2/p2p.max_num_inbound_peers" "5" }}
+max_num_inbound_peers = {{ keyOrDefault "regen/archive/p2p.max_num_inbound_peers" "5" }}
 
 # Maximum number of outbound peers to connect to, excluding persistent peers
-max_num_outbound_peers = {{ keyOrDefault "regen/ec2/p2p.max_num_outbound_peers" "50" }}
+max_num_outbound_peers = {{ keyOrDefault "regen/archive/p2p.max_num_outbound_peers" "50" }}
 
 # List of node IDs, to which a connection will be (re)established ignoring any existing limits
 unconditional_peer_ids = {{ keyOrDefault "regen/p2p.unconditional_peer_ids" "\"\"" }}
