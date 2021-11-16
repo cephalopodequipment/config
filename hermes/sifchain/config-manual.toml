@@ -33,8 +33,10 @@ denominator='3'
 
 [[chains]]
 id='akashnet-2'
-rpc_addr='http://akashnet0:26657' # akashnet0
-grpc_addr='http://akashnet0:9090'
+rpc_addr='http://10.10.10.103:31904' # archive-node
+grpc_addr='http://10.10.10.103:26703' 
+#rpc_addr='http://akashnet0:26657' # akashnet0
+#grpc_addr='http://akashnet0:9090'
 websocket_addr='ws://akashnet0:26657/websocket'
 rpc_timeout='8s'
 account_prefix='akash'
@@ -290,3 +292,23 @@ max_gas = 2000000
 clock_drift ='5s'
 trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
+
+
+[[chains]]
+id='emoney-3'
+rpc_addr='http://emoney0:26657'
+grpc_addr='http://emoney0:9090'
+websocket_addr='ws://emoney0:26657/websocket'
+rpc_timeout='8s'
+account_prefix='emoney'
+key_name = 'aw4'
+store_prefix='ibc'
+max_tx_size=180000
+max_msg_num=15
+memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
+gas_price = { price = 0.1, denom = 'ungm' }
+max_gas = 5000000
+clock_drift='70s'
+trusting_period='10days'
+trust_threshold={ numerator = '1', denominator = '3' }
+
