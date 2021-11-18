@@ -88,7 +88,7 @@ filter_peers = false
 [rpc]
 
 # TCP or UNIX socket address for the RPC server to listen on
-laddr = '{{ "tcp://0.0.0.0" }}:{{ env "NOMAD_PORT_sif_rpc" }}'
+laddr = "tcp://0.0.0.0:{{ env "NOMAD_PORT_rpc" }}"
 
 # A list of origins a cross-domain request can be executed from
 # Default value '[]' disables cors support
@@ -172,19 +172,19 @@ pprof_laddr = "localhost:6060"
 [p2p]
 
 # Address to listen for incoming connections
-laddr = '{{ "tcp://0.0.0.0" }}:{{ env "NOMAD_PORT_sif_p2p" }}'
+laddr = "tcp://0.0.0.0:{{ env "NOMAD_PORT_p2p" }}"
 
 # Address to advertise to peers for them to dial
 # If empty, will use the same port as the laddr,
 # and will introspect on the listener or use UPnP
 # to figure out the address.
-external_address = '{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_sif_p2p" }}'
+external_address = ""
 
 # Comma separated list of seed nodes to connect to
 seeds = ""
 
 # Comma separated list of nodes to keep persistent connections to
-persistent_peers = {{ keyOrDefault "sifchain/p2p.persistent_peers" "\"\"" }}
+persistent_peers = {{ keyOrDefault "sifchain/p2p.persistent_peers_internal" "\"\"" }}
 
 # UPNP port forwarding
 upnp = false
@@ -197,10 +197,10 @@ addr_book_file = "config/addrbook.json"
 addr_book_strict = true
 
 # Maximum number of inbound peers
-max_num_inbound_peers = {{ keyOrDefault "sifchain/archive/p2p.max_num_inbound_peers" "10" }}
+max_num_inbound_peers = 6
 
 # Maximum number of outbound peers to connect to, excluding persistent peers
-max_num_outbound_peers = {{ keyOrDefault "sifchain/archive/p2p.max_num_outbound_peers" "50" }}
+max_num_outbound_peers = 10
 
 # List of node IDs, to which a connection will be (re)established ignoring any existing limits
 unconditional_peer_ids = {{ keyOrDefault "sifchain/p2p.unconditional_peer_ids" "\"\"" }}
@@ -282,7 +282,7 @@ max_batch_bytes = 0
 # the network to take and serve state machine snapshots. State sync is not attempted if the node
 # has any local state (LastBlockHeight > 0). The node will have a truncated block history,
 # starting from the height of the snapshot.
-enable = {{ keyOrDefault "sifchain/state-sync.enable" "false" }}
+enable = "false"
 
 # RPC servers (comma-separated) for light client verification of the synced state machine and
 # retrieval of state data for node bootstrapping. Also needs a trusted height and corresponding
@@ -290,9 +290,9 @@ enable = {{ keyOrDefault "sifchain/state-sync.enable" "false" }}
 #
 # For Cosmos SDK-based chains, trust_period should usually be about 2/3 of the unbonding time (~2
 # weeks) during which they can be financially punished (slashed) for misbehavior.
-rpc_servers = {{ keyOrDefault "sifchain/state-sync.rpc_servers" "\"\"" }}
-trust_height = {{ keyOrDefault "sifchain/state-sync.trust_height" "0" }}
-trust_hash = {{ keyOrDefault "sifchain/state-sync.trust_hash" "\"\"" }}
+rpc_servers = ""
+trust_height = 0
+trust_hash = ""
 trust_period = "168h0m0s"
 
 # Time to spend discovering snapshots before initiating a restore.
@@ -378,10 +378,10 @@ indexer = "kv"
 # When true, Prometheus metrics are served under /metrics on
 # PrometheusListenAddr.
 # Check out the documentation for the list of available metrics.
-prometheus = {{ keyOrDefault "sifchain/prometheus.enable" "true" }}
+prometheus = "true"
 
 # Address to listen for Prometheus collector(s) connections
-prometheus_listen_addr = '{{ "tcp://0.0.0.0" }}:{{ env "NOMAD_PORT_sif_prom" }}'
+prometheus_listen_addr = "tcp://0.0.0.0:{{ env "NOMAD_PORT_prom" }}"
 
 # Maximum number of simultaneous connections.
 # If you want to accept a larger number than the default, make sure
