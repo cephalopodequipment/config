@@ -107,7 +107,7 @@ enable = true
 swagger = true
 
 # Address defines the API server to listen on.
-address = '{{ "tcp://0.0.0.0" }}:{{ env "NOMAD_PORT_sif_leet" }}'
+address = "tcp://0.0.0.0:1317"
 
 # MaxOpenConnections defines the number of maximum open connections.
 max-open-connections = 1000
@@ -134,7 +134,7 @@ enabled-unsafe-cors = false
 enable = true
 
 # Address defines the gRPC server address to bind to.
-address = '{{ "0.0.0.0" }}:{{ env "NOMAD_PORT_sif_grpc" }}'
+address = "0.0.0.0:9090"
 
 ###############################################################################
 ###                        State Sync Configuration                         ###

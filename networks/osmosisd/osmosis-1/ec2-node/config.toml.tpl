@@ -88,7 +88,7 @@ filter_peers = false
 [rpc]
 
 # TCP or UNIX socket address for the RPC server to listen on
-laddr = '{{ "tcp://0.0.0.0" }}:{{ env "NOMAD_PORT_osmo_rpc" }}'
+laddr = "tcp://0.0.0.0:26657"
 
 # A list of origins a cross-domain request can be executed from
 # Default value '[]' disables cors support
@@ -172,14 +172,14 @@ pprof_laddr = "localhost:6060"
 [p2p]
 
 # Address to listen for incoming connections
-laddr = '{{ "tcp://0.0.0.0" }}:{{ env "NOMAD_PORT_osmo_p2p" }}'
+laddr = "tcp://0.0.0.0:26656"
 
 # Address to advertise to peers for them to dial
 # If empty, will use the same port as the laddr,
 # and will introspect on the listener or use UPnP
 # to figure out the address. ip and port are required
 # example: 159.89.10.97:26656
-external_address = '{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_osmo_p2p" }}'
+external_address = "{{ env "EXTERNAL_IP" }}:26656"
 
 # Comma separated list of seed nodes to connect to
 seeds = ""
@@ -198,10 +198,10 @@ addr_book_file = "config/addrbook.json"
 addr_book_strict = true
 
 # Maximum number of inbound peers
-max_num_inbound_peers = {{ keyOrDefault "osmo/relayer/p2p.max_num_inbound_peers" "5" }}
+max_num_inbound_peers = {{ keyOrDefault "osmo/ec2/p2p.max_num_inbound_peers" "5" }}
 
 # Maximum number of outbound peers to connect to, excluding persistent peers
-max_num_outbound_peers = {{ keyOrDefault "osmo/relayer/p2p.max_num_outbound_peers" "50" }}
+max_num_outbound_peers = {{ keyOrDefault "osmo/ec2/p2p.max_num_outbound_peers" "50" }}
 
 # List of node IDs, to which a connection will be (re)established ignoring any existing limits
 unconditional_peer_ids = {{ keyOrDefault "osmo/p2p.unconditional_peer_ids" "\"\"" }}
