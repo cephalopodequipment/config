@@ -113,9 +113,9 @@ denominator='3'
 
 [[chains]]
 id='irishub-1'
-rpc_addr='http://10.10.51.58:26657' # irishub0
-grpc_addr='http://10.10.51.58:9090'
-websocket_addr='ws://10.10.51.58:26657/websocket'
+rpc_addr='http://irishub0:26657' # irishub0
+grpc_addr='http://irishub0:9090'
+websocket_addr='ws://irishub0:26657/websocket'
 rpc_timeout='8s'
 account_prefix='iaa'
 key_name='aw1'
