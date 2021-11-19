@@ -2,7 +2,7 @@
 strategy = 'packets'
 filter = true
 log_level='debug'
-clear_packets_interval = 20
+clear_packets_interval = 50
 tx_confirmation = true
 
 [rest]
