@@ -78,9 +78,9 @@ list = [['transfer', 'channel-0']]
 
 [[chains]]
 id='crypto-org-chain-mainnet-1'
-rpc_addr='http://{{ keyOrDefault "crypto/relayer/node" "10.10.51.95" }}:{{ env "NOMAD_PORT_crypto_rpc" }}'
-grpc_addr='http://{{ keyOrDefault "crypto/relaye/node" "10.10.51.95" }}:{{ env "NOMAD_PORT_crypto_grpc" }}'
-websocket_addr='ws://{{ keyOrDefault "crypto/relayer/node" "10.10.51.95" }}:{{ env "NOMAD_PORT_crypto_rpc" }}/websocket'
+rpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_crypto_rpc" }}'
+grpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_crypto_grpc" }}'
+websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_crypto_rpc" }}/websocket'
 rpc_timeout='8s'
 account_prefix='cro'
 key_name='aw2'
@@ -99,27 +99,27 @@ policy = 'allow'
 list = [['transfer', 'channel-10']]
 
 
-[[chains]]
-id='regen-1'
-rpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_rgn_rpc" }}'
-grpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_rgn_grpc" }}'
-websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_rgn_rpc" }}/websocket'
-rpc_timeout='8s'
-account_prefix='regen'
-key_name='aw2'
-memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-store_prefix='ibc'
-gas_price = { price = 0.001, denom = 'uregen' }
-max_gas=2000000
-max_msg_num=15
-max_tx_size=180000
-clock_drift='7200s'
-trusting_period='14days'
-trust_threshold = { numerator = '1', denominator = '3' }
+#[[chains]]
+#id='regen-1'
+#rpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_rgn_rpc" }}'
+#grpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_rgn_grpc" }}'
+#websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_rgn_rpc" }}/websocket'
+#rpc_timeout='8s'
+#account_prefix='regen'
+#key_name='aw2'
+#memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
+#store_prefix='ibc'
+#gas_price = { price = 0.001, denom = 'uregen' }
+#max_gas=2000000
+#max_msg_num=15
+#max_tx_size=180000
+#clock_drift='7200s'
+#trusting_period='14days'
+#trust_threshold = { numerator = '1', denominator = '3' }
 
-[chains.packet_filter]
-policy = 'allow'
-list = [['transfer', 'channel-1']]
+#[chains.packet_filter]
+#policy = 'allow'
+#list = [['transfer', 'channel-1']]
 
 
 #[[chains]]
