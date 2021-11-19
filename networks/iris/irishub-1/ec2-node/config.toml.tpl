@@ -88,7 +88,7 @@ filter_peers = false
 [rpc]
 
 # TCP or UNIX socket address for the RPC server to listen on
-laddr = "tcp://0.0.0.0:{{ env "NOMAD_PORT_iris_rpc" }}"
+laddr = "tcp://0.0.0.0:26657"
 
 # A list of origins a cross-domain request can be executed from
 # Default value '[]' disables cors support
@@ -172,13 +172,14 @@ pprof_laddr = "localhost:6060"
 [p2p]
 
 # Address to listen for incoming connections
-laddr = "tcp://0.0.0.0:{{ env "NOMAD_PORT_iris_p2p" }}"
+laddr = "tcp://0.0.0.0:26656"
 
 # Address to advertise to peers for them to dial
 # If empty, will use the same port as the laddr,
 # and will introspect on the listener or use UPnP
-# to figure out the address.
-external_address = '{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_iris_p2p" }}'
+# to figure out the address. ip and port are required
+# example: 159.89.10.97:26656
+external_address = "{{ env "EXTERNAL_IP" }}:26656"
 
 # Comma separated list of seed nodes to connect to
 seeds = ""
@@ -197,10 +198,10 @@ addr_book_file = "config/addrbook.json"
 addr_book_strict = true
 
 # Maximum number of inbound peers
-max_num_inbound_peers = {{ keyOrDefault "iris/relayer/p2p.max_num_inbound_peers" "5" }}
+max_num_inbound_peers = {{ keyOrDefault "iris/ec2/p2p.max_num_inbound_peers" "5" }}
 
 # Maximum number of outbound peers to connect to, excluding persistent peers
-max_num_outbound_peers = {{ keyOrDefault "iris/relayer/p2p.max_num_outbound_peers" "50" }}
+max_num_outbound_peers = {{ keyOrDefault "iris/ec2/p2p.max_num_outbound_peers" "50" }}
 
 # List of node IDs, to which a connection will be (re)established ignoring any existing limits
 unconditional_peer_ids = {{ keyOrDefault "iris/p2p.unconditional_peer_ids" "\"\"" }}
@@ -302,6 +303,13 @@ discovery_time = "15s"
 # Will create a new, randomly named directory within, and remove it when done.
 temp_dir = ""
 
+# The timeout duration before re-requesting a chunk, possibly from a different
+# peer (default: 1 minute).
+chunk_request_timeout = "10s"
+
+# The number of concurrent chunk fetchers to run (default: 1).
+chunk_fetchers = "4"
+
 #######################################################
 ###       Fast Sync Configuration Connections       ###
 #######################################################
@@ -381,7 +389,7 @@ indexer = "kv"
 prometheus = {{ keyOrDefault "iris/prometheus.enable" "true" }}
 
 # Address to listen for Prometheus collector(s) connections
-prometheus_listen_addr = "tcp://0.0.0.0:{{ env "NOMAD_PORT_iris_prom" }}"
+prometheus_listen_addr = ":26660"
 
 # Maximum number of simultaneous connections.
 # If you want to accept a larger number than the default, make sure
