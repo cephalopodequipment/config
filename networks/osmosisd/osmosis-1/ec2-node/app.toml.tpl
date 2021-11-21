@@ -134,7 +134,7 @@ enabled-unsafe-cors = false
 enable = true
 
 # Address defines the gRPC server address to bind to.
-address = '{{ "0.0.0.0" }}:{{ env "NOMAD_PORT_osmo_grpc" }}'
+address = '{{ "0.0.0.0" }}:9090'
 
 ###############################################################################
 ###                        State Sync Configuration                         ###
