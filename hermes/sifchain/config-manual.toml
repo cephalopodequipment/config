@@ -89,8 +89,8 @@ rpc_timeout='8s'
 account_prefix='cro'
 key_name='aw4'
 store_prefix='ibc'
-gas_price = { price = 0.03, denom = 'basecro' }
-max_gas=1200000
+gas_price = { price = 0.1, denom = 'basecro' }
+max_gas=2000000
 max_msg_num=15
 max_tx_size=450000
 clock_drift='7200s'
@@ -180,9 +180,9 @@ denominator='3'
 
 [[chains]]
 id='sifchain-1'
-rpc_addr='http://sif0.cec:26657'
-grpc_addr='http://sif0.cec:9090'
-websocket_addr='ws://sif0.cec:26657/websocket'
+rpc_addr='http://sif0:26657'
+grpc_addr='http://sif0:9090'
+websocket_addr='ws://sif0:26657/websocket'
 rpc_timeout='8s'
 account_prefix='sif'
 key_name='aw4'
