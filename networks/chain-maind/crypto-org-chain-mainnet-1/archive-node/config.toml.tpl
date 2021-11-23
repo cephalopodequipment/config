@@ -184,7 +184,7 @@ external_address = ""
 seeds = ""
 
 # Comma separated list of nodes to keep persistent connections to
-persistent_peers = {{ keyOrDefault "crypto/p2p.persistent_peers" "\"\"" }}
+persistent_peers = {{ keyOrDefault "crypto/p2p.persistent_peers_internal" "\"\"" }}
 
 # UPNP port forwarding
 upnp = false
