@@ -381,7 +381,7 @@ indexer = "kv"
 prometheus = "true"
 
 # Address to listen for Prometheus collector(s) connections
-prometheus_listen_addr = "tcp://0.0.0.0:{{ env "NOMAD_PORT_prom" }}"
+prometheus_listen_addr = ":{{ env "NOMAD_PORT_prom" }}"
 
 # Maximum number of simultaneous connections.
 # If you want to accept a larger number than the default, make sure
