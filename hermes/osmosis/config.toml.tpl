@@ -122,27 +122,27 @@ list = [['transfer', 'channel-10']]
 #list = [['transfer', 'channel-1']]
 
 
-#[[chains]]
-#id='irishub-1'
-#rpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_iris_rpc" }}'
-#grpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_iris_grpc" }}'
-#websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_iris_rpc" }}/websocket'
-#rpc_timeout='8s'
-#account_prefix='iaa'
-#key_name='aw2'
-#memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-#store_prefix='ibc'
-#gas_price = { price = 0.005, denom = 'uiris' }
-#max_gas=800000
-#max_msg_num=15
-#max_tx_size=1800000
-#clock_drift='7200s'
-#trusting_period='14days'
-#trust_threshold = { numerator = '1', denominator = '3' }
+[[chains]]
+id='irishub-1'
+rpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_iris_rpc" }}'
+grpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_iris_grpc" }}'
+websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_iris_rpc" }}/websocket'
+rpc_timeout='8s'
+account_prefix='iaa'
+key_name='aw2'
+memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
+store_prefix='ibc'
+gas_price = { price = 0.005, denom = 'uiris' }
+max_gas=800000
+max_msg_num=15
+max_tx_size=1800000
+clock_drift='7200s'
+trusting_period='14days'
+trust_threshold = { numerator = '1', denominator = '3' }
 
-#[chains.packet_filter]
-#policy = 'allow'
-#list = [['transfer', 'channel-3']]
+[chains.packet_filter]
+policy = 'allow'
+list = [['transfer', 'channel-3']]
 
 
 [[chains]]
