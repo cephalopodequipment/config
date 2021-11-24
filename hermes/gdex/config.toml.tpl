@@ -1,9 +1,25 @@
 [global]
-strategy = 'packets'
 log_level = 'debug'
+
+[mode]
+[mode.clients]
+enabled = true
+refresh = true
+misbehaviour = false
+
+[mode.connections]
+enabled = false
+
+[mode.channels]
+enabled = false
+
+[mode.packets]
+enabled = true
+clear_interval = 100
+clear_on_start = true
 filter = true
-clear_packets_interval = 20
-tx_confirmation = false
+tx_confirmation = true
+
 
 [rest]
 enabled = true
@@ -21,8 +37,8 @@ account_prefix = 'cosmos'
 key_name = 'aw3'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ keyOrDefault "hub/relayer/min-gas-prices" "0.1" }}, denom = 'uatom' }
-max_gas = {{ keyOrDefault "hub/relayer/max-gas" "3000000" }}
+gas_price = { price = {{ keyOrDefault "hub/relayer/min-gas-prices" "0.0001" }}, denom = 'uatom' }
+max_gas = {{ keyOrDefault "hub/relayer/max-gas" "1000000" }}
 max_msg_num = 15
 max_tx_size = 180000
 clock_drift = '7200s'
@@ -104,19 +120,42 @@ policy = 'allow'
 list = [['transfer', 'channel-24'], ['transfer', 'channel-27'], ['transfer', 'channel-42'], ['transfer', 'channel-23'], ['transfer', 'channel-41'], ['transfer', 'channel-40'], ['transfer', 'channel-29'], ['transfer', 'channel-25'], ['transfer', 'channel-26'], ['transfer', 'channel-39']]
 
 
+#[[chains]]
+#id = 'regen-1'
+#rpc_addr = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_rgn_rpc" }}'
+#grpc_addr = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_rgn_grpc" }}'
+#websocket_addr = 'ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_rgn_rpc" }}/websocket'
+#rpc_timeout = '8s'
+#account_prefix = 'regen'
+#key_name = 'aw3'
+#store_prefix = 'ibc'
+#memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
+#gas_price = { price = {{ keyOrDefault "regen/relayer/min-gas-prices" "0.0001" }}, denom = 'uregen' }
+#max_gas = {{ keyOrDefault "regen/relayer/max-gas" "1000000" }}
+#max_msg_num = 15
+#max_tx_size = 180000
+#clock_drift = '7200s'
+#trusting_period = '14days'
+#trust_threshold = { numerator = '1', denominator = '3' }
+
+#[chains.packet_filter]
+#policy = 'allow'
+# akash, cosmos-hub, crypto-org, emoney, iris, ixo, microtick, persistence, sentinel, starname
+#list = [['transfer', 'channel-10'], ['transfer', 'channel-11'], ['transfer', 'channel-12'], ['transfer', 'channel-35'], ['transfer', 'channel-9'], ['transfer', 'channel-31'], ['transfer', 'channel-30'], ['transfer', 'channel-14'], ['transfer', 'channel-15'], ['transfer', 'channel-29']]
+
+
 [[chains]]
-id = 'regen-1'
-rpc_addr = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_rgn_rpc" }}'
-grpc_addr = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_rgn_grpc" }}'
-websocket_addr = 'ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_rgn_rpc" }}/websocket'
+id = 'core-1'
+rpc_addr = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_core_rpc" }}'
+grpc_addr = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_core_grpc" }}'
+websocket_addr = 'ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_core_rpc" }}/websocket'
 rpc_timeout = '8s'
-account_prefix = 'regen'
+account_prefix = 'persistence'
 key_name = 'aw3'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ keyOrDefault "regen/relayer/min-gas-prices" "0.0001" }}, denom = 'uregen' }
-max_gas = {{ keyOrDefault "regen/relayer/max-gas" "1000000" }}
-max_msg_num = 15
+gas_price = { price = {{ keyOrDefault "core/relayer/min-gas-prices" "0.0001" }}, denom = 'uxprt' }
+max_gas = {{ keyOrDefault "core/relayer/max-gas" "1000000" }}
 max_tx_size = 180000
 clock_drift = '7200s'
 trusting_period = '14days'
@@ -124,8 +163,8 @@ trust_threshold = { numerator = '1', denominator = '3' }
 
 [chains.packet_filter]
 policy = 'allow'
-# akash, cosmos-hub, crypto-org, emoney, iris, ixo, microtick, persistence, sentinel, starname
-list = [['transfer', 'channel-10'], ['transfer', 'channel-11'], ['transfer', 'channel-12'], ['transfer', 'channel-35'], ['transfer', 'channel-9'], ['transfer', 'channel-31'], ['transfer', 'channel-30'], ['transfer', 'channel-14'], ['transfer', 'channel-15'], ['transfer', 'channel-29']]
+# akash, cosmos-hub, crypto-org, emoney, iris, ixo, microtick, regen, sentinel, starname
+list = [['transfer', 'channel-20'], ['transfer', 'channel-24'], ['transfer', 'channel-23'], ['transfer', 'channel-31'], ['transfer', 'channel-19'], ['transfer', 'channel-30'], ['transfer', 'channel-28'], ['transfer', 'channel-21'], ['transfer', 'channel-22'], ['transfer', 'channel-27']]
 
 
 [[chains]]
@@ -152,29 +191,6 @@ list = [['transfer', 'channel-11'], ['transfer', 'channel-12'], ['transfer', 'ch
 
 
 [[chains]]
-id = 'core-1'
-rpc_addr = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_core_rpc" }}'
-grpc_addr = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_core_grpc" }}'
-websocket_addr = 'ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_core_rpc" }}/websocket'
-rpc_timeout = '8s'
-account_prefix = 'persistence'
-key_name = 'aw3'
-store_prefix = 'ibc'
-memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ keyOrDefault "core/relayer/min-gas-prices" "0.1" }}, denom = 'uxprt' }
-max_gas = {{ keyOrDefault "core/relayer/max-gas" "1000000" }}
-max_tx_size = 180000
-clock_drift = '7200s'
-trusting_period = '14days'
-trust_threshold = { numerator = '1', denominator = '3' }
-
-[chains.packet_filter]
-policy = 'allow'
-# akash, cosmos-hub, crypto-org, emoney, iris, ixo, microtick, regen, sentinel, starname
-list = [['transfer', 'channel-20'], ['transfer', 'channel-24'], ['transfer', 'channel-23'], ['transfer', 'channel-31'], ['transfer', 'channel-19'], ['transfer', 'channel-30'], ['transfer', 'channel-28'], ['transfer', 'channel-21'], ['transfer', 'channel-22'], ['transfer', 'channel-27']]
-
-
-[[chains]]
 id = 'iov-mainnet-ibc'
 rpc_addr = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_iov_rpc" }}'
 grpc_addr = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_iov_grpc" }}'
@@ -184,7 +200,7 @@ account_prefix = 'star'
 key_name = 'aw3'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ keyOrDefault "iov/relayer/min-gas-prices" "0.1" }}, denom = 'uiov' }
+gas_price = { price = {{ keyOrDefault "iov/relayer/min-gas-prices" "0.0001" }}, denom = 'uiov' }
 max_gas = {{ keyOrDefault "iov/relayer/max-gas" "1000000" }}
 max_msg_num = 15
 max_tx_size = 450000
