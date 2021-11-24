@@ -8,13 +8,13 @@
 # The minimum gas prices a validator is willing to accept for processing a
 # transaction. A transaction's fees must meet the minimum of any denomination
 # specified in this config (e.g. 0.25token1;0.0001token2).
-minimum-gas-prices = ""
+minimum-gas-prices = "{{ keyOrDefault "default_min_gas_prices" "0.1" }}udvpn"
 
 # default: the last 100 states are kept in addition to every 500th state; pruning at 10 block intervals
 # nothing: all historic states will be saved, nothing will be deleted (i.e. archiving node)
 # everything: all saved states will be deleted, storing only the current state; pruning at 10 block intervals
 # custom: allow pruning options to be manually specified through 'pruning-keep-recent', 'pruning-keep-every', and 'pruning-interval'
-pruning = "default"
+pruning = "nothing"
 
 # These are applied if and only if the pruning strategy is custom.
 pruning-keep-recent = "0"
@@ -25,7 +25,7 @@ pruning-interval = "0"
 # halt and shutdown that can be used to assist upgrades and testing.
 #
 # Note: Commitment of state will be attempted on the corresponding block.
-halt-height = {{ keyOrDefault "dvpn/halt-height" "0" }}
+halt-height = {{ keyOrDefault "sentinel/halt-height" "0" }}
 
 # HaltTime contains a non-zero minimum block time (in Unix seconds) at which
 # a node will gracefully halt and shutdown that can be used to assist upgrades
@@ -107,7 +107,7 @@ enable = true
 swagger = true
 
 # Address defines the API server to listen on.
-address = '{{ "tcp://0.0.0.0" }}:{{ env "NOMAD_PORT_dvpn_leet" }}'
+address = "tcp://0.0.0.0:{{ env "NOMAD_PORT_leet" }}"
 
 # MaxOpenConnections defines the number of maximum open connections.
 max-open-connections = 1000
@@ -134,7 +134,7 @@ enabled-unsafe-cors = false
 enable = true
 
 # Address defines the gRPC server address to bind to.
-address = '{{ "0.0.0.0" }}:{{ env "NOMAD_PORT_dvpn_grpc" }}'
+address = "0.0.0.0:{{ env "NOMAD_PORT_grpc" }}"
 
 ###############################################################################
 ###                        State Sync Configuration                         ###
