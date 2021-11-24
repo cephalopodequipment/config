@@ -1,14 +1,31 @@
 [global]
-strategy = 'packets'
 log_level = 'debug'
+
+[mode]
+[mode.clients]
+enabled = true
+refresh = true
+misbehaviour = false
+
+[mode.connections]
+enabled = false
+
+[mode.channels]
+enabled = false
+
+[mode.packets]
+enabled = true
+clear_interval = 100
+clear_on_start = true
 filter = true
-clear_packets_interval = 50
-tx_confirmation = false
+tx_confirmation = true
+
 
 [rest]
 enabled = true
 host = '0.0.0.0'
 port = 3000
+
 
 [[chains]]
 id              = 'cosmoshub-4'
@@ -227,6 +244,27 @@ trust_threshold={ numerator = '1', denominator = '3' }
 [chains.packet_filter]
 policy='allow'
 list=[['transfer', 'channel-14']]
+
+
+[[chains]]
+id='irishub-1'
+rpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_iris_rpc" }}'
+grpc_addr='http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_iris_grpc" }}'
+websocket_addr='ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_iris_rpc" }}/websocket'
+rpc_timeout='8s'
+account_prefix='iaa'
+key_name='aw4'
+store_prefix='ibc'
+gas_price = { price = 0.005, denom = 'uiris' }
+max_gas=800000
+max_tx_size=1800000
+clock_drift='7200s'
+trusting_period='14days'
+trust_threshold = { numerator = '1', denominator = '3' }
+
+[chains.packet_filter]
+policy = 'allow'
+list = [['transfer', 'channel-19']]
 
 
 [[chains]]
