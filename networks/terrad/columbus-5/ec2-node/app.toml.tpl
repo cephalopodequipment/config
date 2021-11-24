@@ -8,24 +8,24 @@
 # The minimum gas prices a validator is willing to accept for processing a
 # transaction. A transaction's fees must meet the minimum of any denomination
 # specified in this config (e.g. 0.25token1;0.0001token2).
-minimum-gas-prices = "0.01uluna"
+minimum-gas-prices = "{{ keyOrDefault "terra/ec2/min-gas-prices" "0.1" }}uluna"
 
 # default: the last 100 states are kept in addition to every 500th state; pruning at 10 block intervals
 # nothing: all historic states will be saved, nothing will be deleted (i.e. archiving node)
 # everything: all saved states will be deleted, storing only the current state; pruning at 10 block intervals
 # custom: allow pruning options to be manually specified through 'pruning-keep-recent', 'pruning-keep-every', and 'pruning-interval'
-pruning = "default"
+pruning = "custom"
 
 # These are applied if and only if the pruning strategy is custom.
-pruning-keep-recent = "0"
+pruning-keep-recent = "2000"
 pruning-keep-every = "0"
-pruning-interval = "0"
+pruning-interval = "50"
 
 # HaltHeight contains a non-zero block height at which a node will gracefully
 # halt and shutdown that can be used to assist upgrades and testing.
 #
 # Note: Commitment of state will be attempted on the corresponding block.
-halt-height = {{ keyOrDefault "columbus/halt-height" "0" }}
+halt-height = {{ keyOrDefault "terra/halt-height" "0" }}
 
 # HaltTime contains a non-zero minimum block time (in Unix seconds) at which
 # a node will gracefully halt and shutdown that can be used to assist upgrades
@@ -107,7 +107,7 @@ enable = true
 swagger = true
 
 # Address defines the API server to listen on.
-address = '{{ "tcp://0.0.0.0" }}:{{ env "NOMAD_PORT_leet" }}'
+address = "tcp://0.0.0.0:1317"
 
 # MaxOpenConnections defines the number of maximum open connections.
 max-open-connections = 1000
@@ -158,7 +158,7 @@ offline = false
 enable = true
 
 # Address defines the gRPC server address to bind to.
-address = '{{ "0.0.0.0" }}:{{ env "NOMAD_PORT_grpc" }}'
+address = "0.0.0.0:9090"
 
 ###############################################################################
 ###                        gRPC Web Configuration                           ###
