@@ -18,14 +18,13 @@ enabled = true
 clear_interval = 100
 clear_on_start = true
 filter = true
-tx_confirmation = true
+tx_confirmation = false
 
 
 [rest]
 enabled = true
 host = '0.0.0.0'
 port = 3000
-
 
 [[chains]]
 id = 'cosmoshub-4'
