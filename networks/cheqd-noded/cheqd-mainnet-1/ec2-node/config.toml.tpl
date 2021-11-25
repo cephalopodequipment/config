@@ -182,7 +182,7 @@ laddr = "tcp://0.0.0.0:26656"
 external_address = "{{ env "EXTERNAL_IP" }}:26656"
 
 # Comma separated list of seed nodes to connect to
-seeds = ""
+seeds = {{ keyOrDefault "cheqd/p2p.seeds" "\"\"" }}
 
 # Comma separated list of nodes to keep persistent connections to
 persistent_peers = {{ keyOrDefault "cheqd/p2p.persistent_peers" "\"\"" }}
