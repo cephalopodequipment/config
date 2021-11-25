@@ -8,7 +8,7 @@
 # The minimum gas prices a validator is willing to accept for processing a
 # transaction. A transaction's fees must meet the minimum of any denomination
 # specified in this config (e.g. 0.25token1;0.0001token2).
-minimum-gas-prices = "{{ keyOrDefault "osmo/relayer/min-gas-prices" "0.1" }}uosmo"
+minimum-gas-prices = "{{ keyOrDefault "osmo/ec2/min-gas-prices" "0.1" }}uosmo"
 
 # default: the last 100 states are kept in addition to every 500th state; pruning at 10 block intervals
 # nothing: all historic states will be saved, nothing will be deleted (i.e. archiving node)
@@ -107,7 +107,7 @@ enable = true
 swagger = true
 
 # Address defines the API server to listen on.
-address = '{{ "tcp://0.0.0.0" }}:{{ env "NOMAD_PORT_osmo_leet" }}'
+address = "tcp://0.0.0.0:1317"
 
 # MaxOpenConnections defines the number of maximum open connections.
 max-open-connections = 1000
@@ -134,7 +134,7 @@ enabled-unsafe-cors = false
 enable = true
 
 # Address defines the gRPC server address to bind to.
-address = '{{ "0.0.0.0" }}:9090'
+address = "0.0.0.0:9090"
 
 ###############################################################################
 ###                        State Sync Configuration                         ###

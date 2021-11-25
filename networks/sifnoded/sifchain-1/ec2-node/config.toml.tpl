@@ -178,7 +178,7 @@ laddr = "tcp://0.0.0.0:26656"
 # If empty, will use the same port as the laddr,
 # and will introspect on the listener or use UPnP
 # to figure out the address.
-external_address = '{{ env "EXTERNAL_IP" }}:26656'
+external_address = "{{ env "EXTERNAL_IP" }}:26656"
 
 # Comma separated list of seed nodes to connect to
 seeds = ""
@@ -378,7 +378,7 @@ indexer = "kv"
 # When true, Prometheus metrics are served under /metrics on
 # PrometheusListenAddr.
 # Check out the documentation for the list of available metrics.
-prometheus = {{ keyOrDefault "sifchain/prometheus.enable" "true" }}
+prometheus = "true"
 
 # Address to listen for Prometheus collector(s) connections
 prometheus_listen_addr = ":26660"

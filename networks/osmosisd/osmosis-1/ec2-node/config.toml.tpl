@@ -386,10 +386,10 @@ indexer = "kv"
 # When true, Prometheus metrics are served under /metrics on
 # PrometheusListenAddr.
 # Check out the documentation for the list of available metrics.
-prometheus = {{ keyOrDefault "osmo/prometheus.enable" "true" }}
+prometheus = "true"
 
 # Address to listen for Prometheus collector(s) connections
-prometheus_listen_addr = '{{ "tcp://0.0.0.0" }}:{{ env "NOMAD_PORT_osmo_prom" }}'
+prometheus_listen_addr = ":26660"
 
 # Maximum number of simultaneous connections.
 # If you want to accept a larger number than the default, make sure
