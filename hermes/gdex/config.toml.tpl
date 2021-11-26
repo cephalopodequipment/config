@@ -119,28 +119,28 @@ policy = 'allow'
 list = [['transfer', 'channel-24'], ['transfer', 'channel-27'], ['transfer', 'channel-42'], ['transfer', 'channel-23'], ['transfer', 'channel-41'], ['transfer', 'channel-40'], ['transfer', 'channel-29'], ['transfer', 'channel-25'], ['transfer', 'channel-26'], ['transfer', 'channel-39']]
 
 
-#[[chains]]
-#id = 'regen-1'
-#rpc_addr = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_rgn_rpc" }}'
-#grpc_addr = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_rgn_grpc" }}'
-#websocket_addr = 'ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_rgn_rpc" }}/websocket'
-#rpc_timeout = '8s'
-#account_prefix = 'regen'
-#key_name = 'aw3'
-#store_prefix = 'ibc'
-#memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-#gas_price = { price = {{ keyOrDefault "regen/relayer/min-gas-prices" "0.0001" }}, denom = 'uregen' }
-#max_gas = {{ keyOrDefault "regen/relayer/max-gas" "1000000" }}
-#max_msg_num = 15
-#max_tx_size = 180000
-#clock_drift = '7200s'
-#trusting_period = '14days'
-#trust_threshold = { numerator = '1', denominator = '3' }
+[[chains]]
+id = 'regen-1'
+rpc_addr = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_rgn_rpc" }}'
+grpc_addr = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_rgn_grpc" }}'
+websocket_addr = 'ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_rgn_rpc" }}/websocket'
+rpc_timeout = '8s'
+account_prefix = 'regen'
+key_name = 'aw3'
+store_prefix = 'ibc'
+memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
+gas_price = { price = {{ keyOrDefault "regen/relayer/min-gas-prices" "0.0001" }}, denom = 'uregen' }
+max_gas = {{ keyOrDefault "regen/relayer/max-gas" "1000000" }}
+max_msg_num = 15
+max_tx_size = 180000
+clock_drift = '7200s'
+trusting_period = '14days'
+trust_threshold = { numerator = '1', denominator = '3' }
 
-#[chains.packet_filter]
-#policy = 'allow'
+[chains.packet_filter]
+policy = 'allow'
 # akash, cosmos-hub, crypto-org, emoney, iris, ixo, microtick, persistence, sentinel, starname
-#list = [['transfer', 'channel-10'], ['transfer', 'channel-11'], ['transfer', 'channel-12'], ['transfer', 'channel-35'], ['transfer', 'channel-9'], ['transfer', 'channel-31'], ['transfer', 'channel-30'], ['transfer', 'channel-14'], ['transfer', 'channel-15'], ['transfer', 'channel-29']]
+list = [['transfer', 'channel-10'], ['transfer', 'channel-11'], ['transfer', 'channel-12'], ['transfer', 'channel-35'], ['transfer', 'channel-9'], ['transfer', 'channel-31'], ['transfer', 'channel-30'], ['transfer', 'channel-14'], ['transfer', 'channel-15'], ['transfer', 'channel-29']]
 
 
 [[chains]]
