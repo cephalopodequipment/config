@@ -285,8 +285,9 @@ rpc_timeout = '8s'
 account_prefix = 'sif'
 key_name = 'aw4'
 store_prefix = 'ibc'
-gas_price = { price = 1000000000000, denom = 'rowan' }
-max_gas = 3000000
+memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
+gas_price = { price = {{ keyOrDefault "sifchain/relayer/min-gas-prices" "100000000000" }}, denom = 'rowan' }
+max_gas = {{ keyOrDefault "sifchain/relayer/max-gas" "1000000" }}
 max_msg_num = 15
 max_tx_size = 180000
 clock_drift = '7200s'
