@@ -107,15 +107,15 @@ denominator='3'
 
 [[chains]]
 id='regen-1'
-rpc_addr='http://10.10.51.245:26657'
-grpc_addr='http://10.10.51.245:9090'
-websocket_addr='ws://10.10.51.245:26657/websocket'
+rpc_addr='http://regen1:26657'
+grpc_addr='http://regen1:9090'
+websocket_addr='ws://regen1:26657/websocket'
 rpc_timeout='8s'
 account_prefix='regen'
 key_name='aw4'
 store_prefix='ibc'
 gas_price = { price = 0.02, denom = 'uregen' }
-max_gas=800000
+max_gas=5000000
 max_msg_num=15
 max_tx_size=180000
 clock_drift='7200s'

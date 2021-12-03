@@ -43,10 +43,7 @@ max_tx_size = 180000
 clock_drift = '7200s'
 trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
-
-[chains.packet_filter]
-policy = 'allow'
-list = [['transfer', 'channel-141']]
+packet_filter = { policy = 'allow', list = [['transfer', 'channel-141']]}
 
 
 [[chains]]
@@ -64,10 +61,7 @@ max_gas = {{ keyOrDefault "akash/relayer/max-gas" "1000000" }}
 clock_drift = '7200s'
 trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
-
-[chains.packet_filter]
-policy = 'allow'
-list = [['transfer', 'channel-9']]
+packet_filter = { policy = 'allow', list = [['transfer', 'channel-9']]}
 
 
 [[chains]]
@@ -86,10 +80,7 @@ max_msg_num = 15
 clock_drift = '7200s'
 trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
-
-[chains.packet_filter]
-policy = 'allow'
-list = [['transfer', 'channel-0']]
+packet_filter = { policy = 'allow', list = [['transfer', 'channel-0']]}
 
 
 [[chains]]
@@ -109,10 +100,7 @@ max_tx_size = 450000
 clock_drift = '7200s'
 trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
-
-[chains.packet_filter]
-policy = 'allow'
-list = [['transfer', 'channel-10']]
+packet_filter = { policy = 'allow', list = [['transfer', 'channel-10']]}
 
 
 [[chains]]
@@ -132,10 +120,7 @@ max_tx_size = 180000
 clock_drift = '7200s'
 trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
-
-[chains.packet_filter]
-policy = 'allow'
-list = [['transfer', 'channel-1']]
+packet_filter = { policy = 'allow', list = [['transfer', 'channel-1']]}
 
 
 [[chains]]
@@ -155,10 +140,7 @@ max_tx_size = 180000
 clock_drift = '7200s'
 trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
-
-[chains.packet_filter]
-policy = 'allow'
-list = [['transfer', 'channel-6']]
+packet_filter = { policy = 'allow', list = [['transfer', 'channel-6']]}
 
 
 [[chains]]
@@ -178,10 +160,7 @@ max_tx_size = 1800000
 clock_drift = '7200s'
 trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
-
-[chains.packet_filter]
-policy = 'allow'
-list = [['transfer', 'channel-3']]
+packet_filter = { policy = 'allow', list = [['transfer', 'channel-3']]}
 
 
 [[chains]]
@@ -201,10 +180,7 @@ max_tx_size = 450000
 clock_drift = '7200s'
 trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
-
-[chains.packet_filter]
-policy = 'allow'
-list = [['transfer', 'channel-2']]
+packet_filter = { policy = 'allow', list = [['transfer', 'channel-2']]}
 
 
 [[chains]]
@@ -224,10 +200,7 @@ max_tx_size = 180000
 clock_drift = '7200s'
 trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
-
-[chains.packet_filter]
-policy = 'allow'
-list = [['transfer', 'channel-4']]
+packet_filter = { policy = 'allow', list = [['transfer', 'channel-4']]}
 
 
 [[chains]]
@@ -247,10 +220,7 @@ max_tx_size = 450000
 clock_drift = '7200s'
 trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
-
-[chains.packet_filter]
-policy = 'allow'
-list = [['transfer', 'channel-0']]
+packet_filter = { policy = 'allow', list = [['transfer', 'channel-0']]}
 
 
 [[chains]]
@@ -270,8 +240,5 @@ max_tx_size = 180000
 clock_drift = '7200s'
 trusting_period = '10days'
 trust_threshold = { numerator = '1', denominator = '3' }
-
-[chains.packet_filter]
-policy = 'allow'
 ## akash, sentinel, crypto, regen, iris, iov, persistence, cosmoshub, juno, ixo
-list = [['transfer', 'channel-1'],['transfer', 'channel-2'],['transfer', 'channel-5'],['transfer', 'channel-8'],['transfer', 'channel-6'],['transfer', 'channel-15'],['transfer', 'channel-4'],['transfer', 'channel-0'],['transfer', 'channel-42'],['transfer','channel-38']]
+packet_filter = { policy = 'allow', list = [['transfer', 'channel-1'],['transfer', 'channel-2'],['transfer', 'channel-5'],['transfer', 'channel-8'],['transfer', 'channel-6'],['transfer', 'channel-15'],['transfer', 'channel-4'],['transfer', 'channel-0'],['transfer', 'channel-42'],['transfer','channel-38']]}
