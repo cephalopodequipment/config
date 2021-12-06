@@ -14,12 +14,12 @@ minimum-gas-prices = "{{ keyOrDefault "sifchain/ec2/min-gas-prices" "0.1" }}rowa
 # nothing: all historic states will be saved, nothing will be deleted (i.e. archiving node)
 # everything: all saved states will be deleted, storing only the current state; pruning at 10 block intervals
 # custom: allow pruning options to be manually specified through 'pruning-keep-recent', 'pruning-keep-every', and 'pruning-interval'
-pruning = "custom"
+pruning = "default"
 
 # These are applied if and only if the pruning strategy is custom.
-pruning-keep-recent = "2000"
+pruning-keep-recent = "0"
 pruning-keep-every = "0"
-pruning-interval = "50"
+pruning-interval = "0"
 
 # HaltHeight contains a non-zero block height at which a node will gracefully
 # halt and shutdown that can be used to assist upgrades and testing.
