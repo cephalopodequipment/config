@@ -146,7 +146,7 @@ address = "0.0.0.0:9090"
 
 # snapshot-interval specifies the block interval at which local state sync snapshots are
 # taken (0 to disable). Must be a multiple of pruning-keep-every.
-snapshot-interval = 0
+snapshot-interval = "{{ keyOrDefault "osmo/ec2/snapshot-interval" "0" }}"
 
 # snapshot-keep-recent specifies the number of recent snapshots to keep and serve (0 to keep all).
 snapshot-keep-recent = 2
