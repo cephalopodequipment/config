@@ -117,8 +117,12 @@ packet_filter = { policy = 'allow', list = [['transfer', 'channel-10']]}
 
 [[chains]]
 id = 'regen-1'
-rpc_addr = 'http://regen1:26657'
-grpc_addr = 'http://regen1:9090'
+#rpc_addr = 'http://regen1:26657'
+#grpc_addr = 'http://regen1:9090'
+
+rpc_addr = 'http://10.10.10.103:26680'
+grpc_addr = 'http://10.10.10.103:26682'
+
 websocket_addr = 'ws://regen1:26657/websocket'
 rpc_timeout = '8s'
 account_prefix = 'regen'
@@ -165,7 +169,7 @@ account_prefix = 'iaa'
 key_name = 'aw1'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price  =  { price  =  0.005, denom  =  'uiris' }
+gas_price  =  { price  =  0.01, denom  =  'uiris' }
 max_gas = 5000000
 max_msg_num = 15
 max_tx_size = 1800000
@@ -185,7 +189,7 @@ account_prefix = 'star'
 key_name = 'aw1'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price  =  { price  =  0.02, denom  =  'uiov' }
+gas_price  =  { price  =  0.1, denom  =  'uiov' }
 max_gas = 5000000
 max_msg_num = 15
 max_tx_size = 450000
@@ -238,11 +242,11 @@ packet_filter = { policy = 'allow', list = [['transfer', 'channel-0']]}
 [[chains]]
 id = 'osmosis-1'
 
-rpc_addr = 'http://osmosis1:26657'
-grpc_addr = 'http://osmosis1:9090'
+#rpc_addr = 'http://osmosis1:26657'
+#grpc_addr = 'http://osmosis1:9090'
 
-#rpc_addr = 'http://10.10.10.103:26700' # node: osmosis-archive-node
-#grpc_addr = 'http://10.10.10.103:26702'
+rpc_addr = 'http://10.10.10.103:26700' # node: osmosis-archive-node
+grpc_addr = 'http://10.10.10.103:26702'
 
 websocket_addr = 'ws://osmosis0:26657/websocket'
 rpc_timeout = '8s'
