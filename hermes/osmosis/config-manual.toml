@@ -129,7 +129,7 @@ account_prefix = 'regen'
 key_name = 'aw2'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price  =  { price  =  0.02, denom  =  'uregen' }
+gas_price  =  { price  =  0.1, denom  =  'uregen' }
 max_gas = 800000
 max_msg_num = 15
 max_tx_size = 180000
@@ -254,7 +254,7 @@ account_prefix = 'osmo'
 key_name = 'aw1'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price  =  { price  =  0.0001, denom  =  'uosmo' }
+gas_price  =  { price  =  0.1, denom  =  'uosmo' }
 max_gas = 19000000
 max_msg_num = 8
 clock_drift = '7200s'
