@@ -293,7 +293,7 @@ enable = "true"
 # weeks) during which they can be financially punished (slashed) for misbehavior.
 rpc_servers = {{ keyOrDefault "osmo/prod2/statesync.rpc_servers" "\"\"" }}
 trust_height = {{ keyOrDefault "osmo/prod2/statesync.trust_height" "0" }}
-trust_hash = {{ keyOrDefault "osmo/prod2/state-sync.trust_hash" "\"\"" }}
+trust_hash = {{ keyOrDefault "osmo/prod2/statesync.trust_hash" "\"\"" }}
 trust_period = "112h0m0s"
 
 # Time to spend discovering snapshots before initiating a restore.
