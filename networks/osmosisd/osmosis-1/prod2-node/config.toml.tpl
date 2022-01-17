@@ -179,7 +179,7 @@ laddr = "tcp://0.0.0.0:{{ env "NOMAD_PORT_p2p" }}"
 # and will introspect on the listener or use UPnP
 # to figure out the address. ip and port are required
 # example: 159.89.10.97:26656
-external_address = ""
+external_address = "{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_p2p" }}"
 
 # Comma separated list of seed nodes to connect to
 seeds = ""
@@ -198,7 +198,7 @@ addr_book_file = "config/addrbook.json"
 addr_book_strict = false
 
 # Maximum number of inbound peers
-max_num_inbound_peers = 6
+max_num_inbound_peers = 8
 
 # Maximum number of outbound peers to connect to, excluding persistent peers
 max_num_outbound_peers = 10
@@ -283,7 +283,7 @@ max_batch_bytes = 0
 # the network to take and serve state machine snapshots. State sync is not attempted if the node
 # has any local state (LastBlockHeight > 0). The node will have a truncated block history,
 # starting from the height of the snapshot.
-enable = "false"
+enable = "true"
 
 # RPC servers (comma-separated) for light client verification of the synced state machine and
 # retrieval of state data for node bootstrapping. Also needs a trusted height and corresponding
@@ -291,9 +291,9 @@ enable = "false"
 #
 # For Cosmos SDK-based chains, trust_period should usually be about 2/3 of the unbonding time (~2
 # weeks) during which they can be financially punished (slashed) for misbehavior.
-rpc_servers = ""
-trust_height = 0
-trust_hash = ""
+rpc_servers = {{ keyOrDefault "osmo/prod2/statesync.rpc_servers" "\"\"" }}
+trust_height = {{ keyOrDefault "osmo/prod2/statesync.trust_height" "0" }}
+trust_hash = {{ keyOrDefault "osmo/prod2/state-sync.trust_hash" "\"\"" }}
 trust_period = "112h0m0s"
 
 # Time to spend discovering snapshots before initiating a restore.
@@ -376,7 +376,7 @@ peer_query_maj23_sleep_duration = "2s"
 #   1) "null"
 #   2) "kv" (default) - the simplest possible indexer, backed by key-value storage (defaults to levelDB; see DBBackend).
 # 		- When "kv" is chosen "tx.height" and "tx.hash" will always be indexed.
-indexer = "kv"
+indexer = "null"
 
 #######################################################
 ###       Instrumentation Configuration Options     ###
