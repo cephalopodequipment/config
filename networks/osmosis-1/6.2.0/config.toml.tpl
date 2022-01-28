@@ -204,7 +204,7 @@ max_num_inbound_peers = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.max_num
 max_num_outbound_peers = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.max_num_outbound_peers") "50" }}
 
 # List of node IDs, to which a connection will be (re)established ignoring any existing limits
-unconditional_peer_ids =  {{ keyOrDefault (print (index (env "CONSUL_PATH" | split "/") 0) "/p2p.unconditional_peer_ids") "\"\"" }}
+unconditional_peer_ids = {{ keyOrDefault (print (index (env "CONSUL_PATH" | split "/") 0) "/p2p.unconditional_peer_ids") "\"\"" }}
 
 # Maximum pause when redialing a persistent peer (if zero, exponential backoff is used)
 persistent_peers_max_dial_period = "0s"
