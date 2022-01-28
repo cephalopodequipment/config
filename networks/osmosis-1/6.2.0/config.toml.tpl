@@ -15,7 +15,7 @@
 proxy_app = "tcp://127.0.0.1:26658"
 
 # A custom human readable name for this node
-moniker = {{ keyOrDefault (env "KEY_MONIKER") "\"20k leagues under the sea\"" }}
+moniker = {{ keyOrDefault (print (env "CONSUL_PATH") "/moniker") "\"20k leagues under the sea\"" }}
 
 # If this node is many blocks behind the tip of the chain, FastSync
 # allows them to catchup quickly by downloading blocks in parallel
@@ -115,7 +115,7 @@ grpc_laddr = ""
 grpc_max_open_connections = 900
 
 # Activate unsafe RPC commands like /dial_seeds and /unsafe_flush_mempool
-unsafe = {{ keyOrDefault (env "KEY_UNSAFE") "false" }}
+unsafe = {{ keyOrDefault  (print (env "CONSUL_PATH") "/rpc.unsafe") "false" }}
 
 # Maximum number of simultaneous connections (including WebSocket).
 # Does not include gRPC connections. See grpc_max_open_connections
@@ -182,10 +182,10 @@ laddr = "tcp://0.0.0.0:{{ env "NOMAD_PORT_p2p" }}"
 external_address = "{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_p2p" }}"
 
 # Comma separated list of seed nodes to connect to
-seeds = {{ keyOrDefault (env "KEY_SEEDS") "\"\"" }}
+seeds = {{ keyOrDefault (print (index (env "CONSUL_PATH" | split "/") 0) "/p2p.seeds") "\"\"" }}
 
 # Comma separated list of nodes to keep persistent connections to
-persistent_peers = {{ keyOrDefault (env "KEY_PERSISTENT_PEERS") "\"\"" }}
+persistent_peers = {{ keyOrDefault  (print (env "CONSUL_PATH") "/p2p.persistent_peers") "\"\"" }}
 
 # UPNP port forwarding
 upnp = false
@@ -195,16 +195,16 @@ addr_book_file = "config/addrbook.json"
 
 # Set true for strict address routability rules
 # Set false for private or local networks
-addr_book_strict = {{ keyOrDefault (env "KEY_ADDR_BOOK_STRICT") "true" }}
+addr_book_strict = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.addr_book_strict") "true" }}
 
 # Maximum number of inbound peers
-max_num_inbound_peers = {{ keyOrDefault (env "KEY_INBOUND_PEERS") "5" }}
+max_num_inbound_peers = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.max_num_inbound_peers") "5" }}
 
 # Maximum number of outbound peers to connect to, excluding persistent peers
-max_num_outbound_peers = {{ keyOrDefault (env "KEY_OUTBOUND_PEERS") "50" }}
+max_num_outbound_peers = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.max_num_outbound_peers") "50" }}
 
 # List of node IDs, to which a connection will be (re)established ignoring any existing limits
-unconditional_peer_ids = {{ keyOrDefault (env "KEY_UNCONDITIONAL_PEERS") "\"\"" }}
+unconditional_peer_ids =  {{ keyOrDefault (print (index (env "CONSUL_PATH" | split "/") 0) "/p2p.unconditional_peer_ids") "\"\"" }}
 
 # Maximum pause when redialing a persistent peer (if zero, exponential backoff is used)
 persistent_peers_max_dial_period = "0s"
@@ -222,16 +222,16 @@ send_rate = 51200000
 recv_rate = 51200000
 
 # Set true to enable the peer-exchange reactor
-pex = {{ keyOrDefault (env "KEY_PEX") "false" }}
+pex = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.pex") "false" }}
 
 # Seed mode, in which node constantly crawls the network and looks for
 # peers. If another node asks it for addresses, it responds and disconnects.
 #
 # Does not work if the peer-exchange reactor is disabled.
-seed_mode = {{ keyOrDefault (env "KEY_SEED_MODE") "false" }}
+seed_mode = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.seed_mode") "false" }}
 
 # Comma separated list of peer IDs to keep private (will not be gossiped to other peers)
-private_peer_ids = {{ keyOrDefault (env "KEY_PRIVATE_PEER_IDS") "\"\"" }}
+private_peer_ids = {{ keyOrDefault (print (index (env "CONSUL_PATH" | split "/") 0) "/p2p.private_peer_ids") "\"\"" }}
 
 # Toggle to disable guard against peers connecting from the same ip.
 allow_duplicate_ip = false
@@ -283,7 +283,7 @@ max_batch_bytes = 0
 # the network to take and serve state machine snapshots. State sync is not attempted if the node
 # has any local state (LastBlockHeight > 0). The node will have a truncated block history,
 # starting from the height of the snapshot.
-enable = {{ keyOrDefault (env "KEY_STATESYNC_ENABLE") "false" }}
+enable = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.enable") "false" }}
 
 # RPC servers (comma-separated) for light client verification of the synced state machine and
 # retrieval of state data for node bootstrapping. Also needs a trusted height and corresponding
@@ -291,9 +291,9 @@ enable = {{ keyOrDefault (env "KEY_STATESYNC_ENABLE") "false" }}
 #
 # For Cosmos SDK-based chains, trust_period should usually be about 2/3 of the unbonding time (~2
 # weeks) during which they can be financially punished (slashed) for misbehavior.
-rpc_servers = {{ keyOrDefault (env "KEY_STATESYNC_RPC") "\"\"" }}
-trust_height = {{ keyOrDefault (env "KEY_STATESYNC_TRUST_HEIGHT") "0" }}
-trust_hash = {{ keyOrDefault (env "KEY_STATESYNC_TRUST_HASH") "\"\"" }}
+rpc_servers = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.rpc_servers") "\"\"" }}
+trust_height = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.trust_height") "0" }}
+trust_hash = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.trust_hash") "\"\"" }}
 trust_period = "112h0m0s"
 
 # Time to spend discovering snapshots before initiating a restore.
@@ -376,7 +376,7 @@ peer_query_maj23_sleep_duration = "2s"
 #   1) "null"
 #   2) "kv" (default) - the simplest possible indexer, backed by key-value storage (defaults to levelDB; see DBBackend).
 # 		- When "kv" is chosen "tx.height" and "tx.hash" will always be indexed.
-indexer = "kv"
+indexer = {{ keyOrDefault (print (env "CONSUL_PATH") "/indexer") "\"kv\"" }}
 
 #######################################################
 ###       Instrumentation Configuration Options     ###
