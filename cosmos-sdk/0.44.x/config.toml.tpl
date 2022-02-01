@@ -213,7 +213,7 @@ persistent_peers_max_dial_period = "0s"
 flush_throttle_timeout = "100ms"
 
 # Maximum size of a message packet payload, in bytes
-max_packet_msg_payload_size = 1024
+max_packet_msg_payload_size = {{ keyOrDefault (print (index (env "CONSUL_PATH" | split "/") 0) "/p2p.max_packet_msg_payload_size") "1024" }}
 
 # Rate at which packets can be sent, in bytes/second
 send_rate = 51200000
@@ -250,7 +250,7 @@ broadcast = true
 wal_dir = ""
 
 # Maximum number of transactions in the mempool
-size = {{ keyOrDefault (print (index (env "CONSUL_PATH" | split "/") 0) "/mempool.size") "\"\"" }}
+size = {{ keyOrDefault (print (index (env "CONSUL_PATH" | split "/") 0) "/mempool.size") "5000" }}
 
 # Limit the total size of all txs in the mempool.
 # This only accounts for raw transactions (e.g. given 1MB transactions and
@@ -263,7 +263,7 @@ cache_size = 10000
 # Do not remove invalid transactions from the cache (default: false)
 # Set to true if it's not possible for any invalid transaction to become valid
 # again in the future.
-keep-invalid-txs-in-cache = "false"
+keep-invalid-txs-in-cache = false
 
 # Maximum size of a single transaction.
 # NOTE: the max size of a tx transmitted over the network is {max_tx_bytes}.
@@ -294,7 +294,7 @@ enable = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.enable") "false"
 rpc_servers = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.rpc_servers") "\"\"" }}
 trust_height = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.trust_height") "0" }}
 trust_hash = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.trust_hash") "\"\"" }}
-trust_period = {{ keyOrDefault (print (index (env "CONSUL_PATH" | split "/") 0) "/statesync.trust_period") "168h0m0s" }}
+trust_period = {{ keyOrDefault (print (index (env "CONSUL_PATH" | split "/") 0) "/statesync.trust_period") "\"168h0m0s\"" }}
 
 # Time to spend discovering snapshots before initiating a restore.
 discovery_time = "15s"
@@ -343,7 +343,7 @@ timeout_precommit_delta = "500ms"
 # How long we wait after committing a block, before starting on the new
 # height (this gives us a chance to receive some more precommits, even
 # though we already have +2/3).
-timeout_commit = "5s"
+timeout_commit = {{ keyOrDefault (print (env "CONSUL_PATH" | split "/") "/consensus.timeout_commit") "\"5s\"" }}
 
 # How many blocks to look back to check existence of the node's consensus votes before joining consensus
 # When non-zero, the node will panic upon restart
@@ -386,7 +386,7 @@ indexer = {{ keyOrDefault (print (env "CONSUL_PATH") "/indexer") "\"kv\"" }}
 # When true, Prometheus metrics are served under /metrics on
 # PrometheusListenAddr.
 # Check out the documentation for the list of available metrics.
-prometheus = true
+prometheus = "true"
 
 # Address to listen for Prometheus collector(s) connections
 prometheus_listen_addr = ":{{ env "NOMAD_PORT_prom" }}"
