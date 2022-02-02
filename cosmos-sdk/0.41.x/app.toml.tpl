@@ -146,7 +146,7 @@ address = "0.0.0.0:{{ env "NOMAD_PORT_grpc" }}"
 
 # snapshot-interval specifies the block interval at which local state sync snapshots are
 # taken (0 to disable). Must be a multiple of pruning-keep-every.
-snapshot-interval = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.shapshot-interval") "0" }}
+snapshot-interval = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.snapshot-interval") "0" }}
 
 # snapshot-keep-recent specifies the number of recent snapshots to keep and serve (0 to keep all).
 snapshot-keep-recent = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.snapshot-keep-recent") "2" }}
