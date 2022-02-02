@@ -181,7 +181,7 @@ laddr = "tcp://0.0.0.0:{{ env "NOMAD_PORT_p2p" }}"
 external_address = "{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_p2p" }}"
 
 # Comma separated list of seed nodes to connect to
-seeds = {{ keyOrDefault (print (index (env "CONSUL_PATH" | split "/") 0) "/p2p.seeds") "\"\"" }}
+seeds = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/p2p.seeds") "\"\"" }}
 
 # Comma separated list of nodes to keep persistent connections to
 persistent_peers = {{ keyOrDefault  (print (env "CONSUL_PATH") "/p2p.persistent_peers") "\"\"" }}
@@ -203,7 +203,7 @@ max_num_inbound_peers = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.max_num
 max_num_outbound_peers = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.max_num_outbound_peers") "50" }}
 
 # List of node IDs, to which a connection will be (re)established ignoring any existing limits
-unconditional_peer_ids = {{ keyOrDefault (print (index (env "CONSUL_PATH" | split "/") 0) "/p2p.unconditional_peer_ids") "\"\"" }}
+unconditional_peer_ids = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/p2p.unconditional_peer_ids") "\"\"" }}
 
 # Maximum pause when redialing a persistent peer (if zero, exponential backoff is used)
 persistent_peers_max_dial_period = "0s"
@@ -212,7 +212,7 @@ persistent_peers_max_dial_period = "0s"
 flush_throttle_timeout = "100ms"
 
 # Maximum size of a message packet payload, in bytes
-max_packet_msg_payload_size = {{ keyOrDefault (print (index (env "CONSUL_PATH" | split "/") 0) "/p2p.max_packet_msg_payload_size") "1024" }}
+max_packet_msg_payload_size = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/p2p.max_packet_msg_payload_size") "1024" }}
 
 # Rate at which packets can be sent, in bytes/second
 send_rate = 51200000
@@ -230,7 +230,7 @@ pex = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.pex") "false" }}
 seed_mode = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.seed_mode") "false" }}
 
 # Comma separated list of peer IDs to keep private (will not be gossiped to other peers)
-private_peer_ids = {{ keyOrDefault (print (index (env "CONSUL_PATH" | split "/") 0) "/p2p.private_peer_ids") "\"\"" }}
+private_peer_ids = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/p2p.private_peer_ids") "\"\"" }}
 
 # Toggle to disable guard against peers connecting from the same ip.
 allow_duplicate_ip = false
@@ -249,7 +249,7 @@ broadcast = true
 wal_dir = ""
 
 # Maximum number of transactions in the mempool
-size = {{ keyOrDefault (print (index (env "CONSUL_PATH" | split "/") 0) "/mempool.size") "5000" }}
+size = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/mempool.size") "5000" }}
 
 # Limit the total size of all txs in the mempool.
 # This only accounts for raw transactions (e.g. given 1MB transactions and
@@ -293,7 +293,7 @@ enable = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.enable") "false"
 rpc_servers = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.rpc_servers") "\"\"" }}
 trust_height = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.trust_height") "0" }}
 trust_hash = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.trust_hash") "\"\"" }}
-trust_period = {{ keyOrDefault (print (index (env "CONSUL_PATH" | split "/") 0) "/statesync.trust_period") "\"168h0m0s\"" }}
+trust_period = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/statesync.trust_period") "\"168h0m0s\"" }}
 
 # Time to spend discovering snapshots before initiating a restore.
 discovery_time = "15s"
