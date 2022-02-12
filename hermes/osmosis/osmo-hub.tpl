@@ -36,7 +36,7 @@ account_prefix = 'cosmos'
 key_name = 'aw2'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ keyOrDefault "networks/cosmoshub/relayer/base.minimum-gas-prices" "0.0001" }}, denom = 'uatom' }
+gas_price = { price = {{ key "networks/cosmoshub/relayer/base.minimum-gas-prices" | regexReplaceAll "[A-Za-z]*" "" }}, denom = 'uatom' }
 max_gas = {{ keyOrDefault "networks/cosmoshub/relayer/hermes.max-gas" "1000000" }}
 max_msg_num = 15
 max_tx_size = 180000
@@ -56,7 +56,7 @@ account_prefix = 'osmo'
 key_name = 'aw2'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ keyOrDefault "networks/osmosis/relayer/base.minimum-gas-prices" "0.0001" }}, denom = 'uosmo' }
+gas_price = { price = {{ key "networks/osmosis/relayer/base.minimum-gas-prices" | regexReplaceAll "[A-Za-z]*" "" }}, denom = 'uosmo' }
 max_gas = {{ keyOrDefault  "networks/osmosis/relayer/hermes.max-gas" "1000000" }}
 max_msg_num = 15
 max_tx_size = 180000
