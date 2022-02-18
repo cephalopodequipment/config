@@ -29,9 +29,9 @@ port = 3000
 
 [[chains]]
 id='akashnet-2'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes-osmo.akashnet-relay-1 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes-osmo.akashnet-relay-1 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.hermes-osmo.akashnet-relay-1 }}0/websocket'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.akashnet_relay_1 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.akashnet_relay_1 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.akashnet_relay_1 }}0/websocket'
 rpc_timeout = '8s'
 account_prefix = 'akash'
 key_name = 'aw2'
@@ -47,9 +47,9 @@ packet_filter = { policy = 'allow', list = [['transfer', 'channel-9']]}
 
 [[chains]]
 id = 'sentinelhub-2'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes-osmo.sentinelhub-relay-1 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes-osmo.sentinelhub-relay-1 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.hermes-osmo.sentinelhub-relay-1 }}0/websocket'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.sentinelhub_relay_1 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.sentinelhub_relay_1 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.sentinelhub_relay_1 }}0/websocket'
 rpc_timeout = '8s'
 account_prefix = 'sent'
 key_name = 'aw2'
@@ -66,9 +66,9 @@ packet_filter = { policy = 'allow', list = [['transfer', 'channel-0']]}
 
 [[chains]]
 id = 'crypto-org-chain-mainnet-1'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes-osmo.crypto-relay-1 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes-osmo.crypto-relay-1 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.hermes-osmo.crypto-relay-1 }}0/websocket'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.crypto_relay_1 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.crypto_relay_1 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.crypto_relay_1 }}0/websocket'
 rpc_timeout = '8s'
 account_prefix = 'cro'
 key_name = 'aw2'
@@ -86,9 +86,9 @@ packet_filter = { policy = 'allow', list = [['transfer', 'channel-10']]}
 
 [[chains]]
 id = 'regen-1'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes-osmo.regen-relay-1 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes-osmo.regen-relay-1 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.hermes-osmo.regen-relay-1 }}0/websocket'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.regen_relay_1 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.regen_relay_1 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.regen_relay_1 }}0/websocket'
 rpc_timeout = '8s'
 account_prefix = 'regen'
 key_name = 'aw2'
@@ -106,9 +106,9 @@ packet_filter = { policy = 'allow', list = [['transfer', 'channel-1']]}
 
 [[chains]]
 id = 'core-1'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes-osmo.core-relay-1 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes-osmo.core-relay-1 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.hermes-osmo.core-relay-1 }}0/websocket'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.core_relay_1 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.core_relay_1 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.core_relay_1 }}0/websocket'
 rpc_timeout = '8s'
 account_prefix = 'persistence'
 key_name = 'aw2'
@@ -126,9 +126,9 @@ packet_filter = { policy = 'allow', list = [['transfer', 'channel-6']]}
 
 [[chains]]
 id = 'irishub-1'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes-osmo.irishub-relay-1 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes-osmo.irishub-relay-1 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.hermes-osmo.irishub-relay-1 }}0/websocket'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.irishub_relay_1 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.irishub_relay_1 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.irishub_relay_1 }}0/websocket'
 rpc_timeout = '8s'
 account_prefix = 'iaa'
 key_name = 'aw2'
@@ -146,9 +146,9 @@ packet_filter = { policy = 'allow', list = [['transfer', 'channel-3']]}
 
 [[chains]]
 id = 'iov-mainnet-ibc'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes-osmo.iov-relay-1 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes-osmo.iov-relay-1 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.hermes-osmo.iov-relay-1 }}0/websocket'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.iov_relay_1 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.iov_relay_1 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.iov_relay_1 }}0/websocket'
 rpc_timeout = '8s'
 account_prefix = 'star'
 key_name = 'aw2'
@@ -166,9 +166,9 @@ packet_filter = { policy = 'allow', list = [['transfer', 'channel-2']]}
 
 [[chains]]
 id = 'impacthub-3'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes-osmo.impacthub-relay-1 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes-osmo.impacthub-relay-1 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.hermes-osmo.impacthub-relay-1 }}0/websocket'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.impacthub_relay_1 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.impacthub_relay_1 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.impacthub_relay_1 }}0/websocket'
 rpc_timeout = '8s'
 account_prefix = 'ixo'
 key_name = 'aw2'
@@ -186,9 +186,9 @@ packet_filter = { policy = 'allow', list = [['transfer', 'channel-4']]}
 
 [[chains]]
 id = 'juno-1'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes-osmo.juno-relay-1 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes-osmo.juno-relay-1 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.hermes-osmo.juno-relay-1 }}0/websocket'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.juno_relay_1 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.juno_relay_1 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.juno_relay_1 }}0/websocket'
 rpc_timeout = '8s'
 account_prefix = 'juno'
 key_name = 'aw2'
@@ -206,9 +206,9 @@ packet_filter = { policy = 'allow', list = [['transfer', 'channel-0']]}
 
 [[chains]]
 id = 'osmosis-1'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes-osmo.osmosis-relay-1 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes-osmo.osmosis-relay-1 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.hermes-osmo.osmosis-relay-1 }}0/websocket'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.osmosis_relay_1 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.osmosis_relay_1 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.osmosis_relay_1 }}0/websocket'
 rpc_timeout = '8s'
 account_prefix = 'osmo'
 key_name = 'aw2'
