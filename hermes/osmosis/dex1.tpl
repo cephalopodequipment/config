@@ -25,7 +25,7 @@ enabled = true
 host = '0.0.0.0'
 port = 3000
 
-{{ with $ports := key "ports/relayer" }}
+{{ with $ports := key "ports/relayer" | parseJSON }}
 
 [[chains]]
 id='akashnet-2'
