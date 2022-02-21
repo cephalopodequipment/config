@@ -34,7 +34,7 @@ grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.osmosis0 }}2'
 websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.osmosis0 }}0/websocket'
 rpc_timeout = '8s'
 account_prefix = 'osmo'
-key_name = 'aw2'
+key_name = 'aw4'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
 gas_price = { price = {{ keyOrDefault "osmo/relayer/min-gas-prices" "0.0001" }}, denom = 'uosmo' }
@@ -45,14 +45,14 @@ clock_drift = '7200s'
 trusting_period = '10days'
 trust_threshold = { numerator = '1', denominator = '3' }
 # sifchain
-packet_filter = { policy = 'allow', list = [['transfer','channel-17']]}
+packet_filter = { policy = 'allow', list = [['transfer','channel-47']]}
 
 
 [[chains]]
 id = 'sifchain-1'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.sifchain0 }}'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.sifchain0 }}'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.sifchain0 }}/websocket'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.sifchain0 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.sifchain0 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.sifchain0 }}0/websocket'
 rpc_timeout = '8s'
 account_prefix = 'sif'
 key_name = 'aw4'
@@ -65,10 +65,7 @@ max_tx_size = 180000
 clock_drift = '7200s'
 trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
-
-[chains.packet_filter]
-policy = 'allow'
 # osmosis
-list = [['transfer', 'channel-47']]
+packet_filter = { policy = 'allow', list = [['transfer','channel-47']]}
 
 {{ end }}
