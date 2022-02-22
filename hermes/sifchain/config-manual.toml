@@ -1,16 +1,38 @@
 [global]
-strategy = 'packets'
 log_level = 'debug'
+
+[mode]
+[mode.clients]
+enabled = true
+refresh = true
+misbehaviour = false
+
+[mode.connections]
+enabled = false
+
+[mode.channels]
+enabled = false
+
+[mode.packets]
+enabled = true
+clear_interval = 100
+clear_on_start = true
 filter = true
-clear_packets_interval = 20
-tx_confirmation = true
+tx_confirmation = false
+
+
+[rest]
+enabled = true
+host = '0.0.0.0'
+port = 3000
+
 
 
 [[chains]]
 id='cosmoshub-4'
-rpc_addr='http://cosmoshub1:26657'
-grpc_addr='http://cosmoshub1:9090'
-websocket_addr='ws://cosmoshub1:26657/websocket'
+rpc_addr='http://10.10.51.208:26610'
+grpc_addr='http://10.10.51.208:26612'
+websocket_addr='ws://10.10.51.208:26610/websocket'
 rpc_timeout='8s'
 account_prefix='cosmos'
 key_name='aw4'
@@ -156,9 +178,9 @@ denominator='3'
 
 [[chains]]
 id='core-1'
-rpc_addr='http://10.10.51.84:26657' # core0
-grpc_addr='http://10.10.51.84:9090'
-websocket_addr='ws://10.10.51.84:26657/websocket'
+rpc_addr='http://core-archive:26600' # core0
+grpc_addr='http://core-archive:26602'
+websocket_addr='ws://core0:26600/websocket'
 rpc_timeout='8s'
 account_prefix='persistence'
 key_name='aw4'
@@ -180,9 +202,9 @@ denominator='3'
 
 [[chains]]
 id='sifchain-1'
-rpc_addr='http://sif0:26657'
-grpc_addr='http://sif0:9090'
-websocket_addr='ws://sif0:26657/websocket'
+rpc_addr='http://sif-archive:26600'
+grpc_addr='http://sif-archive:26602'
+websocket_addr='ws://sif0:26600/websocket'
 rpc_timeout='8s'
 account_prefix='sif'
 key_name='aw4'
@@ -256,9 +278,9 @@ denominator='3'
 
 [[chains]]
 id='osmosis-1'
-rpc_addr='http://osmosis1:26657'
-grpc_addr='http://osmosis1:9090'
-websocket_addr='ws://osmosis0:26657/websocket'
+rpc_addr='http://osmosis1:26600'
+grpc_addr='http://osmosis1:26602'
+websocket_addr='ws://osmosis0:26600/websocket'
 rpc_timeout='8s'
 account_prefix='osmo'
 key_name='aw4'

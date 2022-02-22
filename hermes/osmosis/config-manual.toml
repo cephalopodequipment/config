@@ -74,9 +74,9 @@ packet_filter = { policy = 'allow', list = [['transfer', 'channel-9']]}
 
 [[chains]]
 id = 'sentinelhub-2'
-rpc_addr = 'http://10.10.51.47:26657' # sentinelhub0
-grpc_addr = 'http://10.10.51.47:9090'
-websocket_addr = 'ws://10.10.51.47:26657/websocket'
+rpc_addr = 'http://10.10.10.103:26660'
+grpc_addr = 'http://10.10.10.103:26662'
+websocket_addr = 'ws://sentinelhub0:26600/websocket'
 rpc_timeout = '8s'
 account_prefix = 'sent'
 key_name = 'aw1'
@@ -113,20 +113,16 @@ packet_filter = { policy = 'allow', list = [['transfer', 'channel-10']]}
 
 [[chains]]
 id = 'regen-1'
-#rpc_addr = 'http://regen1:26657'
-#grpc_addr = 'http://regen1:9090'
-
 rpc_addr = 'http://10.10.10.103:26680'
 grpc_addr = 'http://10.10.10.103:26682'
-
-websocket_addr = 'ws://regen1:26657/websocket'
+websocket_addr = 'ws://regen1:26600/websocket'
 rpc_timeout = '8s'
 account_prefix = 'regen'
 key_name = 'aw2'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
 gas_price  =  { price  =  0.1, denom  =  'uregen' }
-max_gas = 800000
+max_gas = 2000000
 max_msg_num = 15
 max_tx_size = 180000
 clock_drift = '7200s'
@@ -137,9 +133,9 @@ packet_filter = { policy = 'allow', list = [['transfer', 'channel-1']]}
 
 [[chains]]
 id = 'core-1'
-rpc_addr = 'http://10.10.51.84:26657' # core0
-grpc_addr = 'http://10.10.51.84:9090'
-websocket_addr = 'ws://10.10.51.84:26657/websocket'
+rpc_addr = 'http://core-archive:26600'
+grpc_addr = 'http://core-archive:26602'
+websocket_addr = 'ws://core0:26657/websocket'
 rpc_timeout = '8s'
 account_prefix = 'persistence'
 key_name = 'aw1'
