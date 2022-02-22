@@ -254,9 +254,9 @@ list=[['transfer', 'channel-14']]
 
 [[chains]]
 id = 'osmosis-1'
-rpc_addr = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_osmo_rpc" }}'
-grpc_addr = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_osmo_grpc" }}'
-websocket_addr = 'ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_osmo_rpc" }}/websocket'
+rpc_addr = 'http://10.10.51.105:26600'
+grpc_addr = 'http://10.10.51.105:26602'
+websocket_addr = 'ws://10.10.51.105:26600/websocket'
 rpc_timeout = '8s'
 account_prefix = 'osmo'
 key_name = 'aw4'
@@ -277,9 +277,9 @@ list = [['transfer', 'channel-47']]
 
 [[chains]]
 id = 'sifchain-1'
-rpc_addr = 'http://10.10.51.105:26600'
-grpc_addr = 'http://10.10.51.105:26602'
-websocket_addr = 'ws://10.10.51.105:26600/websocket'
+rpc_addr = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_sif_rpc" }}'
+grpc_addr = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_sif_rpc" }}'
+websocket_addr = 'ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_sif_rpc" }}/websocket'
 rpc_timeout = '8s'
 account_prefix = 'sif'
 key_name = 'aw4'
