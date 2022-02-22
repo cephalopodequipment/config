@@ -37,8 +37,8 @@ account_prefix = 'cosmos'
 key_name = 'aw1'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price  =  { price  =  0.0001, denom  =  'uatom' }
-max_gas = 19000000
+gas_price = { price = {{ key "networks/cosmoshub/relayer/base.minimum-gas-prices" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uatom' }
+max_gas = {{ keyOrDefault "networks/cosmoshub/relayer/hermes.max-gas" "1000000" }}
 max_msg_num = 15
 max_tx_size = 180000
 clock_drift = '7200s'
@@ -58,8 +58,8 @@ account_prefix = 'gravity'
 key_name = 'aw1'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price  =  { price  =  0.001, denom  =  'ugraviton' }
-max_gas = 19000000
+gas_price = { price = {{ key "networks/gravity-bridge/relayer/base.minimum-gas-prices" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'ugraviton' }
+max_gas = {{ keyOrDefault "networks/cosmoshub/gravity-bridge/hermes.max-gas" "1000000" }}
 max_msg_num = 8
 clock_drift = '7200s'
 trusting_period = '10days'
