@@ -9,7 +9,7 @@ log() {
 
 log "Running custom bootstrap script for $(hostname)"
 
-apt install -y xfsprogs lz4
+apt-get install -y xfsprogs lz4
 
 XFS="new"
 mkfs -t xfs /dev/nvme0n1 || XFS="tainted"
