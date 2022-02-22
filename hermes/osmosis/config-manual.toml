@@ -238,13 +238,9 @@ packet_filter = { policy = 'allow', list = [['transfer', 'channel-0']]}
 [[chains]]
 id = 'osmosis-1'
 
-#rpc_addr = 'http://osmosis1:26657'
-#grpc_addr = 'http://osmosis1:9090'
-
-rpc_addr = 'http://10.10.10.103:26700' # node: osmosis-archive-node
-grpc_addr = 'http://10.10.10.103:26702'
-
-websocket_addr = 'ws://osmosis0:26657/websocket'
+rpc_addr = 'http://10.10.10.103:26600' # node: osmosis-archive-node
+grpc_addr = 'http://10.10.10.103:26602'
+websocket_addr = 'ws://osmosis0:26600/websocket'
 rpc_timeout = '8s'
 account_prefix = 'osmo'
 key_name = 'aw1'
