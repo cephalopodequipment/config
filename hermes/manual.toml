@@ -4,8 +4,6 @@ log_level = 'debug'
 [mode]
 [mode.clients]
 enabled = true
-refresh = true
-misbehaviour = false
 
 [mode.connections]
 enabled = false
@@ -15,87 +13,63 @@ enabled = false
 
 [mode.packets]
 enabled = true
-clear_interval = 100
-clear_on_start = true
-filter = true
-tx_confirmation = false
-
-
-[rest]
-enabled = true
-host = '0.0.0.0'
-port = 3000
-
 
 [[chains]]
 id = 'cosmoshub-4'
-
-rpc_addr = 'http://cosmoshub-archive:26600'
-grpc_addr = 'http://cosmoshub-archive:26602'
-websocket_addr = 'ws://cosmoshub-archive:26600/websocket'
+rpc_addr = 'http://cosmoshub1:26600'
+grpc_addr = 'http://cosmoshub1:26602'
+websocket_addr = 'ws://cosmoshub1:26600/websocket'
 rpc_timeout = '8s'
 account_prefix = 'cosmos'
 key_name = 'aw1'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
 gas_price  =  { price  =  0.0001, denom  =  'uatom' }
-max_gas = 19000000
+max_gas = 3000000
 max_msg_num = 15
 max_tx_size = 180000
 clock_drift = '7200s'
 trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
-packet_filter = { policy = 'allow', list = [['transfer', 'channel-141']]}
-
-
 
 [[chains]]
-id = 'akashnet-2'
-
-rpc_addr = 'http://akashnet0:26657'
-grpc_addr = 'http://akashnet0:9090'
-
-#rpc_addr = 'http://10.10.10.103:26640' # archive node
-#grpc_addr = 'http://10.10.10.103:26642'
-
-websocket_addr = 'ws://akashnet0:26657/websocket'
-rpc_timeout = '8s'
-account_prefix = 'akash'
-key_name = 'aw1'
-store_prefix = 'ibc'
+id ='akashnet-2'
+rpc_addr ='http://akashnet1:26600'
+grpc_addr ='http://akashnet1:26602'
+websocket_addr ='ws://akashnet1:26600/websocket'
+rpc_timeout ='8s'
+account_prefix ='akash'
+key_name ='aw1'
+store_prefix ='ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price  =  { price  =  0.001, denom  =  'uakt' }
-max_gas = 1000000
-clock_drift = '7200s'
-trusting_period = '14days'
+gas_price = { price = 0.001, denom = 'uakt' }
+max_gas = 2000000
+clock_drift ='7200s'
+trusting_period ='14days'
 trust_threshold = { numerator = '1', denominator = '3' }
-packet_filter = { policy = 'allow', list = [['transfer', 'channel-9']]}
-
 
 [[chains]]
 id = 'sentinelhub-2'
-rpc_addr = 'http://10.10.10.103:26660'
-grpc_addr = 'http://10.10.10.103:26662'
+rpc_addr = 'http://sentinelhub0:26600'
+grpc_addr = 'http://sentinelhub0:26602'
 websocket_addr = 'ws://sentinelhub0:26600/websocket'
 rpc_timeout = '8s'
 account_prefix = 'sent'
 key_name = 'aw1'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price  =  { price  =  0.01, denom  =  'udvpn' }
-max_gas = 1000000
+gas_price = { price = 0.01, denom = 'udvpn' }
+max_gas = 2000000
 max_msg_num = 15
 clock_drift = '7200s'
 trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
-packet_filter = { policy = 'allow', list = [['transfer', 'channel-0']]}
-
 
 [[chains]]
 id = 'crypto-org-chain-mainnet-1'
-rpc_addr = 'http://10.10.51.95:26657' # crypto1
-grpc_addr = 'http://10.10.51.95:9090'
-websocket_addr = 'ws://10.10.51.95:26657/websocket'
+rpc_addr = 'http://crypto0:26600'
+grpc_addr = 'http://crypto0:26602'
+websocket_addr = 'ws://crypto0:26600/websocket'
 rpc_timeout = '8s'
 account_prefix = 'cro'
 key_name = 'aw1'
@@ -108,17 +82,15 @@ max_tx_size = 450000
 clock_drift = '7200s'
 trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
-packet_filter = { policy = 'allow', list = [['transfer', 'channel-10']]}
-
 
 [[chains]]
 id = 'regen-1'
-rpc_addr = 'http://10.10.10.103:26680'
-grpc_addr = 'http://10.10.10.103:26682'
+rpc_addr = 'http://regen1:26600'
+grpc_addr = 'http://regen1:26602'
 websocket_addr = 'ws://regen1:26600/websocket'
 rpc_timeout = '8s'
 account_prefix = 'regen'
-key_name = 'aw2'
+key_name = 'aw1'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
 gas_price  =  { price  =  0.1, denom  =  'uregen' }
@@ -128,14 +100,12 @@ max_tx_size = 180000
 clock_drift = '7200s'
 trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
-packet_filter = { policy = 'allow', list = [['transfer', 'channel-1']]}
-
 
 [[chains]]
 id = 'core-1'
 rpc_addr = 'http://core-archive:26600'
 grpc_addr = 'http://core-archive:26602'
-websocket_addr = 'ws://core0:26657/websocket'
+websocket_addr = 'ws://core0:26600/websocket'
 rpc_timeout = '8s'
 account_prefix = 'persistence'
 key_name = 'aw1'
@@ -148,14 +118,12 @@ max_tx_size = 180000
 clock_drift = '7200s'
 trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
-packet_filter = { policy = 'allow', list = [['transfer', 'channel-6']]}
-
 
 [[chains]]
 id = 'irishub-1'
-rpc_addr = 'http://irishub-archive:26600' 
+rpc_addr = 'http://irishub-archive:26600'
 grpc_addr = 'http://irishub-archive:26602'
-websocket_addr = 'ws://irishub-archive:26600/websocket'
+websocket_addr = 'ws://irishub0:26600/websocket'
 rpc_timeout = '8s'
 account_prefix = 'iaa'
 key_name = 'aw1'
@@ -168,14 +136,12 @@ max_tx_size = 1800000
 clock_drift = '7200s'
 trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
-packet_filter = { policy = 'allow', list = [['transfer', 'channel-3']]}
-
 
 [[chains]]
 id = 'iov-mainnet-ibc'
-rpc_addr = 'http://iov0:26657'
-grpc_addr = 'http://iov0:9090'
-websocket_addr = 'ws://iov0:26657/websocket'
+rpc_addr = 'http://iov0:26600'
+grpc_addr = 'http://iov0:26602'
+websocket_addr = 'ws://iov0:26600/websocket'
 rpc_timeout = '8s'
 account_prefix = 'star'
 key_name = 'aw1'
@@ -188,14 +154,12 @@ max_tx_size = 450000
 clock_drift = '7200s'
 trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
-packet_filter = { policy = 'allow', list = [['transfer', 'channel-2']]}
-
 
 [[chains]]
 id = 'impacthub-3'
-rpc_addr = 'http://impacthub0:26657'
-grpc_addr = 'http://impacthub0:9090'
-websocket_addr = 'ws://impacthub0:26657/websocket'
+rpc_addr = 'http://impacthub0:26600'
+grpc_addr = 'http://impacthub0:26602'
+websocket_addr = 'ws://impacthub0:26600/websocket'
 rpc_timeout = '8s'
 account_prefix = 'ixo'
 key_name = 'aw1'
@@ -208,17 +172,15 @@ max_tx_size = 180000
 clock_drift = '7200s'
 trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
-packet_filter = { policy = 'allow', list = [['transfer', 'channel-4']]}
-
 
 [[chains]]
 id = 'juno-1'
-rpc_addr = 'http://juno0.cec:26657'
-grpc_addr = 'http://juno0.cec:9090'
-websocket_addr = 'ws://juno0.cec:26657/websocket'
+rpc_addr = 'http://juno0.cec:26600'
+grpc_addr = 'http://juno0.cec:26602'
+websocket_addr = 'ws://juno0.cec:26600/websocket'
 rpc_timeout = '8s'
 account_prefix = 'juno'
-key_name = 'aw2'
+key_name = 'aw1'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
 gas_price  =  { price  =  0.001, denom  =  'ujuno' }
@@ -228,12 +190,9 @@ max_tx_size = 450000
 clock_drift = '7200s'
 trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
-packet_filter = { policy = 'allow', list = [['transfer', 'channel-0']]}
-
 
 [[chains]]
 id = 'osmosis-1'
-
 rpc_addr = 'http://10.10.10.103:26600' # node: osmosis-archive-node
 grpc_addr = 'http://10.10.10.103:26602'
 websocket_addr = 'ws://osmosis0:26600/websocket'
@@ -248,4 +207,56 @@ max_msg_num = 8
 clock_drift = '7200s'
 trusting_period = '10days'
 trust_threshold = { numerator = '1', denominator = '3' }
-packet_filter = { policy = 'allow', list = [['transfer', 'channel-1'],['transfer', 'channel-2'],['transfer', 'channel-5'],['transfer', 'channel-8'],['transfer', 'channel-6'],['transfer', 'channel-15'],['transfer', 'channel-4'],['transfer', 'channel-0'],['transfer', 'channel-42'],['transfer','channel-38']]}
+
+[[chains]]
+id = 'sifchain-1'
+rpc_addr = 'http://sif0:26600'
+grpc_addr = 'http://sif0:26602'
+websocket_addr = 'ws://sif0:26600/websocket'
+rpc_timeout = '8s'
+account_prefix = 'sif'
+key_name = 'aw1'
+store_prefix = 'ibc'
+memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
+gas_price = { price = 100000000000, denom = 'rowan' }
+max_gas = 5000000
+max_msg_num = 15
+max_tx_size = 180000
+clock_drift = '7200s'
+trusting_period = '14days'
+
+[[chains]]
+id = 'emoney-3'
+rpc_addr = 'http://emoney0:26600'
+grpc_addr = 'http://emoney0:26602'
+websocket_addr = 'ws://emoney0:26600/websocket'
+rpc_timeout = '8s'
+account_prefix = 'emoney'
+key_name = 'aw1'
+store_prefix = 'ibc'
+max_tx_size = 180000
+max_msg_num = 15
+memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
+gas_price = { price = 0.1, denom = 'ungm' }
+max_gas = 5000000
+clock_drift = '70s'
+trusting_period = '10days'
+trust_threshold = { numerator = '1', denominator = '3' }
+
+[[chains]]
+id = 'gravity-bridge-3'
+rpc_addr = 'http://gravity0:26600'
+grpc_addr = 'http://gravity0:26602'
+websocket_addr = 'ws://gravity0:26600/websocket'
+rpc_timeout = '8s'
+account_prefix = 'gravity'
+key_name = 'aw1'
+store_prefix = 'ibc'
+memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
+gas_price  =  { price  =  0.001, denom  =  'ugraviton' }
+max_gas = 19000000
+max_msg_num = 8
+clock_drift = '7200s'
+trusting_period = '10days'
+trust_threshold = { numerator = '1', denominator = '3' }
+packet_filter = { policy = 'allow', list = [['transfer', 'channel-17']]}

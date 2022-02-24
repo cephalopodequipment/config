@@ -4,8 +4,6 @@ log_level = 'debug'
 [mode]
 [mode.clients]
 enabled = true
-refresh = true
-misbehaviour = false
 
 [mode.connections]
 enabled = false
@@ -15,22 +13,23 @@ enabled = false
 
 [mode.packets]
 enabled = true
-clear_interval = 100
+clear_interval = 71
 clear_on_start = true
-filter = true
 tx_confirmation = false
 
+
+{{ with $ports := key "ports/relay-hub0" | parseJSON }}
 
 [rest]
 enabled = true
 host = '0.0.0.0'
-port = 3000
+port = {{ $ports.hermes-emeris }}
 
 [[chains]]
 id = 'cosmoshub-4'
-rpc_addr = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_hub_rpc" }}'
-grpc_addr = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_hub_grpc" }}'
-websocket_addr = 'ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_hub_rpc" }}/websocket'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ env "NOMAD_PORT_hub_rpc" }}'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ env "NOMAD_PORT_hub_grpc" }}'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ env "NOMAD_PORT_hub_rpc" }}/websocket'
 rpc_timeout = '8s'
 account_prefix = 'cosmos'
 key_name = 'aw3'
@@ -43,8 +42,7 @@ max_tx_size = 180000
 clock_drift = '7200s'
 trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
-
-[chains.packet_filter]
+packet_filter =
 policy = 'allow'
 # akash, crypto-org, emoney, iris, ixo, juno, microtick, persistence, regen, sentinel, starname
 list = [['transfer', 'channel-184'], ['transfer', 'channel-187'], ['transfer', 'channel-202'], ['transfer', 'channel-182'], ['transfer', 'channel-204'], ['transfer', 'channel-207'], ['transfer', 'channel-201'], ['transfer', 'channel-190'], ['transfer', 'channel-185'], ['transfer', 'channel-186'], ['transfer', 'channel-158']]
@@ -52,9 +50,9 @@ list = [['transfer', 'channel-184'], ['transfer', 'channel-187'], ['transfer', '
 
 [[chains]]
 id='akashnet-2'
-rpc_addr = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_akash_rpc" }}'
-grpc_addr = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_akash_grpc" }}'
-websocket_addr = 'ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_akash_rpc" }}/websocket'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ env "NOMAD_PORT_akash_rpc" }}'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ env "NOMAD_PORT_akash_grpc" }}'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ env "NOMAD_PORT_akash_rpc" }}/websocket'
 rpc_timeout = '8s'
 account_prefix = 'akash'
 key_name = 'aw3'
@@ -74,9 +72,9 @@ list = [['transfer', 'channel-17'], ['transfer', 'channel-18'], ['transfer', 'ch
 
 [[chains]]
 id = 'sentinelhub-2'
-rpc_addr = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_sentinel_rpc" }}'
-grpc_addr = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_sentinel_grpc" }}'
-websocket_addr = 'ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_sentinel_rpc" }}/websocket'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ env "NOMAD_PORT_sentinel_rpc" }}'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ env "NOMAD_PORT_sentinel_grpc" }}'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ env "NOMAD_PORT_sentinel_rpc" }}/websocket'
 rpc_timeout = '8s'
 account_prefix = 'sent'
 key_name = 'aw3'
@@ -97,9 +95,9 @@ list = [['transfer', 'channel-10'], ['transfer', 'channel-12'], ['transfer', 'ch
 
 [[chains]]
 id = 'crypto-org-chain-mainnet-1'
-rpc_addr = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_crypto_rpc" }}'
-grpc_addr = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_crypto_grpc" }}'
-websocket_addr = 'ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_crypto_rpc" }}/websocket'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ env "NOMAD_PORT_crypto_rpc" }}'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ env "NOMAD_PORT_crypto_grpc" }}'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ env "NOMAD_PORT_crypto_rpc" }}/websocket'
 rpc_timeout = '8s'
 account_prefix = 'cro'
 key_name = 'aw3'
@@ -121,9 +119,9 @@ list = [['transfer', 'channel-24'], ['transfer', 'channel-27'], ['transfer', 'ch
 
 [[chains]]
 id = 'regen-1'
-rpc_addr = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_rgn_rpc" }}'
-grpc_addr = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_rgn_grpc" }}'
-websocket_addr = 'ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_rgn_rpc" }}/websocket'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ env "NOMAD_PORT_rgn_rpc" }}'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ env "NOMAD_PORT_rgn_grpc" }}'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ env "NOMAD_PORT_rgn_rpc" }}/websocket'
 rpc_timeout = '8s'
 account_prefix = 'regen'
 key_name = 'aw3'
@@ -145,9 +143,9 @@ list = [['transfer', 'channel-10'], ['transfer', 'channel-11'], ['transfer', 'ch
 
 [[chains]]
 id = 'core-1'
-rpc_addr = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_core_rpc" }}'
-grpc_addr = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_core_grpc" }}'
-websocket_addr = 'ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_core_rpc" }}/websocket'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ env "NOMAD_PORT_core_rpc" }}'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ env "NOMAD_PORT_core_grpc" }}'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ env "NOMAD_PORT_core_rpc" }}/websocket'
 rpc_timeout = '8s'
 account_prefix = 'persistence'
 key_name = 'aw3'
@@ -168,9 +166,9 @@ list = [['transfer', 'channel-20'], ['transfer', 'channel-24'], ['transfer', 'ch
 
 [[chains]]
 id = 'irishub-1'
-rpc_addr = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_iris_rpc" }}'
-grpc_addr = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_iris_grpc" }}'
-websocket_addr = 'ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_iris_rpc" }}/websocket'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ env "NOMAD_PORT_iris_rpc" }}'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ env "NOMAD_PORT_iris_grpc" }}'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ env "NOMAD_PORT_iris_rpc" }}/websocket'
 rpc_timeout = '8s'
 account_prefix = 'iaa'
 key_name = 'aw3'
@@ -191,9 +189,9 @@ list = [['transfer', 'channel-11'], ['transfer', 'channel-12'], ['transfer', 'ch
 
 [[chains]]
 id = 'iov-mainnet-ibc'
-rpc_addr = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_iov_rpc" }}'
-grpc_addr = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_iov_grpc" }}'
-websocket_addr = 'ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_iov_rpc" }}/websocket'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ env "NOMAD_PORT_iov_rpc" }}'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ env "NOMAD_PORT_iov_grpc" }}'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ env "NOMAD_PORT_iov_rpc" }}/websocket'
 rpc_timeout = '8s'
 account_prefix = 'star'
 key_name = 'aw3'
@@ -215,9 +213,9 @@ list = [['transfer', 'channel-7'], ['transfer', 'channel-0'], ['transfer', 'chan
 
 [[chains]]
 id = 'impacthub-3'
-rpc_addr = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_ixo_rpc" }}'
-grpc_addr = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_ixo_grpc" }}'
-websocket_addr = 'ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_ixo_rpc" }}/websocket'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ env "NOMAD_PORT_ixo_rpc" }}'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ env "NOMAD_PORT_ixo_grpc" }}'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ env "NOMAD_PORT_ixo_rpc" }}/websocket'
 rpc_timeout = '8s'
 account_prefix = 'ixo'
 key_name = 'aw3'
@@ -239,9 +237,9 @@ list = [['transfer', 'channel-0'], ['transfer', 'channel-1'], ['transfer', 'chan
 
 [[chains]]
 id = 'microtick-1'
-rpc_addr = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_mtm_rpc" }}'
-grpc_addr = 'http://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_mtm_grpc" }}'
-websocket_addr = 'ws://{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_mtm_rpc" }}/websocket'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ env "NOMAD_PORT_mtm_rpc" }}'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ env "NOMAD_PORT_mtm_grpc" }}'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ env "NOMAD_PORT_mtm_rpc" }}/websocket'
 rpc_timeout = '8s'
 account_prefix = 'micro'
 key_name = 'aw3'
