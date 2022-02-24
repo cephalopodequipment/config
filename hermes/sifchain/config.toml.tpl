@@ -254,9 +254,9 @@ list=[['transfer', 'channel-14']]
 
 [[chains]]
 id = 'osmosis-1'
-rpc_addr = 'http://10.10.51.105:26600'
-grpc_addr = 'http://10.10.51.105:26602'
-websocket_addr = 'ws://10.10.51.105:26600/websocket'
+rpc_addr = 'http://10.10.51.16:26600'
+grpc_addr = 'http://10.10.51.16:26602'
+websocket_addr = 'ws://10.10.51.16:26600/websocket'
 rpc_timeout = '8s'
 account_prefix = 'osmo'
 key_name = 'aw4'
@@ -277,9 +277,9 @@ list = [['transfer', 'channel-47']]
 
 [[chains]]
 id = 'sifchain-1'
-rpc_addr = 'http://10.10.51.105:26610'
-grpc_addr = 'http://10.10.51.105:26612'
-websocket_addr = 'ws://10.10.51.105:26610/websocket'
+rpc_addr = 'http://10.10.51.16:26610'
+grpc_addr = 'http://10.10.51.16:26612'
+websocket_addr = 'ws://10.10.51.16:26610/websocket'
 rpc_timeout = '8s'
 account_prefix = 'sif'
 key_name = 'aw4'
