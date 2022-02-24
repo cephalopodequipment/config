@@ -22,7 +22,8 @@
       },
       {
          "chain_name":"osmosis",
-         "primary_channel": ""
+         "primary_channel": "channel-47",
+         "client_id": "07-tendermint-1484"
       },
       {
          "chain_name":"persistence",
@@ -40,12 +41,19 @@
          "client_id": "07-tendermint-84"
       },
       {
-         "chain_name":"ixo",
-         "primary_channel": ""
+         "chain_name":"impacthub",
+         "primary_channel": "channel-15",
+         "client_id": "07-tendermint-25"
       },
       {
          "chain_name":"juno",
-         "primary_channel": ""
+         "primary_channel": "channel-5",
+         "client_id": "07-tendermint-9"
+      },
+      {
+         "chain_name": "emoney",
+         "primary_channel": "channel-14",
+         "client_id": "07-tendermint-50"
       },
       {
          "chain_name":"sifchain",
@@ -56,7 +64,11 @@
             "iris": "channel-8",
             "persistence": "channel-7",
             "sentinelhub": "channel-1",
-            "regen": "channel-10"
+            "regen": "channel-10",
+            "osmosis": "channel-17",
+            "impacthub": "channel-15",
+            "juno": "channel-14",
+            "emoney": "channel-19"
          },
          "client_id": {
             "cosmoshub": "07-tendermint-0",
@@ -65,7 +77,11 @@
             "iris": "07-tendermint-19",
             "persistence": "07-tendermint-18",
             "sentinelhub": "07-tendermint-9",
-            "regen": "07-tendermint-31"
+            "regen": "07-tendermint-31",
+            "osmosis": "07-tendermint-41",
+            "impacthub": "07-tendermint-39",
+            "juno": "07-tendermint-37",
+            "emoney": "07-tendermint-50"
          }
       }
    ]
