@@ -21,6 +21,11 @@ tx_confirmation = false
 
 {{ with $ports := key "ports/relay-hub1" | parseJSON }}
 
+[rest]
+enabled = true
+host = '0.0.0.0'
+port = {{ $ports.hermes_sifchain }}
+
 [[chains]]
 id = 'core-1'
 rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.core0 }}0'

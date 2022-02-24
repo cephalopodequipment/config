@@ -24,7 +24,7 @@ tx_confirmation = false
 [rest]
 enabled = true
 host = '0.0.0.0'
-port = {{ $ports.hermes-sifchain }}
+port = {{ $ports.hermes_sifchain }}
 
 [[chains]]
 id = 'cosmoshub-4'
@@ -90,7 +90,7 @@ account_prefix = 'cro'
 key_name = 'aw4'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ key "networks/crypto/relayer/hermes.minimum-gas-prices" }}, denom = 'basecro' }
+gas_price = { price = {{ key "networks/crypto/relayer/base.minimum-gas-prices" }}, denom = 'basecro' }
 max_gas = {{ key "networks/crypto/relayer/hermes.max-gas" }}
 max_msg_num = 15
 max_tx_size = 450000
