@@ -24,7 +24,7 @@ tx_confirmation = false
 [rest]
 enabled = true
 host = '0.0.0.0'
-port = {{ $ports.hermes_sifchain }}
+port = {{ $ports.hermes_sifchain0 }}
 
 [[chains]]
 id = 'regen-1'
