@@ -36,7 +36,7 @@ account_prefix = 'cosmos'
 key_name = 'aw3'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ key "networks/cosmoshub/relayer/base.minimum-gas-prices" }}, denom = 'uatom' }
+gas_price = { price = {{ key "networks/cosmoshub/relayer/base.minimum-gas-prices" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uatom' }
 max_gas = {{ key "networks/cosmoshub/relayer/hermes.max-gas" }}
 max_msg_num = 15
 max_tx_size = 180000
@@ -56,7 +56,7 @@ account_prefix = 'akash'
 key_name = 'aw3'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ key "networks/akashnet/relayer/base.minimum-gas-prices" }}, denom = 'uakt' }
+gas_price = { price = {{ key "networks/akashnet/relayer/base.minimum-gas-prices" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uakt' }
 max_gas = {{ key "networks/akashnet/relayer/hermes.max-gas" }}
 clock_drift = '7200s'
 trusting_period = '14days'
@@ -74,7 +74,7 @@ account_prefix = 'sent'
 key_name = 'aw3'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ key "networks/sentinelhub/relayer/base.minimum-gas-prices" }}, denom = 'udvpn' }
+gas_price = { price = {{ key "networks/sentinelhub/relayer/base.minimum-gas-prices" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'udvpn' }
 max_gas = {{ key "networks/sentinelhub/relayer/hermes.max-gas" }}
 max_msg_num = 15
 clock_drift = '7200s'
@@ -93,7 +93,7 @@ account_prefix = 'cro'
 key_name = 'aw3'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ key "networks/crypto/relayer/base.minimum-gas-prices" }}, denom = 'basecro' }
+gas_price = { price = {{ key "networks/crypto/relayer/base.minimum-gas-prices" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'basecro' }
 max_gas = {{ key "networks/crypto/relayer/hermes.max-gas" }}
 max_msg_num = 15
 max_tx_size = 450000
@@ -113,7 +113,7 @@ account_prefix = 'regen'
 key_name = 'aw3'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ key "networks/regen/relayer/base.minimum-gas-prices" }}, denom = 'uregen' }
+gas_price = { price = {{ key "networks/regen/relayer/base.minimum-gas-prices" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uregen' }
 max_gas = {{ key "networks/regen/relayer/hermes.max-gas" }}
 max_msg_num = 15
 max_tx_size = 180000
@@ -133,7 +133,7 @@ account_prefix = 'iaa'
 key_name = 'aw3'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ key "networks/irishub/relayer/base.minimum-gas-prices" }}, denom = 'uiris' }
+gas_price = { price = {{ key "networks/irishub/relayer/base.minimum-gas-prices" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uiris' }
 max_gas = {{ key "networks/irishub/relayer/hermes.max-gas" }}
 max_msg_num=15
 max_tx_size = 1800000

@@ -17,7 +17,7 @@
       },
       {
          "chain_name":"cosmos-hub",
-         "primary_channel":{
+         "primary_channel": {
             "akash":"channel-184",
             "crypto-org":"channel-187",
             "iris":"channel-182",
@@ -27,7 +27,8 @@
             "persistence":"channel-190",
             "regen":"channel-185",
             "sentinel":"channel-186",
-            "starname":"channel-158"
+            "starname":"channel-158",
+            "emoney": "channel-202"
          }
       },
       {
