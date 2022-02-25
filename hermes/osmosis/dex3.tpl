@@ -24,7 +24,7 @@ tx_confirmation = false
 [rest]
 enabled = true
 host = '0.0.0.0'
-port = {{ $ports.hermes_osmosis1 }}
+port = {{ $ports.hermes_osmosis2 }}
 
 [[chains]]
 id = 'core-1'
