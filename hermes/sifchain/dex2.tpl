@@ -136,6 +136,6 @@ clock_drift = '7200s'
 trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
 # akashnet, cosmoshub, core, irishub, crypto, sentinelhub
-packet_filter = { policy = 'allow', list = [['transfer', 'channel-2],['transfer', 'channel-0'],['transfer', 'channel-7'],['transfer', 'channel-8'],['transfer', 'channel-9'],['transfer', 'channel-1']]
+packet_filter = { policy = 'allow', list = [['transfer', 'channel-2],['transfer', 'channel-0'],['transfer', 'channel-7'],['transfer', 'channel-8'],['transfer', 'channel-9'],['transfer', 'channel-1']]}
 
 {{ end }}

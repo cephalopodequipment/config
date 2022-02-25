@@ -139,6 +139,6 @@ clock_drift = '7200s'
 trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
 # regen, osmosis, juno, impacthub, emoney
-packet_filter = { policy = 'allow', list = [['transfer', 'channel-10'],['transfer', 'channel-17'],['transfer', 'channel-14'],['transfer', 'channel-15'],['transfer', 'channel-19']]
+packet_filter = { policy = 'allow', list = [['transfer', 'channel-10'],['transfer', 'channel-17'],['transfer', 'channel-14'],['transfer', 'channel-15'],['transfer', 'channel-19']]}
 
 {{ end }}

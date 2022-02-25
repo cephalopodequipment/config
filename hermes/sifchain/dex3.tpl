@@ -63,6 +63,6 @@ clock_drift = '7200s'
 trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
 # core
-packet_filter = { policy = 'allow', list = [['transfer', 'channel-7']]
+packet_filter = { policy = 'allow', list = [['transfer', 'channel-7']]}
 
 {{ end }}
