@@ -52,7 +52,7 @@ grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.osmosis0 }}2'
 websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.osmosis0 }}0/websocket'
 rpc_timeout = '8s'
 account_prefix = 'osmo'
-key_name = 'aw2'
+key_name = 'aw5'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
 gas_price = { price = {{ key "networks/osmosis/relayer/base.minimum-gas-prices" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uosmo' }
