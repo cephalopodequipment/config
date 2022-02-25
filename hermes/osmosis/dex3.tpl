@@ -19,205 +19,97 @@ clear_interval = 71
 clear_on_start = true
 tx_confirmation = false
 
-{{ with $ports := key "ports/relay-hub0" | parseJSON }}
+{{ with $ports := key "ports/relay-hub1" | parseJSON }}
 
 [rest]
 enabled = true
 host = '0.0.0.0'
-port = {{ $ports.hermes_osmosis0 }}
-
-[[chains]]
-id='akashnet-2'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.akashnet0 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.akashnet0 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.akashnet0 }}0/websocket'
-rpc_timeout = '8s'
-account_prefix = 'akash'
-key_name = 'aw2'
-store_prefix = 'ibc'
-memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ key "networks/akashnet/relayer/base.minimum-gas-prices" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uakt' }
-max_gas = {{ key "networks/akashnet/relayer/hermes.max-gas" }}
-clock_drift = '7200s'
-trusting_period = '14days'
-trust_threshold = { numerator = '1', denominator = '3' }
-packet_filter = { policy = 'allow', list = [['transfer', 'channel-9']]}
-
-[[chains]]
-id = 'sentinelhub-2'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.sentinelhub0 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.sentinelhub0 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.sentinelhub0 }}0/websocket'
-rpc_timeout = '8s'
-account_prefix = 'sent'
-key_name = 'aw2'
-store_prefix = 'ibc'
-memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ key "networks/sentinelhub/relayer/base.minimum-gas-prices" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'udvpn' }
-max_gas = {{ key "networks/sentinelhub/relayer/hermes.max-gas" }}
-max_msg_num = 15
-clock_drift = '7200s'
-trusting_period = '14days'
-trust_threshold = { numerator = '1', denominator = '3' }
-packet_filter = { policy = 'allow', list = [['transfer', 'channel-0']]}
-
-[[chains]]
-id = 'crypto-org-chain-mainnet-1'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.crypto0 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.crypto0 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.crypto0 }}0/websocket'
-rpc_timeout = '8s'
-account_prefix = 'cro'
-key_name = 'aw2'
-store_prefix = 'ibc'
-memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ key "networks/crypto/relayer/base.minimum-gas-prices" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'basecro' }
-max_gas = {{ key "networks/crypto/relayer/hermes.max-gas" }}
-max_msg_num = 15
-max_tx_size = 450000
-clock_drift = '7200s'
-trusting_period = '14days'
-trust_threshold = { numerator = '1', denominator = '3' }
-packet_filter = { policy = 'allow', list = [['transfer', 'channel-10']]}
-
-[[chains]]
-id = 'regen-1'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.regen0 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.regen0 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.regen0 }}0/websocket'
-rpc_timeout = '8s'
-account_prefix = 'regen'
-key_name = 'aw4'
-store_prefix = 'ibc'
-memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ key "networks/regen/relayer/base.minimum-gas-prices" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uregen' }
-max_gas = {{ key "networks/regen/relayer/hermes.max-gas" }}
-max_msg_num = 15
-max_tx_size = 180000
-clock_drift = '7200s'
-trusting_period = '14days'
-trust_threshold = { numerator = '1', denominator = '3' }
-packet_filter = { policy = 'allow', list = [['transfer', 'channel-1']]}
-
+port = {{ $ports.hermes_osmosis1 }}
 
 [[chains]]
 id = 'core-1'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.core_relay_1 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.core_relay_1 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.core_relay_1 }}0/websocket'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.core0 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.core0 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.core0 }}0/websocket'
 rpc_timeout = '8s'
 account_prefix = 'persistence'
 key_name = 'aw2'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ keyOrDefault "core/relayer/min-gas-prices" "0.0001" }}, denom = 'uxprt' }
-max_gas = {{ keyOrDefault "core/relayer/max-gas" "1000000" }}
-max_msg_num = 15
-max_tx_size = 180000
+gas_price = { price = {{ key "networks/core/relayer/base.minimum-gas-prices" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uxprt' }
+max_gas = {{ key "networks/core/relayer/hermes.max-gas" }}
 clock_drift = '7200s'
 trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
 packet_filter = { policy = 'allow', list = [['transfer', 'channel-6']]}
 
-
-[[chains]]
-id = 'irishub-1'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.irishub_relay_1 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.irishub_relay_1 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.irishub_relay_1 }}0/websocket'
-rpc_timeout = '8s'
-account_prefix = 'iaa'
-key_name = 'aw2'
-store_prefix = 'ibc'
-memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ keyOrDefault "iris/relayer/min-gas-prices" "0.0001" }}, denom = 'uiris' }
-max_gas = {{ keyOrDefault "iris/relayer/max-gas" "1000000" }}
-max_msg_num=15
-max_tx_size = 1800000
-clock_drift = '7200s'
-trusting_period = '14days'
-trust_threshold = { numerator = '1', denominator = '3' }
-packet_filter = { policy = 'allow', list = [['transfer', 'channel-3']]}
-
-
 [[chains]]
 id = 'iov-mainnet-ibc'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.iov_relay_1 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.iov_relay_1 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.iov_relay_1 }}0/websocket'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.iov0 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.iov0 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.iov0 }}0/websocket'
 rpc_timeout = '8s'
 account_prefix = 'star'
 key_name = 'aw2'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ keyOrDefault "iov/relayer/min-gas-prices" "0.0001" }}, denom = 'uiov' }
-max_gas = {{ keyOrDefault "iov/relayer/max-gas" "1000000" }}
-max_msg_num = 15
-max_tx_size = 450000
+gas_price = { price = {{ key "networks/iov-mainnet-ibc/relayer/base.minimum-gas-prices" }}, denom = 'uiov' }
+max_gas = {{ key "networks/iov-mainnet-ibc/relayer/hermes.max-gas"}}
 clock_drift = '7200s'
 trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
 packet_filter = { policy = 'allow', list = [['transfer', 'channel-2']]}
 
-
 [[chains]]
 id = 'impacthub-3'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.impacthub_relay_1 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.impacthub_relay_1 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.impacthub_relay_1 }}0/websocket'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.impacthub0 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.impacthub0 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.impacthub0 }}0/websocket'
 rpc_timeout = '8s'
 account_prefix = 'ixo'
 key_name = 'aw2'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ keyOrDefault "ixo/relayer/min-gas-prices" "0.1" }}, denom = 'uixo' }
-max_gas = {{ keyOrDefault "ixo/relayer/max-gas" "1000000" }}
-max_msg_num = 15
-max_tx_size = 180000
+gas_price = { price = {{ key "networks/impacthub/relayer/base.minimum-gas-prices" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uixo' }
+max_gas = {{ key "networks/impacthub/relayer/hermes.max-gas" }}
 clock_drift = '7200s'
 trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
 packet_filter = { policy = 'allow', list = [['transfer', 'channel-4']]}
 
-
 [[chains]]
 id = 'juno-1'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.juno_relay_1 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.juno_relay_1 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.juno_relay_1 }}0/websocket'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.juno0 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.juno0 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.juno0 }}0/websocket'
 rpc_timeout = '8s'
 account_prefix = 'juno'
 key_name = 'aw2'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ keyOrDefault "juno/relayer/min-gas-prices" "0.0001" }}, denom = 'ujuno' }
-max_gas = {{ keyOrDefault "juno/relayer/max-gas" "1000000" }}
-max_msg_num = 15
-max_tx_size = 450000
+gas_price = { price = {{ key "networks/juno/relayer/base.minimum-gas-prices" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'ujuno' }
+max_gas = {{ key "networks/juno/relayer/hermes.max-gas" }}
 clock_drift = '7200s'
 trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
 packet_filter = { policy = 'allow', list = [['transfer', 'channel-0']]}
 
-
 [[chains]]
 id = 'osmosis-1'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.osmosis_relay_1 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.osmosis_relay_1 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.hermes_osmo.osmosis_relay_1 }}0/websocket'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.osmosis1 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.osmosis1 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.osmosis1 }}0/websocket'
 rpc_timeout = '8s'
 account_prefix = 'osmo'
-key_name = 'aw2'
+key_name = 'aw3'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ keyOrDefault "osmo/relayer/min-gas-prices" "0.0001" }}, denom = 'uosmo' }
-max_gas = {{ keyOrDefault "osmo/relayer/max-gas" "1000000" }}
-max_msg_num = 15
-max_tx_size = 180000
+gas_price = { price = {{ key "networks/osmosis/relayer/base.minimum-gas-prices" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uosmo' }
+max_gas = {{ key "networks/osmosis/relayer/hermes.max-gas" }}
 clock_drift = '7200s'
 trusting_period = '10days'
 trust_threshold = { numerator = '1', denominator = '3' }
-## akash, sentinel, crypto, regen, iris, iov, persistence, cosmoshub, juno, ixo
-packet_filter = { policy = 'allow', list = [['transfer', 'channel-1'],['transfer', 'channel-2'],['transfer', 'channel-5'],['transfer', 'channel-8'],['transfer', 'channel-6'],['transfer', 'channel-15'],['transfer', 'channel-4'],['transfer', 'channel-42'],['transfer','channel-38']]}
+## core, iov, juno, impacthub
+packet_filter = { policy = 'allow', list = [['transfer','channel-4'],['transfer','channel-15'],['transfer','channel-38'],['transfer','channel-42']]}
 
 {{ end }}

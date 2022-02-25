@@ -95,6 +95,23 @@ trust_threshold = { numerator = '1', denominator = '3' }
 packet_filter = { policy = 'allow', list = [['transfer', 'channel-1']]}
 
 [[chains]]
+id = 'irishub-1'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.irishub0 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.irishub0 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.irishub0 }}0/websocket'
+rpc_timeout = '8s'
+account_prefix = 'iaa'
+key_name = 'aw2'
+store_prefix = 'ibc'
+memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
+gas_price = { price = {{ key "networks/irishub/relayer/base.minimum-gas-prices" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" ""}}, denom = 'uiris' }
+max_gas = {{ key "networks/irishub/relayer/hermes.max-gas" }}
+clock_drift = '7200s'
+trusting_period = '14days'
+trust_threshold = { numerator = '1', denominator = '3' }
+packet_filter = { policy = 'allow', list = [['transfer','channel-3']]}
+
+[[chains]]
 id = 'osmosis-1'
 rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.osmosis0 }}0'
 grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.osmosis0 }}2'
@@ -109,7 +126,7 @@ max_gas = {{ key "networks/osmosis/relayer/hermes.max-gas" }}
 clock_drift = '7200s'
 trusting_period = '10days'
 trust_threshold = { numerator = '1', denominator = '3' }
-## akash, sentinel, crypto, regen, iris, iov, persistence, cosmoshub, juno, ixo
-packet_filter = { policy = 'allow', list = [['transfer', 'channel-1'],['transfer', 'channel-2'],['transfer', 'channel-5'],['transfer', 'channel-8'],['transfer', 'channel-6'],['transfer', 'channel-15'],['transfer', 'channel-4'],['transfer', 'channel-42'],['transfer','channel-38']]}
+## akash, sentinel, crypto, regen, irishub
+packet_filter = { policy = 'allow', list = [['transfer','channel-1'],['transfer','channel-2'],['transfer','channel-5'],['transfer','channel-8'],['transfer','channel-6']]}
 
 {{ end }}
