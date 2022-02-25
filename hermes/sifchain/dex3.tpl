@@ -46,6 +46,25 @@ trust_threshold = { numerator = '1', denominator = '3' }
 packet_filter = { policy = 'allow', list = [['transfer', 'channel-26']]}
 
 [[chains]]
+id = 'impacthub-3'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.impacthub0 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.impacthub0 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.impacthub0 }}0/websocket'
+rpc_timeout = '8s'
+account_prefix = 'ixo'
+key_name = 'aw4'
+store_prefix = 'ibc'
+memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
+gas_price = { price = {{ key "networks/impacthub/relayer/base.minimum-gas-prices" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uixo' }
+max_gas = {{ key "networks/impacthub/relayer/hermes.max-gas" }}
+max_msg_num = 15
+max_tx_size = 180000
+clock_drift = '7200s'
+trusting_period = '14days'
+trust_threshold = { numerator = '1', denominator = '3' }
+packet_filter = { policy = 'allow', list = [['transfer', 'channel-11']]}
+
+[[chains]]
 id = 'sifchain-1'
 rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.sifchain0 }}0'
 grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.sifchain0 }}2'
@@ -62,7 +81,7 @@ max_tx_size = 180000
 clock_drift = '7200s'
 trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
-# core
-packet_filter = { policy = 'allow', list = [['transfer', 'channel-7']]}
+# core, impacthub
+packet_filter = { policy = 'allow', list = [['transfer', 'channel-7'],['transfer', 'channel-15']]}
 
 {{ end }}
