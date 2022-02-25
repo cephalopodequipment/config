@@ -16,8 +16,8 @@ enabled = true
 
 [[chains]]
 id = 'cosmoshub-4'
-rpc_addr = 'http://cosmoshub1:26600'
-grpc_addr = 'http://cosmoshub1:26602'
+rpc_addr = 'http://cosmoshub-archive:26600'
+grpc_addr = 'http://cosmoshub-archive:26602'
 websocket_addr = 'ws://cosmoshub1:26600/websocket'
 rpc_timeout = '8s'
 account_prefix = 'cosmos'
