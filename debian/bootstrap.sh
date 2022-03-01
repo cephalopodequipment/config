@@ -64,6 +64,7 @@ limits {
 #encrypt = "<replace with encryption key>"
 EOF
 # TODO: the encryption key for consul is not set
+# systemctl enable consul
 # systemctl start consul
 
 log "Configuring Nomad"
@@ -93,6 +94,7 @@ plugin "docker" {
   }
 }
 EOF
+systemctl enable nomad
 systemctl start nomad
 
 log "Searching for per-server bootstrap script"
