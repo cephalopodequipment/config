@@ -17,14 +17,14 @@ log "Starting remote bootstrap script on hostname ${__HOSTNAME} at IP ${__IP_ADD
 apt-get install -y sudo vim curl gpg jq
 
 log "Installing syslog forwarder"
-cat > /etc/rsyslog.d/remote.conf < EOF
+cat > /etc/rsyslog.d/remote.conf << EOF
 # An on-disk queue is created for this action. If the remote host is
 # down, messages are spooled to disk and sent when it is up again.
-$ActionQueueFileName sysmonRule1 # unique name prefix for spool files
-$ActionQueueMaxDiskSpace 5g   # 5gb space limit (use as much as possible)
-$ActionQueueSaveOnShutdown on # save messages to disk on shutdown
-$ActionQueueType LinkedList   # run asynchronously
-$ActionResumeRetryCount -1    # infinite retries if host is down
+\$ActionQueueFileName sysmonRule1 # unique name prefix for spool files
+\$ActionQueueMaxDiskSpace 5g   # 5gb space limit (use as much as possible)
+\$ActionQueueSaveOnShutdown on # save messages to disk on shutdown
+\$ActionQueueType LinkedList   # run asynchronously
+\$ActionResumeRetryCount -1    # infinite retries if host is down
 *.* @@10.10.20.102:1470
 EOF
 systemctl restart rsyslog
