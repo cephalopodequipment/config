@@ -97,6 +97,19 @@ EOF
 systemctl enable nomad
 systemctl start nomad
 
+log "Install Zabbix Agent"
+wget -q https://repo.zabbix.com/zabbix/5.4/debian/pool/main/z/zabbix-release/zabbix-release_5.4-1+${ID}${VERSION_ID}_all.deb
+apt-get install -y ./zabbix-release_5.4-1+${ID}${VERSION_ID}_all.deb
+apt-get update
+apt-get install -y zabbix-agent2
+cat > /etc/zabbix/zabbix_agent2.d/cec.conf << EOF
+Server=10.10.41.102
+ServerActive=10.10.41.102
+Hostname=${__HOSTNAME}.cec
+EOF
+systemctl enable zabbix-agent2
+systemctl restart zabbix-agent2
+
 log "Searching for per-server bootstrap script"
 wget "https://raw.githubusercontent.com/cephalopodequipment/config/main/debian/${__HOSTNAME}.sh" || log "No custom file for this server"
 if [ -f "${__HOSTNAME}.sh" ]; then
