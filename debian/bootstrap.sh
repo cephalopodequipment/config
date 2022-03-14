@@ -44,6 +44,7 @@ apt-get install -y docker-ce docker-ce-cli containerd.io nomad consul
 mkdir -p /opt/cni/bin
 #chmod 0775 /opt/cni/bin # We are testing if this is necessary.
 wget -qO- https://github.com/containernetworking/plugins/releases/download/v1.0.0/cni-plugins-linux-amd64-v1.0.0.tgz | tar -xz -C /opt/cni/bin -f -
+usermod -a -G docker admin
 
 log "Configuring Consul"
 cat > /etc/consul.d/client.hcl << EOF
