@@ -11,7 +11,7 @@ log() {
 }
 
 __HOSTNAME="$(hostname)"
-__IP_ADDRESS="$(hostname -I)" # this has to run before docker is installed.
+__IP_ADDRESS="$(hostname -I | tr -d ' ')" # this has to run before docker is installed.
 
 log "Starting remote bootstrap script on hostname ${__HOSTNAME} at IP ${__IP_ADDRESS}"
 apt-get install -y sudo vim curl gpg jq
