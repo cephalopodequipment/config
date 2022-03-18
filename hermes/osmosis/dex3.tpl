@@ -99,6 +99,25 @@ trust_threshold = { numerator = '1', denominator = '3' }
 packet_filter = { policy = 'allow', list = [['transfer', 'channel-0']]}
 
 [[chains]]
+id = 'emoney-3'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.emoney0 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.emoney0 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.emoney0 }}0/websocket'
+rpc_timeout = '8s'
+account_prefix = 'emoney'
+key_name = 'aw3'
+store_prefix = 'ibc'
+memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
+gas_price = { price = {{ key "networks/emoney/relayer/base.minimum-gas-prices" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'ungm' }
+max_gas = {{ key "networks/emoney/relayer/hermes.max-gas" }}
+max_msg_num = 15
+max_tx_size = 180000
+clock_drift = '70s'
+trusting_period = '10days'
+trust_threshold = { numerator = '1', denominator = '3' }
+packet_filter = { policy = 'allow', list = [['transfer', 'channel-0']]}
+
+[[chains]]
 id = 'osmosis-1'
 rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.osmosis1 }}0'
 grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.osmosis1 }}2'
@@ -113,7 +132,7 @@ max_gas = {{ key "networks/osmosis/relayer/hermes.max-gas" }}
 clock_drift = '7200s'
 trusting_period = '10days'
 trust_threshold = { numerator = '1', denominator = '3' }
-## core, iov, juno, impacthub
-packet_filter = { policy = 'allow', list = [['transfer','channel-4'],['transfer','channel-15'],['transfer','channel-38'],['transfer','channel-42']]}
+## core, iov, juno, impacthub, emoney
+packet_filter = { policy = 'allow', list = [['transfer','channel-4'],['transfer','channel-15'],['transfer','channel-38'],['transfer','channel-42'],['transfer','channel-37']]}
 
 {{ end }}
