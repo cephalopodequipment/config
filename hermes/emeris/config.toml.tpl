@@ -82,8 +82,8 @@ trust_threshold = { numerator = '1', denominator = '3' }
 
 [chains.packet_filter]
 policy = 'allow'
-# akash, cosmos-hub, crypto-org, emoney, iris, ixo, microtick, persistence, regen, starname
-list = [['transfer', 'channel-10'], ['transfer', 'channel-12'], ['transfer', 'channel-13'], ['transfer', 'channel-43'], ['transfer', 'channel-9'], ['transfer', 'channel-42'], ['transfer', 'channel-41'], ['transfer', 'channel-15'], ['transfer', 'channel-11'], ['transfer', 'channel-40']]
+# akash, cosmos-hub, emoney, iris, ixo, microtick, persistence, regen, starname
+list = [['transfer', 'channel-10'], ['transfer', 'channel-12'], ['transfer', 'channel-43'], ['transfer', 'channel-42'], ['transfer', 'channel-41'], ['transfer', 'channel-15'], ['transfer', 'channel-11'], ['transfer', 'channel-40']]
 
 [[chains]]
 id = 'crypto-org-chain-mainnet-1'
@@ -106,7 +106,7 @@ trust_threshold = { numerator = '1', denominator = '3' }
 [chains.packet_filter]
 policy = 'allow'
 # akash, cosmos-hub, emoney, iris, ixo, microtick, persistence, regen, sentinel, starname
-list = [['transfer', 'channel-24'], ['transfer', 'channel-27'], ['transfer', 'channel-42'], ['transfer', 'channel-23'], ['transfer', 'channel-41'], ['transfer', 'channel-40'], ['transfer', 'channel-29'], ['transfer', 'channel-25'], ['transfer', 'channel-26'], ['transfer', 'channel-39']]
+list = [['transfer', 'channel-24'], ['transfer', 'channel-27'], ['transfer', 'channel-42'], ['transfer', 'channel-23'], ['transfer', 'channel-41'], ['transfer', 'channel-40'], ['transfer', 'channel-29'], ['transfer', 'channel-25'], ['transfer', 'channel-39']]
 
 [[chains]]
 id = 'regen-1'
@@ -173,7 +173,7 @@ trust_threshold = { numerator = '1', denominator = '3' }
 [chains.packet_filter]
 policy = 'allow'
 # akash, cosmos-hub, crypto-org, emoney, ixo, microtick, persistence, regen, sentinel, starname
-list = [['transfer', 'channel-11'], ['transfer', 'channel-12'], ['transfer', 'channel-13'], ['transfer', 'channel-25'], ['transfer', 'channel-24'], ['transfer', 'channel-22'], ['transfer', 'channel-15'], ['transfer', 'channel-16'], ['transfer', 'channel-17'], ['transfer', 'channel-21']]
+list = [['transfer', 'channel-11'], ['transfer', 'channel-12'], ['transfer', 'channel-13'], ['transfer', 'channel-25'], ['transfer', 'channel-24'], ['transfer', 'channel-22'], ['transfer', 'channel-15'], ['transfer', 'channel-16'], ['transfer', 'channel-21']]
 
 [[chains]]
 id = 'iov-mainnet-ibc'
