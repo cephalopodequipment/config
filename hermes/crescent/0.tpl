@@ -50,19 +50,13 @@ trust_threshold = { numerator = '1', denominator = '3' }
 # juno
 # regen
 # sentinel
-packet_filter = {
-    policy = 'allow',
-    list = [
-        ['transfer', 'channel-184'],
-        ['transfer', 'channel-187'],
-        ['transfer', 'channel-202'],
-        ['transfer', 'channel-182'],
-        ['transfer', 'channel-207'],
-        ['transfer', 'channel-186'],
-        ['transfer', 'channel-185'],
-    ]
-}
-
+packet_filter = { policy = 'allow', list = [['transfer', 'channel-184'],
+                                            ['transfer', 'channel-187'],
+                                            ['transfer', 'channel-202'],
+                                            ['transfer', 'channel-182'],
+                                            ['transfer', 'channel-207'],
+                                            ['transfer', 'channel-186'],
+                                            ['transfer', 'channel-185']]}
 
 [[chains]]
 id='akashnet-2'

@@ -46,21 +46,15 @@ trust_threshold = { numerator = '1', denominator = '3' }
 # core
 # impacthub
 # iov-mainnet-ibc
-packet_filter = {
-    policy = 'allow',
-    list = [
-        ['transfer','channel-190'],
-        ['transfer','channel-204'],
-        ['transfer','channel-158']
-    ]
-}
-
+packet_filter = { policy = 'allow', list = [['transfer','channel-190'],
+                                            ['transfer','channel-204'],
+                                            ['transfer','channel-158']]}
 
 [[chains]]
 id = 'core-1'
-rpc_addr = 'http://{{ env "HOST_IP_2" }}:{{ $ports.core0 }}0'
-grpc_addr = 'http://{{ env "HOST_IP_2" }}:{{ $ports.core0 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP_2" }}:{{ $ports.core0 }}0/websocket'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.core0 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.core0 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.core0 }}0/websocket'
 rpc_timeout = '8s'
 account_prefix = 'persistence'
 key_name = 'aw3'
@@ -107,8 +101,8 @@ key_name = 'aw3'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
 gas_price = { price = {{ key "networks/iov-mainnet-ibc/relayer/base.minimum-gas-prices" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uiov' }
-max_gas = {{ key networks/iov-mainnet-ibc/relayer/hermes.max-gas }}
-max_msg_num = 15
+max_gas = {{ key "networks/iov-mainnet-ibc/relayer/hermes.max-gas" }}
+max_msg_num = 30
 max_tx_size = 450000
 clock_drift = '7200s'
 trusting_period = '14days'
