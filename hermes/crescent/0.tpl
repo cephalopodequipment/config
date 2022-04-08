@@ -138,24 +138,24 @@ trust_threshold = { numerator = '1', denominator = '3' }
 packet_filter = { policy = 'allow', list = [['transfer','channel-12']]}
 
 
-#[[chains]]
-#id = 'juno-1'
-#rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.juno0 }}0'
-#grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.juno0 }}2'
-#websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.juno0 }}0/websocket'
-#rpc_timeout = '8s'
-#account_prefix = 'juno'
-#key_name = 'aw3'
-#store_prefix = 'ibc'
-#memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-#gas_price = { price = {{ key "networks/juno/relayer/base.minimum-gas-prices" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'ujuno' }
-#max_gas = {{ key "networks/juno/relayer/hermes.max-gas" }}
-#max_msg_num = 30
-#max_tx_size = 450000
-#clock_drift = '7200s'
-#trusting_period = '14days'
-#trust_threshold = { numerator = '1', denominator = '3' }
-#packet_filter = { policy = 'allow', list = [['transfer', 'channel-1']]}
+[[chains]]
+id = 'juno-1'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.juno0 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.juno0 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.juno0 }}0/websocket'
+rpc_timeout = '8s'
+account_prefix = 'juno'
+key_name = 'aw3'
+store_prefix = 'ibc'
+memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
+gas_price = { price = {{ key "networks/juno/relayer/base.minimum-gas-prices" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'ujuno' }
+max_gas = {{ key "networks/juno/relayer/hermes.max-gas" }}
+max_msg_num = 30
+max_tx_size = 450000
+clock_drift = '7200s'
+trusting_period = '14days'
+trust_threshold = { numerator = '1', denominator = '3' }
+packet_filter = { policy = 'allow', list = [['transfer', 'channel-1']]}
 
 
 [[chains]]
