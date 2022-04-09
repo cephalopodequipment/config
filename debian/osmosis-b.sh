@@ -9,10 +9,12 @@ log() {
 
 log "Running custom bootstrap script for $(hostname)"
 
-echo "deb http://deb.debian.org/debian buster-backports contrib non-free" > /etc/apt/sources.list.d/zfs.list
+source /etc/os-release
+KERNEL_RELEASE="$(uname -r)"
+echo "deb http://deb.debian.org/debian ${VERSION_CODENAME}-backports contrib non-free" > /etc/apt/sources.list.d/zfs.list
 apt-get update
-apt-get install -y linux-headers-4.19.0-20-cloud-amd64 lz4
-apt-get install -y -t buster-backports zfsutils-linux
+apt-get install -y lz4 "linux-headers-${KERNEL_RELEASE}"
+apt-get install -y -t "${VERSION_CODENAME}-backports" zfsutils-linux
 
 ZPOOL="new"
 zpool create alpha nvme0n1 || ZPOOL="tainted"
