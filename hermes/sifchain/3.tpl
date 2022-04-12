@@ -28,12 +28,12 @@ port = {{ $ports.hermes_sifchain3 }}
 
 [[chains]]
 id = 'columbus-5'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.terra0 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.terra0 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.terra0 }}0/websocket'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.terra1 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.terra1 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.terra1 }}0/websocket'
 rpc_timeout = '8s'
 account_prefix = 'terra'
-key_name = 'aw4'
+key_name = 'aw3'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
 gas_price = { price = {{ key "networks/columbus/relayer/base.minimum-gas-prices" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'usek' }
