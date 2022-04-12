@@ -43,7 +43,7 @@ max_tx_size = 650000
 clock_drift = '5s'
 trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
-packet_filter = { policy = 'allow', list = [['transfer', 'channel-18']]}
+packet_filter = { policy = 'allow', list = [['transfer', 'channel-7']]}
 
 
 [[chains]]
@@ -64,6 +64,6 @@ clock_drift = '7200s'
 trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
 # core, impacthub
-packet_filter = { policy = 'allow', list = [['transfer', 'channel-7']]}
+packet_filter = { policy = 'allow', list = [['transfer', 'channel-18']]}
 
 {{ end }}
