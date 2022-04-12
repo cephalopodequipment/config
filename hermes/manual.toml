@@ -34,8 +34,8 @@ trust_threshold = { numerator = '1', denominator = '3' }
 
 [[chains]]
 id ='akashnet-2'
-rpc_addr ='http://akashnet1:26600'
-grpc_addr ='http://akashnet1:26602'
+rpc_addr ='http://10.10.51.16:26630'
+grpc_addr ='http://10.10.51.16:26632'
 websocket_addr ='ws://akashnet1:26600/websocket'
 rpc_timeout ='8s'
 account_prefix ='akash'
@@ -50,9 +50,9 @@ trust_threshold = { numerator = '1', denominator = '3' }
 
 [[chains]]
 id = 'sentinelhub-2'
-rpc_addr = 'http://sentinelhub0:26600'
-grpc_addr = 'http://sentinelhub0:26602'
-websocket_addr = 'ws://sentinelhub0:26600/websocket'
+rpc_addr = 'http://10.10.51.16:26670'
+grpc_addr = 'http://10.10.51.16:26672'
+websocket_addr = 'ws://sentinelhub0:26670/websocket'
 rpc_timeout = '8s'
 account_prefix = 'sent'
 key_name = 'aw1'
@@ -121,17 +121,17 @@ trust_threshold = { numerator = '1', denominator = '3' }
 
 [[chains]]
 id = 'irishub-1'
-rpc_addr = 'http://irishub-archive:26600'
-grpc_addr = 'http://irishub-archive:26602'
+rpc_addr = 'http://10.10.51.16:26650'
+grpc_addr = 'http://10.10.51.16:26652'
 websocket_addr = 'ws://irishub0:26600/websocket'
 rpc_timeout = '8s'
 account_prefix = 'iaa'
 key_name = 'aw1'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price  =  { price  =  0.01, denom  =  'uiris' }
+gas_price  =  { price  =  1, denom  =  'uiris' }
 max_gas = 5000000
-max_msg_num = 15
+max_msg_num = 50
 max_tx_size = 1800000
 clock_drift = '7200s'
 trusting_period = '14days'
@@ -193,9 +193,9 @@ trust_threshold = { numerator = '1', denominator = '3' }
 
 [[chains]]
 id = 'osmosis-1'
-rpc_addr = 'http://10.10.10.103:26600' # node: osmosis-archive-node
-grpc_addr = 'http://10.10.10.103:26602'
-websocket_addr = 'ws://osmosis0:26600/websocket'
+rpc_addr = 'http://10.10.51.174:26670' # node: osmosis-archive-node
+grpc_addr = 'http://10.10.51.174:26672'
+websocket_addr = 'ws://osmosis0:26670/websocket'
 rpc_timeout = '8s'
 account_prefix = 'osmo'
 key_name = 'aw1'
@@ -203,7 +203,7 @@ store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
 gas_price  =  { price  =  0.1, denom  =  'uosmo' }
 max_gas = 19000000
-max_msg_num = 8
+max_msg_num = 50
 clock_drift = '7200s'
 trusting_period = '10days'
 trust_threshold = { numerator = '1', denominator = '3' }
@@ -258,4 +258,23 @@ max_gas = 19000000
 max_msg_num = 8
 clock_drift = '7200s'
 trusting_period = '10days'
+trust_threshold = { numerator = '1', denominator = '3' }
+
+
+[[chains]]
+id = 'columbus-5'
+rpc_addr = 'http://terra0:26600'
+grpc_addr = 'http://terra0:26602'
+websocket_addr = 'ws://terra0:26600/websocket'
+rpc_timeout = '8s'
+account_prefix = 'terra'
+key_name = 'aw1'
+store_prefix = 'ibc'
+memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
+gas_price = { price = 1.25, denom = 'usek' }
+max_gas = 1000000
+max_msg_num = 50
+max_tx_size = 650000
+clock_drift = '5s'
+trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
