@@ -82,22 +82,22 @@ trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
 packet_filter = { policy = 'allow', list = [['transfer', 'channel-192']]}
 
-[[chains]]
-id='akashnet-2'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.akashnet0 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.akashnet0 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.akashnet0 }}0/websocket'
-rpc_timeout = '8s'
-account_prefix = 'akash'
-key_name = 'aw4'
-store_prefix = 'ibc'
-memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ key "networks/akashnet/relayer/base.minimum-gas-prices" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uakt' }
-max_gas = {{ key "networks/akashnet/relayer/hermes.max-gas" }}
-clock_drift = '7200s'
-trusting_period = '14days'
-trust_threshold = { numerator = '1', denominator = '3' }
-packet_filter = { policy = 'allow', list = [['transfer', 'channel-24']]}
+#[[chains]]
+#id='akashnet-2'
+#rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.akashnet0 }}0'
+#grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.akashnet0 }}2'
+#websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.akashnet0 }}0/websocket'
+#rpc_timeout = '8s'
+#account_prefix = 'akash'
+#key_name = 'aw4'
+#store_prefix = 'ibc'
+#memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
+#gas_price = { price = {{ key "networks/akashnet/relayer/base.minimum-gas-prices" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uakt' }
+#max_gas = {{ key "networks/akashnet/relayer/hermes.max-gas" }}
+#clock_drift = '7200s'
+#trusting_period = '14days'
+#trust_threshold = { numerator = '1', denominator = '3' }
+#packet_filter = { policy = 'allow', list = [['transfer', 'channel-24']]}
 
 
 [[chains]]
