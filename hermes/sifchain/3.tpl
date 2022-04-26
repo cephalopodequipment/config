@@ -40,7 +40,7 @@ gas_price = { price = {{ key "networks/columbus/relayer/base.minimum-gas-prices"
 max_gas = {{ key "networks/columbus/relayer/hermes.max-gas" }}
 max_msg_num = 50
 max_tx_size = 650000
-clock_drift = '5s'
+clock_drift = '7200s'
 trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
 packet_filter = { policy = 'allow', list = [['transfer', 'channel-7']]}
