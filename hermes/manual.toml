@@ -193,9 +193,9 @@ trust_threshold = { numerator = '1', denominator = '3' }
 
 [[chains]]
 id = 'osmosis-1'
-rpc_addr = 'http://10.10.51.174:26670' # node: osmosis-archive-node
-grpc_addr = 'http://10.10.51.174:26672'
-websocket_addr = 'ws://osmosis0:26670/websocket'
+rpc_addr = 'http://10.10.51.77:26630'
+grpc_addr = 'http://10.10.51.77:26632'
+websocket_addr = 'ws://osmosis1:26670/websocket'
 rpc_timeout = '8s'
 account_prefix = 'osmo'
 key_name = 'aw1'
@@ -222,7 +222,8 @@ gas_price = { price = 100000000000, denom = 'rowan' }
 max_gas = 5000000
 max_msg_num = 15
 max_tx_size = 180000
-clock_drift = '7200s'
+max_block_time = '3s'
+clock_drift = '1s'
 trusting_period = '14days'
 
 [[chains]]
@@ -275,6 +276,7 @@ gas_price = { price = 1.25, denom = 'usek' }
 max_gas = 1000000
 max_msg_num = 50
 max_tx_size = 650000
-clock_drift = '5s'
-trusting_period = '14days'
+clock_drift = '1s'
+max_block_time = '3s'
+trusting_period = '57600s'
 trust_threshold = { numerator = '1', denominator = '3' }
