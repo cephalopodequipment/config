@@ -28,9 +28,9 @@ port = {{ $ports.hermes_osmosis0 }}
 
 [[chains]]
 id = 'cosmoshub-4'
-rpc_addr = 'http://10.10.51.121:26600'
-grpc_addr = 'http:/10.10.51.121:26602'
-websocket_addr = 'ws://10.10.51.121:26600/websocket'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.cosmoshub1 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.cosmoshub1 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.cosmoshub1 }}0/websocket'
 rpc_timeout = '8s'
 account_prefix = 'cosmos'
 key_name = 'aw2'

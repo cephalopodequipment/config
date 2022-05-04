@@ -28,9 +28,9 @@ port = {{ $ports.hermes_crescent1}}
 
 [[chains]]
 id = 'cosmoshub-4'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.cosmoshub0 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.cosmoshub0 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.cosmoshub0 }}0/websocket'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.cosmoshub1 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.cosmoshub1 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.cosmoshub1 }}0/websocket'
 rpc_timeout = '8s'
 account_prefix = 'cosmos'
 key_name = 'aw5'
