@@ -28,9 +28,9 @@ port = {{ $ports.hermes_sifchain3 }}
 
 [[chains]]
 id = 'columbus-5'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.terra1 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.terra1 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.terra1 }}0/websocket'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.terra0 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.terra0 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.terra0 }}0/websocket'
 rpc_timeout = '20s'
 account_prefix = 'terra'
 key_name = 'aw3'
