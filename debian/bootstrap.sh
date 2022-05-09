@@ -99,8 +99,9 @@ systemctl enable nomad
 systemctl start nomad
 
 log "Install Zabbix Agent"
-wget -q https://repo.zabbix.com/zabbix/5.4/debian/pool/main/z/zabbix-release/zabbix-release_5.4-1+${ID}${VERSION_ID}_all.deb
-apt-get install -y ./zabbix-release_5.4-1+${ID}${VERSION_ID}_all.deb
+wget -q https://repo.zabbix.com/zabbix/6.0/debian/pool/main/z/zabbix-release/zabbix-release_6.0-1+${ID}${VERSION_ID}_all.deb
+
+apt-get install -y ./zabbix-release_6.0-1+${ID}${VERSION_ID}_all.deb
 apt-get update
 apt-get install -y zabbix-agent2
 cat > /etc/zabbix/zabbix_agent2.d/cec.conf << EOF
@@ -110,6 +111,37 @@ Hostname=${__HOSTNAME}.cec
 EOF
 systemctl enable zabbix-agent2
 systemctl restart zabbix-agent2
+
+log "Install ZFS"
+source /etc/os-release
+KERNEL_RELEASE="$(uname -r)"
+echo "deb http://deb.debian.org/debian ${VERSION_CODENAME}-backports contrib non-free" > /etc/apt/sources.list.d/zfs.list
+apt-get update
+apt-get install -y lz4 "linux-headers-${KERNEL_RELEASE}"
+DEBIAN_FRONTEND=noninteractive apt-get install -y -t "${VERSION_CODENAME}-backports" zfs-dkms --no-install-recommends
+modprobe zfs
+apt-get install -y -t "${VERSION_CODENAME}-backports" zfsutils-linux
+
+if [ -b /dev/nvme0n1 ]; then
+  ZPOOL="new"
+  zpool create alpha nvme0n1 || ZPOOL="tainted"
+  if [ "$ZPOOL" == "tainted" ]; then
+    log "ZFS pool alpha already exists or other error."
+  else
+    log "ZFS pool alpha created."
+  fi
+
+  ZFS="new"
+  zfs create alpha/docker || ZFS="tainted"
+  if [ "$ZFS" == "tainted" ]; then
+    log "ZFS dataset alpha/docker already exists or other error."
+  else
+    log "ZFS dataset alpha/docker created."
+  fi
+
+  zfs set compression=lz4 alpha/docker
+  zfs set mountpoint=/var/lib/docker/volumes alpha/docker
+fi
 
 log "Searching for per-server bootstrap script"
 wget "https://raw.githubusercontent.com/cephalopodequipment/config/main/debian/${__HOSTNAME}.sh" || log "No custom file for this server"
