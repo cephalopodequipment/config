@@ -5,6 +5,9 @@
 
 set -euo pipefail
 
+# REQUIRED for AWS NVME instance store or the instance doesn't boot up properly
+sleep 180
+
 log() {
   logger "$*"
   echo "$*"
