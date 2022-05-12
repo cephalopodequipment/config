@@ -194,6 +194,18 @@ snapshot-keep-recent = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.sn
 [wasm]
 # This is the maximum sdk gas (wasm and storage) that we allow for any x/wasm "smart" queries
 query_gas_limit = 300000
+
 # This is the number of wasm vm instances we keep cached in memory for speed-up
 # Warning: this is currently unstable and may lead to crashes, best to keep for 0 unless testing locally
 lru_size = 0
+
+# The maximum gas amount can be spent for contract query.
+# The contract query will invoke contract execution vm,
+# so we need to restrict the max usage to prevent DoS attack
+contract-query-gas-limit = "3000000"
+
+# The flag to specify whether print contract logs or not
+contract-debug-mode = "false"
+
+# The WASM VM memory cache size in MiB not bytes
+contract-memory-cache-size = {{ keyOrDefault (print (env "CONSUL_PATH") "/wasm.contract-memory-cache-size") "100" }}
