@@ -177,8 +177,9 @@ laddr = "tcp://0.0.0.0:{{ env "NOMAD_PORT_p2p" }}"
 # Address to advertise to peers for them to dial
 # If empty, will use the same port as the laddr,
 # and will introspect on the listener or use UPnP
-# to figure out the address.
-external_address = "{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_p2p" }}"
+# to figure out the address. ip and port are required
+# example: 159.89.10.97:26656
+external_address = {{ key (print (env "CONSUL_PATH") "/p2p.external_address") }}
 
 # Comma separated list of seed nodes to connect to
 seeds = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/p2p.seeds") "\"\"" }}
@@ -301,6 +302,13 @@ discovery_time = "15s"
 # Temporary directory for state sync snapshot chunks, defaults to the OS tempdir (typically /tmp).
 # Will create a new, randomly named directory within, and remove it when done.
 temp_dir = ""
+
+# The timeout duration before re-requesting a chunk, possibly from a different
+# peer (default: 1 minute).
+chunk_request_timeout = "10s"
+
+# The number of concurrent chunk fetchers to run (default: 1).
+chunk_fetchers = "4"
 
 #######################################################
 ###       Fast Sync Configuration Connections       ###
