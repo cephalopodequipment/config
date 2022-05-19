@@ -17,14 +17,19 @@ enabled = false
 enabled = true
 clear_interval = 71
 clear_on_start = true
-tx_confirmation = false
-
-{{ with $ports := key "ports/relay-hub0" | parseJSON }}
+tx_confirmation = true
 
 [rest]
 enabled = true
 host = '0.0.0.0'
-port = {{ $ports.hermes_osmosis1 }}
+port = {{ env "NOMAD_PORT_rest" }}
+
+[telemetry]
+enabled = true
+host = '0.0.0.0'
+port = {{ env "NOMAD_PORT_prom" }}
+
+{{ with $ports := key "ports/relay-hub0" | parseJSON }}
 
 [[chains]]
 id='akashnet-2'

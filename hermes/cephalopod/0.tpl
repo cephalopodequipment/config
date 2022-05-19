@@ -15,23 +15,27 @@ enabled = false
 
 [mode.packets]
 enabled = true
-clear_interval = 100
+clear_interval = 101
 clear_on_start = true
-tx_confirmation = false
-
+tx_confirmation = true
 
 [rest]
 enabled = true
 host = '0.0.0.0'
-port = 3000
+port = {{ env "NOMAD_PORT_rest" }}
+
+[telemetry]
+enabled = true
+host = '0.0.0.0'
+port = {{ env "NOMAD_PORT_prom" }}
 
 {{ with $ports := key "ports/relay-hub0" | parseJSON }}
 
 [[chains]]
 id = 'cosmoshub-4'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.cosmoshub0 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.cosmoshub0 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.cosmoshub0 }}0/websocket'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.cosmoshub_relayer0 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.cosmoshub_relayer0 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.cosmoshub_relayer0 }}0/websocket'
 rpc_timeout = '8s'
 account_prefix = 'cosmos'
 key_name = 'aw1'
