@@ -106,6 +106,6 @@ clock_drift = '7200s'
 trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
 # core, impacthub
-packet_filter = { policy = 'allow', list = [['transfer', 'channel-7'],['transfer', 'channel-15']],['transfer', 'channel-18']]}
+packet_filter = { policy = 'allow', list = [['transfer', 'channel-7'],['transfer', 'channel-15'],['transfer', 'channel-18']]}
 
 {{ end }}
