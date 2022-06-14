@@ -29,20 +29,20 @@ enabled = true
 host = '0.0.0.0'
 port = {{ env "NOMAD_PORT_prom" }}
 
-{{ with $ports := key "ports/relay-hub1" | parseJSON }}
+{{ with $ports := key "ports/prod1" | parseJSON }}
 
 [[chains]]
 id = 'core-1'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.core0 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.core0 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.core0 }}0/websocket'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.core_relayer0 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.core_relayer0 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.core_relayer0 }}0/websocket'
 rpc_timeout = '8s'
 account_prefix = 'persistence'
 key_name = 'aw4'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ key "networks/core/relayer/base.minimum-gas-prices" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uxprt' }
-max_gas = {{ key "networks/core/relayer/hermes.max-gas" }}
+gas_price = { price = {{ key "networks/core/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uxprt' }
+max_gas = {{ key "networks/core/hermes.max_gas" }}
 max_msg_num = 15
 max_tx_size = 180000
 clock_drift = '7200s'
@@ -52,16 +52,16 @@ packet_filter = { policy = 'allow', list = [['transfer', 'channel-26']]}
 
 [[chains]]
 id = 'impacthub-3'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.impacthub0 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.impacthub0 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.impacthub0 }}0/websocket'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.impacthub_relayer0 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.impacthub_relayer0 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.impacthub_relayer0 }}0/websocket'
 rpc_timeout = '8s'
 account_prefix = 'ixo'
 key_name = 'aw4'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ key "networks/impacthub/relayer/base.minimum-gas-prices" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uixo' }
-max_gas = {{ key "networks/impacthub/relayer/hermes.max-gas" }}
+gas_price = { price = {{ key "networks/impacthub/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uixo' }
+max_gas = {{ key "networks/impacthub/hermes.max_gas" }}
 max_msg_num = 15
 max_tx_size = 180000
 clock_drift = '7200s'
@@ -98,14 +98,16 @@ account_prefix = 'sif'
 key_name = 'aw3'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ key "networks/sifchain/relayer/base.minimum-gas-prices" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'rowan' }
-max_gas = {{ key "networks/sifchain/relayer/hermes.max-gas" }}
+gas_price = { price = {{ key "networks/sifchain/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'rowan' }
+max_gas = {{ key "networks/sifchain/hermes.max_gas" }}
 max_msg_num = 15
 max_tx_size = 180000
 clock_drift = '7200s'
 trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
 # core, impacthub
-packet_filter = { policy = 'allow', list = [['transfer', 'channel-7'],['transfer', 'channel-15'],['transfer', 'channel-18']]}
+packet_filter = { policy = 'allow', list = [['transfer', 'channel-7'],
+                                            ['transfer', 'channel-15'],
+                                            ['transfer', 'channel-18']]}
 
 {{ end }}
