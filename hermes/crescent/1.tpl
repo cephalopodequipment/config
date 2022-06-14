@@ -67,7 +67,7 @@ key_name = 'aw3'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
 gas_price = { price = {{ key "networks/akashnet/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uakt' }
-max_gas = {{ key "networks/akashnet/hermes.max-gas" }}
+max_gas = {{ key "networks/akashnet/hermes.max_gas" }}
 max_msg_num = 30
 max_tx_size = 450000
 clock_drift = '7200s'
