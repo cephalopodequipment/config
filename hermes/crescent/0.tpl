@@ -65,9 +65,9 @@ packet_filter = { policy = 'allow', list = [['transfer', 'channel-184'],
 
 [[chains]]
 id='akashnet-2'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.akashnet0 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.akashnet0 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.akashnet0 }}0/websocket'
+rpc_addr = 'http://10.10.51.162:26600'
+grpc_addr = 'http://10.10.51.162:26602'
+websocket_addr = 'ws://10.10.51.162:26600/websocket'
 rpc_timeout = '8s'
 account_prefix = 'akash'
 key_name = 'aw3'
