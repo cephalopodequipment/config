@@ -52,7 +52,29 @@ trust_threshold = { numerator = '1', denominator = '3' }
 # impacthub
 # iov-mainnet-ibc
 packet_filter = { policy = 'allow', list = [['transfer','channel-190'],
+                                            ['transfer','channel-184'],
                                             ['transfer','channel-158']]}
+
+
+[[chains]]
+id='akashnet-2'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.akashnet_relayer0 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.akashnet_relayer0 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.akashnet_relayer0 }}0/websocket'
+rpc_timeout = '8s'
+account_prefix = 'akash'
+key_name = 'aw3'
+store_prefix = 'ibc'
+memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
+gas_price = { price = {{ key "networks/akashnet/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uakt' }
+max_gas = {{ key "networks/akashnet/hermes.max-gas" }}
+max_msg_num = 30
+max_tx_size = 450000
+clock_drift = '7200s'
+trusting_period = '14days'
+trust_threshold = { numerator = '1', denominator = '3' }
+packet_filter = { policy = 'allow', list = [['transfer','channel-17']]}
+
 
 [[chains]]
 id = 'core-1'
