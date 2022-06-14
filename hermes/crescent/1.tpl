@@ -29,7 +29,7 @@ enabled = true
 host = '0.0.0.0'
 port = {{ env "NOMAD_PORT_prom" }}
 
-{{ with $ports := key "ports/relay-hub1" | parseJSON }}
+{{ with $ports := key "ports/prod1" | parseJSON }}
 
 [[chains]]
 id = 'cosmoshub-4'
@@ -41,8 +41,8 @@ account_prefix = 'cosmos'
 key_name = 'aw5'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ key "networks/cosmoshub/relayer/base.minimum-gas-prices" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uatom' }
-max_gas = {{ key "networks/cosmoshub/relayer/hermes.max-gas" }}
+gas_price = { price = {{ key "networks/cosmoshub/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uatom' }
+max_gas = {{ key "networks/cosmoshub/hermes.max_gas" }}
 max_msg_num = 50
 max_tx_size = 180000
 clock_drift = '7200s'
@@ -57,16 +57,16 @@ packet_filter = { policy = 'allow', list = [['transfer','channel-190'],
 
 [[chains]]
 id = 'core-1'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.core0 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.core0 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.core0 }}0/websocket'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.core_relayer0 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.core_relayer0 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.core_relayer0 }}0/websocket'
 rpc_timeout = '8s'
 account_prefix = 'persistence'
 key_name = 'aw3'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ key "networks/core/relayer/base.minimum-gas-prices" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uxprt' }
-max_gas = {{ key "networks/core/relayer/hermes.max-gas" }}
+gas_price = { price = {{ key "networks/core/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uxprt' }
+max_gas = {{ key "networks/core/hermes.max_gas" }}
 max_msg_num = 30
 max_tx_size = 180000
 clock_drift = '7200s'
@@ -77,16 +77,16 @@ packet_filter = { policy = 'allow', list = [['transfer', 'channel-24']]}
 
 [[chains]]
 id = 'impacthub-3'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.impacthub0 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.impacthub0 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.impacthub0 }}0/websocket'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.impacthub_relayer0 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.impacthub_relayer0 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.impacthub_relayer0 }}0/websocket'
 rpc_timeout = '8s'
 account_prefix = 'ixo'
 key_name = 'aw3'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ key "networks/impacthub/relayer/base.minimum-gas-prices" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uixo' }
-max_gas = {{ key "networks/impacthub/relayer/hermes.max-gas" }}
+gas_price = { price = {{ key "networks/impacthub/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uixo' }
+max_gas = {{ key "networks/impacthub/hermes.max_gas" }}
 max_msg_num = 30
 max_tx_size = 180000
 clock_drift = '7200s'
@@ -97,16 +97,16 @@ packet_filter = { policy = 'allow', list = [['transfer', 'channel-1']]}
 
 [[chains]]
 id = 'iov-mainnet-ibc'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.iov0 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.iov0 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.iov0 }}0/websocket'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.iov_relayer0 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.iov_relayer0 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.iov_relayer0 }}0/websocket'
 rpc_timeout = '8s'
 account_prefix = 'star'
 key_name = 'aw3'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ key "networks/iov-mainnet-ibc/relayer/base.minimum-gas-prices" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uiov' }
-max_gas = {{ key "networks/iov-mainnet-ibc/relayer/hermes.max-gas" }}
+gas_price = { price = {{ key "networks/iov-mainnet-ibc/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uiov' }
+max_gas = {{ key "networks/iov-mainnet-ibc/hermes.max_gas" }}
 max_msg_num = 30
 max_tx_size = 450000
 clock_drift = '7200s'
