@@ -88,6 +88,25 @@ trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
 packet_filter = { policy = 'allow', list = [['transfer', 'channel-7']]}
 
+
+[[chains]]
+id='akashnet-2'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.akashnet_relayer0 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.akashnet_relayer0 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.akashnet_relayer0 }}0/websocket'
+rpc_timeout = '8s'
+account_prefix = 'akash'
+key_name = 'aw4'
+store_prefix = 'ibc'
+memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
+gas_price = { price = {{ key "networks/akashnet/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uakt' }
+max_gas = {{ key "networks/akashnet/hermes.max_gas" }}
+clock_drift = '7200s'
+trusting_period = '14days'
+trust_threshold = { numerator = '1', denominator = '3' }
+packet_filter = { policy = 'allow', list = [['transfer', 'channel-24']]}
+
+
 [[chains]]
 id = 'sifchain-1'
 rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.sifchain_relayer1 }}0'
@@ -105,8 +124,12 @@ max_tx_size = 180000
 clock_drift = '7200s'
 trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
-# core, impacthub
+# core
+# akashnet
+# impacthub
+# columbus
 packet_filter = { policy = 'allow', list = [['transfer', 'channel-7'],
+                                            ['transfer', 'channel-2'],
                                             ['transfer', 'channel-15'],
                                             ['transfer', 'channel-18']]}
 
