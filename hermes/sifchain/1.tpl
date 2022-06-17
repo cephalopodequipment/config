@@ -31,42 +31,6 @@ port = {{ env "NOMAD_PORT_prom" }}
 
 {{ with $ports := key "ports/relay-hub0" | parseJSON }}
 
-[[chains]]
-id = 'sentinelhub-2'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.sentinelhub0 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.sentinelhub0 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.sentinelhub0 }}0/websocket'
-rpc_timeout = '8s'
-account_prefix = 'sent'
-key_name = 'aw4'
-store_prefix = 'ibc'
-memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ key "networks/sentinelhub/relayer/base.minimum-gas-prices" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'udvpn' }
-max_gas = {{ key "networks/sentinelhub/relayer/hermes.max-gas" }}
-max_msg_num = 15
-clock_drift = '7200s'
-trusting_period = '14days'
-trust_threshold = { numerator = '1', denominator = '3' }
-packet_filter = { policy = 'allow', list = [['transfer', 'channel-36']]}
-
-[[chains]]
-id = 'crypto-org-chain-mainnet-1'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.crypto0 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.crypto0 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.crypto0 }}0/websocket'
-rpc_timeout = '8s'
-account_prefix = 'cro'
-key_name = 'aw4'
-store_prefix = 'ibc'
-memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ key "networks/crypto/relayer/base.minimum-gas-prices" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'basecro' }
-max_gas = {{ key "networks/crypto/relayer/hermes.max-gas" }}
-max_msg_num = 15
-max_tx_size = 450000
-clock_drift = '7200s'
-trusting_period = '14days'
-trust_threshold = { numerator = '1', denominator = '3' }
-packet_filter = { policy = 'allow', list = [['transfer', 'channel-33']]}
 
 [[chains]]
 id = 'cosmoshub-4'

@@ -50,6 +50,26 @@ trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
 packet_filter = { policy = 'allow', list = [['transfer', 'channel-26']]}
 
+
+[[chains]]
+id = 'sentinelhub-2'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.sentinelhub_relayer0 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.sentinelhub_relayer0 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.sentinelhub_relayer0 }}0/websocket'
+rpc_timeout = '8s'
+account_prefix = 'sent'
+key_name = 'aw4'
+store_prefix = 'ibc'
+memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
+gas_price = { price = {{ key "networks/sentinelhub/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'udvpn' }
+max_gas = {{ key "networks/sentinelhub/hermes.max_gas" }}
+max_msg_num = 15
+clock_drift = '7200s'
+trusting_period = '14days'
+trust_threshold = { numerator = '1', denominator = '3' }
+packet_filter = { policy = 'allow', list = [['transfer', 'channel-36']]}
+
+
 [[chains]]
 id = 'impacthub-3'
 rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.impacthub_relayer0 }}0'
@@ -68,6 +88,27 @@ clock_drift = '7200s'
 trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
 packet_filter = { policy = 'allow', list = [['transfer', 'channel-11']]}
+
+
+[[chains]]
+id = 'crypto-org-chain-mainnet-1'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.crypto_relayer0 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.crypto_relayer0 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.crypto_relayer0 }}0/websocket'
+rpc_timeout = '8s'
+account_prefix = 'cro'
+key_name = 'aw4'
+store_prefix = 'ibc'
+memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
+gas_price = { price = {{ key "networks/crypto/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'basecro' }
+max_gas = {{ key "networks/crypto/hermes.max_gas" }}
+max_msg_num = 15
+max_tx_size = 450000
+clock_drift = '7200s'
+trusting_period = '14days'
+trust_threshold = { numerator = '1', denominator = '3' }
+packet_filter = { policy = 'allow', list = [['transfer', 'channel-33']]}
+
 
 [[chains]]
 id = 'columbus-5'
@@ -227,6 +268,7 @@ trust_threshold = { numerator = '1', denominator = '3' }
 # akashnet
 # core
 # irishub
+# crypto
 # regen
 # juno
 # impacthub
