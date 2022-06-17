@@ -108,6 +108,106 @@ packet_filter = { policy = 'allow', list = [['transfer', 'channel-24']]}
 
 
 [[chains]]
+id = 'irishub-1'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.irishub_relayer1 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.irishub_relayer1 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.irishub_relayer1 }}0/websocket'
+rpc_timeout = '8s'
+account_prefix = 'iaa'
+key_name = 'aw4'
+store_prefix = 'ibc'
+memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
+gas_price = { price = {{ key "networks/irishub/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uiris' }
+max_gas = {{ key "networks/irishub/hermes.max_gas" }}
+max_msg_num=15
+max_tx_size = 1800000
+clock_drift = '7200s'
+trusting_period = '14days'
+trust_threshold = { numerator = '1', denominator = '3' }
+packet_filter = { policy = 'allow', list = [['transfer', 'channel-19']]}
+
+
+[[chains]]
+id = 'emoney-3'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.emoney_relayer0 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.emoney_relayer0 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.emoney_relayer0 }}0/websocket'
+rpc_timeout = '8s'
+account_prefix = 'emoney'
+key_name = 'aw4'
+store_prefix = 'ibc'
+memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
+gas_price = { price = {{ key "networks/emoney/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'ungm' }
+max_gas = {{ key "networks/emoney/hermes.max_gas" }}
+max_msg_num = 15
+max_tx_size = 180000
+clock_drift = '70s'
+trusting_period = '10days'
+trust_threshold = { numerator = '1', denominator = '3' }
+packet_filter = { policy = 'allow', list = [['transfer', 'channel-14']]}
+
+
+[[chains]]
+id = 'juno-1'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.juno_relayer1 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.juno_relayer1 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.juno_relayer1 }}0/websocket'
+rpc_timeout = '8s'
+account_prefix = 'juno'
+key_name = 'aw4'
+store_prefix = 'ibc'
+memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
+gas_price = { price = {{ key "networks/juno/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'ujuno' }
+max_gas = {{ key "networks/juno/hermes.max_gas" }}
+max_msg_num = 15
+max_tx_size = 450000
+clock_drift = '7200s'
+trusting_period = '14days'
+trust_threshold = { numerator = '1', denominator = '3' }
+packet_filter = { policy = 'allow', list = [['transfer', 'channel-5']]}
+
+
+[[chains]]
+id = 'regen-1'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.regen_relayer0 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.regen_relayer0 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.regen_relayer0 }}0/websocket'
+rpc_timeout = '8s'
+account_prefix = 'regen'
+key_name = 'aw4'
+store_prefix = 'ibc'
+memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
+gas_price = { price = {{ key "networks/regen/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uregen' }
+max_gas = {{ key "networks/regen/hermes.max_gas" }}
+max_msg_num = 15
+max_tx_size = 180000
+clock_drift = '7200s'
+trusting_period = '14days'
+trust_threshold = { numerator = '1', denominator = '3' }
+packet_filter = { policy = 'allow', list = [['transfer', 'channel-28']]}
+
+
+[[chains]]
+id = 'osmosis-1'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.osmosis_relayer1 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.osmosis_relayer1 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.osmosis_relayer1 }}0/websocket'
+rpc_timeout = '8s'
+account_prefix = 'osmo'
+key_name = 'aw4'
+store_prefix = 'ibc'
+memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
+gas_price = { price = {{ key "networks/osmosis/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uosmo' }
+max_gas = {{ key "networks/osmosis/hermes.max_gas" }}
+max_msg_num = 15
+max_tx_size = 450000
+clock_drift = '7200s'
+trusting_period = '10days'
+trust_threshold = { numerator = '1', denominator = '3' }
+packet_filter = { policy = 'allow', list = [['transfer', 'channel-47']]}
+
+
+[[chains]]
 id = 'sifchain-1'
 rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.sifchain_relayer1 }}0'
 grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.sifchain_relayer1 }}2'
@@ -124,13 +224,23 @@ max_tx_size = 180000
 clock_drift = '7200s'
 trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
-# core
 # akashnet
+# core
+# irishub
+# regen
+# juno
 # impacthub
+# osmosis
 # columbus
-packet_filter = { policy = 'allow', list = [['transfer', 'channel-7'],
-                                            ['transfer', 'channel-2'],
+# emoney
+packet_filter = { policy = 'allow', list = [['transfer', 'channel-2'],
+                                            ['transfer', 'channel-7'],
+                                            ['transfer', 'channel-8'],
+                                            ['transfer', 'channel-10'],
+                                            ['transfer', 'channel-14'],
                                             ['transfer', 'channel-15'],
-                                            ['transfer', 'channel-18']]}
+                                            ['transfer', 'channel-17'],
+                                            ['transfer', 'channel-18'],
+                                            ['transfer', 'channel-19']]}
 
 {{ end }}
