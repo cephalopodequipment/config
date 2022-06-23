@@ -229,46 +229,6 @@ packet_filter = { policy = 'allow', list = [['transfer', 'channel-28']]}
 
 
 [[chains]]
-id = 'osmosis-1'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.osmosis_relayer1 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.osmosis_relayer1 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.osmosis_relayer1 }}0/websocket'
-rpc_timeout = '8s'
-account_prefix = 'osmo'
-key_name = 'aw4'
-store_prefix = 'ibc'
-memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ key "networks/osmosis/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uosmo' }
-max_gas = {{ key "networks/osmosis/hermes.max_gas" }}
-max_msg_num = 15
-max_tx_size = 450000
-clock_drift = '7200s'
-trusting_period = '10days'
-trust_threshold = { numerator = '1', denominator = '3' }
-packet_filter = { policy = 'allow', list = [['transfer', 'channel-47']]}
-
-
-[[chains]]
-id = 'cosmoshub-4'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.cosmoshub_relayer1 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.cosmoshub_relayer1 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.cosmoshub_relayer1 }}0/websocket'
-rpc_timeout = '8s'
-account_prefix = 'cosmos'
-key_name = 'aw4'
-store_prefix = 'ibc'
-memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ key "networks/cosmoshub/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uatom' }
-max_gas = {{ key "networks/cosmoshub/hermes.max_gas" }}
-max_msg_num = 15
-max_tx_size = 180000
-clock_drift = '7200s'
-trusting_period = '14days'
-trust_threshold = { numerator = '1', denominator = '3' }
-packet_filter = { policy = 'allow', list = [['transfer', 'channel-192']]}
-
-
-[[chains]]
 id = 'sifchain-1'
 rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.sifchain_relayer1 }}0'
 grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.sifchain_relayer1 }}2'
@@ -285,7 +245,6 @@ max_tx_size = 180000
 clock_drift = '7200s'
 trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
-# cosmoshub
 # sentinelhub
 # akashnet
 # core
@@ -294,11 +253,9 @@ trust_threshold = { numerator = '1', denominator = '3' }
 # regen
 # juno
 # impacthub
-# osmosis
 # columbus
 # emoney
-packet_filter = { policy = 'allow', list = [['transfer', 'channel-0'],
-                                            ['transfer', 'channel-1'],
+packet_filter = { policy = 'allow', list = [['transfer', 'channel-1'],
                                             ['transfer', 'channel-2'],
                                             ['transfer', 'channel-7'],
                                             ['transfer', 'channel-8'],
@@ -306,7 +263,6 @@ packet_filter = { policy = 'allow', list = [['transfer', 'channel-0'],
                                             ['transfer', 'channel-10'],
                                             ['transfer', 'channel-14'],
                                             ['transfer', 'channel-15'],
-                                            ['transfer', 'channel-17'],
                                             ['transfer', 'channel-18'],
                                             ['transfer', 'channel-19']]}
 
