@@ -34,9 +34,9 @@ port = {{ env "NOMAD_PORT_prom" }}
 
 [[chains]]
 id = 'osmosis-1'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.osmosis_relayer1 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.osmosis_relayer1 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.osmosis_relayer1 }}0/websocket'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.osmosis_relayer0 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.osmosis_relayer0 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.osmosis_relayer0 }}0/websocket'
 rpc_timeout = '8s'
 account_prefix = 'osmo'
 key_name = 'aw4'
@@ -54,9 +54,9 @@ packet_filter = { policy = 'allow', list = [['transfer', 'channel-47']]}
 
 [[chains]]
 id = 'cosmoshub-4'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.cosmoshub_relayer1 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.cosmoshub_relayer1 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.cosmoshub_relayer1 }}0/websocket'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.cosmoshub_relayer0 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.cosmoshub_relayer0 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.cosmoshub_relayer0 }}0/websocket'
 rpc_timeout = '8s'
 account_prefix = 'cosmos'
 key_name = 'aw4'
@@ -74,9 +74,9 @@ packet_filter = { policy = 'allow', list = [['transfer', 'channel-192']]}
 
 [[chains]]
 id = 'sifchain-1'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.sifchain_relayer1 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.sifchain_relayer1 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.sifchain_relayer1 }}0/websocket'
+rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.sifchain_relayer0 }}0'
+grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.sifchain_relayer0 }}2'
+websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.sifchain_relayer0 }}0/websocket'
 rpc_timeout = '8s'
 account_prefix = 'sif'
 key_name = 'aw2'
