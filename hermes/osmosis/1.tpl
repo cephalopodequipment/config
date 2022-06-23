@@ -59,7 +59,7 @@ account_prefix = 'sent'
 key_name = 'aw2'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ key "networks/sentinelhub/hermes/gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'udvpn' }
+gas_price = { price = {{ key "networks/sentinelhub/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'udvpn' }
 max_gas = {{ key "networks/sentinelhub/hermes.max_gas" }}
 clock_drift = '7200s'
 trusting_period = '14days'
