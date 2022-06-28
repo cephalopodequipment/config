@@ -188,7 +188,7 @@ grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.emoney_relayer0 }}2'
 websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.emoney_relayer0 }}0/websocket'
 rpc_timeout = '8s'
 account_prefix = 'emoney'
-key_name = 'aw3'
+key_name = 'aw4'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
 gas_price = { price = {{ key "networks/emoney/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'ungm' }
