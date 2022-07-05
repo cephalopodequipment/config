@@ -120,8 +120,8 @@ account_prefix = 'terra'
 key_name = 'aw3'
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ key "networks/columbus/relayer/base.minimum-gas-prices" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'usek' }
-max_gas = {{ key "networks/columbus/relayer/hermes.max-gas" }}
+gas_price = { price = {{ key "networks/columbus/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'usek' }
+max_gas = {{ key "networks/columbus/hermes.max_gas" }}
 max_msg_num = 50
 max_tx_size = 650000
 clock_drift = '7200s'
