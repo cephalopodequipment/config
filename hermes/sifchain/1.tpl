@@ -44,7 +44,8 @@ store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
 gas_price = { price = {{ key "networks/osmosis/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uosmo' }
 max_gas = {{ key "networks/osmosis/hermes.max_gas" }}
-max_msg_num = 15
+gas_multiplier = 1.1
+max_msg_num = 5
 max_tx_size = 450000
 clock_drift = '7200s'
 trusting_period = '10days'
@@ -64,6 +65,7 @@ store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
 gas_price = { price = {{ key "networks/cosmoshub/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uatom' }
 max_gas = {{ key "networks/cosmoshub/hermes.max_gas" }}
+gas_multiplier = 1.1
 max_msg_num = 15
 max_tx_size = 180000
 clock_drift = '7200s'
@@ -84,6 +86,7 @@ store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
 gas_price = { price = {{ key "networks/sifchain/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'rowan' }
 max_gas = {{ key "networks/sifchain/hermes.max_gas" }}
+gas_multiplier = 1.1
 max_msg_num = 15
 max_tx_size = 180000
 clock_drift = '7200s'
