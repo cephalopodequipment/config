@@ -44,6 +44,7 @@ memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
 gas_price = { price = {{ key "networks/core/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uxprt' }
 max_gas = {{ key "networks/core/hermes.max_gas" }}
 max_msg_num = 15
+gas_multiplier = 1.1
 max_tx_size = 180000
 clock_drift = '7200s'
 trusting_period = '14days'
@@ -64,6 +65,7 @@ memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
 gas_price = { price = {{ key "networks/sentinelhub/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'udvpn' }
 max_gas = {{ key "networks/sentinelhub/hermes.max_gas" }}
 max_msg_num = 15
+gas_multiplier = 1.1
 clock_drift = '7200s'
 trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
@@ -83,6 +85,7 @@ memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
 gas_price = { price = {{ key "networks/impacthub/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uixo' }
 max_gas = {{ key "networks/impacthub/hermes.max_gas" }}
 max_msg_num = 15
+gas_multiplier = 1.1
 max_tx_size = 180000
 clock_drift = '7200s'
 trusting_period = '14days'
@@ -103,6 +106,7 @@ memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
 gas_price = { price = {{ key "networks/crypto/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'basecro' }
 max_gas = {{ key "networks/crypto/hermes.max_gas" }}
 max_msg_num = 15
+gas_multiplier = 1.1
 max_tx_size = 450000
 clock_drift = '7200s'
 trusting_period = '14days'
@@ -123,6 +127,7 @@ memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
 gas_price = { price = {{ key "networks/columbus/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'usek' }
 max_gas = {{ key "networks/columbus/hermes.max_gas" }}
 max_msg_num = 50
+gas_multiplier = 1.1
 max_tx_size = 650000
 clock_drift = '7200s'
 trusting_period = '14days'
@@ -161,6 +166,7 @@ memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
 gas_price = { price = {{ key "networks/irishub/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uiris' }
 max_gas = {{ key "networks/irishub/hermes.max_gas" }}
 max_msg_num=15
+gas_multiplier = 1.1
 max_tx_size = 1800000
 clock_drift = '7200s'
 trusting_period = '14days'
@@ -181,6 +187,7 @@ memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
 gas_price = { price = {{ key "networks/emoney/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'ungm' }
 max_gas = {{ key "networks/emoney/hermes.max_gas" }}
 max_msg_num = 15
+gas_multiplier = 1.1
 max_tx_size = 180000
 clock_drift = '70s'
 trusting_period = '10days'
@@ -201,6 +208,7 @@ memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
 gas_price = { price = {{ key "networks/juno/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'ujuno' }
 max_gas = {{ key "networks/juno/hermes.max_gas" }}
 max_msg_num = 15
+gas_multiplier = 1.1
 max_tx_size = 450000
 clock_drift = '7200s'
 trusting_period = '14days'
@@ -221,6 +229,7 @@ memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
 gas_price = { price = {{ key "networks/regen/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uregen' }
 max_gas = {{ key "networks/regen/hermes.max_gas" }}
 max_msg_num = 15
+gas_multiplier = 1.1
 max_tx_size = 180000
 clock_drift = '7200s'
 trusting_period = '14days'
@@ -241,6 +250,7 @@ memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
 gas_price = { price = {{ key "networks/sifchain/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'rowan' }
 max_gas = {{ key "networks/sifchain/hermes.max_gas" }}
 max_msg_num = 15
+gas_multiplier = 1.1
 max_tx_size = 180000
 clock_drift = '7200s'
 trusting_period = '14days'
