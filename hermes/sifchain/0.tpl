@@ -154,27 +154,6 @@ packet_filter = { policy = 'allow', list = [['transfer', 'channel-24']]}
 
 
 [[chains]]
-id = 'irishub-1'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.irishub_relayer1 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.irishub_relayer1 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.irishub_relayer1 }}0/websocket'
-rpc_timeout = '8s'
-account_prefix = 'iaa'
-key_name = 'aw4'
-store_prefix = 'ibc'
-memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ key "networks/irishub/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uiris' }
-max_gas = {{ key "networks/irishub/hermes.max_gas" }}
-max_msg_num=15
-gas_multiplier = 1.1
-max_tx_size = 1800000
-clock_drift = '7200s'
-trusting_period = '14days'
-trust_threshold = { numerator = '1', denominator = '3' }
-packet_filter = { policy = 'allow', list = [['transfer', 'channel-19']]}
-
-
-[[chains]]
 id = 'emoney-3'
 rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.emoney_relayer0 }}0'
 grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.emoney_relayer0 }}2'
@@ -268,7 +247,6 @@ trust_threshold = { numerator = '1', denominator = '3' }
 packet_filter = { policy = 'allow', list = [['transfer', 'channel-1'],
                                             ['transfer', 'channel-2'],
                                             ['transfer', 'channel-7'],
-                                            ['transfer', 'channel-8'],
                                             ['transfer', 'channel-9'],
                                             ['transfer', 'channel-10'],
                                             ['transfer', 'channel-14'],
