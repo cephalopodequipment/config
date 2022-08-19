@@ -119,41 +119,6 @@ clock_drift = '7200s'
 trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
 
-[[chains]]
-id = 'irishub-1'
-rpc_addr = 'http://irishub-archive:26600'
-grpc_addr = 'http://irishub-archive:26602'
-websocket_addr = 'ws://irishub0:26600/websocket'
-rpc_timeout = '8s'
-account_prefix = 'iaa'
-key_name = 'aw1'
-store_prefix = 'ibc'
-memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price  =  { price  =  1, denom  =  'uiris' }
-max_gas = 5000000
-max_msg_num = 50
-max_tx_size = 1800000
-clock_drift = '7200s'
-trusting_period = '14days'
-trust_threshold = { numerator = '1', denominator = '3' }
-
-[[chains]]
-id = 'iov-mainnet-ibc'
-rpc_addr = 'http://iov0:26600'
-grpc_addr = 'http://iov0:26602'
-websocket_addr = 'ws://iov0:26600/websocket'
-rpc_timeout = '8s'
-account_prefix = 'star'
-key_name = 'aw1'
-store_prefix = 'ibc'
-memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price  =  { price  =  0.1, denom  =  'uiov' }
-max_gas = 5000000
-max_msg_num = 15
-max_tx_size = 450000
-clock_drift = '7200s'
-trusting_period = '14days'
-trust_threshold = { numerator = '1', denominator = '3' }
 
 [[chains]]
 id = 'impacthub-3'
@@ -226,23 +191,6 @@ max_block_time = '3s'
 clock_drift = '1s'
 trusting_period = '14days'
 
-[[chains]]
-id = 'emoney-3'
-rpc_addr = 'http://emoney0:26600'
-grpc_addr = 'http://emoney0:26602'
-websocket_addr = 'ws://emoney0:26600/websocket'
-rpc_timeout = '8s'
-account_prefix = 'emoney'
-key_name = 'aw1'
-store_prefix = 'ibc'
-max_tx_size = 180000
-max_msg_num = 15
-memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = 0.1, denom = 'ungm' }
-max_gas = 5000000
-clock_drift = '70s'
-trusting_period = '10days'
-trust_threshold = { numerator = '1', denominator = '3' }
 
 [[chains]]
 id = 'gravity-bridge-3'

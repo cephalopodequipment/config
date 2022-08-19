@@ -130,26 +130,6 @@ packet_filter = { policy = 'allow', list = [['transfer', 'channel-6']]}
 
 
 [[chains]]
-id = 'iov-mainnet-ibc'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.iov_relayer0 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.iov_relayer0 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.iov_relayer0 }}0/websocket'
-rpc_timeout = '8s'
-account_prefix = 'star'
-key_name = 'aw2'
-store_prefix = 'ibc'
-memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ key "networks/starname/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uiov' }
-max_gas = {{ key "networks/starname/hermes.max_gas"}}
-gas_multiplier = 1.1
-max_tx_size = 450000
-clock_drift = '7200s'
-trusting_period = '14days'
-trust_threshold = { numerator = '1', denominator = '3' }
-packet_filter = { policy = 'allow', list = [['transfer', 'channel-2']]}
-
-
-[[chains]]
 id = 'impacthub-3'
 rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.impacthub_relayer0 }}0'
 grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.impacthub_relayer0 }}2'
@@ -191,14 +171,12 @@ trust_threshold = { numerator = '1', denominator = '3' }
 # crypto
 # regen
 # core
-# starname
 # impacthub
 packet_filter = { policy = 'allow', list = [['transfer','channel-1'],
                                             ['transfer','channel-2'],
                                             ['transfer','channel-5'],
                                             ['transfer','channel-8'],
                                             ['transfer','channel-4'],
-                                            ['transfer','channel-15'],
                                             ['transfer','channel-38']]}
 
 {{ end }}
