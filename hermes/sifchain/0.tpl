@@ -154,27 +154,6 @@ packet_filter = { policy = 'allow', list = [['transfer', 'channel-24']]}
 
 
 [[chains]]
-id = 'emoney-3'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.emoney_relayer0 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.emoney_relayer0 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.emoney_relayer0 }}0/websocket'
-rpc_timeout = '8s'
-account_prefix = 'emoney'
-key_name = 'aw4'
-store_prefix = 'ibc'
-memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ key "networks/emoney/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'ungm' }
-max_gas = {{ key "networks/emoney/hermes.max_gas" }}
-max_msg_num = 15
-gas_multiplier = 1.1
-max_tx_size = 180000
-clock_drift = '70s'
-trusting_period = '10days'
-trust_threshold = { numerator = '1', denominator = '3' }
-packet_filter = { policy = 'allow', list = [['transfer', 'channel-14']]}
-
-
-[[chains]]
 id = 'juno-1'
 rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.juno_relayer1 }}0'
 grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.juno_relayer1 }}2'
@@ -243,7 +222,6 @@ trust_threshold = { numerator = '1', denominator = '3' }
 # juno
 # impacthub
 # columbus
-# emoney
 packet_filter = { policy = 'allow', list = [['transfer', 'channel-1'],
                                             ['transfer', 'channel-2'],
                                             ['transfer', 'channel-7'],
@@ -251,7 +229,6 @@ packet_filter = { policy = 'allow', list = [['transfer', 'channel-1'],
                                             ['transfer', 'channel-10'],
                                             ['transfer', 'channel-14'],
                                             ['transfer', 'channel-15'],
-                                            ['transfer', 'channel-18'],
-                                            ['transfer', 'channel-19']]}
+                                            ['transfer', 'channel-18']]}
 
 {{ end }}
