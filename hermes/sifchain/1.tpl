@@ -49,6 +49,26 @@ trusting_period = '10days'
 trust_threshold = { numerator = '1', denominator = '3' }
 packet_filter = { policy = 'allow', list = [['transfer', 'channel-47']]}
 
+[[chains]]
+id = 'cosmoshub-4'
+rpc_addr = 'http://{{ key "hermes/relayer_node_ip/cosmoshub1" }}:26600'
+grpc_addr = 'http://{{ key "hermes/relayer_node_ip/cosmoshub1" }}:26602'
+websocket_addr = 'ws://{{ key "hermes/relayer_node_ip/cosmoshub1" }}:26600/websocket'
+rpc_timeout = '8s'
+account_prefix = 'cosmos'
+key_name = 'aw4'
+store_prefix = 'ibc'
+memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
+gas_price = { price = {{ key "networks/cosmoshub/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uatom' }
+max_gas = {{ key "networks/cosmoshub/hermes.max_gas" }}
+gas_multiplier = 1.1
+max_msg_num = 15
+max_tx_size = 180000
+clock_drift = '7200s'
+trusting_period = '14days'
+trust_threshold = { numerator = '1', denominator = '3' }
+packet_filter = { policy = 'allow', list = [['transfer', 'channel-192']]}
+
 
 [[chains]]
 id = 'sifchain-1'
