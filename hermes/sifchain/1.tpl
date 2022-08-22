@@ -31,9 +31,9 @@ port = {{ env "NOMAD_PORT_prom" }}
 
 [[chains]]
 id = 'osmosis-1'
-rpc_addr = 'http://{{ key "hermes/relayer_node_ip/osmosis1 }}:26600'
-grpc_addr = 'http://{{ key "hermes/relayer_node_ip/osmosis1 }}:26602'
-websocket_addr = 'ws://{{ key "hermes/relayer_node_ip/osmosis1 }}:26600/websocket'
+rpc_addr = 'http://{{ key "hermes/relayer_node_ip/osmosis1" }}:26600'
+grpc_addr = 'http://{{ key "hermes/relayer_node_ip/osmosis1" }}:26602'
+websocket_addr = 'ws://{{ key "hermes/relayer_node_ip/osmosis1" }}:26600/websocket'
 rpc_timeout = '8s'
 account_prefix = 'osmo'
 key_name = 'aw4'
