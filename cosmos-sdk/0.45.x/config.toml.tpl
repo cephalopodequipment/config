@@ -426,3 +426,55 @@ max_open_connections = 3
 
 # Instrumentation namespace
 namespace = "tendermint"
+
+##### Axelar EVM bridges options #####
+# Each EVM chain needs the following
+# 1. `[[axelar_bridge_evm]]` # header
+# 2. `name`                  # chain name (eg. "Ethereum")
+# 3. 'rpc_addr'              # EVM RPC endpoint URL; chain maintainers set their own endpoint
+# 4. `start-with-bridge`     # `true` to support this chain
+#
+# see https://docs.axelar.dev/#/validator-zone/external-chains/overview
+
+[[axelar_bridge_evm]]
+name = "Ethereum"
+rpc_addr = ""
+start-with-bridge = false
+
+[[axelar_bridge_evm]]
+name = "Avalanche"
+rpc_addr = ""
+start-with-bridge = false
+
+[[axelar_bridge_evm]]
+name = "Fantom"
+rpc_addr = ""
+start-with-bridge = false
+
+[[axelar_bridge_evm]]
+name = "Moonbeam"
+rpc_addr = ""
+start-with-bridge = false
+
+[[axelar_bridge_evm]]
+name = "Polygon"
+rpc_addr = ""
+start-with-bridge = false
+
+[[axelar_bridge_evm]]
+name = "binance"
+rpc_addr = ""
+start-with-bridge = false
+
+[[axelar_bridge_evm]]
+name = "aurora"
+rpc_addr = ""
+start-with-bridge = false
+
+##### message broadcasting options #####
+[broadcast]
+
+broadcaster-account = "broadcaster"
+gas-adjustment = 1.0
+max-retries = 10
+min-timeout = "4s"
