@@ -438,38 +438,38 @@ namespace = "tendermint"
 
 [[axelar_bridge_evm]]
 name = "Ethereum"
-rpc_addr = ""
-start-with-bridge = false
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.eth.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.eth.enable") "false" }}
 
 [[axelar_bridge_evm]]
 name = "Avalanche"
-rpc_addr = ""
-start-with-bridge = false
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.avalanche.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.avalanche.enable") "false" }}
 
 [[axelar_bridge_evm]]
 name = "Fantom"
-rpc_addr = ""
-start-with-bridge = false
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.fantom.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.fantom.enable") "false" }}
 
 [[axelar_bridge_evm]]
 name = "Moonbeam"
-rpc_addr = ""
-start-with-bridge = false
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.moonbeam.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.moonbeam.enable") "false" }}
 
 [[axelar_bridge_evm]]
 name = "Polygon"
-rpc_addr = ""
-start-with-bridge = false
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.polygon.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.polygon.enable") "false" }}
 
 [[axelar_bridge_evm]]
 name = "binance"
-rpc_addr = ""
-start-with-bridge = false
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.binance.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.binance.enable") "false" }}
 
 [[axelar_bridge_evm]]
 name = "aurora"
-rpc_addr = ""
-start-with-bridge = false
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.aurora.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.aurora.enable") "false" }}
 
 ##### message broadcasting options #####
 [broadcast]
