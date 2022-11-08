@@ -2,7 +2,6 @@
 server.host: 0.0.0.0
 discovery.type: "single-node"
 server.shutdownTimeout: 5s
-xpack.security.enabled: true
 monitoring.ui.container.elasticsearch.enabled: true
 telemetry.enabled: false
 elasticsearch.hosts: {{ key "log/elastic/server.host" }}
