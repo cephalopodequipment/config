@@ -516,3 +516,10 @@ broadcaster-account = "broadcaster"
 gas-adjustment = 1.0
 max-retries = 10
 min-timeout = "4s"
+
+### SKIP the dishes
+[sidecar]
+relayer_peer_string = {{ keyOrDefault  (print (env "CONSUL_PATH") "/sidecar.relayer_peer_string") "\"\"" }}
+relayer_rpc_string = {{ keyOrDefault  (print (env "CONSUL_PATH") "/sidecar.relayer_rpc_string") "\"\"" }}
+api_key = {{ keyOrDefault  (print (env "CONSUL_PATH") "/sidecar.api_key") "\"\"" }}
+personal_peer_ids = {{ keyOrDefault  (print (env "CONSUL_PATH") "/sidecar.personal_peer_ids") "\"\"" }}
