@@ -29,6 +29,7 @@
       peer ${record["peer"].to_s}
       addr ${record["addr"].to_s}
       impl ${record["impl"].to_s}
+      sequence ${record["sequence"].to_s}
     </record>
   </filter>
 
