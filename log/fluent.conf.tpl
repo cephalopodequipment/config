@@ -39,7 +39,7 @@
 ##  SDK node logs
 ####
 
-<filter node.sdk.**>
+<filter node.sdk.**> # "node.sdk" tag is set by the logging driver config in the nomad job
   @type parser
   key_name log
   <parse>
