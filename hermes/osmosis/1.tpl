@@ -109,24 +109,24 @@ trust_threshold = { numerator = '1', denominator = '3' }
 packet_filter = { policy = 'allow', list = [['transfer', 'channel-1']]}
 
 
-[[chains]]
-id = 'core-1'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.core_relayer0 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.core_relayer0 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.core_relayer0 }}0/websocket'
-rpc_timeout = '8s'
-account_prefix = 'persistence'
-key_name = 'aw2'
-store_prefix = 'ibc'
-memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ key "networks/core/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uxprt' }
-max_gas = {{ key "networks/core/hermes.max_gas" }}
-gas_multiplier = 1.1
-max_tx_size = 180000
-clock_drift = '7200s'
-trusting_period = '14days'
-trust_threshold = { numerator = '1', denominator = '3' }
-packet_filter = { policy = 'allow', list = [['transfer', 'channel-6']]}
+#[[chains]]
+#id = 'core-1'
+#rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.core_relayer0 }}0'
+#grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.core_relayer0 }}2'
+#websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.core_relayer0 }}0/websocket'
+#rpc_timeout = '8s'
+#account_prefix = 'persistence'
+#key_name = 'aw2'
+#store_prefix = 'ibc'
+#memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
+#gas_price = { price = {{ key "networks/core/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uxprt' }
+#max_gas = {{ key "networks/core/hermes.max_gas" }}
+#gas_multiplier = 1.1
+#max_tx_size = 180000
+#clock_drift = '7200s'
+#trusting_period = '14days'
+#trust_threshold = { numerator = '1', denominator = '3' }
+#packet_filter = { policy = 'allow', list = [['transfer', 'channel-6']]}
 
 
 [[chains]]
@@ -170,13 +170,11 @@ trust_threshold = { numerator = '1', denominator = '3' }
 # sentinel
 # crypto
 # regen
-# core
 # impacthub
 packet_filter = { policy = 'allow', list = [['transfer','channel-1'],
                                             ['transfer','channel-2'],
                                             ['transfer','channel-5'],
                                             ['transfer','channel-8'],
-                                            ['transfer','channel-4'],
                                             ['transfer','channel-38']]}
 
 {{ end }}
