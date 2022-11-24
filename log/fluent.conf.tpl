@@ -43,7 +43,11 @@
   @type grep
   <exclude>
     key log
-    pattern "Dragonberry Active"
+
+    # bugsnag - for events emitted by the injective nodes
+    # Dragonberry - lots of these useless things
+    #
+    pattern /^Dragonberry|bugsnag/
   </exclude>
 </filter>
 
@@ -62,7 +66,14 @@
  @type record_transformer
  enable_ruby true
  <record>
-   height ${record["height"].to_s}
+
+   #Setting these fields to string for various reasons
+   #TODO: open some issues / PR to tendermint / SDK to fix these logs
+
+   height ${record["height"].to_s} # `x/ibc/client` module outputs height as `1-xxxx`
+
+   hash ${record["hash"].to_s} # `consensus` module outputs hash as `{}` when logging "finalizing commit of block"
+
    peer ${record["peer"].to_s}
    addr ${record["addr"].to_s}
    impl ${record["impl"].to_s}
