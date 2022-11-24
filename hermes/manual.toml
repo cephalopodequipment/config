@@ -48,22 +48,6 @@ clock_drift ='7200s'
 trusting_period ='14days'
 trust_threshold = { numerator = '1', denominator = '3' }
 
-[[chains]]
-id = 'sentinelhub-2'
-rpc_addr = 'http://10.10.51.16:26670'
-grpc_addr = 'http://10.10.51.16:26672'
-websocket_addr = 'ws://sentinelhub0:26670/websocket'
-rpc_timeout = '8s'
-account_prefix = 'sent'
-key_name = 'aw1'
-store_prefix = 'ibc'
-memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = 0.01, denom = 'udvpn' }
-max_gas = 2000000
-max_msg_num = 15
-clock_drift = '7200s'
-trusting_period = '14days'
-trust_threshold = { numerator = '1', denominator = '3' }
 
 [[chains]]
 id = 'crypto-org-chain-mainnet-1'
@@ -96,24 +80,6 @@ memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
 gas_price  =  { price  =  0.1, denom  =  'uregen' }
 max_gas = 2000000
 max_msg_num = 15
-max_tx_size = 180000
-clock_drift = '7200s'
-trusting_period = '14days'
-trust_threshold = { numerator = '1', denominator = '3' }
-
-[[chains]]
-id = 'core-1'
-rpc_addr = 'http://core-archive:26600'
-grpc_addr = 'http://core-archive:26602'
-websocket_addr = 'ws://core0:26600/websocket'
-rpc_timeout = '8s'
-account_prefix = 'persistence'
-key_name = 'aw3'
-store_prefix = 'ibc'
-memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price  =  { price  =  0.01, denom  =  'uxprt' }
-max_gas = 4000000
-max_msg_num = 100
 max_tx_size = 180000
 clock_drift = '7200s'
 trusting_period = '14days'
@@ -171,60 +137,4 @@ max_gas = 19000000
 max_msg_num = 100
 clock_drift = '7200s'
 trusting_period = '10days'
-trust_threshold = { numerator = '1', denominator = '3' }
-
-[[chains]]
-id = 'sifchain-1'
-rpc_addr = 'http://sif0:26600'
-grpc_addr = 'http://sif0:26602'
-websocket_addr = 'ws://sif0:26600/websocket'
-rpc_timeout = '8s'
-account_prefix = 'sif'
-key_name = 'aw1'
-store_prefix = 'ibc'
-memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = 100000000000, denom = 'rowan' }
-max_gas = 5000000
-max_msg_num = 15
-max_tx_size = 180000
-max_block_time = '3s'
-clock_drift = '1s'
-trusting_period = '14days'
-
-
-[[chains]]
-id = 'gravity-bridge-3'
-rpc_addr = 'http://gravity0:26600'
-grpc_addr = 'http://gravity0:26602'
-websocket_addr = 'ws://gravity0:26600/websocket'
-rpc_timeout = '8s'
-account_prefix = 'gravity'
-key_name = 'aw1'
-store_prefix = 'ibc'
-memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price  =  { price  =  0.001, denom  =  'ugraviton' }
-max_gas = 19000000
-max_msg_num = 8
-clock_drift = '7200s'
-trusting_period = '10days'
-trust_threshold = { numerator = '1', denominator = '3' }
-
-
-[[chains]]
-id = 'columbus-5'
-rpc_addr = 'http://terra0:26600'
-grpc_addr = 'http://terra0:26602'
-websocket_addr = 'ws://terra0:26600/websocket'
-rpc_timeout = '8s'
-account_prefix = 'terra'
-key_name = 'aw1'
-store_prefix = 'ibc'
-memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = 1.25, denom = 'usek' }
-max_gas = 5000000
-max_msg_num = 100
-max_tx_size = 650000
-clock_drift = '1s'
-max_block_time = '3s'
-trusting_period = '57600s'
 trust_threshold = { numerator = '1', denominator = '3' }
