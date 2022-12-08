@@ -6,7 +6,7 @@ addr_book_file = "data/addrbook.json"
 addr_book_strict = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.addr_book_strict") "true" }}
 
 # network identifier (todo move to cli flag argument? keeps the config network agnostic)
-chain_id = {{ env "NODE_CHAIN_ID" }}"
+chain_id = "{{ env "NODE_CHAIN_ID" }}"
 
 # Address to listen for incoming connections
 laddr = "tcp://0.0.0.0:{{ env "NOMAD_PORT_p2p" }}"
