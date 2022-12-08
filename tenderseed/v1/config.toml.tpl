@@ -24,4 +24,4 @@ max_packet_msg_payload_size = {{ keyOrDefault (print "networks/" (index (env "CO
 node_key_file = "config/node_key.json"
 
 # seed nodes we can use to discover peers
-seeds = {{ keyOrDefault (key (print (env "CONSUL_PATH") "/p2p.seeds")) (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/p2p.seeds") }}
+seeds = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.seeds") (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/p2p.seeds") }}
