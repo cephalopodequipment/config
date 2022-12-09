@@ -480,6 +480,11 @@ rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.eth.rpc") "\"\""
 start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.eth.enable") "false" }}
 
 [[axelar_bridge_evm]]
+name = "ethereum-2"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.eth-goerli.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.eth-goerli.enable") "false" }}
+
+[[axelar_bridge_evm]]
 name = "Avalanche"
 rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.avalanche.rpc") "\"\"" }}
 start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.avalanche.enable") "false" }}
