@@ -516,7 +516,7 @@ start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.aurora.e
 
 [[axelar_bridge_evm]]
 name = "arbitrum"
-l1_chain_name = "{{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.arbitrum.l1_chain_name") "\"\"" }}"
+l1_chain_name = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.arbitrum.l1_chain_name") "\"\"" }}
 rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.arbitrum.rpc") "\"\"" }}
 start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.arbitrum.enable") "false" }}
 
