@@ -514,6 +514,17 @@ name = "aurora"
 rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.aurora.rpc") "\"\"" }}
 start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.aurora.enable") "false" }}
 
+[[axelar_bridge_evm]]
+name = "arbitrum"
+l1_chain_name = "ethereum{{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.arbitrum.l1_chain_name") "\"\"" }}"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.arbitrum.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.arbitrum.enable") "false" }}
+
+[[axelar_bridge_evm]]
+name = "celo"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.celo.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.celo.enable") "false" }}
+
 ##### message broadcasting options #####
 [broadcast]
 
