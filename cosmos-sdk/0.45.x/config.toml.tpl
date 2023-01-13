@@ -524,7 +524,7 @@ min-timeout = "4s"
 
 ### SKIP the dishes
 [sidecar]
-relayer_peer_string = {{ keyOrDefault  (print (env "CONSUL_PATH") "/sidecar.relayer_peer_string") "\"\"" }}
-relayer_rpc_string = {{ keyOrDefault  (print (env "CONSUL_PATH") "/sidecar.relayer_rpc_string") "\"\"" }}
+sentinel_peer_string = {{ keyOrDefault  (print (env "CONSUL_PATH") "/sidecar.sentinel_peer_string") "\"\"" }}
+sentinel_rpc_string = {{ keyOrDefault  (print (env "CONSUL_PATH") "/sidecar.sentinel_rpc_string") "\"\"" }}
 api_key = {{ keyOrDefault  (print (env "CONSUL_PATH") "/sidecar.api_key") "\"\"" }}
 personal_peer_ids = {{ keyOrDefault  (print (env "CONSUL_PATH") "/sidecar.personal_peer_ids") "\"\"" }}
