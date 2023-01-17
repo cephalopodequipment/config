@@ -31,42 +31,23 @@ port = {{ env "NOMAD_PORT_prom" }}
 
 {{ with $ports := key "ports/prod1" | parseJSON }}
 
-[[chains]]
-id='akashnet-2'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.akashnet_relayer0 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.akashnet_relayer0 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.akashnet_relayer0 }}0/websocket'
-rpc_timeout = '8s'
-account_prefix = 'akash'
-key_name = 'aw2'
-store_prefix = 'ibc'
-memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ key "networks/akashnet/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uakt' }
-max_gas = {{ key "networks/akashnet/hermes.max_gas" }}
-gas_multiplier = 1.1
-clock_drift = '7200s'
-trusting_period = '14days'
-trust_threshold = { numerator = '1', denominator = '3' }
-packet_filter = { policy = 'allow', list = [['transfer', 'channel-9']]}
-
-
-[[chains]]
-id = 'sentinelhub-2'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.sentinelhub_relayer0 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.sentinelhub_relayer0 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.sentinelhub_relayer0 }}0/websocket'
-rpc_timeout = '8s'
-account_prefix = 'sent'
-key_name = 'aw2'
-store_prefix = 'ibc'
-memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ key "networks/sentinelhub/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'udvpn' }
-max_gas = {{ key "networks/sentinelhub/hermes.max_gas" }}
-gas_multiplier = 1.1
-clock_drift = '7200s'
-trusting_period = '14days'
-trust_threshold = { numerator = '1', denominator = '3' }
-packet_filter = { policy = 'allow', list = [['transfer', 'channel-0']]}
+#[[chains]]
+#id='akashnet-2'
+#rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.akashnet_relayer0 }}0'
+#grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.akashnet_relayer0 }}2'
+#websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.akashnet_relayer0 }}0/websocket'
+#rpc_timeout = '8s'
+#account_prefix = 'akash'
+#key_name = 'aw2'
+#store_prefix = 'ibc'
+#memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
+#gas_price = { price = {{ key "networks/akashnet/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uakt' }
+#max_gas = {{ key "networks/akashnet/hermes.max_gas" }}
+#gas_multiplier = 1.1
+#clock_drift = '7200s'
+#trusting_period = '14days'
+#trust_threshold = { numerator = '1', denominator = '3' }
+#packet_filter = { policy = 'allow', list = [['transfer', 'channel-9']]}
 
 
 [[chains]]
@@ -129,24 +110,24 @@ packet_filter = { policy = 'allow', list = [['transfer', 'channel-1']]}
 #packet_filter = { policy = 'allow', list = [['transfer', 'channel-6']]}
 
 
-[[chains]]
-id = 'impacthub-3'
-rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.impacthub_relayer0 }}0'
-grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.impacthub_relayer0 }}2'
-websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.impacthub_relayer0 }}0/websocket'
-rpc_timeout = '8s'
-account_prefix = 'ixo'
-key_name = 'aw2'
-store_prefix = 'ibc'
-memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
-gas_price = { price = {{ key "networks/impacthub/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uixo' }
-max_gas = {{ key "networks/impacthub/hermes.max_gas" }}
-gas_multiplier = 1.1
-max_tx_size = 180000
-clock_drift = '7200s'
-trusting_period = '14days'
-trust_threshold = { numerator = '1', denominator = '3' }
-packet_filter = { policy = 'allow', list = [['transfer', 'channel-4']]}
+#[[chains]]
+#id = 'impacthub-3'
+#rpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.impacthub_relayer0 }}0'
+#grpc_addr = 'http://{{ env "HOST_IP" }}:{{ $ports.impacthub_relayer0 }}2'
+#websocket_addr = 'ws://{{ env "HOST_IP" }}:{{ $ports.impacthub_relayer0 }}0/websocket'
+#rpc_timeout = '8s'
+#account_prefix = 'ixo'
+#key_name = 'aw2'
+#store_prefix = 'ibc'
+#memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
+#gas_price = { price = {{ key "networks/impacthub/hermes.gas_price" | regexReplaceAll "[A-Za-z]*" "" | replaceAll "\"" "" }}, denom = 'uixo' }
+#max_gas = {{ key "networks/impacthub/hermes.max_gas" }}
+#gas_multiplier = 1.1
+#max_tx_size = 180000
+#clock_drift = '7200s'
+#trusting_period = '14days'
+#trust_threshold = { numerator = '1', denominator = '3' }
+#packet_filter = { policy = 'allow', list = [['transfer', 'channel-4']]}
 
 
 [[chains]]
@@ -166,15 +147,9 @@ gas_multiplier = 1.1
 clock_drift = '7200s'
 trusting_period = '10days'
 trust_threshold = { numerator = '1', denominator = '3' }
-# akash
-# sentinel
 # crypto
 # regen
-# impacthub
-packet_filter = { policy = 'allow', list = [['transfer','channel-1'],
-                                            ['transfer','channel-2'],
-                                            ['transfer','channel-5'],
-                                            ['transfer','channel-8'],
-                                            ['transfer','channel-38']]}
+packet_filter = { policy = 'allow', list = [['transfer','channel-5'],
+                                            ['transfer','channel-8']]}
 
 {{ end }}
