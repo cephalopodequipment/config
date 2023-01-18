@@ -525,6 +525,11 @@ name = "celo"
 rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.celo.rpc") "\"\"" }}
 start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.celo.enable") "false" }}
 
+[[axelar_bridge_evm]]
+name = "kava"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.kava.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.kava.enable") "false" }}
+
 ##### message broadcasting options #####
 [broadcast]
 
