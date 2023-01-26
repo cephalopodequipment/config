@@ -11,7 +11,7 @@
 
     [[validators]]
     valoper = {{ $pairs }}
-    chain = {{ $chain }}
+    chain = "{{ $chain }}"
 
     {{- else if eq $key "accounts" -}}
       {{- range $account, $pairs := tree ($chain | printf "stakooler/%s/accounts") | explode -}}
@@ -19,7 +19,7 @@
       [[accounts]]
       name = "{{ $account }}"
       address = {{ $pairs }}
-      chain = {{ $chain }}
+      chain = "{{ $chain }}"
 
       {{ end }}
     {{ end }}
