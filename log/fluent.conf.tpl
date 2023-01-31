@@ -28,7 +28,7 @@
 
     logstash_format true
     logstash_prefix fluentd-{{ env "node.unique.name" }}
-    logstash_dateformat %Y%m%d
+    logstash_dateformat %Y%m
 
     # This will add the Fluentd tag in the JSON record
     include_tag_key true
@@ -93,8 +93,8 @@
   log_es_400_reason true # leaving this on so we can understand why some records are rejected
 
   logstash_format true
-  logstash_prefix fluentd-{{ env "node.unique.name" }}
-  logstash_dateformat %Y%m%d
+  logstash_prefix {{ env "node.unique.name" }}
+  logstash_dateformat %Y%m
 
   include_tag_key true # This will add the Fluentd tag in the JSON record
 </match>
