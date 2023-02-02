@@ -407,7 +407,6 @@ create_empty_blocks = true
 create_empty_blocks_interval = "0s"
 
 # Reactor sleep duration parameters
-peer_gossip_sleep_duration = "100ms"
 peer_gossip_sleep_duration = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/consensus.peer_gossip_sleep_duration") "\"100ms\"" }}
 peer_query_maj23_sleep_duration = "2s"
 
