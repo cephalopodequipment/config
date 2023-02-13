@@ -397,7 +397,7 @@ timeout_commit = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | 
 # When non-zero, the node will panic upon restart
 # if the same consensus key was used to sign {double_sign_check_height} last blocks.
 # So, validators should stop the state machine, wait for some blocks, and then restart the state machine to avoid panic.
-double_sign_check_height = 0
+double_sign_check_height = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.double_sign_check_height") "0" }}
 
 # Make progress as soon as we have all the precommits (as if TimeoutCommit = 0)
 skip_timeout_commit = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/consensus.skip_timeout_commit") "false" }}
