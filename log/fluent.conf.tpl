@@ -41,13 +41,18 @@
 
 <filter node.sdk.**>
   @type grep
+
+  ### Excluding these entries for now as they break json parsing
   <exclude>
     key log
 
     # bugsnag - for events emitted by the injective nodes
     # Dragonberry - lots of these useless things
+    # block-manager - agoric nodes logging block begin and commit, kinda useless
+    # OnAcknowledgementPacket - stride nodes emit this log line for an IBC ACK
+    # validator_set_updater - tgrade x/poe module output. Seems kinda useless
     #
-    pattern /^Dragonberry|bugsnag/
+    pattern /^Dragonberry|bugsnag|block-manager|^OnAcknowledgementPacket|validator_set_updater/
   </exclude>
 </filter>
 
@@ -66,17 +71,16 @@
  @type record_transformer
  enable_ruby true
  <record>
-
    #Setting these fields to string for various reasons
    #TODO: open some issues / PR to tendermint / SDK to fix these logs
-
    height ${record["height"].to_s} # `x/ibc/client` module outputs height as `1-xxxx`
-
    hash ${record["hash"].to_s} # `consensus` module outputs hash as `{}` when logging "finalizing commit of block"
-
    peer ${record["peer"].to_s}
    addr ${record["addr"].to_s}
+   address ${record["addr"].to_s}
    impl ${record["impl"].to_s}
+   type ${record["type"].to_s}
+   remote ${record["remote"].to_s}
    sequence ${record["sequence"].to_s}
  </record>
 </filter>
@@ -93,8 +97,26 @@
   log_es_400_reason true # leaving this on so we can understand why some records are rejected
 
   logstash_format true
-  logstash_prefix node-{{ env "node.unique.name" }}
+  logstash_prefix ${tag}
   logstash_dateformat %Y%m
 
   include_tag_key true # This will add the Fluentd tag in the JSON record
+
+  # buffer configuration so fluentd doesn't use as much RAM
+   <buffer>
+     @type file
+     flush_mode interval
+     flush_thread_count 16
+     path /tmp/nomad.buffer
+     chunk_limit_size 48MB
+     queue_limit_length 512
+     flush_interval 5s
+     overflow_action drop_oldest_chunk
+     retry_max_interval 30s
+     retry_forever false
+     retry_type exponential_backoff
+     retry_timeout 1h
+     retry_wait 20s
+     retry_max_times 30
+   </buffer>
 </match>
