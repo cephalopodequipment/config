@@ -22,32 +22,41 @@ tx_confirmation = true
 [rest]
 enabled = true
 host = '0.0.0.0'
-port = {{ env "NOMAD_PORT_rest" }}
+port = 3000
 
 [telemetry]
 enabled = true
-host    = '0.0.0.0'
-port    = {{ env "NOMAD_PORT_prom" }}
+host = '0.0.0.0'
+port = 3001
 
-{{ $path := env "CONSUL_PATH" }}
-{{ range $key, $pairs := tree $path | byKey }}
-[[chains]]
-id = {{ $pairs.chain_id.Value }}
-rpc_addr = 'http://{{ range service $pairs.node_service.Value }}{{ .Address }}:{{ index .ServiceMeta "port-rpc" }}{{end}}'
-grpc_addr = 'http://{{ range service $pairs.node_service.Value }}{{ .Address }}:{{ index .ServiceMeta "port-grpc" }}{{end}}'
-websocket_addr = 'ws://{{ range service $pairs.node_service.Value }}{{ .Address }}:{{ index .ServiceMeta "port-rpc" }}{{end}}/websocket'
+{{ range $chain_id, $job_config := (key (printf "%s" (env "JOB_CONFIG")) | parseJSON) }}
+{{ with tree (printf "hermes/networks/%s" $chain_id) | explode }}
+[[ chains ]]
+id = {{ $chain_id }}
+rpc_addr = 'http://{{ range service $job_config.node_service }}{{ .Address }}:{{ index .ServiceMeta "port-rpc" }}{{end}}'
+grpc_addr = 'http://{{ range service $job_config.node_service }}{{ .Address }}:{{ index .ServiceMeta "port-grpc" }}{{end}}'
+websocket_addr = 'ws://{{ range service $job_config.node_service }}{{ .Address }}:{{ index .ServiceMeta "port-rpc" }}{{end}}/websocket'
 rpc_timeout = '8s'
-account_prefix = {{ $pairs.account_prefix.Value }}
-key_name = {{ $pairs.chain_id.Value }}
+account_prefix = {{ .account_prefix }}
+key_name = {{ $job_config.key_name }}
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Informal'
-gas_price = {{ $pairs.gas_price.Value }}
-max_gas = {{ $pairs.max_gas.Value }}
-max_msg_num = {{ $pairs.max_msg_num.Value }}
-gas_multiplier = {{ $pairs.gas_multiplier.Value }}
-max_tx_size = {{ $pairs.max_tx_size.Value }}
-clock_drift = {{ $pairs.clock_drift.Value }}
-trusting_period = {{ $pairs.trusting_period.Value }}
-trust_threshold = {{ $pairs.trust_threshold.Value }}
-packet_filter = { policy = {{ $pairs.policy.Value }}, list = [["transfer", {{ $pairs.channel_id.Value }}]]}
-{{ end }}
+gas_price = {{ .gas_price }}
+max_gas = {{ .max_gas }}
+max_msg_num = {{ .max_msg_num }}
+gas_multiplier = {{ .gas_multiplier }}
+max_tx_size = {{ .max_tx_size }}
+clock_drift = {{ .clock_drift }}
+trusting_period = {{ .trusting_period }}
+trust_threshold = {{ .trust_threshold }}
+packet_filter = { policy = allow, list = [
+{{- $first := true -}}
+{{- range $job_config.channels -}}
+  {{- if $first -}}
+      {{- $first = false -}}
+  {{- else -}}
+      ,
+  {{- end -}}
+  {{ . }}
+{{- end -}}] }
+{{ end }}{{ end }}
