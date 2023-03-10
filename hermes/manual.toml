@@ -23,7 +23,7 @@ rpc_timeout = '8s'
 account_prefix = 'cosmos'
 key_name = 'aw1'
 store_prefix = 'ibc'
-memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
+memo_prefix = 'Connect the Interchain. Stake with Informal 🐙'
 gas_price  =  { price  =  0.0002, denom  =  'uatom' }
 max_gas = 3000000
 max_msg_num = 15
@@ -41,7 +41,7 @@ rpc_timeout ='8s'
 account_prefix ='akash'
 key_name ='aw1'
 store_prefix ='ibc'
-memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
+memo_prefix = 'Connect the Interchain. Stake with Informal 🐙'
 gas_price = { price = 0.001, denom = 'uakt' }
 max_gas = 2000000
 clock_drift ='7200s'
@@ -58,7 +58,7 @@ rpc_timeout = '8s'
 account_prefix = 'cro'
 key_name = 'aw1'
 store_prefix = 'ibc'
-memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
+memo_prefix = 'Connect the Interchain. Stake with Informal 🐙'
 gas_price  =  { price  =  0.1, denom  =  'basecro' }
 max_gas = 1200000
 max_msg_num = 15
@@ -76,7 +76,7 @@ rpc_timeout = '8s'
 account_prefix = 'regen'
 key_name = 'aw1'
 store_prefix = 'ibc'
-memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
+memo_prefix = 'Connect the Interchain. Stake with Informal 🐙'
 gas_price  =  { price  =  0.1, denom  =  'uregen' }
 max_gas = 2000000
 max_msg_num = 15
@@ -95,7 +95,7 @@ rpc_timeout = '8s'
 account_prefix = 'ixo'
 key_name = 'aw1'
 store_prefix = 'ibc'
-memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
+memo_prefix = 'Connect the Interchain. Stake with Informal 🐙'
 gas_price = { price = 0.01, denom = 'uixo' }
 max_gas = 5000000
 max_msg_num = 15
@@ -113,7 +113,7 @@ rpc_timeout = '8s'
 account_prefix = 'juno'
 key_name = 'aw1'
 store_prefix = 'ibc'
-memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
+memo_prefix = 'Connect the Interchain. Stake with Informal 🐙'
 gas_price  =  { price  =  0.001, denom  =  'ujuno' }
 max_gas = 5000000
 max_msg_num = 15
@@ -131,7 +131,7 @@ rpc_timeout = '8s'
 account_prefix = 'osmo'
 key_name = 'aw1'
 store_prefix = 'ibc'
-memo_prefix = 'Connect the Interchain. Stake with Cephalopod 🐙'
+memo_prefix = 'Connect the Interchain. Stake with Informal 🐙'
 gas_price  =  { price  =  0.1, denom  =  'uosmo' }
 max_gas = 19000000
 max_msg_num = 100
