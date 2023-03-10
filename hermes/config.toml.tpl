@@ -38,6 +38,7 @@ websocket_addr = 'ws://{{ range service $job_config.node_service }}{{ .Address }
 rpc_timeout = '8s'
 account_prefix = '{{ .account_prefix }}'
 key_name = '{{ $job_config.key_name }}'
+address_type = {{ .address_type }}
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Informal 🐙'
 gas_price = {{ .gas_price }}

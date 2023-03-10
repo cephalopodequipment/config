@@ -123,6 +123,25 @@ trusting_period = '14days'
 trust_threshold = { numerator = '1', denominator = '3' }
 
 [[chains]]
+id = 'evmos_9001-2'
+rpc_addr = 'http://evmos0.cec:26600'
+grpc_addr = 'http://evmos0.cec:26602'
+websocket_addr = 'ws://evmos0.cec:26600/websocket'
+rpc_timeout = '8s'
+account_prefix = 'evmos'
+key_name = 'aw1'
+address_type = { derivation = 'ethermint', proto_type = { pk_type = '/ethermint.crypto.v1.ethsecp256k1.PubKey' } }
+store_prefix = 'ibc'
+memo_prefix = 'Connect the Interchain. Stake with Informal 🐙'
+gas_price  =  { price  =  0.001, denom  =  'ujuno' }
+max_gas = 5000000
+max_msg_num = 15
+max_tx_size = 450000
+clock_drift = '7200s'
+trusting_period = '14days'
+trust_threshold = { numerator = '1', denominator = '3' }
+
+[[chains]]
 id = 'osmosis-1'
 rpc_addr = 'http://10.10.51.174:26670'
 grpc_addr = 'http://10.10.51.174:26672'
