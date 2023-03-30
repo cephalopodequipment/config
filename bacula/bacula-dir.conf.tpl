@@ -64,7 +64,7 @@ Schedule {
 
 ### FILESETS ###
 
-@|"sh -c 'for f in /etc/bacula/jobs/*.conf ; do echo @${f} ; done'"
+@|"sh -c 'for f in /etc/bacula/filesets/*.conf ; do echo @${f} ; done'"
 
 
 ### POOLS ###
