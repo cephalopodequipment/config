@@ -1,6 +1,4 @@
 #!/bin/bash
-
-set -e
 DATE=$(date '+%Y-%-m-%d-%A-%B-%s')
 mkdir -p /home/hashistack/backups/nomad
 mkdir -p /home/hashistack/backups/consul
@@ -10,6 +8,6 @@ nomad operator snapshot save -address={{ key "backup/hashistack/NOMAD_SERVER" }}
 
 consul snapshot save -http-addr={{ key "backup/hashistack/CONSUL_SERVER" }} /home/hashistack/backups/consul/consul-${DATE}.snapshot >> /home/hashistack/backups/log/backup-${DATE}.log
 
-ls -t /home/hashistack/backups/log/ | tail -n +6 | xargs rm --
-ls -t /home/hashistack/backups/nomad/ | tail -n +6 | xargs rm --
-ls -t /home/hashistack/backups/consul/ | tail -n +6 | xargs rm --
+find /home/hashistack/backups/log -type f -mtime +30 -delete
+find /home/hashistack/backups/nomad -type f -mtime +30 -delete
+find /home/hashistack/backups/consul -type f -mtime +30 -delete
