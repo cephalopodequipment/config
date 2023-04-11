@@ -2,6 +2,10 @@
 
 set -e
 DATE=$(date '+%Y-%-m-%d-%A-%B')
+mkdir -p /home/hashistack/backups/nomad
+mkdir -p /home/hashistack/backups/consul
+mkdir -p /home/hashistack/backups/vault
+mkdir -p /home/hashistack/backups/log
 
 nomad operator snapshot save -address={{ key "backup/hashistack/NOMAD_SERVER" }} /home/hashistack/backups/nomad/nomad-${DATE}.snapshot > /home/hashistack/backups/log/backup-${DATE}.log
 
