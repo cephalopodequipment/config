@@ -1,4 +1,5 @@
 #!/bin/bash
+set -ex
 DATE=$(date '+%Y-%-m-%d-%A-%B-%s')
 mkdir -p /home/hashistack/backups/nomad
 mkdir -p /home/hashistack/backups/consul
