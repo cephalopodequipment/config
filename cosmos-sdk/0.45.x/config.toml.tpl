@@ -533,6 +533,11 @@ name = "kava"
 rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.kava.rpc") "\"\"" }}
 start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.kava.enable") "false" }}
 
+[[axelar_bridge_evm]]
+name = "filecoin"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.filecoin.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.filecoin.enable") "false" }}
+
 ##### message broadcasting options #####
 [broadcast]
 
