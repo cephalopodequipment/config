@@ -19,7 +19,7 @@ network {
 
         heartbeat {
                 mode mesh
-                address {{ env "HOST" }}
+                address any
                 port 3002
 
                 interval 150
