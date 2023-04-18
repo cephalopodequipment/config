@@ -21,7 +21,6 @@ network {
                 mode mesh
                 address {{ env "HOST" }}
                 port 3002
-		interface-address {{ env "HOST" }}
 
                 mesh-seed-address-port {{ env "HOST" }} 3002
 
