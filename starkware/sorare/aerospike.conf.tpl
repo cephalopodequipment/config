@@ -22,8 +22,6 @@ network {
                 address {{ env "HOST" }}
                 port 3002
 
-                mesh-seed-address-port {{ env "HOST" }} 3002
-
                 interval 150
                 timeout 20
         }
