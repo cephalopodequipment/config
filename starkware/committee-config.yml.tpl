@@ -38,6 +38,6 @@ STORAGE:
   config:
     hosts:
       - {{ key (print (env "CONSUL_PATH") "/aerospike.host")  }}
-    namespace: {{ key (print (env "CONSUL_PATH") "/aerospike.namespace") | replace "\"" "" }}
+    namespace: {{ key (print (env "CONSUL_PATH") "/aerospike.namespace") }}
     aero_set: starkware
     index_bits: 28
