@@ -19,10 +19,8 @@ network {
 
         heartbeat {
                 mode mesh
-                address 127.0.0.1
+                address any
                 port 3002
-
-                mesh-seed-address-port 127.0.0.1 3002
 
                 interval 150
                 timeout 20
