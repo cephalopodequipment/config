@@ -14,24 +14,24 @@ logging {
 
 network {
         service {
-                port 3100
+                port 3000
         }
 
         heartbeat {
                 mode mesh
                 address any
-                port 3102
+                port 3002
 
                 interval 150
                 timeout 20
         }
 
         fabric {
-                port 3101
+                port 3001
         }
 
         info {
-                port 3103
+                port 3003
         }
 }
 
