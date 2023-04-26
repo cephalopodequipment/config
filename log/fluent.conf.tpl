@@ -66,6 +66,24 @@
   </parse>
 </filter>
 
+<filter node.sdk.**>
+ @type record_transformer
+ enable_ruby true
+ <record>
+   #Setting these fields to string for various reasons
+   #TODO: open some issues / PR to tendermint / SDK to fix these logs
+   height ${record["height"].to_s} # `x/ibc/client` module outputs height as `1-xxxx`
+   hash ${record["hash"].to_s} # `consensus` module outputs hash as `{}` when logging "finalizing commit of block"
+   peer ${record["peer"].to_s}
+   addr ${record["addr"].to_s}
+   address ${record["addr"].to_s}
+   impl ${record["impl"].to_s}
+   type ${record["type"].to_s}
+   remote ${record["remote"].to_s}
+   sequence ${record["sequence"].to_s}
+ </record>
+</filter>
+
 # These records can all be handled better however the way they are logged in JSON format is... problematic
 <filter node.sdk.**>
  @type record_transformer
@@ -87,7 +105,7 @@
 
 <match node.sdk.**>
   @type elasticsearch_data_stream
-  data_stream_ilm_policy sdk-node-logs-policy
+  data_stream_ilm_name sdk-node-logs-policy
   data_stream_name ${tag}
 
   # Elasticsearch connection settings
