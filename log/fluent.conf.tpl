@@ -86,7 +86,9 @@
 </filter>
 
 <match node.sdk.**>
-  @type elasticsearch
+  @type elasticsearch_data_stream
+  data_stream_ilm_policy sdk-node-logs-policy
+  data_stream_name ${tag}
 
   # Elasticsearch connection settings
   host {{ key "log/elastic/elastic.ip" }}
