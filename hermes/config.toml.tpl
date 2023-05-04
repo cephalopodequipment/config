@@ -32,9 +32,9 @@ port = 3001
 {{ with tree (printf "hermes/networks/%s" $chain_id) | explode }}
 [[ chains ]]
 id = '{{ $chain_id }}'
-rpc_addr = 'http://{{ range service $job_config.node_service }}{{ .Address }}:{{ index .ServiceMeta "port-rpc" }}{{end}}'
-grpc_addr = 'http://{{ range service $job_config.node_service }}{{ .Address }}:{{ index .ServiceMeta "port-grpc" }}{{end}}'
-websocket_addr = 'ws://{{ range service $job_config.node_service }}{{ .Address }}:{{ index .ServiceMeta "port-rpc" }}{{end}}/websocket'
+rpc_addr = 'http://{{ range service $job_config.node_service }}{{ .Address }}:{{ index .ServiceMeta "PortRpc" }}{{end}}'
+grpc_addr = 'http://{{ range service $job_config.node_service }}{{ .Address }}:{{ index .ServiceMeta "PortGrpc" }}{{end}}'
+websocket_addr = 'ws://{{ range service $job_config.node_service }}{{ .Address }}:{{ index .ServiceMeta "PortRpc" }}{{end}}/websocket'
 rpc_timeout = '8s'
 account_prefix = '{{ .account_prefix }}'
 key_name = '{{ $job_config.key_name }}'
