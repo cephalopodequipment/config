@@ -1,3 +1,6 @@
+[global]
+log_level = 'debug'
+
 [mode]
 [mode.clients]
 enabled = false
