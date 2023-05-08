@@ -1,5 +1,5 @@
 [global]
-log_level = 'debug'
+log_level = '{{ keyOrDefault (printf "hermes/relayers/%s/log_level" (env "JOB_NAME")) "info" }}'
 
 [mode]
 [mode.clients]
@@ -28,7 +28,7 @@ port = 3000
 enabled = true
 host = '0.0.0.0'
 port = 3001
-{{ range $chain_id, $job_config := (key (printf "%s" (env "JOB_CONFIG")) | parseJSON) -}}
+{{ range $chain_id, $job_config := (key (printf "hermes/relayers/%s/chain_config" (env "JOB_NAME")) | parseJSON) -}}
 {{ with tree (printf "hermes/networks/%s" $chain_id) | explode }}
 [[ chains ]]
 id = '{{ $chain_id }}'
