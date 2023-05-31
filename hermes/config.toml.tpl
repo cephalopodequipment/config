@@ -32,9 +32,9 @@ port = 3001
 {{ with tree (printf "hermes/networks/%s" $chain_id) | explode }}
 [[ chains ]]
 id = '{{ $chain_id }}'
-rpc_addr = 'http://{{ range service $job_config.node_service }}{{ .Address }}:{{ index .ServiceMeta "PortRpc" }}{{end}}'
-grpc_addr = 'http://{{ range service $job_config.node_service }}{{ .Address }}:{{ index .ServiceMeta "PortGrpc" }}{{end}}'
-websocket_addr = 'ws://{{ range service $job_config.node_service }}{{ .Address }}:{{ index .ServiceMeta "PortRpc" }}{{end}}/websocket'
+rpc_addr = 'http://{{ range service (printf "%s.network-node" $chain_id) }}{{ if .Tags | contains $job_config.node_service }}{{ .Address }}:{{ index .ServiceMeta "PortRpc" }}{{end}}{{end}}'
+grpc_addr = 'http://{{ range service (printf "%s.network-node" $chain_id) }}{{ if .Tags | contains $job_config.node_service }}{{ .Address }}:{{ index .ServiceMeta "PortGrpc" }}{{end}}{{end}}'
+websocket_addr = 'ws://{{ range service (printf "%s.network-node" $chain_id) }}{{ if .Tags | contains $job_config.node_service }}{{ .Address }}:{{ index .ServiceMeta "PortRpc" }}{{end}}{{end}}/websocket'
 rpc_timeout = '8s'
 account_prefix = '{{ .account_prefix }}'
 key_name = '{{ $job_config.key_name }}'
@@ -46,7 +46,7 @@ max_gas = {{ .max_gas }}
 max_msg_num = {{ .max_msg_num }}
 gas_multiplier = {{ .gas_multiplier }}
 max_tx_size = {{ .max_tx_size }}
-batch_delay = "100ms"
+batch_delay = "1s"
 clock_drift = '{{ .clock_drift }}'
 trusting_period = '{{ .trusting_period }}'
 trust_threshold = {{ .trust_threshold }}
