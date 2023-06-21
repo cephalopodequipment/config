@@ -96,7 +96,7 @@ indexer = "null"
 
 [ledger.cometbft.instrumentation]
 prometheus = true
-prometheus_listen_addr = "tcp://0.0.0.0:{{ env "NOMAD_PORT_prom" }}"
+prometheus_listen_addr = "0.0.0.0:{{ env "NOMAD_PORT_prom" }}"
 max_open_connections = 3
 namespace = "namada_tm"
 
