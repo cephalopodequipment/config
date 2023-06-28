@@ -13,18 +13,18 @@ tendermint_mode = "Validator"
 
 [ledger.cometbft]
 proxy_app = "tcp://127.0.0.1:26658"
-moniker = "{{ keyOrDefault (print (env "CONSUL_PATH") "/base.moniker") "\"20k leagues under the sea\"" }}"
+moniker = {{ keyOrDefault (print (env "CONSUL_PATH") "/base.moniker") "\"20k leagues under the sea\"" }}
 db_backend = "goleveldb"
 db_dir = "data"
 log_level = "info"
-log_format = "{{ keyOrDefault  (print (env "CONSUL_PATH") "/base.log_format") "\"json\"" }}"
+log_format = {{ keyOrDefault  (print (env "CONSUL_PATH") "/base.log_format") "\"json\"" }}
 genesis_file = "config/genesis.json"
 node_key_file = "config/node_key.json"
 abci = "socket"
 filter_peers = false
 priv_validator_key_file = "config/priv_validator_key.json"
 priv_validator_state_file = "data/priv_validator_state.json"
-priv_validator_laddr = "{{ if (env "VALIDATOR") | parseBool }} "tcp://0.0.0.0:{{ env "NOMAD_PORT_tmkms" }}" {{ else }} "" {{ end }}"
+priv_validator_laddr = {{ if (env "VALIDATOR") | parseBool }} "tcp://0.0.0.0:{{ env "NOMAD_PORT_tmkms" }}" {{ else }} "" {{ end }}
 
 [ledger.cometbft.rpc]
 laddr = "tcp://0.0.0.0:{{ env "NOMAD_PORT_rpc" }}"
