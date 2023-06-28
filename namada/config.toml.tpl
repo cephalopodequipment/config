@@ -1,8 +1,8 @@
 wasm_dir = "wasm"
 
 [ledger]
-genesis_time = "2023-06-20T17:00:00+00:00"
-chain_id = "public-testnet-9.0.5aa315d1a22"
+genesis_time = "{{ env "GENESIS_TIME" }}"
+chain_id = "{{ env "CHAIN_ID" }}"
 
 [ledger.shell]
 base_dir = "/home/namada/.local/share/namada"
