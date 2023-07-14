@@ -538,6 +538,11 @@ name = "filecoin"
 rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.filecoin.rpc") "\"\"" }}
 start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.filecoin.enable") "false" }}
 
+[[axelar_bridge_evm]]
+name = "optimism"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.optimism.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.optimism.enable") "false" }}
+
 ##### message broadcasting options #####
 [broadcast]
 
