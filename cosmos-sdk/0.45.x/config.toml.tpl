@@ -543,6 +543,11 @@ name = "optimism"
 rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.optimism.rpc") "\"\"" }}
 start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.optimism.enable") "false" }}
 
+[[axelar_bridge_evm]]
+name = "base"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.base.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.base.enable") "false" }}
+
 ##### message broadcasting options #####
 [broadcast]
 
