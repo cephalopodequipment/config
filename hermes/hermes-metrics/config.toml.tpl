@@ -8,4 +8,4 @@ path = "{{ env "DB_PATH" }}"
 
 [metrics]
 enabled = true
-port    = {{ env "NOMAD_PORT_prom" }}
+port    = {{ env "PORT" }}
