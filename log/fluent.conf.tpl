@@ -56,7 +56,7 @@
   </exclude>
 </filter>
 
-<filter node.sdk.**> # "node.sdk" tag is set by the logging driver config in the nomad job
+<filter node.**> # "node.sdk" tag is set by the logging driver config in the nomad job
   @type parser
   key_name log
   <parse>
@@ -91,7 +91,7 @@
  </record>
 </filter>
 
-<match node.sdk.**>
+<match node.**>
   @type elasticsearch_data_stream
   data_stream_ilm_name sdk-node-logs-policy
   data_stream_name ${tag}
