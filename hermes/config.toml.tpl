@@ -54,7 +54,6 @@ ccv_consumer_chain = {{or .ccv_consumer_chain "false"}}
 max_msg_num = {{ .max_msg_num }}
 gas_multiplier = {{ .gas_multiplier }}
 max_tx_size = {{ .max_tx_size }}
-batch_delay = {{or .batch_delay "\"500ms\""}}
 clock_drift = '{{ .clock_drift }}'
 trusting_period = '{{ .trusting_period }}'
 trust_threshold = {{ .trust_threshold }}
