@@ -28,6 +28,8 @@ port = 3000
 enabled = true
 host = '0.0.0.0'
 port = 3001
+
+[telemetry.buckets]
 latency_submitted = { start = 500, end = 500000, buckets = 10 }
 latency_confirmed = { start = 1000, end = 100000, buckets = 10 }
 
