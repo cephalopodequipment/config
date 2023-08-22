@@ -28,6 +28,9 @@ port = 3000
 enabled = true
 host = '0.0.0.0'
 port = 3001
+latency_submitted = { start = 500, end = 500000, buckets = 10 }
+latency_confirmed = { start = 1000, end = 100000, buckets = 10 }
+
 {{ range $chain_id, $job_config := (key (printf "hermes/relayers/%s/chain_config" (env "JOB_NAME")) | parseJSON) -}}
 {{ with tree (printf "hermes/networks/%s" $chain_id) | explode }}
 [[ chains ]]
