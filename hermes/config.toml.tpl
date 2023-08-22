@@ -43,6 +43,7 @@ store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Informal 🐙'
 gas_price = {{ .gas_price }}
 max_gas = {{ .max_gas }}
+ccv_consumer_chain = {{or .ccv_consumer_chain "false"}}
 max_msg_num = {{ .max_msg_num }}
 gas_multiplier = {{ .gas_multiplier }}
 max_tx_size = {{ .max_tx_size }}
