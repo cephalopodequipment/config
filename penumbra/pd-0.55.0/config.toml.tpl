@@ -1,4 +1,4 @@
-proxy_app = "tcp://0.0.0.0:{{ env "NOMAD_PORT_abci" }}"
+proxy_app = "tcp://{{ env "NOMAD_IP_abci" }}:{{ env "NOMAD_PORT_abci" }}"
 moniker = {{ keyOrDefault (print (env "CONSUL_PATH") "/base.moniker") "\"20k leagues under the sea\"" }}
 fast_sync = true
 db_backend = "goleveldb"
