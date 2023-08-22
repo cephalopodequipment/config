@@ -40,6 +40,7 @@ id = '{{ $chain_id }}'
 rpc_addr = 'http://{{ range service (printf "%s.network-node" $chain_id) }}{{ if .Tags | contains $job_config.node_service }}{{ .Address }}:{{ index .ServiceMeta "PortRpc" }}{{end}}{{end}}'
 grpc_addr = 'http://{{ range service (printf "%s.network-node" $chain_id) }}{{ if .Tags | contains $job_config.node_service }}{{ .Address }}:{{ index .ServiceMeta "PortGrpc" }}{{end}}{{end}}'
 websocket_addr = 'ws://{{ range service (printf "%s.network-node" $chain_id) }}{{ if .Tags | contains $job_config.node_service }}{{ .Address }}:{{ index .ServiceMeta "PortRpc" }}{{end}}{{end}}/websocket'
+event_source = { mode = 'push', url = 'ws://{{ range service (printf "%s.network-node" $chain_id) }}{{ if .Tags | contains $job_config.node_service }}{{ .Address }}:{{ index .ServiceMeta "PortRpc" }}{{end}}{{end}}/websocket', batch_delay = {{or .batch_delay "\'500ms\'"}} }
 rpc_timeout = '8s'
 trusted_node = {{or .trusted_node "false"}}
 account_prefix = '{{ .account_prefix }}'
@@ -54,7 +55,7 @@ ccv_consumer_chain = {{or .ccv_consumer_chain "false"}}
 max_msg_num = {{ .max_msg_num }}
 gas_multiplier = {{ .gas_multiplier }}
 max_tx_size = {{ .max_tx_size }}
-batch_delay = {{or .batch_delay "\"1s\""}}
+batch_delay = {{or .batch_delay "\"500ms\""}}
 clock_drift = '{{ .clock_drift }}'
 trusting_period = '{{ .trusting_period }}'
 trust_threshold = {{ .trust_threshold }}
