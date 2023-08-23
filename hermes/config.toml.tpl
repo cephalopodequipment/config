@@ -15,7 +15,7 @@ enabled = false
 
 [mode.packets]
 enabled = true
-clear_interval = 89
+clear_interval = {{ keyOrDefault (printf "hermes/relayers/%s/clear_interval" (env "JOB_NAME")) "89" }}
 clear_on_start = true
 tx_confirmation = true
 
