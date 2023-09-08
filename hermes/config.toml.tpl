@@ -30,8 +30,8 @@ host = '0.0.0.0'
 port = 3001
 
 [telemetry.buckets]
-latency_submitted = {{ key (printf "hermes/relayers/%s/latency_submitted" (env "JOB_NAME")) }}
-latency_confirmed = {{ key (printf "hermes/relayers/%s/latency_confirmed" (env "JOB_NAME")) }}
+latency_submitted = {{ keyOrDefault (printf "hermes/relayers/%s/latency_submitted" (env "JOB_NAME")) "{ start = 1000, end = 100000, buckets = 9 }" }}
+latency_confirmed = {{ keyOrDefault (printf "hermes/relayers/%s/latency_confirmed" (env "JOB_NAME")) "{ start = 200, end = 20000, buckets = 9 }" }}
 
 {{ range $chain_id, $job_config := (key (printf "hermes/relayers/%s/chain_config" (env "JOB_NAME")) | parseJSON) -}}
 {{ with tree (printf "hermes/networks/%s" $chain_id) | explode }}
