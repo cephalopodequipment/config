@@ -267,12 +267,7 @@ private_peer_ids = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" 
 allow_duplicate_ip = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.allow_duplicate_ip") "false" }}
 
 # Peer connection configuration.
-handshake_timeout = "20s"[[axelar_bridge_evm]]
-
-name = "base"
-rpc_addr = "http://IP:PORT"
-start-with-bridge = true
-
+handshake_timeout = "20s"
 dial_timeout = "3s"
 
 #######################################################
@@ -303,12 +298,7 @@ cache_size = 10000
 # Do not remove invalid transactions from the cache (default: false)
 # Set to true if it's not possible for any invalid transaction to become valid
 # again in the future.
-keep-invalid-txs-in-cache = false[[axelar_bridge_evm]]
-
-name = "base"
-rpc_addr = "http://IP:PORT"
-start-with-bridge = true
-
+keep-invalid-txs-in-cache = false
 
 # Maximum size of a single transaction.
 # NOTE: the max size of a tx transmitted over the network is {max_tx_bytes}.
@@ -386,11 +376,6 @@ version = "v0"
 ###         Consensus Configuration Options         ###
 #######################################################
 [consensus]
-[[axelar_bridge_evm]]
-
-name = "base"
-rpc_addr = "http://IP:PORT"
-start-with-bridge = true
 
 wal_file = "data/cs.wal/wal"
 
@@ -432,11 +417,6 @@ peer_query_maj23_sleep_duration = "2s"
 ###         Storage Configuration Options           ###
 #######################################################
 [storage]
-[[axelar_bridge_evm]]
-
-name = "base"
-rpc_addr = "http://IP:PORT"
-start-with-bridge = true
 
 # Set to true to discard ABCI responses from the state store, which can save a
 # considerable amount of disk space. Set to false to ensure ABCI responses are
