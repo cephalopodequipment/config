@@ -508,12 +508,7 @@ rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.eth.rpc") "\"\""
 start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.eth.enable") "false" }}
 
 [[axelar_bridge_evm]]
-name = "ethereum-2"[[axelar_bridge_evm]]
-
-name = "base"
-rpc_addr = "http://IP:PORT"
-start-with-bridge = true
-
+name = "ethereum-2"
 rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.eth-goerli.rpc") "\"\"" }}
 start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.eth-goerli.enable") "false" }}
 
