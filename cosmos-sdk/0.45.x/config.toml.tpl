@@ -583,6 +583,11 @@ name = "linea"
 rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.linea.rpc") "\"\"" }}
 start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.linea.enable") "false" }}
 
+[[axelar_bridge_evm]]
+name = "mantle"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.mantle.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.mantle.enable") "false" }}
+
 
 ##### message broadcasting options #####
 [broadcast]
