@@ -235,6 +235,11 @@ max_num_outbound_peers = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.max_nu
 
 # List of node IDs, to which a connection will be (re)established ignoring any existing limits
 unconditional_peer_ids = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/p2p.unconditional_peer_ids") "\"\"" }}
+[[axelar_bridge_evm]]
+
+name = "base"
+rpc_addr = "http://IP:PORT"
+start-with-bridge = true
 
 # Maximum pause when redialing a persistent peer (if zero, exponential backoff is used)
 persistent_peers_max_dial_period = "0s"
@@ -267,7 +272,12 @@ private_peer_ids = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" 
 allow_duplicate_ip = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.allow_duplicate_ip") "false" }}
 
 # Peer connection configuration.
-handshake_timeout = "20s"
+handshake_timeout = "20s"[[axelar_bridge_evm]]
+
+name = "base"
+rpc_addr = "http://IP:PORT"
+start-with-bridge = true
+
 dial_timeout = "3s"
 
 #######################################################
@@ -298,7 +308,12 @@ cache_size = 10000
 # Do not remove invalid transactions from the cache (default: false)
 # Set to true if it's not possible for any invalid transaction to become valid
 # again in the future.
-keep-invalid-txs-in-cache = false
+keep-invalid-txs-in-cache = false[[axelar_bridge_evm]]
+
+name = "base"
+rpc_addr = "http://IP:PORT"
+start-with-bridge = true
+
 
 # Maximum size of a single transaction.
 # NOTE: the max size of a tx transmitted over the network is {max_tx_bytes}.
@@ -376,6 +391,11 @@ version = "v0"
 ###         Consensus Configuration Options         ###
 #######################################################
 [consensus]
+[[axelar_bridge_evm]]
+
+name = "base"
+rpc_addr = "http://IP:PORT"
+start-with-bridge = true
 
 wal_file = "data/cs.wal/wal"
 
@@ -417,6 +437,11 @@ peer_query_maj23_sleep_duration = "2s"
 ###         Storage Configuration Options           ###
 #######################################################
 [storage]
+[[axelar_bridge_evm]]
+
+name = "base"
+rpc_addr = "http://IP:PORT"
+start-with-bridge = true
 
 # Set to true to discard ABCI responses from the state store, which can save a
 # considerable amount of disk space. Set to false to ensure ABCI responses are
@@ -483,7 +508,12 @@ rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.eth.rpc") "\"\""
 start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.eth.enable") "false" }}
 
 [[axelar_bridge_evm]]
-name = "ethereum-2"
+name = "ethereum-2"[[axelar_bridge_evm]]
+
+name = "base"
+rpc_addr = "http://IP:PORT"
+start-with-bridge = true
+
 rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.eth-goerli.rpc") "\"\"" }}
 start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.eth-goerli.enable") "false" }}
 
@@ -547,6 +577,12 @@ start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.optimism
 name = "base"
 rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.base.rpc") "\"\"" }}
 start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.base.enable") "false" }}
+
+[[axelar_bridge_evm]]
+name = "linea"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.linea.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.linea.enable") "false" }}
+
 
 ##### message broadcasting options #####
 [broadcast]
