@@ -235,11 +235,6 @@ max_num_outbound_peers = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.max_nu
 
 # List of node IDs, to which a connection will be (re)established ignoring any existing limits
 unconditional_peer_ids = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/p2p.unconditional_peer_ids") "\"\"" }}
-[[axelar_bridge_evm]]
-
-name = "base"
-rpc_addr = "http://IP:PORT"
-start-with-bridge = true
 
 # Maximum pause when redialing a persistent peer (if zero, exponential backoff is used)
 persistent_peers_max_dial_period = "0s"
