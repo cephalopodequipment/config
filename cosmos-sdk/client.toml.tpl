@@ -6,7 +6,7 @@
 ###############################################################################
 
 # The network chain ID
-chain-id = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/nomad_config/chain_id") "" }}
+chain-id = "{{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/nomad_config/chain_id") "" }}"
 # The keyring's backend, where the keys are stored (os|file|kwallet|pass|test|memory)
 keyring-backend = "os"
 # CLI output format (text|json)
