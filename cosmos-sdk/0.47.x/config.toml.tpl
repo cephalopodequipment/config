@@ -387,11 +387,11 @@ wal_file = "data/cs.wal/wal"
 # How long we wait for a proposal block before prevoting nil
 timeout_propose = "3s"
 # How much timeout_propose increases with each round
-timeout_propose_delta = "500ms"
+timeout_propose_delta = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_propose_delta") "\"500ms\"" }}
 # How long we wait after receiving +2/3 prevotes for “anything” (ie. not a single block or nil)
 timeout_prevote = "1s"
 # How much the timeout_prevote increases with each round
-timeout_prevote_delta = "500ms"
+timeout_prevote_delta = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_prevote_delta") "\"500ms\"" }}
 # How long we wait after receiving +2/3 precommits for “anything” (ie. not a single block or nil)
 timeout_precommit = "1s"
 # How much the timeout_precommit increases with each round
