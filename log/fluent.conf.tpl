@@ -166,3 +166,41 @@
      retry_max_times 30
    </buffer>
 </match>
+
+<match ibc.metrics.**>
+  @type elasticsearch_data_stream
+  data_stream_ilm_name sdk-node-logs-policy
+  data_stream_name ${tag}
+
+  # Elasticsearch connection settings
+  host {{ key "log/elastic/elastic.ip" }}
+  port {{ key "log/elastic/elastic.port" }}
+  user {{ key "log/elastic/elastic.user" }}
+  password {{ key "log/elastic/bootstrap.password" }}
+
+  log_es_400_reason true # leaving this on so we can understand why some records are rejected
+
+  logstash_format true
+  logstash_prefix ${tag}
+  logstash_dateformat %Y%m
+
+  include_tag_key true # This will add the Fluentd tag in the JSON record
+
+  # buffer configuration so fluentd doesn't use as much RAM
+   <buffer>
+     @type file
+     flush_mode interval
+     flush_thread_count 16
+     path /tmp/ibc.metrics.buffer
+     chunk_limit_size 48MB
+     queue_limit_length 512
+     flush_interval 5s
+     overflow_action drop_oldest_chunk
+     retry_max_interval 30s
+     retry_forever false
+     retry_type exponential_backoff
+     retry_timeout 1h
+     retry_wait 20s
+     retry_max_times 30
+   </buffer>
+</match>
