@@ -1,10 +1,17 @@
-[chains.{{ env "CHAIN_ID" }}]
-url = "{{ env "URL" }}"
+{{- with $chains := env "CHAINS" | split "," -}}
+    {{ range $i := $chains }}
+[chains.{{ $i }}]
+        {{- range service "sentry0.network-node" -}}
+            {{- if .Tags | contains $i }}
+url = "http://{{ .Address }}:{{ index .ServiceMeta "PortRpc" }}"
+            {{- end -}}
+        {{ end }}
 comet_version = "{{ envOrDefault "COMET_VERSION" "0.34" }}"
-
+    {{ end }}
+{{- end }}
 [database]
-path = "{{ env "DB_PATH" }}"
+path = "/home/chainpulse/database/data.db"
 
 [metrics]
-enabled = true
-port    = {{ env "INTERNAL_METRICS_PORT" }}
+enabled = false
+port = 3332
