@@ -422,7 +422,7 @@ peer_query_maj23_sleep_duration = "2s"
 # considerable amount of disk space. Set to false to ensure ABCI responses are
 # persisted. ABCI responses are required for /block_results RPC queries, and to
 # reindex events in the command-line tool.
-discard_abci_responses = {{ keyOrDefault (print (env "CONSUL_PATH") "/storage.discard_abci_responses") "false" }}
+discard_abci_responses = {{ keyOrDefault (print (env "CONSUL_PATH") "/storage.discard_abci_responses") "true" }}
 
 #######################################################
 ###   Transaction Indexer Configuration Options     ###
