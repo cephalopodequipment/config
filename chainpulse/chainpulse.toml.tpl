@@ -10,7 +10,7 @@ comet_version = "{{ envOrDefault "COMET_VERSION" "0.34" }}"
     {{ end }}
 {{- end }}
 [database]
-path = "/home/chainpulse/database/data.db"
+path = "{{ env "DB_PATH" }}"
 
 [metrics]
 enabled = false
