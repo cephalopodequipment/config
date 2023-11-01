@@ -39,7 +39,7 @@ latency_confirmed = {{ keyOrDefault (printf "hermes/relayers/%s/latency_confirme
 id = '{{ $chain_id }}'
 rpc_addr = 'http://{{ range service (printf "%s.network-node" $chain_id) }}{{ if .Tags | contains $job_config.node_service }}{{ .Address }}:{{ index .ServiceMeta "PortRpc" }}{{end}}{{end}}'
 grpc_addr = 'http://{{ range service (printf "%s.network-node" $chain_id) }}{{ if .Tags | contains $job_config.node_service }}{{ .Address }}:{{ index .ServiceMeta "PortGrpc" }}{{end}}{{end}}'
-websocket_addr = 'ws://{{ range service (printf "%s.network-node" $chain_id) }}{{ if .Tags | contains $job_config.node_service }}{{ .Address }}:{{ index .ServiceMeta "PortRpc" }}{{end}}{{end}}/websocket'
+event_source = { mode = 'push', url = 'ws://{{ range service (printf "%s.network-node" $chain_id) }}{{ if .Tags | contains $job_config.node_service }}{{ .Address }}:{{ index .ServiceMeta "PortRpc" }}{{end}}{{end}}/websocket', batch_delay = {{or .batch_delay "'500ms'"}} }
 rpc_timeout = '8s'
 trusted_node = {{or .trusted_node "false"}}
 account_prefix = '{{ .account_prefix }}'
