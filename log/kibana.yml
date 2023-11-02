@@ -6,3 +6,4 @@ telemetry.enabled: false
 elasticsearch.hosts: {{ key "log/elastic/server.host" }}
 elasticsearch.username: {{ key "log/elastic/kibana_system.user" }}
 elasticsearch.password: {{ key "log/elastic/kibana_system.password" }}
+xpack.encryptedSavedObjects.encryptionKey: {{ key "log/elastic/xpack.encryptedSavedObjects.encryptionKey" }}
