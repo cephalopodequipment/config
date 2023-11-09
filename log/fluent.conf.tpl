@@ -206,7 +206,7 @@
 </match>
 
 ####
-##  Hermes logs
+## Hermes logs
 ####
 
 <match hermes-*>
