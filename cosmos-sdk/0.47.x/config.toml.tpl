@@ -471,4 +471,4 @@ prometheus_listen_addr = ":{{ env "NOMAD_PORT_prom" }}"
 max_open_connections = 3
 
 # Instrumentation namespace
-namespace = "cometbft"
+namespace = {{ keyOrDefault (print (env "CONSUL_PATH") "/prom.namespace") "\"tendermint\"" }}
