@@ -233,7 +233,7 @@
      @type file
      flush_mode interval
      flush_thread_count 16
-     path /tmp/tmkms.buffer
+     path /tmp/hermes.buffer
      chunk_limit_size 48MB
      queue_limit_length 512
      flush_interval 5s
