@@ -209,6 +209,15 @@
 ## Hermes logs
 ####
 
+# Filter for parsing JSON logs
+<filter hermes-*>
+  @type parser
+  key_name log
+  format json
+  reserve_data true
+</filter>
+
+# Match for sending logs to Elasticsearch
 <match hermes-*>
   @type elasticsearch_data_stream
   data_stream_ilm_name sdk-node-logs-policy
@@ -229,20 +238,20 @@
   include_tag_key true # This will add the Fluentd tag in the JSON record
 
   # buffer configuration so fluentd doesn't use as much RAM
-   <buffer>
-     @type file
-     flush_mode interval
-     flush_thread_count 16
-     path /tmp/hermes.buffer
-     chunk_limit_size 48MB
-     queue_limit_length 512
-     flush_interval 5s
-     overflow_action drop_oldest_chunk
-     retry_max_interval 30s
-     retry_forever false
-     retry_type exponential_backoff
-     retry_timeout 1h
-     retry_wait 20s
-     retry_max_times 30
-   </buffer>
+  <buffer>
+    @type file
+    flush_mode interval
+    flush_thread_count 16
+    path /tmp/hermes.buffer
+    chunk_limit_size 48MB
+    queue_limit_length 512
+    flush_interval 5s
+    overflow_action drop_oldest_chunk
+    retry_max_interval 30s
+    retry_forever false
+    retry_type exponential_backoff
+    retry_timeout 1h
+    retry_wait 20s
+    retry_max_times 30
+  </buffer>
 </match>
