@@ -166,7 +166,7 @@ experimental_websocket_write_buffer_size = 200
 # predictability in subscription behaviour.
 experimental_close_on_slow_client = false
 
-# How long to wait for a tx to be committed during /broadcast_tx_commit.
+# How long to wait for a tx to be committed during /broadcast_tx_commit.Update config.toml.tpl
 # WARNING: Using a value larger than 10s will result in increasing the
 # global HTTP write timeout, which applies to all connections and endpoints.
 # See https://github.com/tendermint/tendermint/issues/3435
@@ -422,7 +422,7 @@ peer_query_maj23_sleep_duration = "2s"
 # considerable amount of disk space. Set to false to ensure ABCI responses are
 # persisted. ABCI responses are required for /block_results RPC queries, and to
 # reindex events in the command-line tool.
-discard_abci_responses = {{ keyOrDefault (print (env "CONSUL_PATH") "/storage.discard_abci_responses") "true" }}
+discard_abci_responses = {{ keyOrDefault (print (env "CONSUL_PATH") "/storage.discard_abci_responses") "false" }}
 
 #######################################################
 ###   Transaction Indexer Configuration Options     ###
