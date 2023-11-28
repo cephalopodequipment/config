@@ -1,3 +1,6 @@
+[global]
+json_log_fmt = true
+
 {{- with $chains := env "CHAINS" | split "," -}}
     {{ range $i := $chains }}
 [chains.{{ $i }}]
