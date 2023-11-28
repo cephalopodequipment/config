@@ -1,3 +1,4 @@
+# Currently used for Hermes v1.7.1 or greater
 [global]
 log_level = '{{ keyOrDefault (printf "hermes/relayers/%s/log_level" (env "JOB_NAME")) "info" }}'
 
@@ -57,6 +58,7 @@ max_tx_size = {{ .max_tx_size }}
 clock_drift = '{{ .clock_drift }}'
 trusting_period = '{{ .trusting_period }}'
 trust_threshold = {{ .trust_threshold }}
+clear_interval = {{or .clear_interval 123 }}
 packet_filter = { policy = 'allow', list = [
 {{- $first := true -}}
 {{- range $job_config.channels -}}
@@ -68,3 +70,4 @@ packet_filter = { policy = 'allow', list = [
   {{ . }}
 {{- end -}}] }
 {{ end }}{{ end }}
+
