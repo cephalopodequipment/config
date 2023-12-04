@@ -167,6 +167,17 @@
    </buffer>
 </match>
 
+###
+# Chainpulse logs
+###
+
+<filter ibc.metrics.chainpulse.**>
+  @type parser
+  key_name log
+  format json
+  reserve_data true
+</filter>
+
 <match ibc.metrics.**>
   @type elasticsearch_data_stream
   data_stream_ilm_name sdk-node-logs-policy
