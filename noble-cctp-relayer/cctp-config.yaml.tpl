@@ -6,8 +6,8 @@ networks:
       rpc: "{{ with secret (print (env "VAULT_PATH")) }}{{ .Data.data.evm_rpc_endpoint }}{{ end }}"
       message-transmitter: "{{ key (print (env "CONSUL_PATH") "/message-transmitter") }}"
       request-queue-size: 1000
-      start-block: {{ keyOrDefault (print (env "CONSUL_PATH") "/start-block") 0 }}
-      lookback-period: {{ keyOrDefault (print (env "CONSUL_PATH") "/lookback-period") 0 }}
+      start-block: {{ keyOrDefault (print (env "CONSUL_PATH") "/start-block") "0" }}
+      lookback-period: {{ keyOrDefault (print (env "CONSUL_PATH") "/lookback-period") "0" }}
   destination:
     noble:
       domain-id: 4
