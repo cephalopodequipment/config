@@ -26,7 +26,7 @@ networks:
       minter-address: "{{ with secret (print (env "VAULT_PATH")) }}{{ .Data.data.evm_minter_address }}{{ end }}"
       minter-private-key : "{{ with secret (print (env "VAULT_PATH")) }}{{ .Data.data.evm_minter_private_key }}{{ end }}"
     4:
-      minter-address: "{{ with secret (print (env "VAULT_PATH")) }}{{ .Data.data.noble_minter_address }}{{ end }}"  # "noble1...."
+      minter-address: "{{ with secret (print (env "VAULT_PATH")) }}{{ .Data.data.noble_minter_address }}{{ end }}"
       minter-private-key: "{{ with secret (print (env "VAULT_PATH")) }}{{ .Data.data.noble_minter_private_key }}{{ end }}"
 circle:
   attestation-base-url: "https://iris-api.circle.com/attestations/"
@@ -35,4 +35,4 @@ circle:
 processor-worker-count: 16
 api:
   trusted-proxies:
-    - "{{ keyOrDefault (print (env "CONSUL_PATH") "/trusted-proxies")  "0.0.0.0"}}" # "1.2.3.4" # add trusted proxy IPs here
+    - "{{ keyOrDefault (print (env "CONSUL_PATH") "/trusted-proxies")  "0.0.0.0"}}"
