@@ -37,7 +37,7 @@ latency_confirmed = "{ start = 200, end = 20000, buckets = 9 }"
 id = 'sifchain-1'
 rpc_addr = '{{ env "SIFCHAIN_RPC" }}'
 grpc_addr = '{{ env "SIFCHAIN_GRPC" }}'
-event_source = { mode = 'push', url = '{{ env "SIFCHAIN_WS" }}', batch_delay = '100ms' }
+event_source = { mode = 'pull', interval = '1s' }
 rpc_timeout = '8s'
 trusted_node = "false"
 account_prefix = 'cosmos'
@@ -54,7 +54,7 @@ max_tx_size = 180000
 clock_drift = '120s'
 trusting_period = '14days'
 trust_threshold = { numerator = '2', denominator = '3' }
-clear_interval = {{ env "SIFCHAIN_CLEAR_INTERVAL" }}
+clear_interval = 500
 packet_filter = { policy = 'allow', list = [['transfer', 'channel-17']] }
 
 
@@ -62,7 +62,7 @@ packet_filter = { policy = 'allow', list = [['transfer', 'channel-17']] }
 id = 'osmosis-1'
 rpc_addr = '{{ env "OSMO_RPC" }}'
 grpc_addr = '{{ env "OSMO_GRPC" }}'
-event_source = { mode = 'push', url = '{{ env "OSMO_WS" }}', batch_delay = '100ms' }
+event_source = { mode = 'pull', interval = '1s' }
 rpc_timeout = '8s'
 trusted_node = "false"
 account_prefix = 'cosmos'
@@ -79,7 +79,7 @@ max_tx_size = 180000
 clock_drift = '120s'
 trusting_period = '14days'
 trust_threshold = { numerator = '2', denominator = '3' }
-clear_interval = {{ env "OSMO_CLEAR_INTERVAL" }}
+clear_interval = 500
 packet_filter = { policy = 'allow', list = [['transfer', 'channel-47']] }
 
 
