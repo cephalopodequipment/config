@@ -15,7 +15,7 @@ enabled = false
 
 [mode.packets]
 enabled = true
-clear_interval = 500
+clear_interval = {{ env "CLEAR_INTERVAL" }}
 clear_on_start = true
 tx_confirmation = true
 
@@ -54,7 +54,6 @@ max_tx_size = 180000
 clock_drift = '120s'
 trusting_period = '14days'
 trust_threshold = { numerator = '2', denominator = '3' }
-clear_interval = 500
 packet_filter = { policy = 'allow', list = [['transfer', 'channel-17']] }
 
 
@@ -79,7 +78,6 @@ max_tx_size = 180000
 clock_drift = '120s'
 trusting_period = '14days'
 trust_threshold = { numerator = '2', denominator = '3' }
-clear_interval = 500
 packet_filter = { policy = 'allow', list = [['transfer', 'channel-47']] }
 
 
