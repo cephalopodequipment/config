@@ -30,8 +30,8 @@ host = '0.0.0.0'
 port = 3001
 
 [telemetry.buckets]
-latency_submitted = "{ start = 1000, end = 100000, buckets = 9 }"
-latency_confirmed = "{ start = 200, end = 20000, buckets = 9 }"
+latency_submitted = { start = 1000, end = 100000, buckets = 9 }
+latency_confirmed = { start = 200, end = 20000, buckets = 9 }
 
 [[ chains ]]
 id = 'sifchain-1'
