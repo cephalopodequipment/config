@@ -16,7 +16,7 @@ enabled = false
 [mode.packets]
 enabled = true
 clear_interval = 500
-clear_on_start = "true"
+clear_on_start = true
 tx_confirmation = true
 
 [rest]
