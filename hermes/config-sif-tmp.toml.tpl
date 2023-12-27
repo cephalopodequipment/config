@@ -39,15 +39,15 @@ rpc_addr = '{{ env "SIFCHAIN_RPC" }}'
 grpc_addr = '{{ env "SIFCHAIN_GRPC" }}'
 event_source = { mode = 'pull', interval = '1s' }
 rpc_timeout = '8s'
-trusted_node = "false"
-account_prefix = 'cosmos'
+trusted_node = false
+account_prefix = 'sif'
 key_name = '{{ env "SIFCHAIN_AW_KEY" }}'
 address_type = { derivation = 'cosmos' }
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Informal 🐙'
 gas_price = {{ env "SIFCHAIN_GAS_PRICE" }}
 max_gas = {{ env "SIFCHAIN_MAX_GAS" }}
-ccv_consumer_chain = "false"
+ccv_consumer_chain = false
 max_msg_num = 15
 gas_multiplier = 1.2
 max_tx_size = 180000
@@ -64,15 +64,15 @@ rpc_addr = '{{ env "OSMO_RPC" }}'
 grpc_addr = '{{ env "OSMO_GRPC" }}'
 event_source = { mode = 'pull', interval = '1s' }
 rpc_timeout = '8s'
-trusted_node = "false"
-account_prefix = 'cosmos'
+trusted_node = false
+account_prefix = 'osmo'
 key_name = '{{ env "OSMO_AW_KEY" }}'
 address_type = { derivation = 'cosmos' }
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Informal 🐙'
 gas_price = {{ env "OSMO_GAS_PRICE" }}
 max_gas = {{ env "OSMO_MAX_GAS" }}
-ccv_consumer_chain = "false"
+ccv_consumer_chain = false
 max_msg_num = 15
 gas_multiplier = 1.2
 max_tx_size = 180000
