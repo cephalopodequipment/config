@@ -50,7 +50,7 @@ max_gas = {{ env "SIFCHAIN_MAX_GAS" }}
 ccv_consumer_chain = false
 max_msg_num = 15
 gas_multiplier = 1.2
-max_tx_size = 180000
+max_tx_size = 2097152
 clock_drift = '120s'
 trusting_period = '14days'
 trust_threshold = { numerator = '2', denominator = '3' }
@@ -74,7 +74,7 @@ max_gas = {{ env "OSMO_MAX_GAS" }}
 ccv_consumer_chain = false
 max_msg_num = 15
 gas_multiplier = 1.2
-max_tx_size = 180000
+max_tx_size = 2097152
 clock_drift = '120s'
 trusting_period = '14days'
 trust_threshold = { numerator = '2', denominator = '3' }
