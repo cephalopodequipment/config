@@ -1,5 +1,8 @@
 [global]
-json_log_fmt = true
+json_log_fmt            = true
+batch_mode              = true
+zabbix_monitoring       = true
+zabbix_server_address   = "10.10.42.40"
 
 [chains.{{ env "CHAIN" }}]
 url = "http://{{ env "IP" }}:{{ env "RPC_PORT" }}"
