@@ -77,7 +77,7 @@ rpc_addr = '{{ env "COSMOS_RPC" }}'
 grpc_addr = '{{ env "COSMOS_GRPC" }}'
 event_source = { mode = 'push', url = '{{ env "COSMOS_WS" }}', batch_delay = '100ms' }
 rpc_timeout = '8s'
-trusted_node = "false"
+trusted_node = false
 account_prefix = 'cosmos'
 key_name = '{{ env "COSMOS_AW_KEY" }}'
 address_type = { derivation = 'cosmos' }
@@ -85,7 +85,7 @@ store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Informal 🐙'
 gas_price = {{ env "COSMOS_GAS_PRICE" }}
 max_gas = {{ env "COSMOS_MAX_GAS" }}
-ccv_consumer_chain = "false"
+ccv_consumer_chain = false
 max_msg_num = 15
 gas_multiplier = 1.2
 max_tx_size = 180000
