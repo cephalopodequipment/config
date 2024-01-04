@@ -45,6 +45,7 @@ key_name = '{{ env "SIFCHAIN_AW_KEY" }}'
 address_type = { derivation = 'cosmos' }
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Informal 🐙'
+default_gas = 800000
 gas_price = {{ env "SIFCHAIN_GAS_PRICE" }}
 max_gas = {{ env "SIFCHAIN_MAX_GAS" }}
 ccv_consumer_chain = false
@@ -69,6 +70,7 @@ key_name = '{{ env "OSMO_AW_KEY" }}'
 address_type = { derivation = 'cosmos' }
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Informal 🐙'
+default_gas = 800000
 gas_price = {{ env "OSMO_GAS_PRICE" }}
 max_gas = {{ env "OSMO_MAX_GAS" }}
 ccv_consumer_chain = false
