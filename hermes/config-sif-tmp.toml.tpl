@@ -1,5 +1,5 @@
 [global]
-log_level = "info"
+log_level = "{{ env "LOG_LEVEL" }}"
 
 [mode]
 [mode.clients]
