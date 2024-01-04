@@ -17,7 +17,7 @@ enabled = false
 enabled = true
 clear_interval = {{ env "CLEAR_INTERVAL" }}
 clear_on_start = true
-tx_confirmation = true
+tx_confirmation = false
 
 [rest]
 enabled = true
@@ -48,10 +48,10 @@ memo_prefix = 'Connect the Interchain. Stake with Informal 🐙'
 gas_price = {{ env "SIFCHAIN_GAS_PRICE" }}
 max_gas = {{ env "SIFCHAIN_MAX_GAS" }}
 ccv_consumer_chain = false
-max_msg_num = 15
-gas_multiplier = 1.2
-max_tx_size = 2097152
-clock_drift = '120s'
+max_msg_num = 1
+gas_multiplier = 1.7
+max_tx_size = 1580000
+clock_drift = '620s'
 trusting_period = '14days'
 trust_threshold = { numerator = '2', denominator = '3' }
 packet_filter = { policy = 'allow', list = [['transfer', 'channel-17']] }
@@ -72,10 +72,10 @@ memo_prefix = 'Connect the Interchain. Stake with Informal 🐙'
 gas_price = {{ env "OSMO_GAS_PRICE" }}
 max_gas = {{ env "OSMO_MAX_GAS" }}
 ccv_consumer_chain = false
-max_msg_num = 15
-gas_multiplier = 1.2
-max_tx_size = 2097152
-clock_drift = '120s'
+max_msg_num = 1
+gas_multiplier = 1.6
+max_tx_size = 1580000
+clock_drift = '620s'
 trusting_period = '14days'
 trust_threshold = { numerator = '2', denominator = '3' }
 packet_filter = { policy = 'allow', list = [['transfer', 'channel-47']] }
