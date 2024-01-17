@@ -54,7 +54,7 @@ max_tx_size = 2097152
 clock_drift = '120s'
 trusting_period = '14days'
 trust_threshold = { numerator = '2', denominator = '3' }
-packet_filter = { policy = 'allow', list = [['transfer', '*']] }
+packet_filter = { policy = 'allow', list = [['transfer', '{{ env "SIFCHAIN_CHANNEL" }}']] }
 
 
 [[ chains ]]
@@ -78,5 +78,5 @@ max_tx_size = 2097152
 clock_drift = '120s'
 trusting_period = '14days'
 trust_threshold = { numerator = '2', denominator = '3' }
-packet_filter = { policy = 'allow', list = [['transfer', '*']] }
+packet_filter = { policy = 'allow', list = [['transfer', '{{ env "OSMO_CHANNEL" }}']] }
 
