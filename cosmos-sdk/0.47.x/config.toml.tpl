@@ -123,7 +123,7 @@ grpc_max_open_connections = 900
 # Activate unsafe RPC commands like /dial_seeds and /unsafe_flush_mempool
 unsafe = {{ keyOrDefault  (print (env "CONSUL_PATH") "/rpc.unsafe") "false" }}
 
-# Maximum number of simultaneous connections (including WebSocket).Update config.toml.tpl
+# Maximum number of simultaneous connections (including WebSocket).
 # Does not include gRPC connections. See grpc_max_open_connections
 # If you want to accept a larger number than the default, make sure
 # you increase your OS limits.
@@ -172,7 +172,7 @@ experimental_close_on_slow_client = false
 # How long to wait for a tx to be committed during /broadcast_tx_commit.
 # WARNING: Using a value larger than 10s will result in increasing the
 # global HTTP write timeout, which applies to all connections and endpoints.
-# See https://github.com/tendermint/tendermint/issues/3435Update config.toml.tpl
+# See https://github.com/tendermint/tendermint/issues/3435
 timeout_broadcast_tx_commit = "10s"
 
 # Maximum size of request body, in bytes
@@ -214,7 +214,7 @@ laddr = "tcp://0.0.0.0:{{ env "NOMAD_PORT_p2p" }}"
 # example: 159.89.10.97:26656
 external_address = "{{ key (print (env "CONSUL_PATH") "/p2p.external_address") }}:{{ env "NOMAD_PORT_p2p" }}"
 
-# Comma separated list of seed nodes to connect toUpdate config.toml.tpl
+# Comma separated list of seed nodes to connect to
 seeds = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/p2p.seeds") "\"\"" }}
 
 # Comma separated list of nodes to keep persistent connections to
@@ -281,10 +281,10 @@ dial_timeout = "3s"
 # Mempool version to use:
 #   1) "v0" - (default) FIFO mempool.
 #   2) "v1" - prioritized mempool (deprecated; will be removed in the next release).
-version = "v1"
+version = "v0"
 
 recheck = true
-broadcast = true
+broadcast = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.broadcast") "true" }}
 wal_dir = ""
 
 # Maximum number of transactions in the mempool
