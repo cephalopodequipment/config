@@ -35,7 +35,7 @@ url = "postgres://insights:{{ .Data.data.password }}@{{ key "insights/rds_url" }
 ssl_mode = false
 
 [metrics]
-enabled = true
+enabled = {{ envOrDefault "ENABLE_METRICS" "false" }}
 {{- range service "zabbix-server" }}
 #IP address of the zabbix server
 zabbix_server_address = "{{ .Address }}"
