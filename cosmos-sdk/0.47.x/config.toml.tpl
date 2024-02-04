@@ -212,7 +212,7 @@ laddr = "tcp://0.0.0.0:{{ env "NOMAD_PORT_p2p" }}"
 # and will introspect on the listener or use UPnP
 # to figure out the address. ip and port are required
 # example: 159.89.10.97:26656
-external_address = "{{ env EXTERNAL_ip }}:{{ env "NOMAD_PORT_p2p" }}"
+external_address = "{{ env "EXTERNAL_ip" }}:{{ env "NOMAD_PORT_p2p" }}"
 
 # Comma separated list of seed nodes to connect to
 seeds = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/p2p.seeds") "\"\"" }}
