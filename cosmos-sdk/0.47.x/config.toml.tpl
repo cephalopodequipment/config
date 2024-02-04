@@ -429,8 +429,8 @@ peer_query_maj23_sleep_duration = "2s"
 # reindex events in the command-line tool.
 discard_abci_responses = true
 
-compact_on_pruning = true (default is true anyways)
-compaction_interval = 1000 (every thousand blocks)
+compact_on_pruning = true
+compaction_interval = 1000
 pruning_interval = 10s
 
 
