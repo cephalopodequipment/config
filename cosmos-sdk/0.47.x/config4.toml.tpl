@@ -345,7 +345,7 @@ enable = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.enable") "true" 
 #
 # For Cosmos SDK-based chains, trust_period should usually be about 2/3 of the unbonding time (~2
 # weeks) during which they can be financially punished (slashed) for misbehavior.
-rpc_servers = "https://injective-rpc.polkachu.com:443,https://injective-rpc.polkachu.com:443"
+rpc_servers = "https://rpc.cosmos.directory:443/injective,https://injective-rpc.lavenderfive.com:443"
 trust_height = 59513352
 trust_hash = "366AF6F17AFA8EF790C55B4E8730EC64BC0781CCE82EEC53E8030B749F252434"
 trust_period = "168h0m0s"
