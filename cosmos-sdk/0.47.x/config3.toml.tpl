@@ -255,7 +255,7 @@ send_rate = 51200000
 recv_rate = 51200000
 
 # Set true to enable the peer-exchange reactor
-pex = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.pex") "true" }}
+pex = {{ env "PEX" }}
 
 # Seed mode, in which node constantly crawls the network and looks for
 # peers. If another node asks it for addresses, it responds and disconnects.
