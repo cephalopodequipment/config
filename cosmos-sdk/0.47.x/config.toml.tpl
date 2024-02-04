@@ -231,10 +231,10 @@ addr_book_file = "config/addrbook.json"
 addr_book_strict = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.addr_book_strict") "true" }}
 
 # Maximum number of inbound peers
-max_num_inbound_peers = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.max_num_inbound_peers") "5" }}
+max_num_inbound_peers = 35
 
 # Maximum number of outbound peers to connect to, excluding persistent peers
-max_num_outbound_peers = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.max_num_outbound_peers") "10" }}
+max_num_outbound_peers = 45
 
 # List of node IDs, to which a connection will be (re)established ignoring any existing limits
 unconditional_peer_ids = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/p2p.unconditional_peer_ids") "\"\"" }}
@@ -337,7 +337,7 @@ ttl-num-blocks = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.ttl-num-bl
 # the network to take and serve state machine snapshots. State sync is not attempted if the node
 # has any local state (LastBlockHeight > 0). The node will have a truncated block history,
 # starting from the height of the snapshot.
-enable = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.enable") "false" }}
+enable = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.enable") "true" }}
 
 # RPC servers (comma-separated) for light client verification of the synced state machine and
 # retrieval of state data for node bootstrapping. Also needs a trusted height and corresponding
@@ -345,10 +345,10 @@ enable = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.enable") "false"
 #
 # For Cosmos SDK-based chains, trust_period should usually be about 2/3 of the unbonding time (~2
 # weeks) during which they can be financially punished (slashed) for misbehavior.
-rpc_servers = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.rpc_servers") "\"\"" }}
-trust_height = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.trust_height") "0" }}
-trust_hash = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.trust_hash") "\"\"" }}
-trust_period = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/statesync.trust_period") "\"168h0m0s\"" }}
+rpc_servers = "https://injective-rpc.polkachu.com:443,https://injective-rpc.polkachu.com:443"
+trust_height = 59513352
+trust_hash = 366AF6F17AFA8EF790C55B4E8730EC64BC0781CCE82EEC53E8030B749F252434"
+trust_period = "168h0m0s"
 
 # Time to spend discovering snapshots before initiating a restore.
 discovery_time = "15s"
