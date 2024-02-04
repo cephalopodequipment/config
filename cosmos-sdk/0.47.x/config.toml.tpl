@@ -212,7 +212,7 @@ laddr = "tcp://0.0.0.0:{{ env "NOMAD_PORT_p2p" }}"
 # and will introspect on the listener or use UPnP
 # to figure out the address. ip and port are required
 # example: 159.89.10.97:26656
-external_address = "{{ key (print (env "CONSUL_PATH") "/p2p.external_address") }}:{{ env "NOMAD_PORT_p2p" }}"
+external_address = "127.0.0.1:{{ env "NOMAD_PORT_p2p" }}"
 
 # Comma separated list of seed nodes to connect to
 seeds = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/p2p.seeds") "\"\"" }}
@@ -427,7 +427,13 @@ peer_query_maj23_sleep_duration = "2s"
 # considerable amount of disk space. Set to false to ensure ABCI responses are
 # persisted. ABCI responses are required for /block_results RPC queries, and to
 # reindex events in the command-line tool.
-discard_abci_responses = {{ keyOrDefault (print (env "CONSUL_PATH") "/storage.discard_abci_responses") "false" }}
+discard_abci_responses = true
+
+compact_on_pruning = true (default is true anyways)
+compaction_interval = 1000 (every thousand blocks)
+pruning_interval = 10s
+
+
 
 #######################################################
 ###   Transaction Indexer Configuration Options     ###
@@ -445,7 +451,7 @@ discard_abci_responses = {{ keyOrDefault (print (env "CONSUL_PATH") "/storage.di
 # 		- When "kv" is chosen "tx.height" and "tx.hash" will always be indexed.
 #   3) "psql" - the indexer services backed by PostgreSQL.
 # When "kv" or "psql" is chosen "tx.height" and "tx.hash" will always be indexed.
-indexer = {{ keyOrDefault (print (env "CONSUL_PATH") "/tx_index.indexer") "\"kv\"" }}
+indexer = null
 
 # The PostgreSQL connection configuration, the connection format:
 #   postgresql://<user>:<password>@<host>:<port>/<db>?<opts>

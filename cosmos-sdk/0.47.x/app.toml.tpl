@@ -17,11 +17,11 @@ minimum-gas-prices = {{ key (print (env "CONSUL_PATH") "/base.minimum-gas-prices
 # nothing: all historic states will be saved, nothing will be deleted (i.e. archiving node)
 # everything: 2 latest states will be kept; pruning at 10 block intervals.
 # custom: allow pruning options to be manually specified through 'pruning-keep-recent', and 'pruning-interval'
-pruning = {{ keyOrDefault (print (env "CONSUL_PATH") "/base.pruning") "\"default\"" }}
+pruning = {{ keyOrDefault (print (env "CONSUL_PATH") "/base.pruning") "\"custom\"" }}
 
 # These are applied if and only if the pruning strategy is custom.
-pruning-keep-recent = {{ keyOrDefault (print (env "CONSUL_PATH") "/base.pruning-keep-recent") "0" }}
-pruning-interval = {{ keyOrDefault (print (env "CONSUL_PATH") "/base.pruning-interval") "0" }}
+pruning-keep-recent = {{ keyOrDefault (print (env "CONSUL_PATH") "/base.pruning-keep-recent") "3000" }}
+pruning-interval = {{ keyOrDefault (print (env "CONSUL_PATH") "/base.pruning-interval") "603" }}
 
 # HaltHeight contains a non-zero block height at which a node will gracefully
 # halt and shutdown that can be used to assist upgrades and testing.
