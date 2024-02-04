@@ -431,7 +431,7 @@ discard_abci_responses = true
 
 compact_on_pruning = true
 compaction_interval = 1000
-pruning_interval = 10s
+pruning_interval = 10
 
 
 
