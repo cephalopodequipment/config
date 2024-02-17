@@ -265,3 +265,14 @@ fsync = "false"
 # Note, this configuration only applies to SDK built-in app-side mempool
 # implementations.
 max-txs = "5000"
+
+###############################################################################
+###                         WASM                                            ###
+###############################################################################
+
+[wasm]
+# This is the maximum sdk gas (wasm and storage) that we allow for any x/wasm "smart" queries
+query_gas_limit = 300000
+# This defines the memory size for Wasm modules that we can keep cached to speed-up instantiation
+# The value is in MiB not bytes
+memory_cache_size = 3000
