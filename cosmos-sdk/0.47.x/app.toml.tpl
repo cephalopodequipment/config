@@ -267,6 +267,26 @@ fsync = "false"
 max-txs = "5000"
 
 ###############################################################################
+###                      Osmosis Mempool Configuration                      ###
+###############################################################################
+
+[osmosis-mempool]
+# This is the max allowed gas any tx.
+# This is only for local mempool purposes, and thus	is only ran on check tx.
+max-gas-wanted-per-tx = {{ keyOrDefault (print (env "CONSUL_PATH") "/osmo-mempool.max-gas-wanted-per-tx") "\"25000000\"" }}
+
+# This is the minimum gas fee any arbitrage tx should have, denominated in uosmo per gas
+# Default value of ".1" then means that a tx with 1 million gas costs (.1 uosmo/gas) * 1_000_000 gas = .1 osmo
+arbitrage-min-gas-fee = {{ keyOrDefault (print (env "CONSUL_PATH") "/osmo-mempool.arbitrage-min-gas-fee") "\"10\"" }}
+
+# This is the minimum gas fee any tx with high gas demand should have, denominated in uosmo per gas
+# Default value of ".0025" then means that a tx with 1 million gas costs (.0025 uosmo/gas) * 1_000_000 gas = .0025 osmo
+min-gas-price-for-high-gas-tx = {{ keyOrDefault (print (env "CONSUL_PATH") "/osmo-mempool.min-gas-price-for-high-gas-tx") "\"0.01\"" }}
+
+# This parameter enables EIP-1559 like fee market logic in the mempool
+adaptive-fee-enabled = {{ keyOrDefault (print (env "CONSUL_PATH") "/osmo-mempool.adaptive-fee-enabled") "\"true\"" }}
+
+###############################################################################
 ###                         WASM                                            ###
 ###############################################################################
 
