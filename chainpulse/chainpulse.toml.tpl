@@ -11,8 +11,6 @@ batch_mode = {{ envOrDefault "BATCH_MODE" "true" }}
 url = "http://{{ .Address }}:{{ index .ServiceMeta "PortRpc" }}"
             {{- end -}}
         {{ end }}
-comet_version = "{{ envOrDefault "COMET_VERSION" "0.37" }}"
-
 poll_interval = "{{ envOrDefault "POLL_INTERVAL" "500ms" }}"
 
 backfill_from = {{ envOrDefault "BACKFILL_FROM" "0" }}
