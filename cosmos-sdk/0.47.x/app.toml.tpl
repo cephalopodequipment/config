@@ -67,7 +67,7 @@ iavl-cache-size = {{ keyOrDefault (print (env "CONSUL_PATH") "/base.iavl-cache-s
 
 # IAVLDisableFastNode enables or disables the fast node feature of IAVL. 
 # Default is false.
-iavl-disable-fastnode = false
+iavl-disable-fastnode = {{ keyOrDefault (print (env "CONSUL_PATH") "/base.iavl-disable-fastnode") "false" }}
 
 # IAVLLazyLoading enable/disable the lazy loading of iavl store.
 # Default is false.
