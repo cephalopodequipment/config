@@ -52,6 +52,7 @@ memo_prefix = 'Connect the Interchain. Stake with Informal 🐙'
 gas_price = {{ .gas_price }}
 default_gas = {{or .default_gas "200000"}}
 max_gas = {{ .max_gas }}
+dynamic_gas_price = { enabled = {{ or .enable_dynamic_gas "false" }}, multiplier = {{ or .dynamic_gas_multiplier 1 }}, max = {{ or .dynamic_max_gas_price 0 }} }
 ccv_consumer_chain = {{or .ccv_consumer_chain "false"}}
 max_msg_num = {{ .max_msg_num }}
 gas_multiplier = {{ .gas_multiplier }}
@@ -70,11 +71,5 @@ packet_filter = { policy = 'allow', list = [
   {{- end -}}
   {{ . }}
 {{- end -}}] }
-
-[{{ $chain_id }}.dynamic_gas_price]
-enabled = {{ or .enable_dynamic_gas "false" }}
-multiplier = {{ or .dynamic_gas_multiplier 0 }}
-max = {{ or .dynamic_max_gas_price 0 }}
-
 {{ end }}{{ end }}
 
