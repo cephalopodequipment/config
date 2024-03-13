@@ -73,8 +73,8 @@ packet_filter = { policy = 'allow', list = [
 
 [{{ $chain_id }}.dynamic_gas_price]
 enabled = {{ or .enable_dynamic_gas "false" }}
-multiplier = {{ .dynamic_gas_multiplier }}
-max = {{ .dynamic_max_gas_price }}
+multiplier = {{ or .dynamic_gas_multiplier 0 }}
+max = {{ or .dynamic_max_gas_price 0 }}
 
 {{ end }}{{ end }}
 
