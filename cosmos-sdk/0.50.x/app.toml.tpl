@@ -122,7 +122,7 @@ global-labels = [
 enable = true
 
 # Swagger defines if swagger documentation should automatically be registered.
-swagger = true
+swagger = {{ keyOrDefault (print (env "CONSUL_PATH") "/api.swagger") "false" }}
 
 # Address defines the API server to listen on.
 address = "tcp://0.0.0.0:{{ env "NOMAD_PORT_leet" }}"
