@@ -273,7 +273,7 @@ dial_timeout = "3s"
 #  - "nop"   : nop-mempool (short for no operation; the ABCI app is responsible
 #  for storing, disseminating and proposing txs). "create_empty_blocks=false" is
 #  not supported.
-type = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.type") "flood" }}
+type = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.type") "\"flood\"" }}
 
 # Recheck (default: true) defines whether CometBFT should recheck the
 # validity for all remaining transaction in the mempool after a block.
