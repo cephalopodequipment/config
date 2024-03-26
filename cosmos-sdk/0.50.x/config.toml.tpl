@@ -309,7 +309,7 @@ cache_size = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.cache_size") "
 # Do not remove invalid transactions from the cache (default: false)
 # Set to true if it's not possible for any invalid transaction to become valid
 # again in the future.
-keep-invalid-txs-in-cache = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.keep-invalid-txs-in-cache") "false" }}
+keep-invalid-txs-in-cache = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.keep-invalid-txs-in-cache") "true" }}
 
 # Maximum size of a single transaction.
 # NOTE: the max size of a tx transmitted over the network is {max_tx_bytes}.
@@ -415,10 +415,10 @@ timeout_commit = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_
 double_sign_check_height = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.double_sign_check_height") "0" }}
 
 # Make progress as soon as we have all the precommits (as if TimeoutCommit = 0)
-skip_timeout_commit = {{ keyOrDefault (print (env "CONSUL_PATH" ) "/consensus.skip_timeout_commit") "false" }}
+skip_timeout_commit = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.skip_timeout_commit") "false" }}
 
 # EmptyBlocks mode and possible interval between empty blocks
-create_empty_blocks = true
+create_empty_blocks = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.create_empty_blocks") "false" }}
 create_empty_blocks_interval = "0s"
 
 # Reactor sleep duration parameters
