@@ -10,6 +10,7 @@ path = "/home/tmkms/secrets/consensus.key"
 id = "{{ env "CHAIN_ID" }}"
 key_format = { type = "bech32", account_key_prefix = "{{ env "ACCT_KEY_PREFIX" }}", consensus_key_prefix = "{{ env "CONSENSUS_KEY_PREFIX" }}" }
 state_file = "/home/tmkms/state/state.json"
+sign_extensions = {{ envOrDefault "SIGN_EXTENSIONS" "false" }}
 
 
 [[validator]]
