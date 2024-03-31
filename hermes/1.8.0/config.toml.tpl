@@ -60,7 +60,7 @@ max_tx_size = {{ .max_tx_size }}
 clock_drift = '{{ .clock_drift }}'
 trusting_period = '{{ .trusting_period }}'
 trust_threshold = {{ .trust_threshold }}
-clear_interval = {{or .clear_interval 123 }}
+{{if .clear_interval}}clear_interval = {{or .clear_interval 123 }}{{end}}
 packet_filter = { policy = 'allow', list = [
 {{- $first := true -}}
 {{- range $job_config.channels -}}
