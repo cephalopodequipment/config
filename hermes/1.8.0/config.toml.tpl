@@ -61,7 +61,6 @@ clock_drift = '{{ .clock_drift }}'
 trusting_period = '{{ .trusting_period }}'
 trust_threshold = {{ .trust_threshold }}
 clear_interval = {{or .clear_interval 123 }}
-{{if .excluded_sequences}}excluded_sequences = {{or .excluded_sequences "[]"}}{{end}}
 packet_filter = { policy = 'allow', list = [
 {{- $first := true -}}
 {{- range $job_config.channels -}}
@@ -72,5 +71,6 @@ packet_filter = { policy = 'allow', list = [
   {{- end -}}
   {{ . }}
 {{- end -}}] }
+{{if .excluded_sequences}}excluded_sequences = {{or .excluded_sequences "[]"}}{{end}}
 {{ end }}{{ end }}
 
