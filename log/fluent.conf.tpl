@@ -62,12 +62,12 @@
   <parse>
     @type multi_format
     <pattern>
-      @type json
+      format json
       time_type string
       time_format %Y-%m-%dT%H:%M:%S%z
     </pattern>
     <pattern>
-      @type json
+      format json
       time_type string
       time_format %Y-%m-%dT%H:%M:%S.%N%z
     </pattern>
