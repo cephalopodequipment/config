@@ -60,9 +60,17 @@
   @type parser
   key_name log
   <parse>
-    @type json
-    time_type string
-    time_format %Y-%m-%dT%H:%M:%S%z
+    @type multi_format
+    <pattern>
+      format json
+      time_type string
+      time_format %Y-%m-%dT%H:%M:%S%z
+    </pattern>
+    <pattern>
+      format json
+      time_type string
+      time_format %Y-%m-%dT%H:%M:%S.%N%z
+    </pattern>
   </parse>
 </filter>
 
