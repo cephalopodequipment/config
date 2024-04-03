@@ -75,7 +75,7 @@
     # OnAcknowledgementPacket - stride nodes emit this log line for an IBC ACK
     # validator_set_updater - tgrade x/poe module output. Seems kinda useless
     #
-    pattern /^Dragonberry|bugsnag|block-manager|^OnAcknowledgementPacket|validator_set_updater|voteSignBytes/
+    pattern /^Dragonberry|bugsnag|block-manager|^OnAcknowledgementPacket|validator_set_updater|voteSignBytes|store_client_state/
   </exclude>
 </filter>
 
