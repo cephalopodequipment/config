@@ -160,10 +160,9 @@
  </record>
 </filter>
 
-<match node.**>
+<match **>
   @type elasticsearch_data_stream
-  data_stream_ilm_name sdk-node-logs-policy
-  data_stream_name ${tag}
+  data_stream_name "logs"
 
   # Elasticsearch connection settings
   {{- range service "elasticsearch" }}
@@ -174,171 +173,18 @@
     user {{ .Data.data.username }}
     password {{ .Data.data.password }}
   {{- end }}
+  logstash_format false
 
-  log_es_400_reason true # leaving this on so we can understand why some records are rejected
-
-  logstash_format true
-  logstash_prefix ${tag}
-  logstash_dateformat %Y%m
-
-  include_tag_key true # This will add the Fluentd tag in the JSON record
-
-  # buffer configuration so fluentd doesn't use as much RAM
-   <buffer>
-     @type file
-     flush_mode interval
-     flush_thread_count 16
-     path /tmp/nomad.buffer
-     chunk_limit_size 48MB
-     queue_limit_length 512
-     flush_interval 5s
-     overflow_action drop_oldest_chunk
-     retry_max_interval 30s
-     retry_forever false
-     retry_type exponential_backoff
-     retry_timeout 1h
-     retry_wait 20s
-     retry_max_times 30
-   </buffer>
-</match>
-
-<match tmkms.**>
-  @type elasticsearch_data_stream
-  data_stream_ilm_name sdk-node-logs-policy
-  data_stream_name ${tag}
-
-  # Elasticsearch connection settings
-  {{- range service "elasticsearch" }}
-    host {{ .Address }}
-    port {{ index .ServiceMeta "PortHTTP" }}
-  {{- end }}
-  {{- with secret "static_secrets/fluentd" }}
-    user {{ .Data.data.username }}
-    password {{ .Data.data.password }}
-  {{- end }}
-
-  log_es_400_reason true # leaving this on so we can understand why some records are rejected
-
-  logstash_format true
-  logstash_prefix ${tag}
-  logstash_dateformat %Y%m
-
-  include_tag_key true # This will add the Fluentd tag in the JSON record
-
-  # buffer configuration so fluentd doesn't use as much RAM
-   <buffer>
-     @type file
-     flush_mode interval
-     flush_thread_count 16
-     path /tmp/tmkms.buffer
-     chunk_limit_size 48MB
-     queue_limit_length 512
-     flush_interval 5s
-     overflow_action drop_oldest_chunk
-     retry_max_interval 30s
-     retry_forever false
-     retry_type exponential_backoff
-     retry_timeout 1h
-     retry_wait 20s
-     retry_max_times 30
-   </buffer>
-</match>
-
-###
-# Chainpulse logs
-###
-
-<filter ibc.metrics.chainpulse.**>
-  @type parser
-  key_name log
-  format json
-  reserve_data true
-</filter>
-
-<match ibc.metrics.**>
-  @type elasticsearch_data_stream
-  data_stream_ilm_name sdk-node-logs-policy
-  data_stream_name ${tag}
-
-  # Elasticsearch connection settings
-  {{- range service "elasticsearch" }}
-    host {{ .Address }}
-    port {{ index .ServiceMeta "PortHTTP" }}
-  {{- end }}
-  {{- with secret "static_secrets/fluentd" }}
-    user {{ .Data.data.username }}
-    password {{ .Data.data.password }}
-  {{- end }}
-
-  log_es_400_reason true # leaving this on so we can understand why some records are rejected
-
-  logstash_format true
-  logstash_prefix ${tag}
-  logstash_dateformat %Y%m
-
-  include_tag_key true # This will add the Fluentd tag in the JSON record
-
-  # buffer configuration so fluentd doesn't use as much RAM
-   <buffer>
-     @type file
-     flush_mode interval
-     flush_thread_count 16
-     path /tmp/ibc.metrics.buffer
-     chunk_limit_size 48MB
-     queue_limit_length 512
-     flush_interval 5s
-     overflow_action drop_oldest_chunk
-     retry_max_interval 30s
-     retry_forever false
-     retry_type exponential_backoff
-     retry_timeout 1h
-     retry_wait 20s
-     retry_max_times 30
-   </buffer>
-</match>
-
-####
-## Hermes logs
-####
-
-# Filter for parsing JSON logs
-<filter hermes-*>
-  @type parser
-  key_name log
-  format json
-  reserve_data true
-</filter>
-
-# Match for sending logs to Elasticsearch
-<match hermes-*>
-  @type elasticsearch_data_stream
-  data_stream_ilm_name sdk-node-logs-policy
-  data_stream_name ${tag}
-
-  # Elasticsearch connection settings
-  {{- range service "elasticsearch" }}
-    host {{ .Address }}
-    port {{ index .ServiceMeta "PortHTTP" }}
-  {{- end }}
-  {{- with secret "static_secrets/fluentd" }}
-    user {{ .Data.data.username }}
-    password {{ .Data.data.password }}
-  {{- end }}
-
-  log_es_400_reason true # leaving this on so we can understand why some records are rejected
-
-  logstash_format true
-  logstash_prefix ${tag}
-  logstash_dateformat %Y%m
-
-  include_tag_key true # This will add the Fluentd tag in the JSON record
+  log_es_400_reason true
+  # This will add the Fluentd tag in the JSON record
+  include_tag_key true
 
   # buffer configuration so fluentd doesn't use as much RAM
   <buffer>
     @type file
     flush_mode interval
     flush_thread_count 16
-    path /tmp/hermes.buffer
+    path /tmp/logs.buffer
     chunk_limit_size 48MB
     queue_limit_length 512
     flush_interval 5s
