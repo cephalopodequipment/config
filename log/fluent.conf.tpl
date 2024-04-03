@@ -21,17 +21,40 @@
     @type elasticsearch
 
     # Elasticsearch connection settings
-    host {{ key "log/elastic/elastic.ip" }}
-    port {{ key "log/elastic/elastic.port" }}
-    user {{ key "log/elastic/elastic.user" }}
-    password {{ key "log/elastic/bootstrap.password" }}
+    {{- range service "elasticsearch" }}
+      host {{ .Address }}
+      port {{ index .ServiceMeta "PortHTTP" }}
+    {{- end }}
+    {{- with secret "static_secrets/fluentd" }}
+      user {{ .Data.data.username }}
+      password {{ .Data.data.password }}
+    {{- end }}
 
     logstash_format true
     logstash_prefix fluentd-{{ env "node.unique.name" }}
-    logstash_dateformat %Y%m
+
+    log_es_400_reason true
 
     # This will add the Fluentd tag in the JSON record
     include_tag_key true
+
+    # buffer configuration so fluentd doesn't use as much RAM
+    <buffer>
+      @type file
+      flush_mode interval
+      flush_thread_count 16
+      path /tmp/fluentd.buffer
+      chunk_limit_size 48MB
+      queue_limit_length 512
+      flush_interval 5s
+      overflow_action drop_oldest_chunk
+      retry_max_interval 30s
+      retry_forever false
+      retry_type exponential_backoff
+      retry_timeout 1h
+      retry_wait 20s
+      retry_max_times 30
+    </buffer>
   </match>
 </label>
 
@@ -56,9 +79,36 @@
   </exclude>
 </filter>
 
+# of course we're going to add a random fucking ! in front of all our JSON logs...
+<filter node.sdk.**>
+  @type record_modifier
+  <replace>
+    key log
+    expression /^!\s(?<log>.+)$/
+    replace \k<log>
+  </replace>
+  <replace>
+    key log
+    expression /(?<hash>"hash"):{}/
+    replace \k<hash>:""
+  </replace>
+  <replace>
+    key log
+    expression /(?<p>"proposal":)nil/
+    replace \k<p>{}
+  </replace>
+  <replace>
+    key log
+    expression /(?<p>"proposal"):"Proposal{(?<h>\d+)\/(?<rd>\d)\s\((?<bh>.+):(?<pt>\d):(?<ph>.+),\s(?<pol>.+)\).+@(?<time>.+)}"/
+    replace \k<p>:{"Type":32,"height":\k<h>,"round":\k<rd>,"pol_round":\k<pol>,"block_id":{"hash":"\k<bh>","parts":{"total":\k<pt>,"hash":"\k<ph>"}}}
+  </replace>
+</filter>
+
 <filter node.**> # "node.sdk" tag is set by the logging driver config in the nomad job
   @type parser
   key_name log
+  reserve_time true
+  reserve_data true
   <parse>
     @type multi_format
     <pattern>
@@ -72,6 +122,18 @@
       time_format %Y-%m-%dT%H:%M:%S.%N%z
     </pattern>
   </parse>
+</filter>
+
+# just lol...
+<filter node.sdk.nomic.**>
+  @type rename_key
+  rename_rule1 _msg message
+</filter>
+
+# everyone else has time...
+<filter node.sdk.nomic.**>
+  @type record_modifier
+  remove_keys ts
 </filter>
 
 <filter node.sdk.injective.**>
@@ -88,7 +150,6 @@
    #Setting these fields to string for various reasons
    #TODO: open some issues / PR to tendermint / SDK to fix these logs
    height ${record["height"].to_s} # `x/ibc/client` module outputs height as `1-xxxx`
-   hash ${record["hash"].to_s} # `consensus` module outputs hash as `{}` when logging "finalizing commit of block"
    peer ${record["peer"].to_s}
    addr ${record["addr"].to_s}
    address ${record["addr"].to_s}
@@ -105,10 +166,14 @@
   data_stream_name ${tag}
 
   # Elasticsearch connection settings
-  host {{ key "log/elastic/elastic.ip" }}
-  port {{ key "log/elastic/elastic.port" }}
-  user {{ key "log/elastic/elastic.user" }}
-  password {{ key "log/elastic/bootstrap.password" }}
+  {{- range service "elasticsearch" }}
+    host {{ .Address }}
+    port {{ index .ServiceMeta "PortHTTP" }}
+  {{- end }}
+  {{- with secret "static_secrets/fluentd" }}
+    user {{ .Data.data.username }}
+    password {{ .Data.data.password }}
+  {{- end }}
 
   log_es_400_reason true # leaving this on so we can understand why some records are rejected
 
@@ -143,10 +208,14 @@
   data_stream_name ${tag}
 
   # Elasticsearch connection settings
-  host {{ key "log/elastic/elastic.ip" }}
-  port {{ key "log/elastic/elastic.port" }}
-  user {{ key "log/elastic/elastic.user" }}
-  password {{ key "log/elastic/bootstrap.password" }}
+  {{- range service "elasticsearch" }}
+    host {{ .Address }}
+    port {{ index .ServiceMeta "PortHTTP" }}
+  {{- end }}
+  {{- with secret "static_secrets/fluentd" }}
+    user {{ .Data.data.username }}
+    password {{ .Data.data.password }}
+  {{- end }}
 
   log_es_400_reason true # leaving this on so we can understand why some records are rejected
 
@@ -192,10 +261,14 @@
   data_stream_name ${tag}
 
   # Elasticsearch connection settings
-  host {{ key "log/elastic/elastic.ip" }}
-  port {{ key "log/elastic/elastic.port" }}
-  user {{ key "log/elastic/elastic.user" }}
-  password {{ key "log/elastic/bootstrap.password" }}
+  {{- range service "elasticsearch" }}
+    host {{ .Address }}
+    port {{ index .ServiceMeta "PortHTTP" }}
+  {{- end }}
+  {{- with secret "static_secrets/fluentd" }}
+    user {{ .Data.data.username }}
+    password {{ .Data.data.password }}
+  {{- end }}
 
   log_es_400_reason true # leaving this on so we can understand why some records are rejected
 
@@ -243,10 +316,14 @@
   data_stream_name ${tag}
 
   # Elasticsearch connection settings
-  host {{ key "log/elastic/elastic.ip" }}
-  port {{ key "log/elastic/elastic.port" }}
-  user {{ key "log/elastic/elastic.user" }}
-  password {{ key "log/elastic/bootstrap.password" }}
+  {{- range service "elasticsearch" }}
+    host {{ .Address }}
+    port {{ index .ServiceMeta "PortHTTP" }}
+  {{- end }}
+  {{- with secret "static_secrets/fluentd" }}
+    user {{ .Data.data.username }}
+    password {{ .Data.data.password }}
+  {{- end }}
 
   log_es_400_reason true # leaving this on so we can understand why some records are rejected
 
