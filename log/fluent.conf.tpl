@@ -124,26 +124,17 @@
   </parse>
 </filter>
 
-<filter node.eth.**> # "node.sdk" tag is set by the logging driver config in the nomad job
+<filter node.eth.**> # tag is set by the logging driver config in the nomad job
   @type parser
   key_name log
   reserve_time true
   reserve_data true
   <parse>
-    @type multi_format
-    <pattern>
-      format json
-      time_type string
-      time_format %Y-%m-%dT%H:%M:%S%z
-    </pattern>
-    <pattern>
-      format json
-      time_type string
-      time_format %Y-%m-%dT%H:%M:%S.%N%z
-    </pattern>
+    @type json
+    time_type string
+    time_format %Y-%m-%dT%H:%M:%S
   </parse>
 </filter>
-
 
 <filter ibc.metrics.**> # "node.sdk" tag is set by the logging driver config in the nomad job
   @type parser
