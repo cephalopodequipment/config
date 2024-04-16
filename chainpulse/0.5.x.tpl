@@ -2,8 +2,6 @@
 [global]
 json_log_fmt = true
 batch_mode = {{ envOrDefault "BATCH_MODE" "true" }}
-collect_gas = {{ envOrDefault "COLLECT_GAS" "false" }}
-collect_tx_fees = {{ envOrDefault "COLLECT_TX_FEES" "false" }}
 
 {{- with $chains := env "CHAINS" | split "," -}}
     {{ range $i := $chains }}
