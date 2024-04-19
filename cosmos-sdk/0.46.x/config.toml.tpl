@@ -466,7 +466,7 @@ prometheus_listen_addr = ":{{ env "NOMAD_PORT_prom" }}"
 max_open_connections = 3
 
 # Instrumentation namespace
-namespace = {{ keyOrDefault (print (env "CONSUL_PATH") "/prom.namespace") "\"tendermint\"" }}
+namespace = "tendermint"
 
 ##### Axelar EVM bridges options #####
 # Each EVM chain needs the following
