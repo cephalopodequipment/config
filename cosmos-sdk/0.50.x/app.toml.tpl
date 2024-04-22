@@ -266,6 +266,6 @@ memory_cache_size = 3000
 # This dictates whether the Sidecar will be queried.
 enabled = {{ keyOrDefault (print (env "FUEL_SIDECAR_CONSUL_PATH") "/base.sidecar.enabled") "false" }}
 # This defines the Sidecar server to listen to.
-address = "tcp://{{ env "NOMAD_IP_grpc" }}:{{ env "NOMAD_PORT_grpc" }}"
+address = "tcp://{{ env "NOMAD_IP_sidecar" }}:{{ env "NOMAD_PORT_sidecar" }}"
 # This defines how long the client should wait for responses.
 timeout = "5s"
