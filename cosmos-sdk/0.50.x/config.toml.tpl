@@ -230,7 +230,7 @@ unconditional_peer_ids = {{ keyOrDefault (print "networks/" (index (env "CONSUL_
 persistent_peers_max_dial_period = "0s"
 
 # Time to wait before flushing messages out on the connection
-flush_throttle_timeout = "100ms"
+flush_throttle_timeout = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.flush_throttle_timeout") "\"100ms\"" }}
 
 # Maximum size of a message packet payload, in bytes
 max_packet_msg_payload_size = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/p2p.max_packet_msg_payload_size") "1024" }}
