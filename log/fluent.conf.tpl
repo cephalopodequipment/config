@@ -195,6 +195,7 @@
 <match **>
   @type elasticsearch_data_stream
   data_stream_name "logs"
+  validate_client_version true
 
   # Elasticsearch connection settings
   {{- range service "elasticsearch" }}
