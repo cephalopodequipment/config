@@ -506,6 +506,13 @@
               "apiKey": "{{ env "KINGNODES_API_KEY" }}",
               "apiKeyHeader": "{{ env "KINGNODES_API_KEY_HEADER" }}"
             }
+          },
+          {
+            "url": "https://solana-rpc.rhino-apis.com",
+            "authentication": {
+              "apiKey": "{{ env "RHINO_API_KEY" }}",
+              "apiKeyHeader": "{{ env "RHINO_API_KEY_HEADER" }}"
+            }
           }
         ],
         "batchSize": 50,
@@ -532,9 +539,9 @@
   ],
   "production": false,
   "metrics": {
-    "prometheusServerAddress": "0.0.0.0:8002",
+    "prometheusServerAddress": "0.0.0.0:{{ envOrDefault "PROMETHEUS_PORT" 8002 }}",
     "enabled": true
   },
   "host": "0.0.0.0",
-  "port": "8080"
+  "port": "{{ envOrDefault "API_PORT" 8080 }}"
 }
