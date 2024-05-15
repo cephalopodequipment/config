@@ -539,9 +539,9 @@
   ],
   "production": false,
   "metrics": {
-    "prometheusServerAddress": "0.0.0.0:{{ envOrDefault "PROMETHEUS_PORT" 8002 }}",
+    "prometheusServerAddress": "0.0.0.0:{{ envOrDefault "PROMETHEUS_PORT" "8002" }}",
     "enabled": true
   },
   "host": "0.0.0.0",
-  "port": "{{ envOrDefault "API_PORT" 8080 }}"
+  "port": "{{ envOrDefault "API_PORT" "8080" }}"
 }
