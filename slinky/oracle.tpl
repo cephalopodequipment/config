@@ -506,7 +506,7 @@
               "apiKey": "{{ env "KINGNODES_API_KEY" }}",
               "apiKeyHeader": "{{ env "KINGNODES_API_KEY_HEADER" }}"
             }
-          },
+          }
         ],
         "batchSize": 50,
         "name": "raydium_api"
