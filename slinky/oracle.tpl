@@ -497,21 +497,28 @@
             "url": "https://solana.polkachu.com",
             "authentication": {
               "apiKey": "{{ env "POLKACHU_API_KEY" }}",
-              "apiKeyHeader": "{{ env "POLKACHU_API_KEY_HEADER" }}"
+              "apiKeyHeader": "X-Api-Key"
             }
           },
           {
             "url": "https://slinky-solana.kingnodes.com",
             "authentication": {
               "apiKey": "{{ env "KINGNODES_API_KEY" }}",
-              "apiKeyHeader": "{{ env "KINGNODES_API_KEY_HEADER" }}"
+              "apiKeyHeader": "X-Api-Key"
             }
           },
           {
             "url": "https://solana-rpc.rhino-apis.com",
             "authentication": {
               "apiKey": "{{ env "RHINO_API_KEY" }}",
-              "apiKeyHeader": "{{ env "RHINO_API_KEY_HEADER" }}"
+              "apiKeyHeader": "X-Api-Key"
+            }
+          },
+          {
+            "url": "https://dydx.helius-rpc.com",
+            "authentication": {
+              "apiKey": "{{ env "HELIUS_API_KEY" }}",
+              "apiKeyHeader": "X-Api-Key"
             }
           }
         ],
