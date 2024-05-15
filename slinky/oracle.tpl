@@ -493,34 +493,36 @@
         "atomic": false,
         "url": "",
         "endpoints": [
+        {{ with secret "static_secrets/dydx/solana-api-keys" -}}
           {
             "url": "https://solana.polkachu.com",
             "authentication": {
-              "apiKey": "{{ env "POLKACHU_API_KEY" }}",
+              "apiKey": "{{ .Data.data.polkachu }}",
               "apiKeyHeader": "X-Api-Key"
             }
           },
           {
             "url": "https://slinky-solana.kingnodes.com",
             "authentication": {
-              "apiKey": "{{ env "KINGNODES_API_KEY" }}",
+              "apiKey": "{{ .Data.data.kingnodes }}",
               "apiKeyHeader": "X-Api-Key"
             }
           },
           {
             "url": "https://solana-rpc.rhino-apis.com",
             "authentication": {
-              "apiKey": "{{ env "RHINO_API_KEY" }}",
+              "apiKey": "{{ .Data.data.rhino }}",
               "apiKeyHeader": "X-Api-Key"
             }
           },
           {
             "url": "https://dydx.helius-rpc.com",
             "authentication": {
-              "apiKey": "{{ env "HELIUS_API_KEY" }}",
+              "apiKey": "{{ .Data.data.helius }}",
               "apiKeyHeader": "X-Api-Key"
             }
           }
+        {{ end }}
         ],
         "batchSize": 50,
         "name": "raydium_api"
