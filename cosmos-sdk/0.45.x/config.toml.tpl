@@ -568,6 +568,20 @@ name = "scroll"
 rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.scroll.rpc") "\"\"" }}
 start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.scroll.enable") "false" }}
 
+[[axelar_bridge_evm]]
+name = "fraxtal"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.fraxtal.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.fraxtal.enable") "false" }}
+
+[[axelar_bridge_evm]]
+name = "immutable"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.immutable.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.immutable.enable") "false" }}
+
+[[axelar_bridge_evm]]
+name = "centrifuge"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.centrifuge.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.centrifuge.enable") "false" }}
 
 ##### message broadcasting options #####
 [broadcast]
