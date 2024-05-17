@@ -558,6 +558,16 @@ name = "mantle"
 rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.mantle.rpc") "\"\"" }}
 start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.mantle.enable") "false" }}
 
+[[axelar_bridge_evm]]
+name = "blast"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.blast.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.blast.enable") "false" }}
+
+[[axelar_bridge_evm]]
+name = "scroll"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.scroll.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.scroll.enable") "false" }}
+
 
 ##### message broadcasting options #####
 [broadcast]
