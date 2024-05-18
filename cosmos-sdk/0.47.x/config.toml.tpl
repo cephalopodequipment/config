@@ -385,7 +385,7 @@ version = "v0"
 wal_file = "data/cs.wal/wal"
 
 # How long we wait for a proposal block before prevoting nil
-timeout_propose = "3s"
+timeout_propose = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_propose") "\"3s\"" }}
 # How much timeout_propose increases with each round
 timeout_propose_delta = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_propose_delta") "\"500ms\"" }}
 # How long we wait after receiving +2/3 prevotes for “anything” (ie. not a single block or nil)
