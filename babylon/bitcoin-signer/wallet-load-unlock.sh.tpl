@@ -13,7 +13,7 @@ log() {
 # Function to run bitcoin-cli with common options
 # Usage: bitcoin_cli <command> [<arguments>...]
 bitcoin_cli() {
-    bitcoin-cli -rpccookiefile=/home/bitcoin/.bitcoin/.cookie -rpcconnect=$BTC_NODE_IP -rpcport=$BTC_NODE_RPC_PORT "$@" || {
+    bitcoin-cli -rpccookiefile=$BTC_COOKIE_FILE -rpcconnect=$BTC_NODE_IP -rpcport=$BTC_NODE_RPC_PORT "$@" || {
         log "ERROR: Failed to run bitcoin-cli command -check your server configuration: $*"
         exit 1
     }
@@ -67,12 +67,14 @@ unlock_wallet() {
 
 sleep 10 # wait for the bitcoin node to start
 # Check if necessary environment variables are set
+: "${BTC_COOKIE_FILE:?Need to set BTC_COOKIE_FILE}"
 : "${BTC_NODE_IP:?Need to set BTC_NODE_IP}"
 : "${BTC_NODE_RPC_PORT:?Need to set BTC_NODE_RPC_PORT}"
+: "${BTC_WALLET_NAME:?Need to set BTC_WALLET_NAME}"
 
 # Variables required for the script
 wallet_timeout=15552000 # 6 months in seconds
-wallet_name="covenant-signer"
+wallet_name="${BTC_WALLET_NAME}"
 # this loads a wallet from designated location on the server machine
 wallet_file_path="/home/bitcoin/wallet.dat"
 {{- with secret "signing_keys/babylon/btc-signer-wallet0" }}
