@@ -6,7 +6,7 @@
 # will be used to sign psbt's
 [btc-config]
 # Btc node host
-{{- range service "bitcoin-fullnode"}}
+{{- range service "bitcoin-rpc" "tag=fullnode" }}
 host = "{{ .Address }}:{{ .Port }}"
 {{- end }}
 {{- with secret "static_secrets/babylon-testnet/btc-fullnode" }}
@@ -20,7 +20,7 @@ network = "{{ env "BTC_CHAIN" }}"
 
 [btc-signer-config]
 # Btc node host
-{{- range service "bitcoin-signer" }}
+{{- range service "bitcoin-rpc" "tag=signer-node"}}
 host = "{{ .Address }}:{{ .Port }}"
 {{- end }}
 # TODO: consider reading user/pass from command line
