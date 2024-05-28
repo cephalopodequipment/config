@@ -11,7 +11,7 @@
 host = "{{ .Address }}:{{ .Port }}"
 {{- end }}
 {{- end }}
-{{- with secret "static_secrets/babylon-testnet/btc-fullnode" }}
+{{- with secret "static_secrets/babylon/fullnode" }}
 # Btc node user
 user = "{{ .Data.data.rpcuser }}"
 # Btc node password
@@ -28,7 +28,7 @@ host = "{{ .Address }}:{{ .Port }}"
 {{- end }}
 {{- end }}
 # TODO: consider reading user/pass from command line
-{{- with secret "static_secrets/babylon-testnet/btc-signer" }}
+{{- with secret "static_secrets/babylon/signer-node" }}
 # Btc node user
 user =  "{{ .Data.data.rpcuser }}"
 # Btc node password
