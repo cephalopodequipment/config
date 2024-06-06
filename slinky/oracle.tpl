@@ -459,7 +459,8 @@
         "reconnectTimeout": 2000000000,
         "maxQueries": 1,
         "atomic": true,
-        "url": "http://10.20.30.105:26021",
+        {{ range service "dydx-mainnet-validator.node-sdk-rest" }}
+        "url": "http://{{ .Address }}:{{ .Port }}", {{ end }}
         "endpoints": null,
         "batchSize": 0,
         "name": "dydx_api"
