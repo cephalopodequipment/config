@@ -15,8 +15,7 @@
 
 # TCP or UNIX socket address of the ABCI application,
 # or the name of an ABCI application compiled in with the CometBFT binary
-proxy_app = "tcp://127.0.0.1:26658"
-
+proxy_app = "tcp://{{ envOrDefault "NOMAD_IP_abci" "127.0.0.1" }}:{{ envOrDefault "NOMAD_PORT_abci" "26658"}}"
 # A custom human readable name for this node
 moniker = {{ keyOrDefault (print (env "CONSUL_PATH") "/base.moniker") "\"20k leagues under the sea\"" }}
 
