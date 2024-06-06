@@ -136,6 +136,18 @@
   </parse>
 </filter>
 
+<filter hermes-**> # tag is set by the logging driver config in the nomad job
+  @type parser
+  key_name log
+  reserve_time true
+  reserve_data true
+  <parse>
+    @type json
+    time_type string
+    time_format %Y-%m-%dT%H:%M:%S.%N%Z
+  </parse>
+</filter>
+
 <filter ibc.metrics.**> # "node.sdk" tag is set by the logging driver config in the nomad job
   @type parser
   key_name log
