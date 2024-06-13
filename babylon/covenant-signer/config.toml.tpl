@@ -52,3 +52,10 @@ write-timeout = 15
 
 # Idle timeout in seconds
 idle-timeout = 120
+
+#### Parameters related to the Prometheus metrics server
+[metrics]
+# The prometheus server host
+host = "0.0.0.0"
+# The prometheus server port
+port = "{{ env "NOMAD_PORT_prom" }}"
