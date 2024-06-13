@@ -58,4 +58,4 @@ idle-timeout = 120
 # The prometheus server host
 host = "0.0.0.0"
 # The prometheus server port
-port = 32533
+port = "{{ env "NOMAD_PORT_prom" }}"
