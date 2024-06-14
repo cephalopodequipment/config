@@ -71,13 +71,14 @@ sleep 10 # wait for the bitcoin node to start
 : "${BTC_NODE_IP:?Need to set BTC_NODE_IP}"
 : "${BTC_NODE_RPC_PORT:?Need to set BTC_NODE_RPC_PORT}"
 : "${BTC_WALLET_NAME:?Need to set BTC_WALLET_NAME}"
+: "${SECRETS_PATH:?Need to set SECRETS_PATH}"
 
 # Variables required for the script
 wallet_timeout=15552000 # 6 months in seconds
 wallet_name="${BTC_WALLET_NAME}"
 # this loads a wallet from designated location on the server machine
 wallet_file_path="/home/bitcoin/wallet.dat"
-{{- with secret "signing_keys/babylon/btc-signer-wallet0" }}
+{{- with secret (printf "signing_keys/%s/btc-signer-wallet0" (env "SECRETS_PATH")) }}
 passphrase="{{ .Data.data.wallet_passphrase }}"
 {{- end }}
 
