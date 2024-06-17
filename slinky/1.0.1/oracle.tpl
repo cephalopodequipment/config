@@ -35,7 +35,9 @@
         ]
       },
       "dydx_api": {
-      "endpoints": [{ {{ range service "dydx-mainnet-validator.node-sdk-rest" }}"url": "http://{{ .Address }}:{{ .Port }}"{{ end }} }]
+      "api" : {
+        "endpoints": [{ {{ range service "dydx-mainnet-validator.node-sdk-rest" }}"url": "http://{{ .Address }}:{{ .Port }}"{{ end }} }]
+        }
       }
     },
   "metrics": {
