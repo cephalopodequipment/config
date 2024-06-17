@@ -36,6 +36,9 @@
       },
       "dydx_api": {
       "endpoints": [{ {{ range service "dydx-mainnet-validator.node-sdk-rest" }}"url": "http://{{ .Address }}:{{ .Port }}"{{ end }} }]
+      },
+      "marketmap_api": {
+      "endpoints": [{ {{ range service "dydx-mainnet-validator.node-sdk-rest" }}"url": "http://{{ .Address }}:{{ .Port }}"{{ end }} }]
       }
     },
   "metrics": {
