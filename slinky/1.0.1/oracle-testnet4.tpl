@@ -36,7 +36,7 @@
       },
       "dydx_api": {
       "api" : {
-        "endpoints": [{ "url": "http://{{ env "DYDX_NODE_ENDPOINT" }} }]
+        "endpoints": [{ "url": "http://{{ env "DYDX_NODE_ENDPOINT" }}" }]
         }
       }
     },
