@@ -35,12 +35,14 @@ latency_submitted = {{ keyOrDefault (printf "hermes/relayers/%s/latency_submitte
 latency_confirmed = {{ keyOrDefault (printf "hermes/relayers/%s/latency_confirmed" (env "JOB_NAME")) "{ start = 200, end = 20000, buckets = 9 }" }}
 
 {{ range $chain_id, $job_config := (key (printf "hermes/relayers/%s/chain_config" (env "JOB_NAME")) | parseJSON) -}}
-{{ with tree (printf "hermes/networks/%s" $chain_id) | explode }}
+    {{ with tree (printf "hermes/networks/%s" $chain_id) | explode }}
+        {{ range service (printf "%s.network-node" $chain_id) }}
+        {{ if .Tags | contains $job_config.node_service }}
 [[ chains ]]
 id = '{{ $chain_id }}'
-rpc_addr = 'http://{{ range service (printf "%s.network-node" $chain_id) }}{{ if .Tags | contains $job_config.node_service }}{{ .Address }}:{{ index .ServiceMeta "PortRpc" }}{{end}}{{end}}'
-grpc_addr = 'http://{{ range service (printf "%s.network-node" $chain_id) }}{{ if .Tags | contains $job_config.node_service }}{{ .Address }}:{{ index .ServiceMeta "PortGrpc" }}{{end}}{{end}}'
-event_source = { mode = 'push', url = 'ws://{{ range service (printf "%s.network-node" $chain_id) }}{{ if .Tags | contains $job_config.node_service }}{{ .Address }}:{{ index .ServiceMeta "PortRpc" }}{{end}}{{end}}/websocket', batch_delay = {{or .batch_delay "'500ms'"}} }
+rpc_addr = 'http://{{ .Address }}:{{ index .ServiceMeta "PortRpc" }}'
+grpc_addr = 'http://{{ .Address }}:{{ index .ServiceMeta "PortGrpc" }}'
+event_source = { mode = 'push', url = 'ws://{{ .Address }}:{{ index .ServiceMeta "PortRpc" }}/websocket', batch_delay = {{or .batch_delay "'500ms'"}} }
 rpc_timeout = '8s'
 type = "CosmosSdk"
 trusted_node = {{or .trusted_node "false"}}
@@ -72,5 +74,5 @@ packet_filter = { policy = 'allow', list = [
   {{ . }}
 {{- end -}}] }
 {{if .excluded_sequences}}excluded_sequences = {{or .excluded_sequences "[]"}}{{end}}
-{{ end }}{{ end }}
+{{ end }}{{ end }}{{ end }}{{ end }}
 
