@@ -6,7 +6,7 @@ server=1
 # or use the python script here 
 # https://github.com/bitcoin/bitcoin/blob/master/share/rpcauth/README.md
 # to generate an rpcauth string
-{{- with secret (printf "static_secrets/babylon/%s" (env "BTC_NODE_TYPE")) }}
+{{- with secret (printf "static_secrets/%s/%s" (env "SECRETS_PATH") (env "BTC_NODE_TYPE")) }}
 rpcauth={{ .Data.data.rpcauth }}
 {{- end}}
 # rpc cookie file this allows authentication to only those that have access to the cookie location

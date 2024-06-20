@@ -7,11 +7,11 @@
 [btc-config]
 # Btc node host
 {{- range service "bitcoin-rpc" }}
-{{- if in .Tags "fullnode" }}
+{{- if and (contains .Tags "fullnode") (contains .Tags (env "BTC_CHAIN")) }}
 host = "{{ .Address }}:{{ .Port }}"
 {{- end }}
 {{- end }}
-{{- with secret "static_secrets/babylon/fullnode" }}
+{{- with secret (printf "static_secrets/%s/fullnode" (env "SECRETS_PATH")) }}
 # Btc node user
 user = "{{ .Data.data.rpcuser }}"
 # Btc node password
@@ -23,12 +23,12 @@ network = "{{ env "BTC_CHAIN" }}"
 [btc-signer-config]
 # Btc node host
 {{- range service "bitcoin-wallet-rpc" }}
-{{- if in .Tags "signer-node" }}
+{{- if and (contains .Tags "signer-node") (contains .Tags (env "BTC_CHAIN")) }}
 host = "{{ .Address }}:{{ .Port }}"
 {{- end }}
 {{- end }}
 # TODO: consider reading user/pass from command line
-{{- with secret "static_secrets/babylon/signer-node" }}
+{{- with secret (printf "static_secrets/%s/signer-node" (env "SECRETS_PATH")) }}
 # Btc node user
 user =  "{{ .Data.data.rpcuser }}"
 # Btc node password
