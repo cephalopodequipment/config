@@ -23,7 +23,7 @@ network = "{{ env "BTC_CHAIN" }}"
 [btc-signer-config]
 # Btc node host
 {{- range service "bitcoin-wallet-rpc" }}
-{{- if contains .Tags (env "SIGNER_JOB_NAME")) }}
+{{- if contains .Tags (env "SIGNER_JOB_NAME") }}
 host = "{{ .Address }}:{{ .Port }}"
 {{- end }}
 {{- end }}
