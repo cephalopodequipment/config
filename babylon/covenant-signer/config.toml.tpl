@@ -24,7 +24,6 @@ network = "{{ env "BTC_CHAIN" }}"
 # Btc node host
 {{- range service "bitcoin-wallet-rpc" }}
 {{- if .Tags | contains (env "SIGNER_JOB_NAME") }}
-{{- if contains .Tags  }}
 host = "{{ .Address }}:{{ .Port }}"
 {{- end }}
 {{- end }}
