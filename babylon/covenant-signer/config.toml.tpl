@@ -7,7 +7,7 @@
 [btc-config]
 # Btc node host
 {{- range service "bitcoin-rpc" }}
-{{- if and (contains .Tags "fullnode") (contains .Tags (env "BTC_CHAIN")) }}
+{{- if contains .Tags (env "TXNODE_JOB_NAME") }}
 host = "{{ .Address }}:{{ .Port }}"
 {{- end }}
 {{- end }}
@@ -23,7 +23,7 @@ network = "{{ env "BTC_CHAIN" }}"
 [btc-signer-config]
 # Btc node host
 {{- range service "bitcoin-wallet-rpc" }}
-{{- if and (contains .Tags "signer-node") (contains .Tags (env "BTC_CHAIN")) }}
+{{- if contains .Tags (env "SIGNER_JOB_NAME")) }}
 host = "{{ .Address }}:{{ .Port }}"
 {{- end }}
 {{- end }}
