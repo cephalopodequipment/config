@@ -1,6 +1,7 @@
 {
   "providers": {
       "raydium_api": {
+         "api": {
          "endpoints": [
         {{ with secret "static_secrets/dydx/solana-api-keys" -}}
           {
@@ -33,6 +34,7 @@
           }
         {{ end }}
         ]
+      }
       },
       "dydx_api": {
       "api" : {
