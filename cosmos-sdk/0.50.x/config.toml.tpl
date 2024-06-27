@@ -63,7 +63,11 @@ priv_validator_state_file = "data/priv_validator_state.json"
 
 # TCP or UNIX socket address for CometBFT to listen on for
 # connections from an external PrivValidator process
-priv_validator_laddr = {{ if (env "VALIDATOR") | parseBool }} "tcp://0.0.0.0:{{ env "NOMAD_PORT_tmkms" }}" {{ else }} "" {{ end }}
+{{ if key (print (env "CONSUL_PATH") "/base.validator") | parseBool }}
+priv_validator_laddr = "tcp://0.0.0.0:{{ env "NOMAD_PORT_tmkms" }}"
+{{ else }}
+priv_validator_laddr = ""
+{{ end }}
 
 # Path to the JSON file containing the private key to use for node authentication in the p2p protocol
 node_key_file = "config/node_key.json"
