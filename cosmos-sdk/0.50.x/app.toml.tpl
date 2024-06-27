@@ -125,7 +125,7 @@ enable = true
 swagger = {{ keyOrDefault (print (env "CONSUL_PATH") "/api.swagger") "false" }}
 
 # Address defines the API server to listen on.
-address = "tcp://0.0.0.0:{{ env "NOMAD_PORT_leet" }}"
+address = "tcp://0.0.0.0:{{ env "NOMAD_PORT_rest" }}"
 
 # MaxOpenConnections defines the number of maximum open connections.
 max-open-connections = 1000
@@ -276,16 +276,23 @@ timeout = "5s"
 
 slinky-vote-extension-oracle-enabled = "true"
 
+{{- with $slinky_enabled := ( keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/slinky/enabled") "false") }}
+
 [oracle]
 # Enabled indicates whether the oracle is enabled.
-enabled = "{{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/slinky/enabled") "false" }}"
+enabled = {{ $slinky_enabled }}
 
 # Oracle Address is the URL of the out of process oracle sidecar. This is used to
 # connect to the oracle sidecar when the application boots up. Note that the address
 # can be modified at any point, but will only take effect after the application is
 # restarted. This can be the address of an oracle container running on the same
 # machine or a remote machine.
-oracle_address = "{{ envOrDefault "SLINKY_ORACLE_ADDRESS" "localhost:8080" }}"
+{{- if $slinky_enabled }}
+{{- range service ( printf "%s.slinky-api" ( env "NOMAD_VAR_chain_id" )) }}
+oracle_address="{{ .Address }}:{{ .Port }}"
+{{ else }}
+oracle_address = localhost:8080
+{{ end }}{{ end -}}
 
 # Client Timeout is the time that the client is willing to wait for responses from
 # the oracle before timing out.
@@ -295,3 +302,4 @@ client_timeout = "{{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" |
 # this enables intsrumentation of the oracle client and the interaction between
 # the oracle and the app.
 metrics_enabled = "{{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/slinky/metrics_enabled") "true" }}"
+{{ end -}}
