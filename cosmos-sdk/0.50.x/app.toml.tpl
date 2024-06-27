@@ -287,12 +287,14 @@ enabled = {{ $slinky_enabled }}
 # can be modified at any point, but will only take effect after the application is
 # restarted. This can be the address of an oracle container running on the same
 # machine or a remote machine.
-{{- if $slinky_enabled }}
+{{- if $slinky_enabled | parseBool }}
 {{- range service ( printf "%s.slinky-api" ( env "NOMAD_VAR_chain_id" )) }}
 oracle_address="{{ .Address }}:{{ .Port }}"
+{{ end }}
 {{ else }}
-oracle_address = localhost:8080
-{{ end }}{{ end -}}
+oracle_address = "localhost:8080"
+
+{{ end -}}
 
 # Client Timeout is the time that the client is willing to wait for responses from
 # the oracle before timing out.
