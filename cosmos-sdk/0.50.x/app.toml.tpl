@@ -288,7 +288,7 @@ enabled = {{ $slinky_enabled }}
 # restarted. This can be the address of an oracle container running on the same
 # machine or a remote machine.
 {{- if $slinky_enabled | parseBool }}
-{{- range service ( print "%s.slinky-api" ( env "NOMAD_VAR_chain_id" )) }}
+{{- range service ( print "%s.slinky-api" ( env "NOMAD_META_chain_id" )) }}
 oracle_address="{{ .Address }}:{{ .Port }}"
 {{ end }}
 {{ else }}
