@@ -5,21 +5,19 @@ batch_mode = {{ envOrDefault "BATCH_MODE" "true" }}
 collect_gas = {{ envOrDefault "COLLECT_GAS" "false" }}
 collect_tx_fees = {{ envOrDefault "COLLECT_TX_FEES" "false" }}
 
-{{- with $chains := env "CHAINS" | split "," -}}
-    {{ range $i := $chains }}
-[chains.{{ $i }}]
-        {{- range service "sentry0.network-node" -}}
+{{ with $chains := env "CHAINS" | split "," -}}
+    {{- range $i := $chains }}
+        {{- range service "sentry0.network-node" }}
             {{- if .Tags | contains $i }}
+[chains.{{ $i }}]
 url = "http://{{ .Address }}:{{ index .ServiceMeta "PortRpc" }}"
-            {{- end -}}
-        {{ end }}
 poll_interval = "{{ envOrDefault "POLL_INTERVAL" "500ms" }}"
-
 backfill_from = {{ envOrDefault "BACKFILL_FROM" "0" }}
-
 hrp           = "{{ $i | regexReplaceAll "(.*?)-[0-9]" "$1" }}"
+            {{- end }}
+        {{- end }}
     {{ end }}
-{{- end }}
+{{ end }}
 
 [database]
 # URL for connecting to the Postgres database instance

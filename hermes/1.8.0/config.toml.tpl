@@ -35,32 +35,36 @@ latency_submitted = {{ keyOrDefault (printf "hermes/relayers/%s/latency_submitte
 latency_confirmed = {{ keyOrDefault (printf "hermes/relayers/%s/latency_confirmed" (env "JOB_NAME")) "{ start = 200, end = 20000, buckets = 9 }" }}
 
 {{ range $chain_id, $job_config := (key (printf "hermes/relayers/%s/chain_config" (env "JOB_NAME")) | parseJSON) -}}
-{{ with tree (printf "hermes/networks/%s" $chain_id) | explode }}
+    {{ $chain_config := tree (printf "hermes/networks/%s" $chain_id) | explode -}}
+        {{ range service (printf "%s.network-node" $chain_id) -}}
+        {{ if .Tags | contains $job_config.node_service -}}
 [[ chains ]]
 id = '{{ $chain_id }}'
-rpc_addr = 'http://{{ range service (printf "%s.network-node" $chain_id) }}{{ if .Tags | contains $job_config.node_service }}{{ .Address }}:{{ index .ServiceMeta "PortRpc" }}{{end}}{{end}}'
-grpc_addr = 'http://{{ range service (printf "%s.network-node" $chain_id) }}{{ if .Tags | contains $job_config.node_service }}{{ .Address }}:{{ index .ServiceMeta "PortGrpc" }}{{end}}{{end}}'
-event_source = { mode = 'push', url = 'ws://{{ range service (printf "%s.network-node" $chain_id) }}{{ if .Tags | contains $job_config.node_service }}{{ .Address }}:{{ index .ServiceMeta "PortRpc" }}{{end}}{{end}}/websocket', batch_delay = {{or .batch_delay "'500ms'"}} }
+rpc_addr = 'http://{{ .Address }}:{{ index .ServiceMeta "PortRpc" }}'
+grpc_addr = 'http://{{ .Address }}:{{ index .ServiceMeta "PortGrpc" }}'
+event_source = { mode = 'push', url = 'ws://{{ .Address }}:{{ index .ServiceMeta "PortRpc" }}/websocket', batch_delay = {{ or $chain_config.batch_delay "'500ms'"}} }
 rpc_timeout = '8s'
 type = "CosmosSdk"
-trusted_node = {{or .trusted_node "false"}}
-account_prefix = '{{ .account_prefix }}'
+trusted_node = {{or $chain_config.trusted_node "false"}}
+account_prefix = '{{ $chain_config.account_prefix }}'
 key_name = '{{ $job_config.key_name }}'
-address_type = {{ .address_type }}
+address_type = {{ $chain_config.address_type }}
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Informal 🐙'
-gas_price = {{ .gas_price }}
-default_gas = {{or .default_gas "200000"}}
-max_gas = {{ .max_gas }}
-dynamic_gas_price = { enabled = {{ or .enable_dynamic_gas "false" }}, multiplier = {{ or .dynamic_gas_multiplier 1 }}, max = {{ or .dynamic_max_gas_price 0 }} }
-ccv_consumer_chain = {{or .ccv_consumer_chain "false"}}
-max_msg_num = {{ .max_msg_num }}
-gas_multiplier = {{ .gas_multiplier }}
-max_tx_size = {{ .max_tx_size }}
-clock_drift = '{{ .clock_drift }}'
-trusting_period = '{{ .trusting_period }}'
-trust_threshold = {{ .trust_threshold }}
-{{if .clear_interval}}clear_interval = {{or .clear_interval 123 }}{{end}}
+gas_price = {{ $chain_config.gas_price }}
+default_gas = {{or $chain_config.default_gas "200000"}}
+max_gas = {{ $chain_config.max_gas }}
+dynamic_gas_price = { enabled = {{ or $chain_config.enable_dynamic_gas "false" }}, multiplier = {{ or $chain_config.dynamic_gas_multiplier 1 }}, max = {{ or $chain_config.dynamic_max_gas_price 0 }} }
+ccv_consumer_chain = {{or $chain_config.ccv_consumer_chain "false"}}
+max_msg_num = {{ $chain_config.max_msg_num }}
+gas_multiplier = {{ $chain_config.gas_multiplier }}
+max_tx_size = {{ $chain_config.max_tx_size }}
+clock_drift = '{{ $chain_config.clock_drift }}'
+trusting_period = '{{ $chain_config.trusting_period }}'
+trust_threshold = {{ $chain_config.trust_threshold }}
+    {{- if $chain_config.clear_interval }}
+clear_interval = {{ or $chain_config.clear_interval 123 }}
+    {{- end }}
 packet_filter = { policy = 'allow', list = [
 {{- $first := true -}}
 {{- range $job_config.channels -}}
@@ -71,6 +75,6 @@ packet_filter = { policy = 'allow', list = [
   {{- end -}}
   {{ . }}
 {{- end -}}] }
-{{if .excluded_sequences}}excluded_sequences = {{or .excluded_sequences "[]"}}{{end}}
-{{ end }}{{ end }}
+{{if $chain_config.excluded_sequences}}excluded_sequences = {{or $chain_config.excluded_sequences "[]"}}{{end}}
+{{ end }}{{ end }}{{ end }}
 
