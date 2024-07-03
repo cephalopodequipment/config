@@ -125,7 +125,7 @@ enable = true
 swagger = {{ keyOrDefault (print (env "CONSUL_PATH") "/api.swagger") "false" }}
 
 # Address defines the API server to listen on.
-address = "tcp://0.0.0.0:{{ env "NOMAD_PORT_leet" }}"
+address = "tcp://0.0.0.0:{{ env "NOMAD_PORT_rest" }}"
 
 # MaxOpenConnections defines the number of maximum open connections.
 max-open-connections = 1000
