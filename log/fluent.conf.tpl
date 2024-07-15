@@ -12,13 +12,30 @@
   bind 0.0.0.0
 </source>
 
-####
-##  Handling of fluentd logs
-####
-
 <label @FLUENT_LOG> # Defining this label instructs fluentd to send its own logs to this label
-  <match fluent.**>
-    @type elasticsearch
+
+  <filter fluent.*>
+    @type record_modifier
+    <record>
+      host "{{ env "node.unique.name" }}"
+    </record>
+  </filter>
+
+  <filter fluent.*>
+    @type parser
+    key_name message
+    reserve_time true
+    reserve_data true
+    <parse>
+      @type json
+      time_type string
+      time_format %Y-%m-%dT%H:%M:%S%z
+    </parse>
+  </filter>
+
+  <match fluent.*>
+    @type elasticsearch_data_stream
+    data_stream_name "fluentd"
 
     # Elasticsearch connection settings
     {{- range service "elasticsearch" }}
@@ -29,9 +46,6 @@
       user {{ .Data.data.username }}
       password {{ .Data.data.password }}
     {{- end }}
-
-    logstash_format true
-    logstash_prefix fluentd-{{ env "node.unique.name" }}
 
     log_es_400_reason true
 
