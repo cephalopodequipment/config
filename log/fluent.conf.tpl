@@ -1,4 +1,7 @@
 <system>
+  ignore_repeated_log_interval 60s
+  ignore_same_log_interval 60s
+
   <log>
     format json
     time_format %Y-%m-%dT%H:%M:%S%z
