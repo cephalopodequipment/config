@@ -313,7 +313,7 @@ keep-invalid-txs-in-cache = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool
 
 # Maximum size of a single transaction.
 # NOTE: the max size of a tx transmitted over the network is {max_tx_bytes}.
-max_tx_bytes = {{ keyOrDefault  (print (env "CONSUL_PATH") "/p2p.max_tx_bytes") "1048576" }}
+max_tx_bytes = {{ keyOrDefault  (print (env "CONSUL_PATH") "/mempool.max_tx_bytes") "1048576" }}
 
 # Maximum size of a batch of transactions to send to a peer
 # Including space needed by encoding (one varint per transaction).
