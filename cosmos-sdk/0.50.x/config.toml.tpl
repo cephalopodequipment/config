@@ -301,7 +301,7 @@ size = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.size") "50000" }}
 # Limit the total size of all txs in the mempool.
 # This only accounts for raw transactions (e.g. given 1MB transactions and
 # max_txs_bytes=5MB, mempool will only accept 5 transactions).
-max_txs_bytes = 1073741824
+max_txs_bytes = {{ keyOrDefault  (print (env "CONSUL_PATH") "/mempool.max_txs_bytes") "1073741824" }}
 
 # Size of the cache (used to filter transactions we saw earlier) in transactions
 cache_size = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.cache_size") "20000" }}
@@ -313,7 +313,7 @@ keep-invalid-txs-in-cache = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool
 
 # Maximum size of a single transaction.
 # NOTE: the max size of a tx transmitted over the network is {max_tx_bytes}.
-max_tx_bytes = 1048576
+max_tx_bytes = {{ keyOrDefault  (print (env "CONSUL_PATH") "/mempool.max_tx_bytes") "1048576" }}
 
 # Maximum size of a batch of transactions to send to a peer
 # Including space needed by encoding (one varint per transaction).
