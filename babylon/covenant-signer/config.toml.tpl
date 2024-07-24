@@ -6,9 +6,12 @@
 # will be used to sign psbt's
 [btc-config]
 # Btc node host
+# N.B Assumes only 1 node is running as a Full tx node on the specified btc chain (main, signet)
 {{- range service "bitcoin-rpc" }}
-{{- if and (contains .Tags "fullnode") (contains .Tags (env "BTC_CHAIN")) }}
+{{- if .Tags | contains (env "BTC_CHAIN") }}
+{{- if .Tags | contains "fullnode" }}
 host = "{{ .Address }}:{{ .Port }}"
+{{- end }}
 {{- end }}
 {{- end }}
 {{- with secret (printf "static_secrets/%s/fullnode" (env "SECRETS_PATH")) }}
@@ -21,10 +24,13 @@ pass =  "{{ .Data.data.rpcpassword }}"
 network = "{{ env "BTC_CHAIN" }}"
 
 [btc-signer-config]
-# Btc node host
+# Btc Signer/Wallet node
+# N.B Assumes only 1 node is running as a wallet node on the specified btc chain (main, signet)
 {{- range service "bitcoin-wallet-rpc" }}
-{{- if and (contains .Tags "signer-node") (contains .Tags (env "BTC_CHAIN")) }}
+{{- if .Tags | contains (env "BTC_CHAIN") }}
+{{- if .Tags | contains "signer-node" }}
 host = "{{ .Address }}:{{ .Port }}"
+{{- end }}
 {{- end }}
 {{- end }}
 # TODO: consider reading user/pass from command line
