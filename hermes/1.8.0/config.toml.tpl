@@ -35,9 +35,38 @@ latency_submitted = {{ keyOrDefault (printf "hermes/relayers/%s/latency_submitte
 latency_confirmed = {{ keyOrDefault (printf "hermes/relayers/%s/latency_confirmed" (env "JOB_NAME")) "{ start = 200, end = 20000, buckets = 9 }" }}
 
 {{ range $chain_id, $job_config := (key (printf "hermes/relayers/%s/chain_config" (env "JOB_NAME")) | parseJSON) -}}
-    {{ $chain_config := tree (printf "hermes/networks/%s" $chain_id) | explode -}}
-        {{ range service (printf "%s.network-node" $chain_id) -}}
-        {{ if .Tags | contains $job_config.node_service -}}
+  {{ $chain_config := tree (printf "hermes/networks/%s" $chain_id) | explode -}}
+    {{ range service (printf "%s.network-node" $chain_id) -}}
+      {{ if .Tags | contains $job_config.node_service -}}
+        {{ if eq $chain_id "penumbra-1" -}}
+
+[[chains]]
+id = '{{ $chain_id }}'
+type = 'Penumbra'
+stub_key_name = 'fake'
+rpc_addr = 'http://{{ .Address }}:{{ index .ServiceMeta "PortRpc" }}'
+grpc_addr = 'http://{{ .Address }}:{{ index .ServiceMeta "PortGrpc" }}'
+view_service_storage_dir = "/home/hermes/view_storage"
+event_source = { mode = 'pull', interval = '1s' }
+rpc_timeout = '15s'
+clock_drift = '5s'
+client_refresh_rate = '1/3'
+trust_threshold = { numerator = '1', denominator = '3' }
+packet_filter = { policy = 'allow', list = [
+{{- $first := true -}}
+{{- range $job_config.channels -}}
+  {{- if $first -}}
+      {{- $first = false -}}
+  {{- else -}}
+      ,
+  {{- end -}}
+  {{ . }}
+{{- end -}}] }
+{{if $chain_config.excluded_sequences}}excluded_sequences = {{or $chain_config.excluded_sequences "[]"}}{{end}}
+{{ with secret "hermes/penumbra-1" }}
+kms_config = { spend_key = "{{ .Data.data.rw1 }}" }
+{{ end }}
+        {{ else }}
 [[ chains ]]
 id = '{{ $chain_id }}'
 rpc_addr = 'http://{{ .Address }}:{{ index .ServiceMeta "PortRpc" }}'
@@ -45,6 +74,9 @@ grpc_addr = 'http://{{ .Address }}:{{ index .ServiceMeta "PortGrpc" }}'
 event_source = { mode = 'push', url = 'ws://{{ .Address }}:{{ index .ServiceMeta "PortRpc" }}/websocket', batch_delay = {{ or $chain_config.batch_delay "'500ms'"}} }
 rpc_timeout = '8s'
 type = "CosmosSdk"
+{{- if eq $chain_id "celestia" }}
+compat_mode = '{{ $chain_config.compat_mode }}'
+{{- end }}
 trusted_node = {{or $chain_config.trusted_node "false"}}
 account_prefix = '{{ $chain_config.account_prefix }}'
 key_name = '{{ $job_config.key_name }}'
@@ -76,5 +108,4 @@ packet_filter = { policy = 'allow', list = [
   {{ . }}
 {{- end -}}] }
 {{if $chain_config.excluded_sequences}}excluded_sequences = {{or $chain_config.excluded_sequences "[]"}}{{end}}
-{{ end }}{{ end }}{{ end }}
-
+{{ end }}{{ end }}{{ end }}{{ end }}
