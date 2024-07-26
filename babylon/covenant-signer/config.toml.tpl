@@ -21,7 +21,7 @@ user = "{{ .Data.data.rpcuser }}"
 pass =  "{{ .Data.data.rpcpassword }}"
 {{- end }}
 # Btc network (testnet3|mainnet|regtest|simnet|signet)
-network = "{{ env "BTC_CHAIN" }}"
+network = "{{ env "COVENANT_NETWORK" }}"
 
 [btc-signer-config]
 # Btc Signer/Wallet node
