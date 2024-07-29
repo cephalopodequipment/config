@@ -50,8 +50,8 @@ view_service_storage_dir = "/home/hermes/view_storage"
 event_source = { mode = 'pull', interval = '1s' }
 rpc_timeout = '15s'
 clock_drift = '5s'
-client_refresh_rate = '1/3'
-trust_threshold = { numerator = '1', denominator = '3' }
+client_refresh_rate = '{{ $chain_config.client_refresh_rate }}'
+trust_threshold = {{ $chain_config.trust_threshold }}
 packet_filter = { policy = 'allow', list = [
 {{- $first := true -}}
 {{- range $job_config.channels -}}
