@@ -21,7 +21,7 @@ user = "{{ .Data.data.rpcuser }}"
 pass =  "{{ .Data.data.rpcpassword }}"
 {{- end }}
 # Btc network (testnet3|mainnet|regtest|simnet|signet)
-network = "{{ env "BTC_CHAIN" }}"
+network = "{{ env "COVENANT_NETWORK" }}"
 
 [btc-signer-config]
 # Btc Signer/Wallet node
@@ -48,7 +48,7 @@ network = "{{ env "COVENANT_NETWORK" }}"
 host = "0.0.0.0"
 
 # The port to listen on
-port = 32530
+port = 31530
 
 # Read timeout in seconds
 read-timeout = 15
