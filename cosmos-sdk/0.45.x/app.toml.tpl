@@ -118,7 +118,7 @@ enable = true
 swagger = true
 
 # Address defines the API server to listen on.
-address = "tcp://0.0.0.0:{{ env "NOMAD_PORT_leet" }}"
+address = "tcp://0.0.0.0:1317"
 
 # MaxOpenConnections defines the number of maximum open connections.
 max-open-connections = 1000
@@ -169,7 +169,7 @@ offline = false
 enable = true
 
 # Address defines the gRPC server address to bind to.
-address = "0.0.0.0:{{ env "NOMAD_PORT_grpc" }}"
+address = "0.0.0.0:9090"
 
 # MaxRecvMsgSize defines the max message size in bytes the server can receive.
 # The default value is 4MB.
