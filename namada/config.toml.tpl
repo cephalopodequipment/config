@@ -92,7 +92,7 @@ timeout_precommit_delta = "500ms"
 timeout_commit = "10000ms"
 
 [ledger.cometbft.tx_index]
-indexer = "null"
+indexer = {{ keyOrDefault (print (env "CONSUL_PATH") "/indexer") "\"null\"" }}
 
 [ledger.cometbft.instrumentation]
 prometheus = true
@@ -108,3 +108,8 @@ trust_hash = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.trust_hash")
 trust_period = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/statesync.trust_period") "\"168h0m0s\"" }}
 discovery_time = "15000ms"
 temp_dir = ""
+
+[ledger.ethereum_bridge]
+mode = "RemoteEndpoint"
+oracle_rpc_endpoint = "{{ env "ETH_RPC_ENDPOINT" }}"
+channel_buffer_size = 1000
