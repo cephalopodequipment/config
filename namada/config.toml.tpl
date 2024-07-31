@@ -5,7 +5,7 @@ genesis_time = "{{ env "GENESIS_TIME" }}"
 chain_id = "{{ env "CHAIN_ID" }}"
 
 [ledger.shell]
-base_dir = "/home/namada/.local/share/namada"
+base_dir = "/home/namada/.local/share/namada/{{ env "CHAIN_ID" }}"
 storage_read_past_height_limit = 3600
 db_dir = "db"
 cometbft_dir = "cometbft"
