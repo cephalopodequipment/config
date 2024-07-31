@@ -86,7 +86,7 @@ filter_peers = false
 [rpc]
 
 # TCP or UNIX socket address for the RPC server to listen on
-laddr = "tcp://0.0.0.0:{{ env "NOMAD_PORT_rpc" }}"
+laddr = "tcp://0.0.0.0:26657"
 
 # A list of origins a cross-domain request can be executed from
 # Default value '[]' disables cors support
@@ -189,7 +189,7 @@ tls_cert_file = ""
 tls_key_file = ""
 
 # pprof listen address (https://golang.org/pkg/net/http/pprof)
-pprof_laddr = "0.0.0.0:{{ env "NOMAD_PORT_pprof" }}"
+pprof_laddr = "0.0.0.0:6060"
 
 #######################################################
 ###           P2P Configuration Options             ###
@@ -469,7 +469,7 @@ psql-conn = {{ keyOrDefault  (print (env "CONSUL_PATH") "/tx_index.psql-conn") "
 prometheus = true
 
 # Address to listen for Prometheus collector(s) connections
-prometheus_listen_addr = ":{{ env "NOMAD_PORT_prom" }}"
+prometheus_listen_addr = "0.0.0.0:26660"
 
 # Maximum number of simultaneous connections.
 # If you want to accept a larger number than the default, make sure
