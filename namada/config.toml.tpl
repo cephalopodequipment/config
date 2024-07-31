@@ -9,7 +9,7 @@ base_dir = "/home/namada/.local/share/namada"
 storage_read_past_height_limit = 3600
 db_dir = "db"
 cometbft_dir = "cometbft"
-tendermint_mode = "Validator"
+tendermint_mode = {{ if (env "VALIDATOR") | parseBool }} "Validator" {{ else }} "Full" {{ end }}
 
 [ledger.cometbft]
 proxy_app = "tcp://127.0.0.1:26658"
