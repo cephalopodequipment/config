@@ -11,13 +11,13 @@
                             "apiKeyHeader": "X-Api-Key"
                         }
                     },
-                    {
-                        "url": "https://slinky-solana.kingnodes.com",
-                        "authentication": {
-                            "apiKey": "{{ .Data.data.kingnodes }}",
-                            "apiKeyHeader": "X-Api-Key"
-                        }
-                    },
+#                    {
+#                        "url": "https://slinky-solana.kingnodes.com",
+#                        "authentication": {
+#                            "apiKey": "{{ .Data.data.kingnodes }}",
+#                            "apiKeyHeader": "X-Api-Key"
+#                        }
+#                    },
                     {
                         "url": "https://solana-rpc.rhino-apis.com",
                         "authentication": {
