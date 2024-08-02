@@ -18,13 +18,13 @@
 #                            "apiKeyHeader": "X-Api-Key"
 #                        }
 #                    },
-                    {
-                        "url": "https://solana-rpc.rhino-apis.com",
-                        "authentication": {
-                            "apiKey": "{{ .Data.data.rhino }}",
-                            "apiKeyHeader": "X-Api-Key"
-                        }
-                    },
+#                    {
+#                        "url": "https://solana-rpc.rhino-apis.com",
+#                        "authentication": {
+#                            "apiKey": "{{ .Data.data.rhino }}",
+#                            "apiKeyHeader": "X-Api-Key"
+#                        }
+#                    },
                     {
                         "url": "https://dydx.helius-rpc.com",
                         "authentication": {
