@@ -49,6 +49,7 @@ grpc_addr = 'http://{{ .Address }}:{{ index .ServiceMeta "PortGrpc" }}'
 view_service_storage_dir = "/home/hermes/view_storage"
 event_source = { mode = 'pull', interval = '1s' }
 rpc_timeout = '{{ $chain_config.rpc_timeout }}'
+query_packets_chunk_size = {{ or $chain_config.query_packets_chunk_size 25 }}
 clock_drift = '5s'
 client_refresh_rate = '{{ $chain_config.client_refresh_rate }}'
 trust_threshold = {{ $chain_config.trust_threshold }}
@@ -89,6 +90,7 @@ max_gas = {{ $chain_config.max_gas }}
 dynamic_gas_price = { enabled = {{ or $chain_config.enable_dynamic_gas "false" }}, multiplier = {{ or $chain_config.dynamic_gas_multiplier 1 }}, max = {{ or $chain_config.dynamic_max_gas_price 0 }} }
 ccv_consumer_chain = {{or $chain_config.ccv_consumer_chain "false"}}
 max_msg_num = {{ $chain_config.max_msg_num }}
+query_packets_chunk_size = {{ or $chain_config.query_packets_chunk_size 25 }}
 gas_multiplier = {{ $chain_config.gas_multiplier }}
 max_tx_size = {{ $chain_config.max_tx_size }}
 clock_drift = '{{ $chain_config.clock_drift }}'
