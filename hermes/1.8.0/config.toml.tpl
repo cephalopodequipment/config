@@ -48,7 +48,7 @@ rpc_addr = 'http://{{ .Address }}:{{ index .ServiceMeta "PortRpc" }}'
 grpc_addr = 'http://{{ .Address }}:{{ index .ServiceMeta "PortGrpc" }}'
 view_service_storage_dir = "/home/hermes/view_storage"
 event_source = { mode = 'pull', interval = '1s' }
-rpc_timeout = '{{ or $chain_config.rpc_timeout 15s }}'
+rpc_timeout = '{{ $chain_config.rpc_timeout }}'
 clock_drift = '5s'
 client_refresh_rate = '{{ $chain_config.client_refresh_rate }}'
 trust_threshold = {{ $chain_config.trust_threshold }}
