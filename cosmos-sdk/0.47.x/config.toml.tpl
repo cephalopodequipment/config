@@ -282,7 +282,7 @@ dial_timeout = "3s"
 #   2) "v1" - prioritized mempool (deprecated; will be removed in the next release).
 version = "v0"
 
-recheck = true
+recheck = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.recheck") "true" }}
 broadcast = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.broadcast") "true" }}
 wal_dir = ""
 
