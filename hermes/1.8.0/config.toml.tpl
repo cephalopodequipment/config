@@ -63,16 +63,22 @@ packet_filter = { policy = 'allow', list = [
   {{- end -}}
   {{ . }}
 {{- end -}}] }
-{{if $chain_config.excluded_sequences}}excluded_sequences = {{or $chain_config.excluded_sequences "[]"}}{{end}}
+{{ if $chain_config.excluded_sequences }}
+excluded_sequences = {{ or $chain_config.excluded_sequences "[]" }}
+{{ end }}
 {{ with secret "hermes/penumbra-1" }}
 kms_config = { spend_key = "{{ .Data.data.rw1 }}" }
 {{ end }}
         {{ else }}
 [[ chains ]]
 id = '{{ $chain_id }}'
-rpc_addr = 'http://{{ .Address }}:{{ index .ServiceMeta "PortRpc" }}'
-grpc_addr = 'http://{{ .Address }}:{{ index .ServiceMeta "PortGrpc" }}'
-event_source = { mode = 'push', url = 'ws://{{ .Address }}:{{ index .ServiceMeta "PortRpc" }}/websocket', batch_delay = {{ or $chain_config.batch_delay "'500ms'"}} }
+{{- range service (printf "%s-%s.cometbft-rpc" $chain_id $job_config.node_service) }}
+rpc_addr = 'http://{{ .Address }}:{{ .Port }}'
+event_source = { mode = 'push', url = 'ws://{{ .Address }}:{{ .Port }}/websocket', batch_delay = {{ or $chain_config.batch_delay "'500ms'"}} }
+{{- end }}
+{{- range service (printf "%s-%s.cosmos-sdk-grpc" $chain_id $job_config.node_service) }}
+grpc_addr = 'http://{{ .Address }}:{{ .Port }}'
+{{- end }}
 rpc_timeout = '8s'
 type = "CosmosSdk"
 {{- if eq $chain_id "celestia" }}
