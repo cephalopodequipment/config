@@ -425,7 +425,7 @@ double_sign_check_height = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensu
 skip_timeout_commit = {{ keyOrDefault (print (env "CONSUL_PATH" ) "/consensus.skip_timeout_commit") "false" }}
 
 # EmptyBlocks mode and possible interval between empty blocks
-create_empty_blocks = true
+create_empty_blocks = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/consensus.create_empty_blocks") "true" }}
 create_empty_blocks_interval = "0s"
 
 # Reactor sleep duration parameters
