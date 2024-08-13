@@ -1,4 +1,4 @@
-## CONFIG FOR COMETBFT v0.34.30
+## CONFIG FOR COMETBFT v0.34.x
 
 # This is a TOML config file.
 # For more information, see https://github.com/toml-lang/toml
