@@ -315,7 +315,7 @@ broadcast = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.broadcast") "tr
 wal_dir = ""
 
 # Maximum number of transactions in the mempool
-size = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.size") "50000" }}
+size = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.size") "5000" }}
 
 # Limit the total size of all txs in the mempool.
 # This only accounts for raw transactions (e.g. given 1MB transactions and
@@ -323,7 +323,7 @@ size = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.size") "50000" }}
 max_txs_bytes = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.max_txs_bytes") "1073741824" }}
 
 # Size of the cache (used to filter transactions we saw earlier) in transactions
-cache_size = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.cache_size") "20000" }}
+cache_size = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.cache_size") "10000" }}
 
 # Do not remove invalid transactions from the cache (default: false)
 # Set to true if it's not possible for any invalid transaction to become valid
