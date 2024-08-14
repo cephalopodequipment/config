@@ -44,8 +44,13 @@ latency_confirmed = {{ keyOrDefault (printf "hermes/relayers/%s/latency_confirme
 id = '{{ $chain_id }}'
 type = 'Penumbra'
 stub_key_name = 'fake'
-rpc_addr = 'http://{{ .Address }}:{{ index .ServiceMeta "PortRpc" }}'
-grpc_addr = 'http://{{ .Address }}:{{ index .ServiceMeta "PortGrpc" }}'
+{{- range service (printf "%s-%s.cometbft-rpc" $chain_id $job_config.node_service) }}
+rpc_addr = 'http://{{ .Address }}:{{ .Port }}'
+event_source = { mode = 'push', url = 'ws://{{ .Address }}:{{ .Port }}/websocket', batch_delay = {{ or $chain_config.batch_delay "'500ms'"}} }
+{{- end }}
+{{- range service (printf "%s-%s.pd-grpc" $chain_id $job_config.node_service) }}
+grpc_addr = 'http://{{ .Address }}:{{ .Port }}'
+{{- end }}
 view_service_storage_dir = "/home/hermes/view_storage"
 event_source = { mode = 'pull', interval = '1s' }
 rpc_timeout = '{{ $chain_config.rpc_timeout }}'
