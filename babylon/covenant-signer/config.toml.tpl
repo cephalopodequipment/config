@@ -9,7 +9,7 @@
 # N.B Assumes only 1 node is running as a Full tx node on the specified btc chain (main, signet)
 {{- range service "bitcoin-rpc" }}
 {{- if .Tags | contains (env "BTC_CHAIN") }}
-{{- if .Tags | contains "fullnode" }}
+{{- if .Tags | contains (env "BTC_TX_NODE") }}
 host = "{{ .Address }}:{{ .Port }}"
 {{- end }}
 {{- end }}
