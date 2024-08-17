@@ -10,7 +10,7 @@ bitcoin:
   disabletls: "{{ env "BTC_FULLNODE_DISABLE_TLS" }}"
   required-confirmations: 3
   change-address: "{{ env "BTC_CHANGE_ADDRESS" }}"
-  max-fee-rate: 70
+  max-fee-rate: "{{ env "BTC_MAX_FEE_RATE" }}"
 
 blockchain:
   ethereum:
