@@ -15,7 +15,7 @@ bitcoin:
 blockchain:
   ethereum:
     enabled: "true"
-    confirmation-blocks: "65"
+    confirmation-blocks: "{{ enc "ETH_CONFIRMATION_BLOCKS"}}"
     endpoints: "{{- with secret static_secrets/lombard/eth_fullnode -}}{{- .Data.data.url -}}{{- end -}}"
     blockchain: "EVM"
     chain-id: "{{ env "ETH_CHAIN_ID"}}"
