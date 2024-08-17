@@ -33,7 +33,7 @@ consensus:
 {{ key (print (env "CONSUL_PATH") "/members") }}
 
 crypto:
-  enabled-curves: "ECDSA_SECP256K1,ECDSA_SECP256R1,EDDSA_ED25519"
+  enabled-curves: "ECDSA_SECP256K1 ECDSA_SECP256R1 EDDSA_ED25519"
 
 cubist:
   session: "{{- with secret "static_secrets/lombard/cubist" -}}{{- .Data.data.session_token -}}{{- end -}}"
