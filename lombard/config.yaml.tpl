@@ -45,7 +45,7 @@ cubist:
   deposit-key: "{{- with secret static_secrets/lombard/cubist -}}{{- .Data.data.deposit_key -}}{{- end -}}"
 
 database:
-  pebble-data-dir: ./datadir
+  pebble-data-dir: {{ env "HOME_DIR"}}/pebbble/datadir
   pebble-encryption-key: "{{- with secret static_secrets/lombard/db -}}{{- .Data.data.pebble_encryption_key -}}{{- end -}}"
 
 gateway:
