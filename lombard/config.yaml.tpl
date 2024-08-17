@@ -19,7 +19,7 @@ blockchain:
     endpoints: "{{- with secret "static_secrets/lombard/eth_fullnode" -}}{{- .Data.data.url -}}{{- end -}}"
     blockchain: "EVM"
     chain-id: "{{ env "ETH_CHAIN_ID"}}"
-    block-time: "{{ enc "ETH_BLOCK_TIME"}}"
+    block-time: "{{ env "ETH_BLOCK_TIME"}}"
     lbtc-address: "{{ env "ETH_LBTC_ADDRESS" }}"
 
 consensus:
