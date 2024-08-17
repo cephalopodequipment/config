@@ -36,7 +36,7 @@ crypto:
   enabled-curves: "ECDSA_SECP256K1,ECDSA_SECP256R1,EDDSA_ED25519"
 
 cubist:
-  session: "{{- with secret static_secrets/lombard/cubist -}}{{- .Data.data.session_token -}}{{- end -}}"
+  session: "{{- with secret "static_secrets/lombard/cubist" -}}{{- .Data.data.session_token -}}{{- end -}}"
   preapproved-session: "{{- with "secret static_secrets/lombard/cubist" -}}{{- .Data.data.preapproved_session_token -}}{{- end -}}"
   timeout: "60s"
   key-type: "SecpBtcTest"
