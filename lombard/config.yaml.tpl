@@ -37,7 +37,7 @@ crypto:
 
 cubist:
   session: "{{- with secret "static_secrets/lombard/cubist" -}}{{- .Data.data.session_token -}}{{- end -}}"
-  preapproved-session: "{{- with "secret static_secrets/lombard/cubist" -}}{{- .Data.data.preapproved_session_token -}}{{- end -}}"
+  preapproved-session: "{{- with "secret static_secrets/lombard/cubist" -}}{{- .Data.data.presession_token -}}{{- end -}}"
   timeout: "60s"
   key-type: "SecpBtcTest"
   deposit-role-id: "{{- with "secret static_secrets/lombard/cubist" -}}{{- .Data.data.deposit_role_id -}}{{- end -}}"
