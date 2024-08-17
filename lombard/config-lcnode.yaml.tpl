@@ -27,7 +27,7 @@ consensus:
   data-dir: {{ env "HOME_DIR"}}/raftdir
   cluster-id: 0
   certs-dir: "{{ env "HOME_DIR"}}/certs/mainnet/"
-  private-key-file: "{{ env "HOME_DIR"}}/certs/mainnet/{{ key (print (env "CONSUL_PATH") "/node_id") }}.key"
+  private-key-file: "{{ env "HOME_DIR"}}/certs/mainnet/private.key"
   node-id: {{ key (print (env "CONSUL_PATH") "/node_id") }}
   members:
 {{ key (print (env "CONSUL_PATH") "/members") }}
