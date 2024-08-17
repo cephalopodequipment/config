@@ -40,9 +40,9 @@ cubist:
   preapproved-session: "{{- with secret "static_secrets/lombard/cubist" -}}{{- .Data.data.presession_token -}}{{- end -}}"
   timeout: "60s"
   key-type: "SecpBtcTest"
-  deposit-role-id: "{{- with "secret static_secrets/lombard/cubist" -}}{{- .Data.data.deposit_role_id -}}{{- end -}}"
-  staking-role-id: "{{- with "secret static_secrets/lombard/cubist" -}}{{- .Data.data.staking_role_id -}}{{- end -}}"
-  deposit-key: "{{- with "secret static_secrets/lombard/cubist" -}}{{- .Data.data.deposit_key -}}{{- end -}}"
+  deposit-role-id: "{{- with secret "static_secrets/lombard/cubist" -}}{{- .Data.data.deposit_role_id -}}{{- end -}}"
+  staking-role-id: "{{- with secret "static_secrets/lombard/cubist" -}}{{- .Data.data.staking_role_id -}}{{- end -}}"
+  deposit-key: "{{- with secret "static_secrets/lombard/cubist" -}}{{- .Data.data.deposit_key -}}{{- end -}}"
 
 database:
   pebble-data-dir: {{ env "HOME_DIR"}}/pebbble/datadir
