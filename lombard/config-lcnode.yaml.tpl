@@ -43,6 +43,8 @@ cubist:
   deposit-role-id: "{{- with secret "static_secrets/lombard/cubist" -}}{{- .Data.data.deposit_role_id -}}{{- end -}}"
   staking-role-id: "{{- with secret "static_secrets/lombard/cubist" -}}{{- .Data.data.staking_role_id -}}{{- end -}}"
   deposit-key: "{{- with secret "static_secrets/lombard/cubist" -}}{{- .Data.data.deposit_key -}}{{- end -}}"
+  approval-key: "{{- with secret "static_secrets/lombard/cubist" -}}{{- .Data.data.approval_key -}}{{- end -}}"
+  noncustodial-role-id: "{{- with secret "static_secrets/lombard/cubist" -}}{{- .Data.data.noncustodial_role_id -}}{{- end -}}"
 
 database:
   pebble-data-dir: {{ env "HOME_DIR"}}/pebbble/datadir
