@@ -8,7 +8,7 @@ bitcoin:
   password: "{{- with secret "static_secrets/lombard/btc_fullnode" -}}{{- .Data.data.password -}}{{- end -}}"
   params: "{{ env "BTC_NETWORK" }}"
   disabletls: "{{ env "BTC_FULLNODE_DISABLE_TLS" }}"
-  required-confirmations: 3
+  required-confirmations: {{ env "BTC_REQUIRED_CONFIRMATIONS" }}
   change-address: "{{ env "BTC_CHANGE_ADDRESS" }}"
   max-fee-rate: "{{ env "BTC_MAX_FEE_RATE" }}"
 
@@ -58,3 +58,8 @@ sanction:
   url: "{{ env "LOMBARD_SANCTION_URL" }}"
   timeout: "60s"
 
+logger:
+  disable-timestamp: true
+  json-formatter: true
+  pretty-print: true
+  log-level: "debug"
