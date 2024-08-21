@@ -54,7 +54,7 @@ database:
 gateway:
   grpc-address: :6565
   http-address: :8000
-  prometheus_address: :9090
+  prometheus-address: :9090
 
 sanction:
   url: "{{ env "LOMBARD_SANCTION_URL" }}"
