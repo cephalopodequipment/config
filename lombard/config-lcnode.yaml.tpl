@@ -63,3 +63,6 @@ logger:
   json-formatter: true
   pretty-print: true
   log-level: "debug"
+
+gateway:
+  prometheus_address:0.0.0.0:9090
