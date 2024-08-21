@@ -65,4 +65,4 @@ logger:
   log-level: "debug"
 
 gateway:
-  prometheus_address:0.0.0.0:9090
+  prometheus_address: "0.0.0.0:9090"
