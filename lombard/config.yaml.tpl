@@ -61,7 +61,7 @@ sanction:
   timeout: "60s"
 
 logger:
-  disable-timestamp: true
+  disable-timestamp: false
   json-formatter: true
-  pretty-print: true
+  pretty-print: false
   log-level: "debug"
