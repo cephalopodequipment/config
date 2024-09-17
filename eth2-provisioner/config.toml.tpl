@@ -6,7 +6,7 @@ port = "8080"
 external_binaries_path = "/usr/bin"
 
 # Vault settings
-vault_addr = "http://vault.service.devenv-cec.consul:8200"
+vault_addr = "http://10.20.30.101:8200"
 
 {{- with secret "static_secrets/eth2-provisioner" }}
 vault_role_id = "{{ .Data.data.role_id}}"
@@ -25,7 +25,7 @@ validator_job_names = [
 ]
 
 # Consul settings
-consul_addr = "http://consul.service.devenv-cec.consul:8500"
+consul_addr = "http://10.20.30.101:8500"
 consul_token = ""  # Leave empty if using environment variables or command-line flags
 
 # Environment settings
