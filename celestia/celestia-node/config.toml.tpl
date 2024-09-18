@@ -10,8 +10,8 @@
 {{- end }}{{ end }}
 
 [State]
-  KeyringAccName = ""
-  KeyringBackend = "test"
+  DefaultKeyName = "my_celes_key"
+  DefaultBackendName = "test"
 
 [P2P]
   ListenAddresses = ["/ip4/0.0.0.0/udp/2121/quic-v1/webtransport", "/ip6/::/udp/2121/quic-v1/webtransport", "/ip4/0.0.0.0/udp/2121/quic-v1", "/ip6/::/udp/2121/quic-v1", "/ip4/0.0.0.0/tcp/2121", "/ip6/::/tcp/2121"]
