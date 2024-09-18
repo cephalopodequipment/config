@@ -1,11 +1,13 @@
 [Node]
   StartupTimeout = "2m0s"
   ShutdownTimeout = "2m0s"
-
+{{ range service "celestia-validator.cometbft-rpc" }}
 [Core]
-  IP = "{{ key (print (env "CONSUL_PATH") "/validator.ip") }}"
-  RPCPort = "{{ key (print (env "CONSUL_PATH") "/validator.rpc") }}"
-  GRPCPort = "{{ key (print (env "CONSUL_PATH") "/validator.grpc") }}"
+  IP = "{{ .Address }}"
+  RPCPort = "{{ .Port }}"
+  {{ range service "celestia-validator.cosmos-sdk-grpc" -}}
+  GRPCPort = "{{ .Port }}"
+{{- end }}{{ end }}
 
 [State]
   KeyringAccName = ""
