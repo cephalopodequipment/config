@@ -56,7 +56,7 @@ extensions:
     endpoint: 0.0.0.0:1777
 
 exporters:
-  {{ range service "server1.clickhouse-client" }}
+  {{- range service "server1.clickhouse-client" }}
   clickhouselogsexporter:
     dsn: tcp://{{ .Address }}:{{ .Port }}/signoz_logs
     docker_multi_node_cluster: ${DOCKER_MULTI_NODE_CLUSTER}
