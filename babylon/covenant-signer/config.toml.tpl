@@ -48,7 +48,7 @@ network = "{{ env "COVENANT_NETWORK" }}"
 host = "0.0.0.0"
 
 # The port to listen on
-port = 31530
+port = "{{ env "NOMAD_PORT_rpc" }}"
 
 # Read timeout in seconds
 read-timeout = 15
