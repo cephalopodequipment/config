@@ -12,8 +12,8 @@ batch_relayer_count = 10
 [bitcoin]
 network = "testnet"
 rpc = "http://192.248.150.102:18332"
-user = "side"
-password = "12345678"
+user = "{{ with secret "static_secrets/side-testnet/bitcoin-user" -}}"
+password = "{{ with secret "static_secrets/side-testnet/bitcoin-password" -}}"
 
 [side_chain]
 grpc = "http://localhost:9090"
