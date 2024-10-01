@@ -110,6 +110,17 @@ prometheus-retention-time = 0
 global-labels = [
 ]
 
+# MetricsSink defines the type of metrics sink to use.
+metrics-sink = ""
+
+# StatsdAddr defines the address of a statsd server to send metrics to.
+# Only utilized if MetricsSink is set to "statsd" or "dogstatsd".
+statsd-addr = ""
+
+# DatadogHostname defines the hostname to use when emitting metrics to
+# Datadog. Only utilized if MetricsSink is set to "dogstatsd".
+datadog-hostname = ""
+
 ###############################################################################
 ###                           API Configuration                             ###
 ###############################################################################
@@ -240,7 +251,7 @@ keys = ["*", ]
 write_dir = ""
 prefix = ""
 
-# output-metadata specifies if output the metadata file which includes the abci request/responses 
+# output-metadata specifies if output the metadata file which includes the abci request/responses
 # during processing the block.
 output-metadata = "true"
 
@@ -339,3 +350,82 @@ arbitrage-min-gas-fee = {{ keyOrDefault (print (env "CONSUL_PATH") "/osmo.arbitr
 # Default value of ".0025" then means that a tx with 1 million gas costs (.0025 uosmo/gas) * 1_000_000 gas = .0025 osmo
 min-gas-price-for-high-gas-tx = {{ keyOrDefault (print (env "CONSUL_PATH") "/osmo.min-gas-price-for-high-gas-tx") "\".0025\"" }}
 
+###############################################################################
+###                                BeaconKit                                ###
+###############################################################################
+
+[beacon-kit.engine]
+# HTTP url of the execution client JSON-RPC endpoint.
+rpc-dial-url = "http://localhost:8551"
+
+# Number of retries before shutting down consensus client.
+rpc-retries = "3"
+
+# RPC timeout for execution client requests.
+rpc-timeout = "900ms"
+
+# Interval for the startup check.
+rpc-startup-check-interval = "3s"
+
+# Interval for the JWT refresh.
+rpc-jwt-refresh-interval = "20s"
+
+# Path to the execution client JWT-secret
+jwt-secret-path = "./jwt.hex"
+
+[beacon-kit.logger]
+# TimeFormat is a string that defines the format of the time in the logger.
+time-format = "RFC3339"
+
+# LogLevel is the level of logging. Logger will log messages with verbosity up
+# to LogLevel.
+log-level = "info"
+
+# Style is the style of the logger.
+style = "pretty"
+
+[beacon-kit.kzg]
+# Path to the trusted setup path.
+trusted-setup-path = "./testing/files/kzg-trusted-setup.json"
+
+# KZG implementation to use.
+# Options are "crate-crypto/go-kzg-4844" or "ethereum/c-kzg-4844".
+implementation = "crate-crypto/go-kzg-4844"
+
+[beacon-kit.payload-builder]
+# Enabled determines if the local payload builder is enabled.
+enabled = true
+
+# Post bellatrix, this address will receive the transaction fees produced by any blocks
+# from this node.
+suggested-fee-recipient = {{ keyOrDefault (print (env "CONSUL_PATH") "/ethereum.fee-recipient") "\"0x0000000000000000000000000000000000000000\"" }}
+
+# The timeout for local build payload. This should match, or be slightly less
+# than the configured timeout on your execution client. It also must be less than
+# timeout_proposal in the CometBFT configuration.
+payload-timeout = "850ms"
+
+[beacon-kit.validator]
+# Graffiti string that will be included in the graffiti field of the beacon block.
+graffiti = {{ keyOrDefault (print (env "CONSUL_PATH") "/ethereum.graffiti") "\"Informal Systems\"" }}
+
+# EnableOptimisticPayloadBuilds enables building the next block's payload optimistically in
+# process-proposal to allow for the execution client to have more time to assemble the block.
+enable-optimistic-payload-builds = "true"
+
+[beacon-kit.block-store-service]
+# Enabled determines if the block store service is enabled.
+enabled = "false"
+
+# AvailabilityWindow is the number of slots to keep in the store.
+availability-window = "8192"
+
+[beacon-kit.node-api]
+# Enabled determines if the node API is enabled.
+enabled = "false"
+
+# Address is the address to bind the node API to.
+address = "0.0.0.0:3500"
+
+# Logging determines if the node API logging is enabled.
+logging = "false"

@@ -9,6 +9,10 @@
 # "$HOME/.tendermint" by default, but could be changed via $TMHOME env variable
 # or --home cmd flag.
 
+# The version of the CometBFT binary that created or
+# last modified the config file. Do not modify this.
+version = "1.0.0-alpha.2"
+
 #######################################################################
 ###                   Main Base Config Options                      ###
 #######################################################################
@@ -44,7 +48,7 @@ fast_sync = true
 # * badgerdb (uses github.com/dgraph-io/badger)
 #   - EXPERIMENTAL
 #   - use badgerdb build tag (go build -tags badgerdb)
-db_backend = "goleveldb"
+db_backend = {{ keyOrDefault  (print (env "CONSUL_PATH") "/base.db_backend") "\"goleveldb\"" }}
 
 # Database directory
 db_dir = "data"
@@ -84,6 +88,65 @@ filter_peers = false
 #######################################################################
 ###                 Advanced Configuration Options                  ###
 #######################################################################
+#######################################################
+###       gRPC Server Configuration Options         ###
+#######################################################
+
+#
+# Note that the gRPC server is exposed unauthenticated. It is critical that
+# this server not be exposed directly to the public internet. If this service
+# must be accessed via the public internet, please ensure that appropriate
+# precautions are taken (e.g. fronting with a reverse proxy like nginx with TLS
+# termination and authentication, using DDoS protection services like
+# CloudFlare, etc.).
+#
+
+[grpc]
+
+# TCP or UNIX socket address for the RPC server to listen on. If not specified,
+# the gRPC server will be disabled.
+laddr = ""
+
+#
+# Each gRPC service can be turned on/off, and in some cases configured,
+# individually. If the gRPC server is not enabled, all individual services'
+# configurations are ignored.
+#
+
+# The gRPC version service provides version information about the node and the
+# protocols it uses.
+[grpc.version_service]
+enabled = true
+
+# The gRPC block service returns block information
+[grpc.block_service]
+enabled = true
+
+# The gRPC block results service returns block results for a given height. If no height
+# is given, it will return the block results from the latest height.
+[grpc.block_results_service]
+enabled = true
+
+#
+# Configuration for privileged gRPC endpoints, which should **never** be exposed
+# to the public internet.
+#
+[grpc.privileged]
+# The host/port on which to expose privileged gRPC endpoints.
+laddr = ""
+
+#
+# Configuration specifically for the gRPC pruning service, which is considered a
+# privileged service.
+#
+[grpc.privileged.pruning_service]
+
+# Only controls whether the pruning service is accessible via the gRPC API - not
+# whether a previously set pruning service retain height is honored by the
+# node. See the [storage.pruning] section for control over pruning.
+#
+# Disabled by default.
+enabled = false
 
 #######################################################
 ###       RPC Server Configuration Options          ###
@@ -165,6 +228,11 @@ experimental_websocket_write_buffer_size = 200
 # be closed instead if it cannot read fast enough, allowing for greater
 # predictability in subscription behaviour.
 experimental_close_on_slow_client = false
+
+# Maximum number of requests that can be sent in a batch
+# If the value is set to '0' (zero-value), then no maximum batch size will be
+# enforced for a JSON-RPC batch request.
+max_request_batch_size = 10
 
 # How long to wait for a tx to be committed during /broadcast_tx_commit.Update config.toml.tpl
 # WARNING: Using a value larger than 10s will result in increasing the
@@ -280,7 +348,24 @@ dial_timeout = "3s"
 #   2) "v1" - prioritized mempool.
 version = "v0"
 
-recheck = true
+# The type of mempool for this node to use.
+#
+#  Possible types:
+#  - "flood" : concurrent linked list mempool with flooding gossip protocol
+#  (default)
+#  - "nop"   : nop-mempool (short for no operation; the ABCI app is responsible
+#  for storing, disseminating and proposing txs). "create_empty_blocks=false" is
+#  not supported.
+type = "nop"
+
+recheck = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.recheck") "\"true\"" }}
+
+# recheck_timeout is the time the application has during the rechecking process
+# to return CheckTx responses, once all requests have been sent. Responses that
+# arrive after the timeout expires are discarded. It only applies to
+# non-local ABCI clients and when recheck is enabled.
+recheck_timeout = "0s"
+
 broadcast = true
 wal_dir = ""
 
@@ -290,10 +375,10 @@ size = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/")
 # Limit the total size of all txs in the mempool.
 # This only accounts for raw transactions (e.g. given 1MB transactions and
 # max_txs_bytes=5MB, mempool will only accept 5 transactions).
-max_txs_bytes = 1073741824
+max_txs_bytes = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.max_txs_bytes") "\"1073741824\"" }}
 
 # Size of the cache (used to filter transactions we saw earlier) in transactions
-cache_size = 10000
+cache_size = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.cache_size") "\"10000\"" }}
 
 # Do not remove invalid transactions from the cache (default: false)
 # Set to true if it's not possible for any invalid transaction to become valid
@@ -324,6 +409,21 @@ ttl-duration = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.ttl-duration
 # has existed in the mempool at least ttl-num-blocks number of blocks or if
 # it's insertion time into the mempool is beyond ttl-duration.
 ttl-num-blocks = {{ keyOrDefault (print (env "CONSUL_PATH" | split "/") "/mempool.ttl-num-blocks") "0" }}
+
+# Experimental parameters to limit gossiping txs to up to the specified number of peers.
+# We use two independent upper values for persistent and non-persistent peers.
+# Unconditional peers are not affected by this feature.
+# If we are connected to more than the specified number of persistent peers, only send txs to
+# ExperimentalMaxGossipConnectionsToPersistentPeers of them. If one of those
+# persistent peers disconnects, activate another persistent peer.
+# Similarly for non-persistent peers, with an upper limit of
+# ExperimentalMaxGossipConnectionsToNonPersistentPeers.
+# If set to 0, the feature is disabled for the corresponding group of peers, that is, the
+# number of active connections to that group of peers is not bounded.
+# For non-persistent peers, if enabled, a value of 10 is recommended based on experimental
+# performance results using the default P2P configuration.
+experimental_max_gossip_connections_to_persistent_peers = 0
+experimental_max_gossip_connections_to_non_persistent_peers = 0
 
 #######################################################
 ###         State Sync Configuration Options        ###
@@ -373,6 +473,19 @@ chunk_fetchers = "4"
 version = "v0"
 
 #######################################################
+###       Block Sync Configuration Options          ###
+#######################################################
+[blocksync]
+
+# Block Sync version to use:
+#
+# In v0.37, v1 and v2 of the block sync protocols were deprecated.
+# Please use v0 instead.
+#
+#   1) "v0" - the default block sync implementation
+version = "v0"
+
+#######################################################
 ###         Consensus Configuration Options         ###
 #######################################################
 [consensus]
@@ -380,7 +493,7 @@ version = "v0"
 wal_file = "data/cs.wal/wal"
 
 # How long we wait for a proposal block before prevoting nil
-timeout_propose = "3s"
+timeout_propose = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout-propose") "\"3s\"" }}
 # How much timeout_propose increases with each round
 timeout_propose_delta = "500ms"
 # How long we wait after receiving +2/3 prevotes for “anything” (ie. not a single block or nil)
@@ -388,7 +501,7 @@ timeout_prevote = "1s"
 # How much the timeout_prevote increases with each round
 timeout_prevote_delta = "500ms"
 # How long we wait after receiving +2/3 precommits for “anything” (ie. not a single block or nil)
-timeout_precommit = "1s"
+timeout_precommit = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout-precommit") "\"1s\"" }}
 # How much the timeout_precommit increases with each round
 timeout_precommit_delta = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_precommit_delta") "\"500ms\"" }}
 # How long we wait after committing a block, before starting on the new
@@ -411,6 +524,7 @@ create_empty_blocks_interval = "0s"
 
 # Reactor sleep duration parameters
 peer_gossip_sleep_duration = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/consensus.peer_gossip_sleep_duration") "\"100ms\"" }}
+peer_gossip_intraloop_sleep_duration = "0s"
 peer_query_maj23_sleep_duration = "2s"
 
 #######################################################
@@ -423,6 +537,66 @@ peer_query_maj23_sleep_duration = "2s"
 # persisted. ABCI responses are required for /block_results RPC queries, and to
 # reindex events in the command-line tool.
 discard_abci_responses = {{ keyOrDefault (print (env "CONSUL_PATH") "/storage.discard_abci_responses") "false" }}
+
+# The representation of keys in the database.
+# The current representation of keys in Comet's stores is considered to be v1
+# Users can experiment with a different layout by setting this field to v2.
+# Note that this is an experimental feature and switching back from v2 to v1
+# is not supported by CometBFT.
+# If the database was initially created with v1, it is necessary to migrate the DB
+# before switching to v2. The migration is not done automatically.
+# v1 - the legacy layout existing in Comet prior to v1.
+# v2 - Order preserving representation ordering entries by height.
+experimental_db_key_layout = "v1"
+
+# If set to true, CometBFT will force compaction to happen for databases that support this feature.
+# and save on storage space. Setting this to true is most benefits when used in combination
+# with pruning as it will physically delete the entries marked for deletion.
+# false by default (forcing compaction is disabled).
+compact = false
+
+# To avoid forcing compaction every time, this parameter instructs CometBFT to wait
+# the given amount of blocks to be pruned before triggering compaction.
+# It should be tuned depending on the number of items. If your retain height is 1 block,
+# it is too much of an overhead to try compaction every block. But it should also not be a very
+# large multiple of your retain height as it might occur bigger overheads.
+compaction_interval = "1000"
+
+# Hash of the Genesis file (as hex string), passed to CometBFT via the command line.
+# If this hash mismatches the hash that CometBFT computes on the genesis file,
+# the node is not able to boot.
+genesis_hash = ""
+
+[storage.pruning]
+
+# The time period between automated background pruning operations.
+interval = "10s"
+
+#
+# Storage pruning configuration relating only to the data companion.
+#
+[storage.pruning.data_companion]
+
+# Whether automatic pruning respects values set by the data companion. Disabled
+# by default. All other parameters in this section are ignored when this is
+# disabled.
+#
+# If disabled, only the application retain height will influence block pruning
+# (but not block results pruning). Only enabling this at a later stage will
+# potentially mean that blocks below the application-set retain height at the
+# time will not be available to the data companion.
+enabled = false
+
+# The initial value for the data companion block retain height if the data
+# companion has not yet explicitly set one. If the data companion has already
+# set a block retain height, this is ignored.
+initial_block_retain_height = 0
+
+# The initial value for the data companion block results retain height if the
+# data companion has not yet explicitly set one. If the data companion has
+# already set a block results retain height, this is ignored.
+initial_block_results_retain_height = 0
+
 
 #######################################################
 ###   Transaction Indexer Configuration Options     ###
@@ -466,7 +640,7 @@ prometheus_listen_addr = "0.0.0.0:26660"
 max_open_connections = 3
 
 # Instrumentation namespace
-namespace = "tendermint"
+namespace = {{ keyOrDefault (print (env "CONSUL_PATH") "/instrumentation.name") "\"tendermint\"" }}
 
 ##### Axelar EVM bridges options #####
 # Each EVM chain needs the following
