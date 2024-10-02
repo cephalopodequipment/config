@@ -14,7 +14,7 @@ batch_relayer_count = 10
 network = "testnet"
 rpc = "http://192.248.150.102:18332"
 user = "{{- .Data.data.bitcoinuser -}}"
-password = ""{{- .Data.data.bitcoinpassword -}}"
+password = "{{- .Data.data.bitcoinpassword -}}"
 
 [side_chain]
 grpc = {{ keyOrDefault  (print (env "CONSUL_PATH") "/grpc") "\"\"" }}
