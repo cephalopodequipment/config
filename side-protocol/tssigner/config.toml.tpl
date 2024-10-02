@@ -1,10 +1,10 @@
 {{ with secret "static_secrets/side-testnet" -}}
 p2p_keypair = "{{ .Data.data.p2p.keypair }}"
 port = 5158
-bootstrap_nodes = [{{ keyOrDefault  (print (env "TSSIGNER_CONSUL_PATH") "/bootstrap.nodes") "\"\/ip4/192.248.180.245/tcp/5158/p2p/12D3KooWMpMtmYQKSn1sZaSRn4CAcsraWZVrZ2zdNjEgsEPSd3Pv"" }}]
+bootstrap_nodes = [{{ keyOrDefault  (print (env "TSSIGNER_CONSUL_PATH") "/bootstrap.nodes") "\"\"" }}]
 log_level = "info"
 mnemonic = "{{ .Data.data.relayer.mnemonic }}"
-priv_validator_key_path = "{{ keyOrDefault  (print (env "TSSIGNER_CONSUL_PATH") "/validator.priv_validator_key_path") "\"\priv_validator_key.json"" }}"
+priv_validator_key_path = "{{ keyOrDefault  (print (env "TSSIGNER_CONSUL_PATH") "/validator.priv_validator_key_path") "\"\"" }}"
 relay_runes = false
 last_scanned_height = 0
 loop_interval = 60
@@ -13,8 +13,8 @@ batch_relayer_count = 10
 [bitcoin]
 network = "testnet"
 rpc = "http://192.248.150.102:18332"
-user = "{{ .Data.data.bitcoin-user }}"
-password = ""{{ .Data.data.bitcoin-password }}"
+user = "{{ .Data.data.bitcoinuser }}"
+password = ""{{ .Data.data.bitcoinpassword }}"
 
 [side_chain]
 grpc = "http://localhost:9090"
