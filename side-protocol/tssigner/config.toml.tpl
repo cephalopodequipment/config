@@ -17,7 +17,7 @@ user = "{{- .Data.data.bitcoinuser -}}"
 password = "{{- .Data.data.bitcoinpassword -}}"
 
 [side_chain]
-grpc = {{ keyOrDefault  (print (env "CONSUL_PATH") "/grpc") "\"\"" }}
+grpc = "http://10.20.30.106:9090"
 gas = 200000
 
 [side_chain.fee]
