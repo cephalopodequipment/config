@@ -1,9 +1,9 @@
 {{ with secret "static_secrets/side-testnet" -}}
-p2p_keypair = "{{ .Data.data.p2p.keypair }}"
+p2p_keypair = "{{ .Data.data.keypair }}"
 port = 5158
 bootstrap_nodes = [{{ keyOrDefault  (print (env "TSSIGNER_CONSUL_PATH") "/bootstrap.nodes") "\"\"" }}]
 log_level = "info"
-mnemonic = "{{ .Data.data.relayer.mnemonic }}"
+mnemonic = "{{ .Data.data.mnemonic }}"
 priv_validator_key_path = "{{ keyOrDefault  (print (env "TSSIGNER_CONSUL_PATH") "/validator.priv_validator_key_path") "\"\"" }}"
 relay_runes = false
 last_scanned_height = 0
