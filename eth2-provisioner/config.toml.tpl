@@ -15,8 +15,6 @@ vault_secret_id = "{{ .Data.data.secret_id}}"
 
 # Validator settings
 max_validators_per_job = 200
-generate_prysm_keystore = true
-
 validator_job_names = [
 {{- $names := (env "VALIDATOR_JOB_NAMES") | split "," -}}
 {{- range $index, $element := $names -}}
