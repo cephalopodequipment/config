@@ -6,7 +6,7 @@ port = "8080"
 external_binaries_path = "/usr/bin"
 
 # Vault settings
-vault_addr = "{{ env VAULT_ADDRESS }}"
+vault_addr = "{{ env "VAULT_ADDRESS" }}"
 
 {{- with secret "static_secrets/eth2-provisioner" }}
 vault_role_id = "{{ .Data.data.role_id}}"
@@ -23,7 +23,7 @@ validator_job_names = [
 ]
 
 # Consul settings
-consul_addr = "{{ env CONSUL_ADDRESS }}"
+consul_addr = "{{ env "CONSUL_ADDRESS" }}"
 consul_token = ""  # Leave empty if using environment variables or command-line flags
 
 # Environment settings
@@ -35,7 +35,7 @@ key_manager_port = 7500
 
 # Transaction Verification
 tx_verification_on = false # turn off for development staging no broadcast txs
-execution_node_rpc = "{{ env EXECUTION_NODE_RPC }}"
+execution_node_rpc = "{{ env "EXECUTION_NODE_RPC" }}"
 eth_tx_verification_timeout = "45s"  # time to keep checking whether transaction executed
 
 # Eth2 beaconchain parameters
