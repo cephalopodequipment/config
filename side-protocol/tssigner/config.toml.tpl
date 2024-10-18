@@ -17,7 +17,7 @@ user = "{{- .Data.data.bitcoinuser -}}"
 password = "{{- .Data.data.bitcoinpassword -}}"
 
 [side_chain]
-grpc = "http://192.248.180.245"
+grpc = "http://192.248.180.245:9090"
 gas = 200000
 
 [side_chain.fee]
