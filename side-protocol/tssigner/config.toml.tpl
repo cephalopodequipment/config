@@ -1,6 +1,6 @@
 {{ with secret "static_secrets/side-testnet" -}}
 p2p_keypair = "{{- .Data.data.keypair -}}"
-port = 5158
+port = 32701
 bootstrap_nodes = [{{ keyOrDefault  (print (env "CONSUL_PATH") "/bootstrap.nodes") "\"\"" }}]
 log_level = "info"
 mnemonic = "{{- .Data.data.mnemonic -}}"
