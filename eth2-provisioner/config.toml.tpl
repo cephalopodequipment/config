@@ -40,3 +40,7 @@ eth_tx_verification_timeout = "45s"  # time to keep checking whether transaction
 
 # Eth2 beaconchain parameters
 deposit_cli_version = "2.7.0" # the deposit cli version used for creating keystores and deposit files
+
+[rate_limiter]
+requests_per_minute = 60
+burst = 3
