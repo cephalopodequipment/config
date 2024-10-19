@@ -42,5 +42,5 @@ eth_tx_verification_timeout = "45s"  # time to keep checking whether transaction
 deposit_cli_version = "2.7.0" # the deposit cli version used for creating keystores and deposit files
 
 [rate_limiter]
-requests_per_minute = 60
+requests_per_minute = 120
 burst = 3
