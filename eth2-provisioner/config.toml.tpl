@@ -34,9 +34,9 @@ eth_network = "{{ env "ETH_NETWORK" }}"  # Options: mainnet, holesky
 key_manager_port = 7500
 
 # Transaction Verification
-tx_verification_on = false # turn off for development staging no broadcast txs
+tx_verification_on = {{ envOrDefault "TX_VERIFICATION_ON" "true" }} # turn off for development staging no broadcast txs
 execution_node_rpc = "{{ env "EXECUTION_NODE_RPC" }}"
-eth_tx_verification_timeout = "45s"  # time to keep checking whether transaction executed
+eth_tx_verification_timeout = "{{ envOrDefault "ETH_TX_VERIFICATION_TIMEOUT" "45s" }}"  # time to keep checking whether transaction executed
 
 # Eth2 beaconchain parameters
 deposit_cli_version = "2.7.0" # the deposit cli version used for creating keystores and deposit files
