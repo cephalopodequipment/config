@@ -20,6 +20,10 @@ receivers:
         to: attributes.nomad_client_name
         if: 'body.labels.nomad_client_name != nil'
       - type: move
+        from: body.labels.nomad_task_name
+        to: attributes.nomad_task_name
+        if: 'body.labels.nomad_task_name != nil'
+      - type: move
         from: body.labels
         to: attributes.container_labels
       - type: json_parser
