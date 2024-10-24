@@ -270,28 +270,21 @@ address = "{{ env "NOMAD_IP_sidecar" }}:{{ env "NOMAD_PORT_sidecar" }}"
 # This defines how long the client should wait for responses.
 timeout = "5s"
 
+{{ if (keyOrDefault (print (env "CONSUL_PATH") "/slinky.enabled") "false") | parseBool }}
 ###############################################################################
 ###                                  Oracle - Slinky                        ###
 ###############################################################################
 
-slinky-vote-extension-oracle-enabled = "true"
-
 [oracle]
-# Enabled indicates whether the oracle is enabled.
-enabled = "{{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/slinky/enabled") "false" }}"
+enabled = "true"
 
-# Oracle Address is the URL of the out of process oracle sidecar. This is used to
-# connect to the oracle sidecar when the application boots up. Note that the address
-# can be modified at any point, but will only take effect after the application is
-# restarted. This can be the address of an oracle container running on the same
-# machine or a remote machine.
-oracle_address = "{{ envOrDefault "SLINKY_ORACLE_ADDRESS" "localhost:8080" }}"
+oracle_address = "{{ env "SLINKY_ORACLE_ADDRESS" }}"
 
-# Client Timeout is the time that the client is willing to wait for responses from
-# the oracle before timing out.
-client_timeout = "{{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/slinky/client_timeout") "2s" }}"
+client_timeout = "{{ keyOrDefault (print (env "CONSUL_PATH") "/slinky.client_timeout") "250ms" }}"
 
-# MetricsEnabled determines whether oracle metrics are enabled. Specifically
-# this enables intsrumentation of the oracle client and the interaction between
-# the oracle and the app.
-metrics_enabled = "{{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/slinky/metrics_enabled") "true" }}"
+metrics_enabled = "{{ keyOrDefault (print (env "CONSUL_PATH") "/slinky.metrics_enabled") "true" }}"
+
+interval = "{{ keyOrDefault (print (env "CONSUL_PATH") "/slinky.interval") "1500ms" }}"
+
+price_ttl = "{{ keyOrDefault (print (env "CONSUL_PATH") "/slinky.price_ttl") "10s" }}"
+{{ end }}
