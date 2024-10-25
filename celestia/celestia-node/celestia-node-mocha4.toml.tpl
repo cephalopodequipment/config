@@ -3,7 +3,7 @@
   ShutdownTimeout = "2m0s"
 
 [Core]
-  IP = "full.consensus.mocha-4.celestia-mocha.com"
+  IP = "rpc-mocha.chaintrails.io"
   RPCPort = "26657"
   GRPCPort = "9090"
 
