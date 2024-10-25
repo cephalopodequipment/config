@@ -253,10 +253,10 @@ adaptive-fee-enabled = {{ keyOrDefault (print (env "CONSUL_PATH") "/osmo-mempool
 
 [wasm]
 # This is the maximum sdk gas (wasm and storage) that we allow for any x/wasm "smart" queries
-query_gas_limit = {{ key (print (env "CONSUL_PATH") "/wasm.query_gas_limit") "\"300000\"" }}
+query_gas_limit = {{ keyOrDefault (print (env "CONSUL_PATH") "/wasm.query_gas_limit") "\"300000\"" }}
 # This defines the memory size for Wasm modules that we can keep cached to speed-up instantiation
 # The value is in MiB not bytes
-memory_cache_size = {{ key (print (env "CONSUL_PATH") "/wasm.memroy_cache_size") "\"3000\"" }}
+memory_cache_size = {{ keyOrDefault (print (env "CONSUL_PATH") "/wasm.memroy_cache_size") "\"3000\"" }}
 
 ###############################################################################
 ###                         FUEL SIDECAR                                    ###
