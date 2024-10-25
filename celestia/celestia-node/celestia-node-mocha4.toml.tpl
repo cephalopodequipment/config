@@ -8,8 +8,8 @@
   GRPCPort = "9090"
 
 [State]
-  KeyringAccName = "my_celes_key"
-  KeyringBackend = "test"
+  DefaultKeyName = "my_celes_key"
+  DefaultBackendName = "test"
 
 [P2P]
   ListenAddresses = ["/ip4/0.0.0.0/udp/2121/quic-v1/webtransport", "/ip6/::/udp/2121/quic-v1/webtransport", "/ip4/0.0.0.0/udp/2121/quic-v1", "/ip6/::/udp/2121/quic-v1", "/ip4/0.0.0.0/tcp/2121", "/ip6/::/tcp/2121"]
@@ -24,14 +24,13 @@
     GracePeriod = "1m0s"
 
 [RPC]
-  Address = "localhost"
-  Port = "26658"
-  SkipAuth = false
+  Address = "0.0.0.0"
+  Port = "{{ env "NOMAD_PORT_rpc" }}"
 
 [Gateway]
-  Address = "localhost"
-  Port = "26659"
-  Enabled = false
+  Address = "0.0.0.0"
+  Port = "{{ env "NOMAD_PORT_rest" }}"
+  Enabled = true
 
 [Share]
   UseShareExchange = true
