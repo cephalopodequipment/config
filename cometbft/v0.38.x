@@ -377,7 +377,7 @@ trust_hash = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.trust_hash")
 trust_period = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/statesync.trust_period") "\"168h0m0s\"" }}
 
 # Time to spend discovering snapshots before initiating a restore.
-discovery_time = "15s"
+discovery_time = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.discovery_time") "\"15s\"" }}
 
 # Temporary directory for state sync snapshot chunks, defaults to the OS tempdir (typically /tmp).
 # Will create a new, randomly named directory within, and remove it when done.
@@ -385,7 +385,7 @@ temp_dir = ""
 
 # The timeout duration before re-requesting a chunk, possibly from a different
 # peer (default: 1 minute).
-chunk_request_timeout = "10s"
+chunk_request_timeout = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.chunk_request_timeout") "\"1m0s\"" }}
 
 # The number of concurrent chunk fetchers to run (default: 1).
 chunk_fetchers = "4"
