@@ -385,7 +385,7 @@ temp_dir = ""
 
 # The timeout duration before re-requesting a chunk, possibly from a different
 # peer (default: 1 minute).
-chunk_request_timeout = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.chunk_request_timeout") "\"1m0s\"" }}
+chunk_request_timeout = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.chunk_request_timeout") "\"10s\"" }}
 
 # The number of concurrent chunk fetchers to run (default: 1).
 chunk_fetchers = "4"
