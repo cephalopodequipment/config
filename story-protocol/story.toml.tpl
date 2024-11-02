@@ -13,7 +13,7 @@ network = "{{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split 
 #######################################################################
 
 # Story execution client Engine API http endpoint.
-engine-endpoint = "http://0.0.0.0:{{ keyOrDefault (print (env "CONSUL_PATH") "/geth.endpoint") "8551" }}"
+engine-endpoint = "http://10.10.90.107:{{ keyOrDefault (print (env "CONSUL_PATH") "/geth.endpoint") "8551" }}"
 
 # Story execution client JWT file used for authentication.
 engine-jwt-file = "/home/story/.story/geth/odyssey/geth/jwtsecret"
