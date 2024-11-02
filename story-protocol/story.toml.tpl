@@ -13,7 +13,7 @@ network = "{{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split 
 #######################################################################
 
 # Story execution client Engine API http endpoint.
-engine-endpoint = "http://{{ env "NOMAD_IP_rpcG" }}:{{ env "NOMAD_PORT_rpcG" }}"
+engine-endpoint = "http://0.0.0.0:{{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/geth.endpoint") "8551" }}"
 
 # Story execution client JWT file used for authentication.
 engine-jwt-file = "/home/story/.story/geth/odyssey/geth/jwtsecret"
