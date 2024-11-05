@@ -2,7 +2,7 @@
 p2p_keypair = "{{- .Data.data.keypair -}}"
 port = 32701
 bootstrap_nodes = [{{ keyOrDefault  (print (env "CONSUL_PATH") "/bootstrap.nodes") "\"\"" }}]
-log_level = "info"
+log_level = {{ keyOrDefault  (print (env "CONSUL_PATH") "/base.log_level") "\"info\"" }}
 mnemonic = "{{- .Data.data.mnemonic -}}"
 priv_validator_key_path = {{ keyOrDefault  (print (env "CONSUL_PATH") "/validator.priv_validator_key_path") "\"\"" }}
 relay_runes = false
