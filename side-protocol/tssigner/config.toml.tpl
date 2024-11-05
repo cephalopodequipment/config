@@ -11,7 +11,7 @@ loop_interval = 60
 batch_relayer_count = 10
 
 [bitcoin]
-network = "testnet"
+network = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bitcoin.network") "\"testnet\"" }}
 rpc = "http://192.248.150.102:18332"
 user = "{{- .Data.data.bitcoinuser -}}"
 password = "{{- .Data.data.bitcoinpassword -}}"
