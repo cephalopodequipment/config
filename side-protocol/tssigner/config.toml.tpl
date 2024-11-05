@@ -12,12 +12,12 @@ batch_relayer_count = 10
 
 [bitcoin]
 network = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bitcoin.network") "\"testnet\"" }}
-rpc = "http://192.248.150.102:18332"
+rpc = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bitcoin.rpc") "\"\"" }}
 user = "{{- .Data.data.bitcoinuser -}}"
 password = "{{- .Data.data.bitcoinpassword -}}"
 
 [side_chain]
-grpc = "http://192.248.180.245:9090"
+grpc = {{ keyOrDefault  (print (env "CONSUL_PATH") "/sidechain.grpc") "\"\"" }}
 gas = 200000
 
 [side_chain.fee]
