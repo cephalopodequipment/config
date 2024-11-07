@@ -16,10 +16,10 @@ operator_state_retriever_address: 0x148e80620b9464Fa0731467d504A2F760E7242C8
 eth_rpc_url: {{ .Data.data.holesky_endpoint }}
 eth_ws_url: {{ .Data.data.holesky_ws_endpoint }}
 # ECDSA key
-ecdsa_private_key_store_path: /home/zenrockd/.zrchain/sidecar/keys/ecdsa.key.json
+ecdsa_private_key_store_path: /home/zenrock/.zrchain/sidecar/keys/ecdsa.key.json
 
 # We are using bn254 curve for bls keys
-bls_private_key_store_path: /home/zenrockd/.zrchain/sidecar/keys/bls.key.json
+bls_private_key_store_path: /home/zenrock/.zrchain/sidecar/keys/bls.key.json
 
 # address which the aggregator listens on for operator signed messages
 aggregator_server_ip_port_address: avs-aggregator.gardia.zenrocklabs.io:8090
