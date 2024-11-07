@@ -2,8 +2,8 @@ register_operator_on_startup: true
 register_on_startup: true
 production: true
 #To be manually updated
-operator_address: {{ keyOrDefault  (print (env "CONSUL_PATH") "/eigen.operator") "\" }}
-operator_validator_address: {{ keyOrDefault  (print (env "CONSUL_PATH") "/eigen.validator") "\" }}
+operator_address: {{ keyOrDefault  (print (env "CONSUL_PATH") "/eigen.operator") "\"\"" }}
+operator_validator_address: {{ keyOrDefault  (print (env "CONSUL_PATH") "/eigen.validator") "\"\"" }}
 
 # EigenLayer Slasher contract address
 # This is the address of the contracts which are deployed in the anvil saved state
@@ -12,8 +12,8 @@ avs_registry_coordinator_address: 0xD4BdE8DD7B82C04E4c1617B0F477f4F8B2CcdE2F
 operator_state_retriever_address: 0x148e80620b9464Fa0731467d504A2F760E7242C8
 
 # ETH RPC URL
-eth_rpc_url: {{ keyOrDefault  (print (env "CONSUL_PATH") "/eigen.rpc") "\"cache.json\"" }}
-eth_ws_url: {{ keyOrDefault  (print (env "CONSUL_PATH") "/eigen.ws") "\"cache.json\"" }}
+eth_rpc_url: {{ keyOrDefault  (print (env "CONSUL_PATH") "/eigen.rpc") "\"\"" }}
+eth_ws_url: {{ keyOrDefault  (print (env "CONSUL_PATH") "/eigen.ws") "\"\"" }}
 # ECDSA key
 ecdsa_private_key_store_path: /home/zenrockd/.zrchain/sidecar/keys/ecdsa.key.json
 
