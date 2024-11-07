@@ -1,4 +1,4 @@
-{{ with secret "static_secrets/alchemy" -}}
+{{ with secret "static_secrets/ankr" -}}
 register_operator_on_startup: true
 register_on_startup: true
 production: true
