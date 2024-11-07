@@ -3,8 +3,8 @@ register_operator_on_startup: true
 register_on_startup: true
 production: true
 #To be manually updated
-operator_address: {{ keyOrDefault  (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/eigen.operator") "\"\"" }}
-operator_validator_address: {{ keyOrDefault  (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/eigen.validator") "\"\"" }}
+operator_address: {{ keyOrDefault  (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/eigen.operator") "" }}
+operator_validator_address: {{ keyOrDefault  (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/eigen.validator") "" }}
 
 # EigenLayer Slasher contract address
 # This is the address of the contracts which are deployed in the anvil saved state

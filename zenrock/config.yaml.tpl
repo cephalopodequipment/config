@@ -1,13 +1,13 @@
-{{- with secret "static_secrets/ankr" }}
 grpc_port: {{ env "NOMAD_PORT_grpcS" }}
 state_file: "cache.json"
 operator_config: {{ keyOrDefault (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/operator.config") "\"\"" }}
 eth_oracle:
   rpc:
     local: "http://127.0.0.1:8545"
-    testnet: {{ .Data.data.holesky_endpoint }}
+    {{- with secret "static_secrets/ankr" }}
+    testnet: "{{ .Data.data.holesky_endpoint }}"
     {{- end -}}{{ with secret "static_secrets/alchemy" }}
-    mainnet: {{ .Data.data.eth_endpoint }}
+    mainnet: "{{ .Data.data.eth_endpoint }}"
     {{- end }}
   network: {{ keyOrDefault (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/eth.network") "\"testnet\"" }}
   contract_addrs:
