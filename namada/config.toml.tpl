@@ -45,7 +45,7 @@ pprof_laddr = ""
 [ledger.cometbft.p2p]
 laddr = "tcp://0.0.0.0:{{ env "NOMAD_PORT_p2p" }}"
 external_address = "{{ key (print (env "CONSUL_PATH") "/p2p.external_address") }}:{{ env "NOMAD_PORT_p2p" }}"
-seeds = ""
+seeds = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/p2p.seeds") "\"\"" }}
 persistent_peers = {{ keyOrDefault  (print (env "CONSUL_PATH") "/p2p.persistent_peers") "\"\"" }}
 upnp = false
 addr_book_file = "config/addrbook.json"
@@ -78,18 +78,22 @@ max_batch_bytes = 0
 
 [ledger.cometbft.consensus]
 wal_file = "data/cs.wal/wal"
-double_sign_check_height = 0
-create_empty_blocks = true
-create_empty_blocks_interval = "0ms"
-peer_gossip_sleep_duration = "100ms"
-peer_query_maj23_sleep_duration = "2000ms"
 timeout_propose = "3000ms"
 timeout_propose_delta = "500ms"
 timeout_prevote = "1000ms"
 timeout_prevote_delta = "500ms"
 timeout_precommit = "1000ms"
 timeout_precommit_delta = "500ms"
-timeout_commit = "10000ms"
+timeout_commit = "6000ms"
+double_sign_check_height = 0
+skip_timeout_commit = false
+create_empty_blocks = true
+create_empty_blocks_interval = "0ms"
+peer_gossip_sleep_duration = "100ms"
+peer_query_maj23_sleep_duration = "2000ms"
+
+[ledger.cometbft.storage]
+discard_abci_responses = false
 
 [ledger.cometbft.tx_index]
 indexer = {{ keyOrDefault (print (env "CONSUL_PATH") "/indexer") "\"null\"" }}
@@ -98,7 +102,7 @@ indexer = {{ keyOrDefault (print (env "CONSUL_PATH") "/indexer") "\"null\"" }}
 prometheus = true
 prometheus_listen_addr = "0.0.0.0:{{ env "NOMAD_PORT_prom" }}"
 max_open_connections = 3
-namespace = "namada_tm"
+namespace = "cometbft"
 
 [ledger.cometbft.statesync]
 enable = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.enable") "false" }}
