@@ -22,4 +22,4 @@ proxy_rpc:
   user: ""
   password: ""
 neutrino:
-  path: "/home/zenrock/.zrchain/neutrino"
+  path: "/.zrchain/neutrino"
