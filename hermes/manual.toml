@@ -1,9 +1,12 @@
+# Currently used for Hermes v1.7.1 or greater
 [global]
-log_level = 'debug'
+log_level = 'info'
 
 [mode]
 [mode.clients]
-enabled = false
+enabled = true
+refresh = true
+misbehaviour = false
 
 [mode.connections]
 enabled = false
@@ -13,165 +16,135 @@ enabled = false
 
 [mode.packets]
 enabled = true
+clear_interval = 300
+clear_on_start = true
+tx_confirmation = true
 
-[[chains]]
-id = 'cosmoshub-4'
-rpc_addr = 'http://prod4.cec:26700'
-grpc_addr = 'http://prod4.cec:26702'
-websocket_addr = 'ws://prod4.cec:26700/websocket'
+[rest]
+enabled = true
+host = '0.0.0.0'
+port = 3000
+
+[telemetry]
+enabled = true
+host = '0.0.0.0'
+port = 3001
+
+[telemetry.buckets]
+latency_submitted = { start = 1000, end = 100000, buckets = 9 }
+latency_confirmed = { start = 200, end = 20000, buckets = 9 }
+
+
+[[ chains ]]
+id = 'dydx-mainnet-1'
+rpc_addr = 'http://10.10.11.102:20860'
+event_source = { mode = 'pull', interval = '200ms', max_retries = 4 }
+grpc_addr = 'http://10.10.11.102:28213'
 rpc_timeout = '8s'
-account_prefix = 'cosmos'
-key_name = 'aw1'
+type = "CosmosSdk"
+trusted_node = false
+account_prefix = 'dydx'
+key_name = 'aw3'
+address_type = { derivation = 'cosmos' }
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Informal 🐙'
-gas_price  =  { price  =  0.0002, denom  =  'uatom' }
-max_gas = 3000000
+gas_price = { price = 0.025, denom = 'ibc/8E27BA2D5493AF5636760E354E46004562C46AB7EC0CC4C1CA14E9E20E2545B5' }
+default_gas = 500000
+max_gas = 1000000
+dynamic_gas_price = { enabled = false, multiplier = 1, max = 0 }
+ccv_consumer_chain = false
 max_msg_num = 15
+query_packets_chunk_size = 25
+gas_multiplier = 1.2
 max_tx_size = 180000
 clock_drift = '7200s'
-trusting_period = '14days'
+trusting_period = '10days'
 trust_threshold = { numerator = '1', denominator = '3' }
-
-[[chains]]
-id ='akashnet-2'
-rpc_addr ='http://10.10.51.16:26630'
-grpc_addr ='http://10.10.51.16:26632'
-websocket_addr ='ws://akashnet1:26600/websocket'
-rpc_timeout ='8s'
-account_prefix ='akash'
-key_name ='aw1'
-store_prefix ='ibc'
-memo_prefix = 'Connect the Interchain. Stake with Informal 🐙'
-gas_price = { price = 0.001, denom = 'uakt' }
-max_gas = 2000000
-clock_drift ='7200s'
-trusting_period ='14days'
-trust_threshold = { numerator = '1', denominator = '3' }
+clear_interval = 1200
+packet_filter = { policy = 'allow', list = [['transfer', 'channel-0']] }
 
 
-[[chains]]
-id = 'crypto-org-chain-mainnet-1'
-rpc_addr = 'http://crypto0:26600'
-grpc_addr = 'http://crypto0:26602'
-websocket_addr = 'ws://crypto0:26600/websocket'
+[[ chains ]]
+id = 'noble-1'
+rpc_addr = 'http://10.10.11.102:21945'
+event_source = { mode = 'pull', interval = '150ms', max_retries = 4 }
+grpc_addr = 'http://10.10.11.102:25418'
 rpc_timeout = '8s'
-account_prefix = 'cro'
-key_name = 'aw1'
+type = "CosmosSdk"
+trusted_node = false
+account_prefix = 'noble'
+key_name = 'aw2'
+address_type = { derivation = 'cosmos' }
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Informal 🐙'
-gas_price  =  { price  =  0.1, denom  =  'basecro' }
-max_gas = 1200000
-max_msg_num = 15
-max_tx_size = 450000
-clock_drift = '7200s'
-trusting_period = '14days'
-trust_threshold = { numerator = '1', denominator = '3' }
-
-[[chains]]
-id = 'regen-1'
-rpc_addr = 'http://regen1:26600'
-grpc_addr = 'http://regen1:26602'
-websocket_addr = 'ws://regen1:26600/websocket'
-rpc_timeout = '8s'
-account_prefix = 'regen'
-key_name = 'aw1'
-store_prefix = 'ibc'
-memo_prefix = 'Connect the Interchain. Stake with Informal 🐙'
-gas_price  =  { price  =  0.1, denom  =  'uregen' }
-max_gas = 2000000
-max_msg_num = 15
+gas_price = { price = 0, denom = 'uusdc' }
+default_gas = 500000
+max_gas = 1500000
+dynamic_gas_price = { enabled = false, multiplier = 1, max = 0 }
+ccv_consumer_chain = false
+max_msg_num = 5
+query_packets_chunk_size = 5
+gas_multiplier = 1.2
 max_tx_size = 180000
 clock_drift = '7200s'
-trusting_period = '14days'
+trusting_period = '10days'
 trust_threshold = { numerator = '1', denominator = '3' }
+clear_interval = 1200
+packet_filter = { policy = 'allow', list = [['transfer', 'channel-33'],['transfer', 'channel-1']] }
 
 
-[[chains]]
-id = 'impacthub-3'
-rpc_addr = 'http://impacthub0:26600'
-grpc_addr = 'http://impacthub0:26602'
-websocket_addr = 'ws://impacthub0:26600/websocket'
-rpc_timeout = '8s'
-account_prefix = 'ixo'
-key_name = 'aw1'
-store_prefix = 'ibc'
-memo_prefix = 'Connect the Interchain. Stake with Informal 🐙'
-gas_price = { price = 0.01, denom = 'uixo' }
-max_gas = 5000000
-max_msg_num = 15
-max_tx_size = 180000
-clock_drift = '7200s'
-trusting_period = '14days'
-trust_threshold = { numerator = '1', denominator = '3' }
-
-[[chains]]
-id = 'juno-1'
-rpc_addr = 'http://juno0.cec:26600'
-grpc_addr = 'http://juno0.cec:26602'
-websocket_addr = 'ws://juno0.cec:26600/websocket'
-rpc_timeout = '8s'
-account_prefix = 'juno'
-key_name = 'aw1'
-store_prefix = 'ibc'
-memo_prefix = 'Connect the Interchain. Stake with Informal 🐙'
-gas_price  =  { price  =  0.001, denom  =  'ujuno' }
-max_gas = 5000000
-max_msg_num = 15
-max_tx_size = 450000
-clock_drift = '7200s'
-trusting_period = '14days'
-trust_threshold = { numerator = '1', denominator = '3' }
-
-[[chains]]
-id = 'evmos_9001-2'
-rpc_addr = 'http://evmos0.cec:26600'
-grpc_addr = 'http://evmos0.cec:26602'
-websocket_addr = 'ws://evmos0.cec:26600/websocket'
-rpc_timeout = '8s'
-account_prefix = 'evmos'
-key_name = 'aw1'
-address_type = { derivation = 'ethermint', proto_type = { pk_type = '/ethermint.crypto.v1.ethsecp256k1.PubKey' } }
-store_prefix = 'ibc'
-memo_prefix = 'Connect the Interchain. Stake with Informal 🐙'
-gas_price  =  { price  =  0.001, denom  =  'ujuno' }
-max_gas = 5000000
-max_msg_num = 15
-max_tx_size = 450000
-clock_drift = '7200s'
-trusting_period = '14days'
-trust_threshold = { numerator = '1', denominator = '3' }
-
-[[chains]]
+[[ chains ]]
 id = 'osmosis-1'
-rpc_addr = 'http://10.10.51.174:26670'
-grpc_addr = 'http://10.10.51.174:26672'
-websocket_addr = 'ws://osmosis1:26670/websocket'
+rpc_addr = 'http://10.10.11.102:22553'
+event_source = { mode = 'pull', interval = '200ms', max_retries = 4 }
+grpc_addr = 'http://10.10.11.102:26801'
 rpc_timeout = '8s'
+type = "CosmosSdk"
+trusted_node = false
 account_prefix = 'osmo'
-key_name = 'aw1'
+key_name = 'aw4'
+address_type = { derivation = 'cosmos' }
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Informal 🐙'
-gas_price  =  { price  =  0.1, denom  =  'uosmo' }
-max_gas = 19000000
-max_msg_num = 100
+gas_price = { price = 0.025, denom = 'uosmo' }
+default_gas = 700000
+max_gas = 2000000
+dynamic_gas_price = { enabled = true, multiplier = 1.8, max = 0.05 }
+ccv_consumer_chain = false
+max_msg_num = 5
+query_packets_chunk_size = 25
+gas_multiplier = 1.1
+max_tx_size = 180000
 clock_drift = '7200s'
 trusting_period = '10days'
 trust_threshold = { numerator = '1', denominator = '3' }
+clear_interval = 1200
+packet_filter = { policy = 'allow', list = [['transfer', 'channel-750']] }
 
 
-[[chains]]
-id = 'neutron-1'
-rpc_addr = 'http://prod4.cec:26650'
-grpc_addr = 'http://prod4.cec:26652'
-websocket_addr = 'ws://prod4.cec:26650/websocket'
+[[ chains ]]
+id = 'sifchain-1'
+rpc_addr = 'http://10.10.12.106:27412'
+event_source = { mode = 'pull', interval = '1s', max_retries = 4 }
+grpc_addr = 'http://10.10.12.106:26561'
 rpc_timeout = '8s'
-account_prefix = 'neutron'
+type = "CosmosSdk"
+trusted_node = false
+account_prefix = 'sif'
 key_name = 'aw1'
+address_type = { derivation = 'cosmos' }
 store_prefix = 'ibc'
 memo_prefix = 'Connect the Interchain. Stake with Informal 🐙'
-gas_price  =  { price  =  0.1, denom  =  'uosmo' }
-max_gas = 19000000
-max_msg_num = 100
+gas_price = { price = 0.8, denom = 'rowan' }
+default_gas = 300000
+max_gas = 3000000
+dynamic_gas_price = { enabled = false, multiplier = 1, max = 0 }
+ccv_consumer_chain = false
+max_msg_num = 5
+query_packets_chunk_size = 25
+gas_multiplier = 1.2
+max_tx_size = 1580000
 clock_drift = '7200s'
-trusting_period = '10days'
-trust_threshold = { numerator = '1', denominator = '3' }
+trusting_period = '14days'
+trust_threshold = { numerator = '2', denominator = '3' }
+packet_filter = { policy = 'allow', list = [['transfer', 'channel-17'],['transfer', 'channel-0'],['transfer', 'channel-14'],['transfer', 'channel-2'],['transfer', 'channel-1'],['transfer', 'channel-7'],['transfer', 'channel-91'],['transfer', 'channel-90'],['transfer', 'channel-92']] }
