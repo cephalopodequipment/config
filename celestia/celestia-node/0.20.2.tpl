@@ -1,11 +1,11 @@
 [Node]
   StartupTimeout = "2m0s"
   ShutdownTimeout = "2m0s"
-{{ range service "celestia-validator.cometbft-rpc" }}
+{{ range service "celestia-archive0.cometbft-rpc" }}
 [Core]
   IP = "{{ .Address }}"
   RPCPort = "{{ .Port }}"
-  {{ range service "celestia-validator.cosmos-sdk-grpc" -}}
+  {{ range service "celestia-archive0.cosmos-sdk-grpc" -}}
   GRPCPort = "{{ .Port }}"
 {{- end }}{{ end }}
 
