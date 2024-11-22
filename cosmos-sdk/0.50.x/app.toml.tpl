@@ -264,7 +264,7 @@ memory_cache_size = {{ keyOrDefault (print (env "CONSUL_PATH") "/wasm.memory_cac
 # This sidecar needs to run in same nomad job as the validator
 [sidecar]
 # This dictates whether the Sidecar will be queried.
-enabled = {{ keyOrDefault (print (env "FUEL_SIDECAR_CONSUL_PATH") "/base.sidecar.enabled") "false" }}
+enabled = {{ keyOrDefault (print (env "FUEL_SIDECAR_CONSUL_PATH") "/base.sidecar.enabled") "true" }}
 # This defines the Sidecar server to listen to.
 address = "{{ env "NOMAD_IP_sidecar" }}:{{ env "NOMAD_PORT_sidecar" }}"
 # This defines how long the client should wait for responses.
