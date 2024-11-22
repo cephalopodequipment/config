@@ -288,3 +288,14 @@ interval = "{{ keyOrDefault (print (env "CONSUL_PATH") "/slinky.interval") "1500
 
 price_ttl = "{{ keyOrDefault (print (env "CONSUL_PATH") "/slinky.price_ttl") "10s" }}"
 {{ end }}
+
+###############################################################################
+###                      Babylon Bitcoin configuration                      ###
+###############################################################################
+
+[btc-config]
+
+# Configures which bitcoin network should be used for checkpointing
+# valid values are: [mainnet, testnet, simnet, signet, regtest]
+network = "{{ keyOrDefault (print (env "CONSUL_PATH") "/btc_network") "simnet" }}"
+
