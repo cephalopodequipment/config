@@ -88,10 +88,10 @@ ChainID = {{ key (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/
 {{ $chain_id := (key (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/base.chain_id")) }}
 
 ; address of the rpc server to connect to
-RPCAddr = {{- range service (printf "%s-%s.cometbft-rpc" $chain_id $connected_fullnode_servicename) }}http://{{ .Address }}:{{ .Port }}{{ end }}
+RPCAddr = {{ range service (printf "%s-%s.cometbft-rpc" $chain_id $connected_fullnode_servicename) }}http://{{ .Address }}:{{ .Port }}{{ end }}
 
 ; address of the grpc server to connect to
-GRPCAddr = {{- range service (printf "%s-%s.cosmos-sdk-grpc" $chain_id $connected_fullnode_servicename) }}http://{{ .Address }}:{{ .Port }}{{ end }}
+GRPCAddr = {{ range service (printf "%s-%s.cosmos-sdk-grpc" $chain_id $connected_fullnode_servicename) }}http://{{ .Address }}:{{ .Port }}{{ end }}
 
 ; account prefix to use for addresses
 AccountPrefix = bbn
