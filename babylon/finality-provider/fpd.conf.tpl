@@ -18,7 +18,7 @@ MinRandHeightGap = {{ keyOrDefault (print (env "CONSUL_PATH") "/MinRandHeightGap
 MaxSubmissionRetries = {{ keyOrDefault (print (env "CONSUL_PATH") "/MaxSubmissionRetries") "20" }}
 
 ; The address of the remote EOTS manager; Empty if the EOTS manager is running locally
-EOTSManagerAddress = {NOMAD_HOST_IP_eotsdrpc}:{NOMAD_HOST_PORT_eotsdrpc}
+EOTSManagerAddress = {{ env "NOMAD_HOST_IP_eotsdrpc" }}:{{ env "NOMAD_HOST_PORT_eotsdrpc" }}
 
 ; The size of a batch in one submission
 BatchSubmissionSize = {{ keyOrDefault (print (env "CONSUL_PATH") "/BatchSubmissionSize") "1000" }}
