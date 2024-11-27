@@ -14,7 +14,7 @@ operator_state_retriever_address: {{ keyOrDefault  (print (env "ZENROCK_SIDECAR_
 # ETH RPC URL
 {{ with secret "static_secrets/ankr" -}}
 eth_rpc_url: {{ .Data.data.holesky_endpoint }}
-eth_ws_url: {{ .Data.data.holesky_ws_endpoint }}
+eth_ws_url: {{ .Data.data.holesky_ws_endpoint -}}
 {{- end -}}
 # ECDSA key
 ecdsa_private_key_store_path: /home/zenrock/.zrchain/sidecar/keys/ecdsa.key.json
