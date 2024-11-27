@@ -6,8 +6,7 @@ eth_oracle:
   rpc:
     local: "http://127.0.0.1:8545"
     {{- with secret "static_secrets/ankr" }}
-    testnet: "{{ .Data.data.holesky_endpoint }}"
-    {{- end -}}{{ with secret "static_secrets/alchemy" }}
+    testnet: "https://holesky.infura.io/v3/c21b9a2253ea41abb0c4205e23e92706"
     mainnet: "{{ .Data.data.eth_endpoint }}"
     {{- end }}
   contract_addrs:

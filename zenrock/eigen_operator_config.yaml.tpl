@@ -12,10 +12,8 @@ avs_registry_coordinator_address: 0xdc3A1b2a44D18c6B98a1d6c8C042247d2F5AC722
 operator_state_retriever_address: 0xdB55356826a16DfFBD86ba334b84fC4E37113d97
 
 # ETH RPC URL
-{{ with secret "static_secrets/ankr" -}}
-eth_rpc_url: {{ .Data.data.holesky_endpoint }}
-eth_ws_url: {{ .Data.data.holesky_ws_endpoint }}
-{{- end }}
+eth_rpc_url: https://holesky.infura.io/v3/c21b9a2253ea41abb0c4205e23e92706
+eth_ws_url: wss://holesky.infura.io/ws/v3/c21b9a2253ea41abb0c4205e23e92706
 
 # ECDSA key
 ecdsa_private_key_store_path: /home/zenrock/.zrchain/sidecar/keys/ecdsa.key.json
