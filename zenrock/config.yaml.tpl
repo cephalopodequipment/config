@@ -1,7 +1,7 @@
 grpc_port: {{ env "NOMAD_PORT_grpcS" }}
 state_file: "cache.json"
-operator_config: {{ keyOrDefault (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/operator.config") "\"\"" }}
-network: {{ keyOrDefault (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/eth.network") "\"testnet\"" }}
+operator_config: "/home/zenrock/.zrchain/sidecar/eigen_operator_config.yaml"
+network: "testnet"
 eth_oracle:
   rpc:
     local: "http://127.0.0.1:8545"
@@ -15,7 +15,7 @@ eth_oracle:
     price_feed: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419"
     network_name: "Holešky Ethereum Testnet"
 solana_rpc:
-  testnet: {{ keyOrDefault (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/solana_rpc.testnet") "\"\"" }}
+  testnet: "https://api.testnet.solana.com"
   mainnet: ""
 proxy_rpc:
   url: ""
