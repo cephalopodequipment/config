@@ -11,8 +11,8 @@ eth_oracle:
     mainnet: "{{ .Data.data.eth_endpoint }}"
     {{- end }}
   contract_addrs:
-    service_manager: {{ keyOrDefault (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/config.service_manager") "\"\"" }}
-    price_feed: {{ keyOrDefault (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/config.price_feed") "\"\"" }}
+    service_manager: "0xa559CDb9e029fc4078170122eBf7A3e622a764E4"
+    price_feed: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419"
     network_name: "Holešky Ethereum Testnet"
 solana_rpc:
   testnet: {{ keyOrDefault (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/solana_rpc.testnet") "\"\"" }}
