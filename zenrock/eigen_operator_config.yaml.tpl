@@ -1,6 +1,6 @@
 register_operator_on_startup: true
 register_on_startup: true
-production: true
+production: {{ keyOrDefault  (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/production") "true" }}
 #To be manually updated
 operator_address: {{ keyOrDefault  (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/eigen.operator") "" }}
 operator_validator_address: {{ keyOrDefault  (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/eigen.validator") "" }}
