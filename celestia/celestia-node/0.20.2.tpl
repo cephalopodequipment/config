@@ -1,13 +1,11 @@
 [Node]
   StartupTimeout = "2m0s"
   ShutdownTimeout = "2m0s"
-{{ range service "celestia-archive0.cometbft-rpc" }}
+
 [Core]
-  IP = "{{ .Address }}"
-  RPCPort = "{{ .Port }}"
-  {{ range service "celestia-archive0.cosmos-sdk-grpc" -}}
-  GRPCPort = "{{ .Port }}"
-{{- end }}{{ end }}
+  IP = "127.0.0.1"
+  RPCPort = "26657"
+  GRPCPort = "9090"
 
 [State]
   DefaultKeyName = "my_celes_key"
@@ -31,8 +29,8 @@
 
 [Gateway]
   Address = "0.0.0.0"
-  Port = "{{ env "NOMAD_PORT_rest" }}"
-  Enabled = true
+  Port = "26659"
+  Enabled = false
 
 [Share]
   BlockstoreCacheSize = 128
