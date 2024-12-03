@@ -1,0 +1,11 @@
+global:
+  scrape_interval: 5s
+
+storage:
+  tsdb:
+    out_of_order_time_window: 30m
+
+otlp:
+  promote_resource_attributes:
+    - service.name
+    - container.name
