@@ -15,49 +15,50 @@
     "raydium_api": {
       "api": {
         "endpoints": [
-          {{ range $api_config := (key "networks/dydx-testnet/slinky/raydium_api_config" | parseJSON) -}}
-          {{- with secret (printf "static_secrets/dydx-testnet/slinky-api/%s" $api_config.provider) -}}
+          {{- $configs := (key "networks/dydx-testnet/slinky/raydium_api_config" | parseJSON) -}}
+          {{- range $i, $api_config := $configs -}}
+          {{- with secret (printf "static_secrets/dydx-testnet/slinky-api/%s" $api_config.provider) }}
           {
-            "url": "{{- $api_config.url -}}",
+            "url": "{{ $api_config.url }}",
             "authentication": {
               "apiKey": "{{ .Data.data.api_key }}",
               "apiKeyHeader": "x-api-key"
             }
-          },
-          {{ end -}}{{- end -}}
+          }{{ if ne (add $i 1) (len $configs) }},{{ end -}}{{ end -}}{{- end }}          
         ]
       }
     }
     "uniswapv3_api-ethereum": {
       "api": {
         "endpoints": [
-          {{ range $api_config := (key "networks/dydx-testnet/slinky/uniswapv3_api-ethereum_config" | parseJSON) -}}
-          {{- with secret (printf "static_secrets/dydx-testnet/slinky-api/%s" $api_config.provider) -}}
+          {{- $configs := (key "networks/dydx-testnet/slinky/uniswapv3_api-ethereum_config" | parseJSON) -}}
+          {{- range $i, $api_config := $configs -}}
+          {{- with secret (printf "static_secrets/dydx-testnet/slinky-api/%s" $api_config.provider) }}
           {
-            "url": "{{- $api_config.url -}}",
+            "url": "{{ $api_config.url }}",
             "authentication": {
               "apiKey": "{{ .Data.data.api_key }}",
               "apiKeyHeader": "x-api-key"
             }
-          },
-          {{ end -}}{{- end -}}
+          }{{ if ne (add $i 1) (len $configs) }},{{ end -}}{{ end -}}{{- end }}          
         ]
       }
     },
     "uniswapv3_api-base": {
       "api": {
         "endpoints": [
-          {{ range $api_config := (key "networks/dydx-testnet/slinky/uniswapv3_api-base_config" | parseJSON) -}}
-          {{- with secret (printf "static_secrets/dydx-testnet/slinky-api/%s" $api_config.provider) -}}
+          {{- $configs := (key "networks/dydx-testnet/slinky/uniswapv3_api-base_config" | parseJSON) -}}
+          {{- range $i, $api_config := $configs -}}
+          {{- with secret (printf "static_secrets/dydx-testnet/slinky-api/%s" $api_config.provider) }}
           {
-            "url": "{{- $api_config.url -}}",
+            "url": "{{ $api_config.url }}",
             "authentication": {
               "apiKey": "{{ .Data.data.api_key }}",
               "apiKeyHeader": "x-api-key"
             }
-          },
-          {{ end -}}{{- end -}}
+          }{{ if ne (add $i 1) (len $configs) }},{{ end -}}{{ end -}}{{- end }}          
         ]
+        
       }
     }
   }
