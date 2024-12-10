@@ -15,24 +15,51 @@
     "raydium_api": {
       "api": {
         "endpoints": [
-          {{ with secret "static_secrets/dydx/solana-api-keys" -}}
+          {{ range $api_config := (key "networks/dydx-testnet/slinky/raydium_api_config" | parseJSON) -}}
+          {{- with secret (printf "static_secrets/dydx-testnet/slinky-api/%s" $api_config.provider) -}}
           {
-            "url": "https://solana.polkachu.com",
+            "url": "{{- $api_config.url -}}",
             "authentication": {
-              "apiKey": "{{ .Data.data.polkachu }}",
+              "apiKey": {{ .Data.data.api_key }}",
               "apiKeyHeader": "x-api-key"
             }
           },
+          {{ end -}}{{- end -}}
+        ]
+      }
+    }
+    "uniswapv3_api-ethereum": {
+      "api": {
+        "endpoints": [
+          {{ range $api_config := (key "networks/dydx-testnet/slinky/uniswapv3_api-ethereum_config" | parseJSON) -}}
+          {{- with secret (printf "static_secrets/dydx-testnet/slinky-api/%s" $api_config.provider) -}}
           {
-            "url": "https://dydx.helius-rpc.com",
+            "url": "{{- $api_config.url -}}",
             "authentication": {
-              "apiKey": "{{ .Data.data.helius }}",
+              "apiKey": {{ .Data.data.api_key }}",
               "apiKeyHeader": "x-api-key"
             }
-          }
-          {{ end -}}
+          },
+          {{ end -}}{{- end -}}
+        ]
+      }
+    },
+    "uniswapv3_api-base": {
+      "api": {
+        "endpoints": [
+          {{ range $api_config := (key "networks/dydx-testnet/slinky/uniswapv3_api-base_config" | parseJSON) -}}
+          {{- with secret (printf "static_secrets/dydx-testnet/slinky-api/%s" $api_config.provider) -}}
+          {
+            "url": "{{- $api_config.url -}}",
+            "authentication": {
+              "apiKey": {{ .Data.data.api_key }}",
+              "apiKeyHeader": "x-api-key"
+            }
+          },
+          {{ end -}}{{- end -}}
         ]
       }
     }
   }
 }
+
