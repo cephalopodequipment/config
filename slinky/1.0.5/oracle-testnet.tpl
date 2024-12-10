@@ -58,7 +58,6 @@
             }
           }{{ if ne (add $i 1) (len $configs) }},{{ end -}}{{ end -}}{{- end }}          
         ]
-        
       }
     }
   }
