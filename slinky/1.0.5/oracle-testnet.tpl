@@ -20,7 +20,7 @@
           {
             "url": "{{- $api_config.url -}}",
             "authentication": {
-              "apiKey": {{ .Data.data.api_key }}",
+              "apiKey": "{{ .Data.data.api_key }}",
               "apiKeyHeader": "x-api-key"
             }
           },
@@ -36,7 +36,7 @@
           {
             "url": "{{- $api_config.url -}}",
             "authentication": {
-              "apiKey": {{ .Data.data.api_key }}",
+              "apiKey": "{{ .Data.data.api_key }}",
               "apiKeyHeader": "x-api-key"
             }
           },
@@ -52,7 +52,7 @@
           {
             "url": "{{- $api_config.url -}}",
             "authentication": {
-              "apiKey": {{ .Data.data.api_key }}",
+              "apiKey": "{{ .Data.data.api_key }}",
               "apiKeyHeader": "x-api-key"
             }
           },
