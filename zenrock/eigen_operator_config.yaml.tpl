@@ -36,4 +36,4 @@ enable_node_api: true
 # address of token to deposit tokens into when registering on startup
 token_strategy_addr: {{ keyOrDefault  (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/token.token_strategy_addr") "" }}
 service_manager_address: {{ keyOrDefault  (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/token.service_manager_address") "" }}
-zr_chain_rpc_address: localhost:{{ env "NOMAD_PORT_grpc" }}
+zr_chain_rpc_address: {{ env "NOMAD_HOST_IP_grpc" }}:{{ env "NOMAD_HOST_PORT_grpc" }}
