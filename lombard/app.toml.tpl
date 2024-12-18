@@ -2,7 +2,7 @@
 ###                         Notaryd                                         ###
 ###############################################################################
 
-{{- with secret "static_secrets/ankr" }}
+{{- with secret "static_secrets/lombard-testnet" }}
 [bitcoin]
 host = "{{ .Data.data.btc_signet_rpc }}" # replace by your own without http/https
 user = "1" # if your endpoint does not require authentication keep some dummy values in these fields
