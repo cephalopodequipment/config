@@ -10,7 +10,7 @@
 
 # The version of the CometBFT binary that created or
 # last modified the config file. Do not modify this.
-# version = "0.38.10"
+version = "0.38.10"
 
 #######################################################################
 ###                   Main Base Config Options                      ###
