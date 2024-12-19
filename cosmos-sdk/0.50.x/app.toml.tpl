@@ -350,7 +350,7 @@ max-open-connections = 0
 enable-indexer = false
 # MetricsAddress defines the EVM Metrics server address to bind to. Pass --metrics in CLI to enable
 # Prometheus metrics path: /debug/metrics/prometheus
-metrics-address = "127.0.0.1:6065"
+metrics-address = "0.0.0.0:6065"
 # Upgrade height for fix of revert gas refund logic when transaction reverted.
 fix-revert-gas-refund-height = 0
 # Maximum number of bytes returned from eth_call or similar invocations.
