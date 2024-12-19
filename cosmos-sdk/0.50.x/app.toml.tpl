@@ -316,9 +316,9 @@ max-tx-gas-wanted = 0
 # Enable defines if the gRPC server should be enabled.
 enable = true
 # Address defines the EVM RPC HTTP server address to bind to.
-address = {{ keyOrDefault (print (env "CONSUL_PATH") "/json-rpc.address") "127.0.0.1:8545" }}"
+address = "{{ keyOrDefault (print (env "CONSUL_PATH") "/json-rpc.address") "127.0.0.1:8545" }}"
 # Address defines the EVM WebSocket server address to bind to.
-ws-address = {{ keyOrDefault (print (env "CONSUL_PATH") "/json-rpc.ws-address") "127.0.0.1:8546" }}"
+ws-address = "{{ keyOrDefault (print (env "CONSUL_PATH") "/json-rpc.ws-address") "127.0.0.1:8546" }}"
 # API defines a list of JSON-RPC namespaces that should be enabled
 # Example: "eth,txpool,personal,net,debug,web3"
 api = "eth,net,web3"
