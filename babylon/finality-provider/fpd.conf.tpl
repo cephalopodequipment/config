@@ -11,8 +11,8 @@ NumPubRand = {{ keyOrDefault (print (env "CONSUL_PATH") "/NumPubRand") "70000" }
 ; The upper bound of the number of Schnorr public randomness for each commitment
 NumPubRandMax = {{ keyOrDefault (print (env "CONSUL_PATH") "/NumPubRandMax") "100000" }}
 
-; The minimum gap between the last committed rand height and the current Babylon block height
-MinRandHeightGap = {{ keyOrDefault (print (env "CONSUL_PATH") "/MinRandHeightGap") "35000" }}
+; The delay, measured in blocks, between a randomness commit submission and the randomness is BTC-timestamped
+TimestampingDelayBlocks = {{ keyOrDefault (print (env "CONSUL_PATH") "/TimestampingDelayBlocks") "6000" }}
 
 ; The maximum number of retries to submit finality signature or public randomness
 MaxSubmissionRetries = {{ keyOrDefault (print (env "CONSUL_PATH") "/MaxSubmissionRetries") "20" }}
@@ -23,17 +23,11 @@ EOTSManagerAddress = {{ env "NOMAD_HOST_IP_eotsdrpc" }}:{{ env "NOMAD_HOST_PORT_
 ; The size of a batch in one submission
 BatchSubmissionSize = {{ keyOrDefault (print (env "CONSUL_PATH") "/BatchSubmissionSize") "1000" }}
 
-; The interval between each update of finality-provider status
-StatusUpdateInterval = {{ keyOrDefault (print (env "CONSUL_PATH") "/StatusUpdateInterval") "20s" }}
-
 ; The interval between each attempt to commit public randomness
 RandomnessCommitInterval = {{ keyOrDefault (print (env "CONSUL_PATH") "/RandomnessCommitInterval") "30s" }}
 
 ; The interval between each attempt to submit finality signature or public randomness after a failure
 SubmissionRetryInterval = {{ keyOrDefault (print (env "CONSUL_PATH") "/SubmissionRetryInterval") "1s" }}
-
-; The duration of time that it should sync FP status with the client blockchain
-SyncFpStatusInterval = {{ keyOrDefault (print (env "CONSUL_PATH") "/SyncFpStatusInterval") "30s" }}
 
 ; The interval between each finality signature(s) submission
 SignatureSubmissionInterval = {{ keyOrDefault (print (env "CONSUL_PATH") "/SignatureSubmissionInterval") "1s" }}
@@ -78,7 +72,7 @@ DBTimeout = 1m0s
 
 [babylon]
 ; name of the key to sign transactions with
-Key = {{ keyOrDefault (print (env "CONSUL_PATH") "/key.name") "fp-key" }}
+Key = {{ key(print (env "CONSUL_PATH") "/fpd.wallet_key_name") }}
 
 ; chain id of the chain to connect to
 ChainID = {{ key (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/base.chain_id") }}
