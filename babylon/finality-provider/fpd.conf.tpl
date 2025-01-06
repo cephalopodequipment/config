@@ -72,7 +72,7 @@ DBTimeout = 1m0s
 
 [babylon]
 ; name of the key to sign transactions with
-Key = {{ key(print (env "CONSUL_PATH") "/fpd.wallet_key_name") }}
+Key = {{ key (print (env "CONSUL_PATH") "/fpd.wallet_key_name") }}
 
 ; chain id of the chain to connect to
 ChainID = {{ key (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/base.chain_id") }}
