@@ -364,7 +364,7 @@ jwt-secret-path = "/home/beacond/jwt.hex"
 
 [beacon-kit.kzg]
 # Path to the trusted setup path.
-trusted-setup-path = "/home/beacond/kzg/kzg-trusted-setup.json"
+trusted-setup-path = "/home/beacond/.beacond/kzg/kzg-trusted-setup.json"
 
 # KZG implementation to use.
 # Options are "crate-crypto/go-kzg-4844" or "ethereum/c-kzg-4844".
