@@ -339,3 +339,65 @@ arbitrage-min-gas-fee = {{ keyOrDefault (print (env "CONSUL_PATH") "/osmo.arbitr
 # Default value of ".0025" then means that a tx with 1 million gas costs (.0025 uosmo/gas) * 1_000_000 gas = .0025 osmo
 min-gas-price-for-high-gas-tx = {{ keyOrDefault (print (env "CONSUL_PATH") "/osmo.min-gas-price-for-high-gas-tx") "\".0025\"" }}
 
+###############################################################################
+###                                BeaconKit                                ###
+###############################################################################
+
+[beacon-kit.engine]
+# HTTP url of the execution client JSON-RPC endpoint.
+rpc-dial-url = "{{ keyOrDefault (print (env "CONSUL_PATH") "/beaconkit.engine") "127.0.0.1:8551" }}"
+
+# Number of retries before shutting down consensus client.
+rpc-retries = "3"
+
+# RPC timeout for execution client requests.
+rpc-timeout = "900ms"
+
+# Interval for the startup check.
+rpc-startup-check-interval = "3s"
+
+# Interval for the JWT refresh.
+rpc-jwt-refresh-interval = "30s"
+
+# Path to the execution client JWT-secret
+jwt-secret-path = "/home/beacond/jwt.hex"
+
+[beacon-kit.kzg]
+# Path to the trusted setup path.
+trusted-setup-path = "/home/beacond/kzg/kzg-trusted-setup.json"
+
+# KZG implementation to use.
+# Options are "crate-crypto/go-kzg-4844" or "ethereum/c-kzg-4844".
+implementation = "crate-crypto/go-kzg-4844"
+
+[beacon-kit.payload-builder]
+# Enabled determines if the local payload builder is enabled.
+enabled = true
+
+# Post bellatrix, this address will receive the transaction fees produced by any blocks
+# from this node.
+suggested-fee-recipient = "{{ keyOrDefault (print (env "CONSUL_PATH") "/suggested-fee-recipient") "0x7760D27dB62acf2699ea0A58fB7D2DC0b72d4e83" }}"
+
+# The timeout for local build payload. This should match, or be slightly less
+# than the configured timeout on your execution client. It also must be less than
+# timeout_proposal in the CometBFT configuration.
+payload-timeout = "850ms"
+
+[beacon-kit.validator]
+# Graffiti string that will be included in the graffiti field of the beacon block.
+graffiti = "Informal Systems"
+
+# EnableOptimisticPayloadBuilds enables building the next block's payload optimistically in
+# process-proposal to allow for the execution client to have more time to assemble the block.
+enable-optimistic-payload-builds = "true"
+
+[beacon-kit.logger]
+# TimeFormat is a string that defines the format of the time in the logger.
+time-format = "RFC3339"
+
+# LogLevel is the level of logging. Logger will log messages with verbosity up
+# to LogLevel.
+log-level = "info"
+
+# Style is the style of the logger.
+style = "pretty"
