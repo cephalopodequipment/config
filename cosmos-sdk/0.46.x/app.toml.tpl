@@ -345,7 +345,7 @@ min-gas-price-for-high-gas-tx = {{ keyOrDefault (print (env "CONSUL_PATH") "/osm
 
 [beacon-kit.engine]
 # HTTP url of the execution client JSON-RPC endpoint.
-rpc-dial-url = "{{ keyOrDefault (print (env "CONSUL_PATH") "/beaconkit.engine") "127.0.0.1:8551" }}"
+rpc-dial-url = "{{ keyOrDefault (print (env "CONSUL_PATH") "/beaconkit.engine") "http://127.0.0.1:8551" }}"
 
 # Number of retries before shutting down consensus client.
 rpc-retries = "3"
