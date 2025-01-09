@@ -10,7 +10,7 @@ coingecko:
   # it to get more up to date gas costs. If you specify an API key, you should
   # reduce the requests per minute and cache refresh interval according to your
   # keys limits. The values are currently set for no API key use.
-  api_key: <api_key>
+  api_key: {{ with secret "static_secrets/skip-go"}}{{ .Data.data.coingecko_api_key }}{{ end }}
   requests_per_minute: 2
   cache_refresh_interval: "15m"
 
