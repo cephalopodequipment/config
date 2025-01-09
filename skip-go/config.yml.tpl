@@ -158,8 +158,8 @@ chains:
     usdc_denom: "ibc/498A0751C798A0D9A389AA3691123DADA57DAA4FE165D5C75894505B876BA6E4"
     cosmos:
       address_prefix: "osmo"
-      rpc: {{ range service (printf "osmosis.%s.cometbft-rpc" $job_config.node_id) -}}http://{{.Address}}:{{ .Port }}{{- end }}
-      grpc: {{ range service (printf "osmosis.%s.cosmos-sdk-grpc" $job_config.node_id) -}}http://{{.Address}}:{{ .Port }}{{- end }}
+      rpc: {{ range service (printf "osmosis-%s.cometbft-rpc" $job_config.node_id) -}}http://{{.Address}}:{{ .Port }}{{- end }}
+      grpc: {{ range service (printf "osmosis-%s.cosmos-sdk-grpc" $job_config.node_id) -}}{{.Address}}:{{ .Port }}{{- end }}
       grpc_tls_enabled: false # e.g. false
       min_fill_size: {{ $job_config.min_fill_size }}
       max_fill_size: {{ $job_config.max_fill_size }}
