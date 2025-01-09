@@ -127,7 +127,7 @@ chains:
     hyperlane_domain: "42161"
     quick_start_num_blocks_back: {{ $job_config.quick_start_num_blocks_back }}
     num_block_confirmations_before_fill: {{ $job_config.num_block_confirmations_before_fill }} # e.g. 1
-    min_fee_bps: {{ $job_config.num_block_confirmations_before_fill }}
+    min_fee_bps: {{ $job_config.min_fee_bps }}
     batch_uusdc_settle_up_threshold: {{ $job_config.batch_uusdc_settle_up_threshold }} # 1/2 of destination inventory evenly distributed across source chains
     min_profit_margin_bps: {{ $job_config.min_profit_margin_bps }}
     evm:
