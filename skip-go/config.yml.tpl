@@ -15,10 +15,10 @@ coingecko:
   cache_refresh_interval: "15m"
 
 order_filler:
-  worker_count: 10
+  worker_count: {{ key "networks/skip-go/base.worker_count" }}
 
 transfer_monitor:
-  poll_interval: 5s
+  poll_interval: {{ key "networks/skip-go/base.poll_interval" }}
 
 
 {{ if (key "networks/skip-go/rebalance.enable" | parseBool)}}
