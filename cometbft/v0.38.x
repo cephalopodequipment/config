@@ -42,7 +42,7 @@ moniker = {{ keyOrDefault (print (env "CONSUL_PATH") "/base.moniker") "\"20k lea
 # * badgerdb (uses github.com/dgraph-io/badger)
 #   - EXPERIMENTAL
 #   - use badgerdb build tag (go build -tags badgerdb)
-db_backend = "goleveldb"
+db_backend = {{ keyOrDefault  (print (env "CONSUL_PATH") "/base.db_backend") "\"goleveldb\"" }}""
 
 # Database directory
 db_dir = "data"
