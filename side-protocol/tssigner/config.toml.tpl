@@ -1,4 +1,4 @@
-{{ with secret "static_secrets/side-testnet" -}}
+{{ with secret "static_secrets/side-protocol-tss" -}}
 p2p_keypair = "{{- .Data.data.keypair -}}"
 port = 32701
 bootstrap_nodes = [{{ keyOrDefault  (print (env "CONSUL_PATH") "/bootstrap.nodes") "\"\"" }}]
@@ -11,7 +11,7 @@ loop_interval = 60
 batch_relayer_count = 10
 
 [bitcoin]
-network = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bitcoin.network") "\"testnet\"" }}
+network = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bitcoin.network") "\"bitcoin\"" }}
 rpc = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bitcoin.rpc") "\"\"" }}
 user = "{{- .Data.data.bitcoinuser -}}"
 password = "{{- .Data.data.bitcoinpassword -}}"
