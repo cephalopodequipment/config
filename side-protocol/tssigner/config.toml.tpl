@@ -1,5 +1,4 @@
 {{ with secret "static_secrets/side-protocol-tss" -}}
-p2p_keypair = "{{- .Data.data.keypair -}}"
 port = 32701
 bootstrap_nodes = [{{ keyOrDefault  (print (env "CONSUL_PATH") "/bootstrap.nodes") "\"\"" }}]
 log_level = {{ keyOrDefault  (print (env "CONSUL_PATH") "/base.log_level") "\"info\"" }}
@@ -9,6 +8,7 @@ relay_runes = false
 last_scanned_height = 0
 loop_interval = 60
 batch_relayer_count = 10
+max_attempts = 5
 
 [bitcoin]
 network = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bitcoin.network") "\"bitcoin\"" }}
@@ -18,10 +18,10 @@ password = "{{- .Data.data.bitcoinpassword -}}"
 
 [side_chain]
 grpc = {{ keyOrDefault  (print (env "CONSUL_PATH") "/sidechain.grpc") "\"\"" }}
-gas = 200000
+gas = 2000000
 
 [side_chain.fee]
-amount = 1000
+amount = 2000
 denom = "uside"
 
 [ordinals]
@@ -29,6 +29,5 @@ endpoint = ""
 
 [oracle]
 submit_fee_rate = false
-submit_fee_rate_interval = 60
 fetch_fee_rate_url = "https://mempool.space/testnet/api/v1/fees/recommended"
 {{- end -}}
