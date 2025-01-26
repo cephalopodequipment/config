@@ -1,6 +1,6 @@
 {{ with secret "static_secrets/side-protocol-tss" -}}
 port = 22808
-bootstrap_nodes = [{{ keyOrDefault  (print (env "CONSUL_PATH") "/bootstrap.nodes") "\"\"" }}]
+bootstrap_nodes = [{{ keyOrDefault  (print (env "CONSUL_PATH") "/bootstrap.nodes") "" }}]
 log_level = {{ keyOrDefault  (print (env "CONSUL_PATH") "/base.log_level") "\"info\"" }}
 mnemonic = "{{- .Data.data.mnemonic -}}"
 priv_validator_key_path = {{ keyOrDefault  (print (env "CONSUL_PATH") "/validator.priv_validator_key_path") "\"\"" }}
