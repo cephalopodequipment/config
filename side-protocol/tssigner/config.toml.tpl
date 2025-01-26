@@ -24,9 +24,6 @@ gas = 2000000
 amount = 2000
 denom = "uside"
 
-[ordinals]
-endpoint = ""
-
 [oracle]
 submit_fee_rate = false
 fetch_fee_rate_url = "https://mempool.space/testnet/api/v1/fees/recommended"
