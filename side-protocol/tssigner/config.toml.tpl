@@ -1,5 +1,5 @@
 {{ with secret "static_secrets/side-protocol-tss" -}}
-port = 22808
+port = {{ keyOrDefault  (print (env "CONSUL_PATH") "/port") "5158" }}
 bootstrap_nodes = [{{ keyOrDefault  (print (env "CONSUL_PATH") "/bootstrap.nodes") "" }}]
 log_level = {{ keyOrDefault  (print (env "CONSUL_PATH") "/base.log_level") "\"info\"" }}
 mnemonic = "{{- .Data.data.mnemonic -}}"
