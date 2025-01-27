@@ -27,7 +27,7 @@ denom = "uside"
 [ordinals]
 endpoint = ""
 
-[oracle]
+[fee_provider]
 submit_fee_rate = false
 fetch_fee_rate_url = "https://mempool.space/testnet/api/v1/fees/recommended"
 {{- end -}}
