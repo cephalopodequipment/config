@@ -45,6 +45,7 @@ validator_client_message_url = ""
 
 # Validator Client Configuration (required when verify_only_mode = false) - add for each validator client
 [[validator_clients]]
+client_name= "prov-validator0"
 {{- range service "prov-validator0" }}
 url = "http://{{ .Address }}:{{ .ServiceMeta.PortHttp }}"    # URL for the first provisioner validator client
 {{- end }}
@@ -54,6 +55,7 @@ jwt_token = "{{ .Data.data.jwt_token }}"
 {{- end }}                                  # JWT token for authentication
 
 [[validator_clients]]
+client_name= "prov-validator1"
 {{- range service "prov-validator1" }}
 url = "http://{{ .Address }}:{{ .ServiceMeta.PortHttp }}"    # URL for the 2nd provisioner validator client
 {{- end }}
