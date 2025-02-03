@@ -41,7 +41,7 @@ reward_distribution_frequency = "{{ key (print (env "CONSUL_PATH" ) "/reward_dis
 operator_balance_threshold = "{{ key (print (env "CONSUL_PATH" ) "/operator_balance_threshold") }}"  # minimum operator wallet threshold for gas fees
 
 # Validator client message url for messaging a service which validators have been subscribed
-validator_client_message_url = ""
+validator_client_message_url = "{{ env "VALIDATOR_CLIENT_URL" }}" 
 
 # Validator Client Configuration (required when verify_only_mode = false) - add for each validator client
 [[validator_clients]]

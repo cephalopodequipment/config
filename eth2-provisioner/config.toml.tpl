@@ -31,6 +31,7 @@ log_level = "debug"
 dev_mode = false
 wallet_endpoint = true # provides a create wallet endpoint for testing turn off in prod
 eth_network = "{{ env "ETH_NETWORK" }}"  # Options: mainnet, holesky
+oracle_operator_address = "{{ env "ORACLE_OPERATOR_ADDRESS" }}"  #public ethereum address of the oracle operator
 key_manager_port = 7500
 
 # Transaction Verification
