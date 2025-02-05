@@ -7,7 +7,7 @@ OP_NODE_L1_BEACON=http://{{ range service "sepolia.eth-consensus-grpc" }}{{ .Add
 
 OP_NODE_NETWORK={{ env "CHAIN_ID" }}
 OP_NODE_L2_ENGINE_AUTH=/shared/jwt.hex
-OP_NODE_L2_ENGINE_RPC=ws://{{ attr.unique.network.ip-address }}:{{ env NOMAD_PORT_ex_authrpc }}
+OP_NODE_L2_ENGINE_RPC=ws://{{ env "OP_NODE_EX_IP" }}:{{ env NOMAD_PORT_ex_authrpc }}
 OP_NODE_LOG_LEVEL=info
 OP_NODE_LOG_FORMAT=logfmt
 OP_NODE_METRICS_ADDR=0.0.0.0
