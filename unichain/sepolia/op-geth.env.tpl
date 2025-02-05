@@ -1,0 +1,23 @@
+# -- op-geth configuration
+GETH_OP_NETWORK={{ env "CHAIN_ID" }}
+GETH_ROLLUP_SEQUENCERHTTP={{ key (print (env "CONSUL_PATH") "/geth.rollup_sequencerhttp") }}
+GETH_BOOTNODES={{ key (print (env "CONSUL_PATH") "/geth.bootnodes") }}
+GETH_LOG_FORMAT=logfmt
+GETH_VERBOSITY=3
+GETH_DATADIR=/data
+GETH_HTTP=true
+GETH_HTTP_ADDR=0.0.0.0
+GETH_HTTP_VHOSTS="*"
+GETH_HTTP_CORSDOMAIN="*"
+GETH_HTTP_API=web3,debug,eth,txpool,net,admin,rpc
+GETH_WS=true
+GETH_WS_ADDR=0.0.0.0
+GETH_WS_API=web3,debug,eth,txpool,net,admin,rpc
+GETH_AUTHRPC_JWTSECRET=/shared/jwt.hex
+GETH_AUTHRPC_PORT={{ env "NOMAD_PORT_ex_authrpc" }}
+GETH_AUTHRPC_VHOSTS="*"
+GETH_AUTHRPC_ADDR=0.0.0.0
+GETH_METRICS=true
+GETH_METRICS_ADDR=0.0.0.0
+GETH_ROLLUP_DISABLETXPOOLGOSSIP=true
+GETH_TXPOOL_NOLOCALS=true
