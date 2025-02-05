@@ -5,7 +5,7 @@ OP_NODE_L1_ETH_RPC=http://{{ range service "sepolia.eth-execution-rpc" }}{{ .Add
 # [required] replace with your preferred L1 CL beacon endpoint:
 OP_NODE_L1_BEACON=http://{{ range service "sepolia.eth-consensus-grpc" }}{{ .Address }}:{{ .Port }}{{ end }}
 
-OP_NODE_NETWORK={{ env CHAIN_ID }}
+OP_NODE_NETWORK={{ env "CHAIN_ID" }}
 OP_NODE_L2_ENGINE_AUTH=/shared/jwt.hex
 OP_NODE_L2_ENGINE_RPC=ws://{{ attr.unique.network.ip-address }}:{{ env NOMAD_PORT_ex_authrpc }}
 OP_NODE_LOG_LEVEL=info
@@ -13,7 +13,7 @@ OP_NODE_LOG_FORMAT=logfmt
 OP_NODE_METRICS_ADDR=0.0.0.0
 OP_NODE_METRICS_ENABLED=true
 OP_NODE_METRICS_PORT=7300
-OP_NODE_P2P_BOOTNODES={{ key (print (env CONSUL_PATH) "/p2p.bootnodes") }}
+OP_NODE_P2P_BOOTNODES={{ key (print (env "CONSUL_PATH") "/p2p.bootnodes") }}
 OP_NODE_P2P_LISTEN_IP=0.0.0.0
 OP_NODE_P2P_LISTEN_TCP_PORT={{ env NOMAD_PORT_op_p2p }}
 OP_NODE_P2P_LISTEN_UDP_PORT={{ env NOMAD_PORT_op_p2p }}
