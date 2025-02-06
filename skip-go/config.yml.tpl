@@ -132,7 +132,7 @@ chains:
     batch_uusdc_settle_up_threshold: {{ $job_config.batch_uusdc_settle_up_threshold }} # 1/2 of destination inventory evenly distributed across source chains
     min_profit_margin_bps: {{ $job_config.min_profit_margin_bps }} #MUST BE GREATER THAN min_fee_bps
     evm:
-      rpc: {{ with secret "static_secrets/skip-go"}}{{ .Data.data.optimism_rpc }}{{ end }}
+      rpc: {{ with secret "static_secrets/skip-go"}}{{ .Data.data.avalanche_rpc }}{{ end }}
       signer_gas_balance:
         warning_threshold_wei: {{ $job_config.warning_threshold_wei }}
         critical_threshold_wei: {{ $job_config.critical_threshold_wei }}
@@ -189,7 +189,7 @@ chains:
     batch_uusdc_settle_up_threshold: {{ $job_config.batch_uusdc_settle_up_threshold }} # 1/2 of destination inventory evenly distributed across source chains
     min_profit_margin_bps: {{ $job_config.min_profit_margin_bps }}
     evm:
-      rpc: {{ with secret "static_secrets/skip-go"}}{{ .Data.data.arbitrum_rpc }}{{ end }}
+      rpc: {{ with secret "static_secrets/skip-go"}}{{ .Data.data.polygon_rpc }}{{ end }}
       rpc_basic_auth_var: <env_var_with_server_password>
       signer_gas_balance:
         warning_threshold_wei: {{ $job_config.warning_threshold_wei }}
