@@ -15,10 +15,10 @@ coingecko:
   cache_refresh_interval: "15m"
 
 order_filler:
-  worker_count: 10
+  worker_count: {{ key "networks/skip-go/base.worker_count" }}
 
 transfer_monitor:
-  poll_interval: 5s
+  poll_interval: {{ key "networks/skip-go/base.poll_interval" }}
 
 
 {{ if (key "networks/skip-go/rebalance.enable" | parseBool)}}
@@ -112,6 +112,35 @@ chains:
       profitable_relay_timeout: {{ $job_config.profitable_relay_timeout }}
       relay_cost_cap_uusdc: {{ $job_config.relay_cost_cap_uusdc }}
 {{- end -}}
+{{ if eq $network "avalanche" }}
+  43114:
+    chain_name: "avalanche"
+    chain_id: "43114"
+    type: "evm"
+    environment: "mainnet"
+    gas_token_symbol: "AVAX"
+    gas_token_decimals: 18
+    gas_token_coingecko_id: "avalanche-2"
+    hyperlane_domain: "43114"
+    fast_transfer_contract_address: "0xD415B02A7E91dBAf92EAa4721F9289CFB7f4E1cF"
+    quick_start_num_blocks_back: {{ $job_config.quick_start_num_blocks_back }}
+    num_block_confirmations_before_fill: {{ $job_config.num_block_confirmations_before_fill }} # e.g. 1
+    max_rebalancing_gas_cost_uusdc: "{{ $job_config.max_rebalancing_gas_cost_uusdc }}"
+    solver_address: {{ $job_config.solver_address }}
+    usdc_denom: "0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E"
+    min_fee_bps: {{ $job_config.min_fee_bps }}
+    batch_uusdc_settle_up_threshold: {{ $job_config.batch_uusdc_settle_up_threshold }} # 1/2 of destination inventory evenly distributed across source chains
+    min_profit_margin_bps: {{ $job_config.min_profit_margin_bps }} #MUST BE GREATER THAN min_fee_bps
+    evm:
+      rpc: {{ with secret "static_secrets/skip-go"}}{{ .Data.data.optimism_rpc }}{{ end }}
+      signer_gas_balance:
+        warning_threshold_wei: {{ $job_config.warning_threshold_wei }}
+        critical_threshold_wei: {{ $job_config.critical_threshold_wei }}
+    relayer:
+      mailbox_address: "0xFf06aFcaABaDDd1fb08371f9ccA15D73D51FeBD6"
+      profitable_relay_timeout: {{ $job_config.profitable_relay_timeout }}
+      relay_cost_cap_uusdc: {{ $job_config.relay_cost_cap_uusdc }}
+{{- end -}}
 {{ if eq $network "arbitrum" }}
   42161:
     chain_name: "arbitrum"
@@ -138,6 +167,36 @@ chains:
         critical_threshold_wei: {{ $job_config.critical_threshold_wei }}
     relayer:
       mailbox_address: "0x979Ca5202784112f4738403dBec5D0F3B9daabB9"
+      profitable_relay_timeout: {{ $job_config.profitable_relay_timeout }}
+      relay_cost_cap_uusdc: {{ $job_config.relay_cost_cap_uusdc }}
+{{- end -}}
+{{ if eq $network "polygon" }}
+  137:
+    chain_name: "polygon"
+    chain_id: "137"
+    type: evm
+    environment: "mainnet"
+    gas_token_symbol: "MATIC"
+    gas_token_decimals: 18
+    gas_token_coingecko_id: "matic-network"
+    fast_transfer_contract_address: "0x3ffaf8d0d33226302e3a0ae48367cf1dd2023b1f"
+    solver_address: {{ $job_config.solver_address }}
+    usdc_denom: "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359"
+    hyperlane_domain: "137"
+    quick_start_num_blocks_back: {{ $job_config.quick_start_num_blocks_back }}
+    num_block_confirmations_before_fill: {{ $job_config.num_block_confirmations_before_fill }} # e.g. 1
+    min_fee_bps: {{ $job_config.min_fee_bps }}
+    batch_uusdc_settle_up_threshold: {{ $job_config.batch_uusdc_settle_up_threshold }} # 1/2 of destination inventory evenly distributed across source chains
+    min_profit_margin_bps: {{ $job_config.min_profit_margin_bps }}
+    evm:
+      rpc: {{ with secret "static_secrets/skip-go"}}{{ .Data.data.arbitrum_rpc }}{{ end }}
+      rpc_basic_auth_var: <env_var_with_server_password>
+      signer_gas_balance:
+        warning_threshold_wei: {{ $job_config.warning_threshold_wei }}
+        critical_threshold_wei: {{ $job_config.critical_threshold_wei }}
+        min_gas_tip_cap: 30000000000
+    relayer:
+      mailbox_address: "0x5d934f4e2f797775e53561bB72aca21ba36B96BB"
       profitable_relay_timeout: {{ $job_config.profitable_relay_timeout }}
       relay_cost_cap_uusdc: {{ $job_config.relay_cost_cap_uusdc }}
 {{- end -}}
