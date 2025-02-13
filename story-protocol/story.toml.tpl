@@ -3,25 +3,27 @@
 
 # The version of the Story binary that created or
 # last modified the config file. Do not modify this.
-version = "v0.12.1"
+version = "v{{ key (print (env "CONSUL_PATH") "/nomad_job/docker_image_tag") }}"
 
 # Story network to participate in: mainnet, testnet, or devnet.
-network = "{{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/base.network") "odyssey" }}"
+network = "{{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/base.network") "story" }}"
 
 #######################################################################
 ###                          Story Options                          ###
 #######################################################################
 
 # Story execution client Engine API http endpoint.
-engine-endpoint = "http://{{ env NOMAD_IP_rpcG }}:{{ env NOMAD_PORT_rpcG}}"
+# to be provided with flag if left empty
+engine-endpoint = ""
 
 # Story execution client JWT file used for authentication.
-engine-jwt-file = "/home/story/.story/geth/odyssey/geth/jwtsecret"
+# to be provided with flag if left empty
+engine-jwt-file = ""
 
 # SnapshotInterval specifies the height interval at which story
 # will take state sync snapshots. Defaults to 1000 (roughly once an hour), setting this to
 # 0 disables state snapshots.
-snapshot-interval = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.snapshot-interval") "1000" }}
+snapshot-interval = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.snapshot-interval") "0" }}
 
 # snapshot-keep-recent specifies the number of recent snapshots to keep and serve (0 to keep all).
 snapshot-keep-recent = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.snapshot-keep-recent") "2" }}
@@ -60,16 +62,37 @@ evm-build-delay = "600ms"
 # EVMBuildOptimistic defines whether to trigger optimistic EVM payload building.
 # If true, the EVM payload will be triggered on previous finalisation. This allows
 # more time for block building while ensuring faster consensus blocks.
-evm-build-optimistic = false
+evm-build-optimistic = {{ keyOrDefault (print (env "CONSUL_PATH") "/evm-build-optimistic") "true" }}
 
-# APIEnable defines if the API server should be enabled.
-api-enable = false
+#######################################################################
+###                           API Options                           ###
+#######################################################################
 
-# APIAddress defines the API server address to listen on.
-api-address = "0.0.0.0:1317"
+[api]
+# Enable defines if the API server should be enabled.
+enable = true
+
+# Address defines the API server address to listen on.
+address = "0.0.0.0:1317"
 
 # EnableUnsafeCORS defines whether to enable CORS for API server.
-enabled-unsafe-cors = false
+enable-unsafe-cors = false
+
+# ReadTimeout defines the API server read timeout (in seconds).
+read-timeout = 10
+
+# ReadHeaderTimeout defines the API server read header timeout (in seconds).
+read-header-timeout = 10
+
+# WriteTimeout defines the API server write timeout (in seconds).
+write-timeout = 10
+
+# IdleTimeout defines the API server idle timeout (in seconds).
+idle-timeout = 10
+
+# MaxHeaderBytes defines the API server max header (in bytes).
+max-header-bytes = 8192
+
 
 #######################################################################
 ###                         Logging Options                         ###
