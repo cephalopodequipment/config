@@ -73,7 +73,7 @@ evm-build-optimistic = {{ keyOrDefault (print (env "CONSUL_PATH") "/evm-build-op
 enable = true
 
 # Address defines the API server address to listen on.
-address = "127.0.0.1:1317"
+address = "0.0.0.0:1317"
 
 # EnableUnsafeCORS defines whether to enable CORS for API server.
 enable-unsafe-cors = false
