@@ -14,22 +14,28 @@ pass = "1"
 params = "mainnet"
 disable_tls = false # set true if http
 required_confirmations = 6
-      
-[evm.holesky]
+
+[evm.mainnet]
 rpc_url = "{{ .Data.data.eth_rpc }}" # replace by your own
 chain_id = "0x01"
 required_confirmations = 65
 enabled = true
-      
-[evm.bsc_testnet]
+
+[evm.bsc]
 rpc_url = "{{ .Data.data.bsc_rpc }}" # replace by your own
 chain_id = "0x38"
 required_confirmations = 15
 enabled = true
-      
-[evm.base_sepolia]
+
+[evm.base]
 rpc_url = "{{ .Data.data.base_rpc }}" # replace by your own
 chain_id = "0x2105"
 required_confirmations = 72
 enabled = true
+
+[evm.sepolia]
+enabled = false
+
+[evm.holesky]
+enabled = false
 {{ end -}}
