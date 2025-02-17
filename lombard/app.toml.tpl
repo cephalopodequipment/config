@@ -34,3 +34,6 @@ rpc_url = "{{ .Data.data.base_sepolia_rpc }}" # replace with your base sepolia r
 contract = "0xe705037ce9a9ca7859ee15d04a569783da7121c8"
 
 {{ end -}}
+
+[sanctions]
+url = "https://staging.prod.lombard.finance/"
