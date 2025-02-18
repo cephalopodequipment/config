@@ -33,6 +33,14 @@ chain_id = "0x2105"
 required_confirmations = 72
 enabled = true
 
+[sui.mainnet]
+chain_id = "0x35834a8a"
+rpc_url = "{{ .Data.data.sui_rpc }}" # replace by your own
+package_id = "0x3e8e9423d80e1774a7ca128fccd8bf5f1f7753be658c5e645929037f7c819040"
+
+[sanctions]
+url = "https://mainnet.prod.lombard.finance/"
+
 [evm.sepolia]
 enabled = false
 
