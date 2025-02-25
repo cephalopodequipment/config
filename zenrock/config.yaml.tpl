@@ -1,3 +1,4 @@
+enabled: {{ keyOrDefault (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/sidecar.enabled") "false" }}
 grpc_port: {{ env "NOMAD_PORT_grpcS" }}
 state_file: "cache.json"
 operator_config: {{ keyOrDefault (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/operator.config") "\"\"" }}
