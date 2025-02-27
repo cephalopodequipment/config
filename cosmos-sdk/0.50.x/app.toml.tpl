@@ -363,3 +363,13 @@ return-data-limit = 100000
 certificate-path = ""
 # Key path defines the key.pem file path for the TLS configuration.
 key-path = ""
+
+###############################################################################
+###                             Jester (sidecar)                            ###
+###############################################################################
+
+[jester]
+
+# Jester's gRPC server address.
+# This should not conflict with the CometBFT gRPC server.
+grpc-address = "localhost:{{ env "NOMAD_PORT_gRPCJ" }}"
