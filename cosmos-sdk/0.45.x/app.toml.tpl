@@ -301,3 +301,13 @@ min-gas-price-for-high-gas-tx = {{ keyOrDefault (print (env "CONSUL_PATH") "/osm
 
 # This parameter enables EIP-1559 like fee market logic in the mempool
 adaptive-fee-enabled = {{ keyOrDefault (print (env "CONSUL_PATH") "/osmo.adaptive-fee-enabled") "\"true\"" }}
+
+###############################################################################
+###                             Jester (sidecar)                            ###
+###############################################################################
+
+[jester]
+
+# Jester's gRPC server address.
+# This should not conflict with the CometBFT gRPC server.
+grpc-address = "localhost:{{ env "NOMAD_PORT_gRPCJ" }}"
