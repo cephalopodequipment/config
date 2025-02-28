@@ -372,4 +372,4 @@ key-path = ""
 
 # Jester's gRPC server address.
 # This should not conflict with the CometBFT gRPC server.
-grpc-address = "{{ env "NOMAD_HOST_IP_gRPCJ" }}:{{ env "NOMAD_PORT_gRPCJ" }}"
+grpc-address = "{{ env "NOMAD_HOST_IP_gRPCJ" }}:{{ env "NOMAD_HOST_PORT_gRPCJ" }}"
