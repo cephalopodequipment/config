@@ -1,7 +1,7 @@
-log-level = "info"
+log-level = "{{ keyOrDefault (print (env "JESTER_CONSUL_PATH") "/jester.log_level") "info" }}"
 log-style = "pretty"
 testnet = {{ keyOrDefault (print (env "JESTER_CONSUL_PATH") "/jester.testnet") "false" }}
-server-address = "localhost:{{ env "NOMAD_PORT_gRPCJ" }}"
+server-address = "0.0.0.0:{{ env "NOMAD_PORT_gRPCJ" }}"
 
 [ethereum]
   {{- with secret "static_secrets/jester" }}
