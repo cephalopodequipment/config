@@ -4,8 +4,11 @@ testnet = {{ keyOrDefault (print (env "JESTER_CONSUL_PATH") "/jester.testnet") "
 server-address = "localhost:{{ env "NOMAD_PORT_gRPCJ" }}"
 
 [ethereum]
-  websocket-url = {{ keyOrDefault (print (env "JESTER_CONSUL_PATH") "/jester.websocket-url") "\"\"" }}
-  rpc-url = {{ keyOrDefault (print (env "JESTER_CONSUL_PATH") "/jester.rpc-url") "\"\"" }}
+  {{- with secret "static_secrets/jester" }}
+  websocket-url: "{{ .Data.data.sepolia_ws_endpoint }}"
+  {{- end -}}{{ with secret "static_secrets/jester" }}
+  rpc-url: "{{ .Data.data.sepolia_endpoint }}"
+  {{- end }}
 
 [metrics]
   enabled = true
