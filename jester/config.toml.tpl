@@ -11,4 +11,4 @@ rpc-url = "{{ .Data.data.rpc_endpoint }}"
 
 [metrics]
 enabled = true
-address = 0.0.0.0:{{ env "NOMAD_PORT_promJ" }}"
+address = "0.0.0.0:{{ env "NOMAD_PORT_promJ" }}"
