@@ -150,7 +150,7 @@ enabled = true
 
 # Post bellatrix, this address will receive the transaction fees produced by any blocks
 # from this node.
-suggested-fee-recipient = {{ keyOrDefault (print (env "CONSUL_PATH") "/beacon-kit.payload-builder.suggested-fee-recipient") "\"0x0000000000000000000000000000000000000000\"" }}
+suggested-fee-recipient = {{ key (print (env "CONSUL_PATH") "/beacon-kit.payload-builder.suggested-fee-recipient") }}
 
 # The timeout for local build payload. This should match, or be slightly less
 # than the configured timeout on your execution client. It also must be less than
