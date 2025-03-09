@@ -159,7 +159,7 @@ payload-timeout = "850ms"
 
 [beacon-kit.validator]
 # Graffiti string that will be included in the graffiti field of the beacon block.
-graffiti = {{ keyOrDefault (print (env "CONSUL_PATH") "/beacon-kit.validator.graffiti") "\""" }}
+graffiti = {{ keyOrDefault (print (env "CONSUL_PATH") "/beacon-kit.validator.graffiti") "\"\"" }}
 
 # EnableOptimisticPayloadBuilds enables building the next block's payload optimistically in
 # process-proposal to allow for the execution client to have more time to assemble the block.
