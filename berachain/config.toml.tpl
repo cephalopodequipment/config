@@ -156,7 +156,7 @@ experimental_close_on_slow_client = false
 # WARNING: Using a value larger than 10s will result in increasing the
 # global HTTP write timeout, which applies to all connections and endpoints.
 # See https://github.com/tendermint/tendermint/issues/3435
-timeout_broadcast_tx_commit = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/rpc.timeout_broadcast_tx_commit") "\"10s\"" }}
+timeout_broadcast_tx_commit = {{ keyOrDefault (print (env "CONSUL_PATH") "/rpc.timeout_broadcast_tx_commit") "\"10s\"" }}
 
 # Maximum number of requests that can be sent in a batch
 # If the value is set to '0' (zero-value), then no maximum batch size will be
@@ -164,7 +164,7 @@ timeout_broadcast_tx_commit = {{ keyOrDefault (print "networks/" (index (env "CO
 max_request_batch_size = 10
 
 # Maximum size of request body, in bytes
-max_body_bytes = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/rpc.max_body_bytes") "1000000" }}
+max_body_bytes = {{ keyOrDefault (print (env "CONSUL_PATH") "/rpc.max_body_bytes") "1000000" }}
 
 # Maximum size of request header, in bytes
 max_header_bytes = 1048576
@@ -261,7 +261,7 @@ laddr = "tcp://0.0.0.0:{{ env "NOMAD_PORT_p2p" }}"
 external_address = "{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_p2p" }}"
 
 # Comma separated list of seed nodes to connect to
-seeds = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/p2p.seeds") "\"\"" }}
+seeds = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.seeds") "\"\"" }}
 
 # Comma separated list of nodes to keep persistent connections to
 persistent_peers = {{ keyOrDefault  (print (env "CONSUL_PATH") "/p2p.persistent_peers") "\"\"" }}
@@ -280,16 +280,16 @@ max_num_inbound_peers = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.max_num
 max_num_outbound_peers = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.max_num_outbound_peers") "10" }}
 
 # List of node IDs, to which a connection will be (re)established ignoring any existing limits
-unconditional_peer_ids = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/p2p.unconditional_peer_ids") "\"\"" }}
+unconditional_peer_ids = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.unconditional_peer_ids") "\"\"" }}
 
 # Maximum pause when redialing a persistent peer (if zero, exponential backoff is used)
 persistent_peers_max_dial_period = "0s"
 
 # Time to wait before flushing messages out on the connection
-flush_throttle_timeout = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/p2p.flush_throttle_timeout") "\"10ms\"" }}
+flush_throttle_timeout = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.flush_throttle_timeout") "\"10ms\"" }}
 
 # Maximum size of a message packet payload, in bytes
-max_packet_msg_payload_size = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/p2p.max_packet_msg_payload_size") "1024" }}
+max_packet_msg_payload_size = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.max_packet_msg_payload_size") "1024" }}
 
 # Rate at which packets can be sent, in bytes/second
 send_rate = 5120000
@@ -307,7 +307,7 @@ pex = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.pex") "true" }}
 seed_mode = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.seed_mode") "false" }}
 
 # Comma separated list of peer IDs to keep private (will not be gossiped to other peers)
-private_peer_ids = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/p2p.private_peer_ids") "\"\"" }}
+private_peer_ids = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.private_peer_ids") "\"\"" }}
 
 # Toggle to disable guard against peers connecting from the same ip.
 allow_duplicate_ip = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.allow_duplicate_ip") "false" }}
@@ -412,7 +412,7 @@ enable = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.enable") "false"
 rpc_servers = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.rpc_servers") "\"\"" }}
 trust_height = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.trust_height") "0" }}
 trust_hash = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.trust_hash") "\"\"" }}
-trust_period = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/statesync.trust_period") "\"168h0m0s\"" }}
+trust_period = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.trust_period") "\"168h0m0s\"" }}
 
 # Time to spend discovering snapshots before initiating a restore.
 discovery_time = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.discovery_time") "\"15s\"" }}
@@ -477,7 +477,7 @@ skip_timeout_commit = false
 double_sign_check_height = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.double_sign_check_height") "0" }}
 
 # EmptyBlocks mode and possible interval between empty blocks
-create_empty_blocks = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/consensus.create_empty_blocks") "true" }}
+create_empty_blocks = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.create_empty_blocks") "true" }}
 create_empty_blocks_interval = "0s"
 
 # Reactor sleep duration parameters
