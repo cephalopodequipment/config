@@ -121,7 +121,7 @@ rpc-startup-check-interval = "3s"
 rpc-jwt-refresh-interval = "30s"
 
 # Path to the execution client JWT-secret
-jwt-secret-path = "./jwt.hex"
+jwt-secret-path = "/home/beacond/jwt.hex"
 
 [beacon-kit.logger]
 # TimeFormat is a string that defines the format of the time in the logger.
