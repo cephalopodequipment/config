@@ -375,7 +375,7 @@ cache_size = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.cache_size") "
 # Do not remove invalid transactions from the cache (default: false)
 # Set to true if it's not possible for any invalid transaction to become valid
 # again in the future.
-{{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.keep-invalid-txs-in-cache") "false" }}
+keep-invalid-txs-in-cache = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.keep-invalid-txs-in-cache") "false" }}
 
 # Experimental parameters to limit gossiping txs to up to the specified number of peers.
 # We use two independent upper values for persistent and non-persistent peers.
