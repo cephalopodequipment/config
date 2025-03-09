@@ -177,7 +177,7 @@ availability-window = "8192"
 enabled = {{ keyOrDefault (print (env "CONSUL_PATH") "/beacon-kit.node-api.enabled") "\"true\"" }}
 
 # Address is the address to bind the node API to.
-address = {{ keyOrDefault (print (env "CONSUL_PATH") "/beacon-kit.node-api.address") "\"127.0.0.1:3500\"" }}
+address = {{ keyOrDefault (print (env "CONSUL_PATH") "/beacon-kit.node-api.address") "\"0.0.0.0:3500\"" }}
 
 # Logging determines if the node API logging is enabled.
 logging = {{ keyOrDefault (print (env "CONSUL_PATH") "/beacon-kit.node-api.logging") "\"false\"" }}
