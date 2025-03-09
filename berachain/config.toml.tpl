@@ -518,7 +518,7 @@ compact = false
 # It should be tuned depending on the number of items. If your retain height is 1 block,
 # it is too much of an overhead to try compaction every block. But it should also not be a very
 # large multiple of your retain height as it might occur bigger overheads.
-compaction_interval = "1000"
+compaction_interval = 1000
 
 [storage.pruning]
 
