@@ -566,7 +566,7 @@ initial_block_results_retain_height = 0
 # 		- When "kv" is chosen "tx.height" and "tx.hash" will always be indexed.
 #   3) "psql" - the indexer services backed by PostgreSQL.
 # When "kv" or "psql" is chosen "tx.height" and "tx.hash" will always be indexed.
-indexer = {{ keyOrDefault (print (env "CONSUL_PATH") "/tx_index.indexer") "\"null\"" }}
+indexer = {{ keyOrDefault (print (env "CONSUL_PATH") "/tx_index.indexer") "\"kv\"" }}
 
 # The PostgreSQL connection configuration, the connection format:
 #   postgresql://<user>:<password>@<host>:<port>/<db>?<opts>
