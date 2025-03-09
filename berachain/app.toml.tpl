@@ -106,7 +106,7 @@ datadog-hostname = ""
 
 [beacon-kit.engine]
 # HTTP url of the execution client JSON-RPC endpoint.
-rpc-dial-url = http://localhost:8551
+rpc-dial-url = "http://localhost:8551"
 
 # Number of retries before shutting down consensus client.
 rpc-retries = "3"
