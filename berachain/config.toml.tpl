@@ -53,7 +53,7 @@ db_dir = "data"
 log_level = {{ keyOrDefault  (print (env "CONSUL_PATH") "/base.log_level") "\"info\"" }}
 
 # Output format: 'plain' (colored text) or 'json'
-log_format = {{ keyOrDefault  (print (env "CONSUL_PATH") "/base.log_format") "\"plain\"" }}
+log_format = {{ keyOrDefault  (print (env "CONSUL_PATH") "/base.log_format") "\"json\"" }}
 
 ##### additional base config options #####
 
