@@ -16,10 +16,10 @@ version = "1.0.1"
 
 # TCP or UNIX socket address of the ABCI application,
 # or the name of an ABCI application compiled in with the CometBFT binary
-proxy_app = "tcp://127.0.0.1:26658"
+proxy_app = "tcp://{{ envOrDefault "NOMAD_IP_abci" "127.0.0.1" }}:{{ envOrDefault "NOMAD_PORT_abci" "26658"}}"
 
 # A custom human readable name for this node
-moniker = "testing"
+moniker = {{ keyOrDefault (print (env "CONSUL_PATH") "/base.moniker") "\"20k leagues under the sea\"" }}
 
 # Database backend: badgerdb | goleveldb | pebbledb | rocksdb | cleveldb | boltdb
 # * badgerdb (uses github.com/dgraph-io/badger)
@@ -50,10 +50,10 @@ db_backend = "pebbledb"
 db_dir = "data"
 
 # Output level for logging, including package level options
-log_level = "info"
+log_level = {{ keyOrDefault  (print (env "CONSUL_PATH") "/base.log_level") "\"info\"" }}
 
 # Output format: 'plain' (colored text) or 'json'
-log_format = "plain"
+log_format = {{ keyOrDefault  (print (env "CONSUL_PATH") "/base.log_format") "\"plain\"" }}
 
 ##### additional base config options #####
 
@@ -68,7 +68,7 @@ priv_validator_state_file = "data/priv_validator_state.json"
 
 # TCP or UNIX socket address for CometBFT to listen on for
 # connections from an external PrivValidator process
-priv_validator_laddr = ""
+priv_validator_laddr = {{ if (env "VALIDATOR") | parseBool }} "tcp://0.0.0.0:{{ env "NOMAD_PORT_tmkms" }}" {{ else }} "" {{ end }}
 
 # Path to the JSON file containing the private key to use for node authentication in the p2p protocol
 node_key_file = "config/node_key.json"
@@ -91,7 +91,7 @@ filter_peers = false
 [rpc]
 
 # TCP or UNIX socket address for the RPC server to listen on
-laddr = "tcp://127.0.0.1:26657"
+laddr = "tcp://0.0.0.0:26657"
 
 # A list of origins a cross-domain request can be executed from
 # Default value '[]' disables cors support
@@ -105,7 +105,7 @@ cors_allowed_methods = ["HEAD", "GET", "POST", ]
 cors_allowed_headers = ["Origin", "Accept", "Content-Type", "X-Requested-With", "X-Server-Time", ]
 
 # Activate unsafe RPC commands like /dial_seeds and /unsafe_flush_mempool
-unsafe = false
+unsafe = {{ keyOrDefault  (print (env "CONSUL_PATH") "/rpc.unsafe") "false" }}
 
 # Maximum number of simultaneous connections (including WebSocket).
 # If you want to accept a larger number than the default, make sure
@@ -156,7 +156,7 @@ experimental_close_on_slow_client = false
 # WARNING: Using a value larger than 10s will result in increasing the
 # global HTTP write timeout, which applies to all connections and endpoints.
 # See https://github.com/tendermint/tendermint/issues/3435
-timeout_broadcast_tx_commit = "10s"
+timeout_broadcast_tx_commit = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/rpc.timeout_broadcast_tx_commit") "\"10s\"" }}
 
 # Maximum number of requests that can be sent in a batch
 # If the value is set to '0' (zero-value), then no maximum batch size will be
@@ -164,7 +164,7 @@ timeout_broadcast_tx_commit = "10s"
 max_request_batch_size = 10
 
 # Maximum size of request body, in bytes
-max_body_bytes = 1000000
+max_body_bytes = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/rpc.max_body_bytes") "1000000" }}
 
 # Maximum size of request header, in bytes
 max_header_bytes = 1048576
@@ -253,43 +253,43 @@ enabled = false
 [p2p]
 
 # Address to listen for incoming connections
-laddr = "tcp://0.0.0.0:26656"
+laddr = "tcp://0.0.0.0:{{ env "NOMAD_PORT_p2p" }}"
 
 # Address to advertise to peers for them to dial. If empty, will use the same
 # port as the laddr, and will introspect on the listener to figure out the
 # address. IP and port are required. Example: 159.89.10.97:26656
-external_address = ""
+external_address = "{{ env "EXTERNAL_IP" }}:{{ env "NOMAD_PORT_p2p" }}"
 
 # Comma separated list of seed nodes to connect to
-seeds = ""
+seeds = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/p2p.seeds") "\"\"" }}
 
 # Comma separated list of nodes to keep persistent connections to
-persistent_peers = ""
+persistent_peers = {{ keyOrDefault  (print (env "CONSUL_PATH") "/p2p.persistent_peers") "\"\"" }}
 
 # Path to address book
 addr_book_file = "config/addrbook.json"
 
 # Set true for strict address routability rules
 # Set false for private or local networks
-addr_book_strict = true
+addr_book_strict = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.addr_book_strict") "true" }}
 
 # Maximum number of inbound peers
-max_num_inbound_peers = 120
+max_num_inbound_peers = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.max_num_inbound_peers") "5" }}
 
 # Maximum number of outbound peers to connect to, excluding persistent peers
-max_num_outbound_peers = 40
+max_num_outbound_peers = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.max_num_outbound_peers") "10" }}
 
 # List of node IDs, to which a connection will be (re)established ignoring any existing limits
-unconditional_peer_ids = ""
+unconditional_peer_ids = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/p2p.unconditional_peer_ids") "\"\"" }}
 
 # Maximum pause when redialing a persistent peer (if zero, exponential backoff is used)
 persistent_peers_max_dial_period = "0s"
 
 # Time to wait before flushing messages out on the connection
-flush_throttle_timeout = "10ms"
+flush_throttle_timeout = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/p2p.flush_throttle_timeout") "\"10ms\"" }}
 
 # Maximum size of a message packet payload, in bytes
-max_packet_msg_payload_size = 1024
+max_packet_msg_payload_size = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/p2p.max_packet_msg_payload_size") "1024" }}
 
 # Rate at which packets can be sent, in bytes/second
 send_rate = 5120000
@@ -298,19 +298,19 @@ send_rate = 5120000
 recv_rate = 5120000
 
 # Set true to enable the peer-exchange reactor
-pex = true
+pex = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.pex") "true" }}
 
 # Seed mode, in which node constantly crawls the network and looks for
 # peers. If another node asks it for addresses, it responds and disconnects.
 #
 # Does not work if the peer-exchange reactor is disabled.
-seed_mode = false
+seed_mode = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.seed_mode") "false" }}
 
 # Comma separated list of peer IDs to keep private (will not be gossiped to other peers)
-private_peer_ids = ""
+private_peer_ids = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/p2p.private_peer_ids") "\"\"" }}
 
 # Toggle to disable guard against peers connecting from the same ip.
-allow_duplicate_ip = false
+allow_duplicate_ip = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.allow_duplicate_ip") "false" }}
 
 # Peer connection configuration.
 handshake_timeout = "20s"
@@ -329,27 +329,27 @@ dial_timeout = "3s"
 #  - "nop"   : nop-mempool (short for no operation; the ABCI app is responsible
 #  for storing, disseminating and proposing txs). "create_empty_blocks=false" is
 #  not supported.
-type = "nop"
+type = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.type") "\"nop\"" }}
 
 # recheck (default: true) defines whether CometBFT should recheck the
 # validity for all remaining transaction in the mempool after a block.
 # Since a block affects the application state, some transactions in the
 # mempool may become invalid. If this does not apply to your application,
 # you can disable rechecking.
-recheck = false
+recheck = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.recheck") "false" }}
 
 # recheck_timeout is the time the application has during the rechecking process
 # to return CheckTx responses, once all requests have been sent. Responses that
 # arrive after the timeout expires are discarded. It only applies to
 # non-local ABCI clients and when recheck is enabled.
-recheck_timeout = "0s"
+recheck_timeout = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.recheck_timeout") "\"0s\"" }}
 
 # broadcast (default: true) defines whether the mempool should relay
 # transactions to other peers. Setting this to false will stop the mempool
 # from relaying transactions to other peers until they are included in a
 # block. In other words, if Broadcast is disabled, only the peer you send
 # the tx to will see it until it is included in a block.
-broadcast = false
+broadcast = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.broadcast") "false" }}
 
 # wal_dir (default: "") configures the location of the Write Ahead Log
 # (WAL) for the mempool. The WAL is disabled by default. To enable, set
@@ -358,7 +358,7 @@ broadcast = false
 wal_dir = ""
 
 # Maximum number of transactions in the mempool
-size = 0
+size = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.size") "0" }}
 
 # Maximum size in bytes of a single transaction accepted into the mempool.
 max_tx_bytes = 0
@@ -370,12 +370,12 @@ max_tx_bytes = 0
 max_txs_bytes = 0
 
 # Size of the cache (used to filter transactions we saw earlier) in transactions
-cache_size = 0
+cache_size = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.cache_size") "0" }}
 
 # Do not remove invalid transactions from the cache (default: false)
 # Set to true if it's not possible for any invalid transaction to become valid
 # again in the future.
-keep-invalid-txs-in-cache = false
+{{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.keep-invalid-txs-in-cache") "false" }}
 
 # Experimental parameters to limit gossiping txs to up to the specified number of peers.
 # We use two independent upper values for persistent and non-persistent peers.
@@ -401,7 +401,7 @@ experimental_max_gossip_connections_to_non_persistent_peers = 0
 # the network to take and serve state machine snapshots. State sync is not attempted if the node
 # has any local state (LastBlockHeight > 0). The node will have a truncated block history,
 # starting from the height of the snapshot.
-enable = false
+enable = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.enable") "false" }}
 
 # RPC servers (comma-separated) for light client verification of the synced state machine and
 # retrieval of state data for node bootstrapping. Also needs a trusted height and corresponding
@@ -409,13 +409,13 @@ enable = false
 #
 # For Cosmos SDK-based chains, trust_period should usually be about 2/3 of the unbonding time (~2
 # weeks) during which they can be financially punished (slashed) for misbehavior.
-rpc_servers = ""
-trust_height = 0
-trust_hash = ""
-trust_period = "168h0m0s"
+rpc_servers = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.rpc_servers") "\"\"" }}
+trust_height = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.trust_height") "0" }}
+trust_hash = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.trust_hash") "\"\"" }}
+trust_period = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/statesync.trust_period") "\"168h0m0s\"" }}
 
 # Time to spend discovering snapshots before initiating a restore.
-discovery_time = "15s"
+discovery_time = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.discovery_time") "\"15s\"" }}
 
 # Temporary directory for state sync snapshot chunks, defaults to the OS tempdir (typically /tmp).
 # Will create a new, randomly named directory within, and remove it when done.
@@ -423,7 +423,7 @@ temp_dir = ""
 
 # The timeout duration before re-requesting a chunk, possibly from a different
 # peer (default: 1 minute).
-chunk_request_timeout = "10s"
+chunk_request_timeout = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.chunk_request_timeout") "\"10s\"" }}
 
 # The number of concurrent chunk fetchers to run (default: 1).
 chunk_fetchers = "4"
@@ -449,23 +449,23 @@ version = "v0"
 wal_file = "data/cs.wal/wal"
 
 # How long we wait for a proposal block before prevoting nil
-timeout_propose = "2s"
+timeout_propose = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_propose") "\"2s\"" }}
 # How much timeout_propose increases with each round
-timeout_propose_delta = "500ms"
+timeout_propose_delta = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_propose_delta") "\"500ms\"" }}
 # How long we wait after receiving +2/3 prevotes for “anything” (ie. not a single block or nil)
-timeout_prevote = "2s"
+timeout_prevote = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_prevote") "\"2s\"" }}
 # How much the timeout_prevote increases with each round
-timeout_prevote_delta = "500ms"
+timeout_prevote_delta = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_prevote_delta") "\"500ms\"" }}
 # How long we wait after receiving +2/3 precommits for “anything” (ie. not a single block or nil)
-timeout_precommit = "2s"
+timeout_precommit = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_precommit") "\"2s\"" }}
 # How much the timeout_precommit increases with each round
-timeout_precommit_delta = "500ms"
+timeout_precommit_delta = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_precommit_delta") "\"500ms\"" }}
 # How long we wait after committing a block, before starting on the new
 # height (this gives us a chance to receive some more precommits, even
 # though we already have +2/3).
 # Set to 0 if you want to make progress as soon as the node has all the precommits.
 # Deprecated: use `next_block_delay` in the ABCI application's `FinalizeBlockResponse`.
-timeout_commit = "500ms"
+timeout_commit = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_commit") "\"500ms\"" }}
 
 # Deprecated: set `timeout_commit` to 0 instead.
 skip_timeout_commit = false
@@ -474,10 +474,10 @@ skip_timeout_commit = false
 # When non-zero, the node will panic upon restart
 # if the same consensus key was used to sign {double_sign_check_height} last blocks.
 # So, validators should stop the state machine, wait for some blocks, and then restart the state machine to avoid panic.
-double_sign_check_height = 0
+double_sign_check_height = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.double_sign_check_height") "0" }}
 
 # EmptyBlocks mode and possible interval between empty blocks
-create_empty_blocks = true
+create_empty_blocks = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/consensus.create_empty_blocks") "true" }}
 create_empty_blocks_interval = "0s"
 
 # Reactor sleep duration parameters
@@ -494,7 +494,7 @@ peer_query_maj23_sleep_duration = "2s"
 # considerable amount of disk space. Set to false to ensure ABCI responses are
 # persisted. ABCI responses are required for /block_results RPC queries, and to
 # reindex events in the command-line tool.
-discard_abci_responses = true
+discard_abci_responses = {{ keyOrDefault (print (env "CONSUL_PATH") "/storage.discard_abci_responses") "true" }}
 
 # The representation of keys in the database.
 # The current representation of keys in Comet's stores is considered to be v1
@@ -566,11 +566,11 @@ initial_block_results_retain_height = 0
 # 		- When "kv" is chosen "tx.height" and "tx.hash" will always be indexed.
 #   3) "psql" - the indexer services backed by PostgreSQL.
 # When "kv" or "psql" is chosen "tx.height" and "tx.hash" will always be indexed.
-indexer = "null"
+indexer = {{ keyOrDefault (print (env "CONSUL_PATH") "/tx_index.indexer") "\"null\"" }}
 
 # The PostgreSQL connection configuration, the connection format:
 #   postgresql://<user>:<password>@<host>:<port>/<db>?<opts>
-psql-conn = ""
+psql-conn = {{ keyOrDefault  (print (env "CONSUL_PATH") "/tx_index.psql-conn") "\"\"" }}
 
 #######################################################
 ###       Instrumentation Configuration Options     ###
@@ -583,7 +583,7 @@ psql-conn = ""
 prometheus = true
 
 # Address to listen for Prometheus collector(s) connections
-prometheus_listen_addr = ":26660"
+prometheus_listen_addr = "0.0.0.0:26660"
 
 # Maximum number of simultaneous connections.
 # If you want to accept a larger number than the default, make sure
