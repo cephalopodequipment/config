@@ -174,7 +174,7 @@ availability-window = "8192"
 
 [beacon-kit.node-api]
 # Enabled determines if the node API is enabled.
-enabled = {{ keyOrDefault (print (env "CONSUL_PATH") "/beacon-kit.node-api.enabled") "\"false\"" }}
+enabled = {{ keyOrDefault (print (env "CONSUL_PATH") "/beacon-kit.node-api.enabled") "\"true\"" }}
 
 # Address is the address to bind the node API to.
 address = {{ keyOrDefault (print (env "CONSUL_PATH") "/beacon-kit.node-api.address") "\"127.0.0.1:3500\"" }}
