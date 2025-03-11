@@ -49,7 +49,7 @@ namespace deversifi {
 
         storage-engine device {
                 file /opt/aerospike/data/deversifi.dat
-                filesize 300G
+                filesize 600G
                 data-in-memory false   # Store data in memory in addition to file.
                 write-block-size 128K  # Default for HDD: 1M, recommended for SSD: 128K
                 read-page-cache true   # enable read operation caching
