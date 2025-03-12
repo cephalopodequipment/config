@@ -46,7 +46,7 @@ type = 'Penumbra'
 stub_key_name = 'fake'
 {{- range service (printf "%s-%s.cometbft-rpc" $chain_id $job_config.node_service) }}
 rpc_addr = 'http://{{ .Address }}:{{ .Port }}'
-event_source = { mode = 'push', url = 'ws://{{ .Address }}:{{ .Port }}/websocket', batch_delay = {{ or $chain_config.batch_delay "'500ms'"}} }
+event_source = { mode = 'pull', interval = '{{ or $chain_config.rpc_interval "1s"}}', max_retries = {{ or $chain_config.rpc_retries "4"}} }
 {{- end }}
 {{- range service (printf "%s-%s.pd-grpc" $chain_id $job_config.node_service) }}
 grpc_addr = 'http://{{ .Address }}:{{ .Port }}'
