@@ -29,6 +29,12 @@ chain_id = "0x014a34"
 required_confirmations = 72
 enabled = true
 
+[evm.sonic_testnet]
+rpc_url = "{{ .Data.data.sonic_testnet_rpc }}"  # replace by your own
+chain_id = "0xdede"
+required_confirmations = 72
+enabled = true
+
 [blacklist]
 rpc_url = "{{ .Data.data.base_sepolia_rpc }}" # replace with your base sepolia rpc
 contract = "0xe705037ce9a9ca7859ee15d04a569783da7121c8"
