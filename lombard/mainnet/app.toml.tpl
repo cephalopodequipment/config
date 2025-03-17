@@ -33,6 +33,12 @@ chain_id = "0x2105"
 required_confirmations = 72
 enabled = true
 
+[evm.sonic]
+rpc_url = "{{ .Data.data.sonic_mainnet_rpc }}"  # replace by your own
+chain_id = "0x92"
+required_confirmations = 1
+enabled = true
+
 [sui.mainnet]
 chain_id = "0x35834a8a"
 rpc_url = "{{ .Data.data.sui_rpc }}" # replace by your own
