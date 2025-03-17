@@ -32,7 +32,7 @@ enabled = true
 [evm.sonic_testnet]
 rpc_url = "{{ .Data.data.sonic_testnet_rpc }}"  # replace by your own
 chain_id = "0xdede"
-required_confirmations = 72
+required_confirmations = 1
 enabled = true
 
 [blacklist]
