@@ -7,10 +7,8 @@ network: {{ keyOrDefault (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/eth.networ
 eth_oracle:
   rpc:
     local: "http://127.0.0.1:8545"
-    {{- with secret "static_secrets/ethereum/alchemy" }}
-    testnet: "{{ .Data.data.eth_holesky }}"
-    mainnet: "{{ .Data.data.eth_mainnet }}"
-    {{- end -}}
+    testnet: "{{ with secret "static_secrets/ethereum/alchemy" }}{{ .Data.data.eth_holesky }}{{ end }}"
+    mainnet: "{{ with secret "static_secrets/ethereum/alchemy" }}{{ .Data.data.eth_mainnet }}{{ end }}"
   contract_addrs:
     service_manager: {{ keyOrDefault (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/config.service_manager") "\"\"" }}
     price_feeds:
