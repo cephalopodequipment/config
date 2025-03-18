@@ -2,7 +2,7 @@ enabled: {{ keyOrDefault (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/sidecar.en
 grpc_port: {{ env "NOMAD_PORT_grpcS" }}
 zrchain_rpc: "localhost:{{ env "NOMAD_PORT_zrpc" }}"
 state_file: "cache.json"
-operator_config: {{ keyOrDefault (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/operator.config") "\"\"" }}
+operator_config: "/home/zenrock/.zrchain/sidecar/eigen_operator_config.yaml"
 network: {{ keyOrDefault (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/eth.network") "\"mainnet\"" }}
 eth_oracle:
   rpc:
