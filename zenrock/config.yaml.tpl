@@ -27,7 +27,7 @@ eth_oracle:
       mainnet: "Ethereum Mainnet"
       testnet: "Holešky Ethereum Testnet"
 solana_rpc:
-  testnet: {{ keyOrDefault (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/solana_rpc.testnet") "\""" }}
+  testnet: {{ keyOrDefault (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/solana_rpc.testnet") "\"\"" }}
   mainnet: "https://api.mainnet-beta.solana.com/"
 proxy_rpc:
   url: ""
