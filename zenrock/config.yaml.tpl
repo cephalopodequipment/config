@@ -8,9 +8,9 @@ eth_oracle:
   rpc:
     local: "http://127.0.0.1:8545"
     {{- with secret "static_secrets/alchemy" }}
-    testnet: "{{ .Data.data.holesky_endpoint }}"
+    testnet: "{{ .Data.data.eth_holesky }}"
     {{- end -}}{{ with secret "static_secrets/ethereum/alchemy" }}
-    mainnet: "{{ .Data.data.eth_endpoint }}"
+    mainnet: "{{ .Data.data.eth_mainnet }}"
     {{- end }}
   contract_addrs:
     service_manager: {{ keyOrDefault (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/config.service_manager") "\"\"" }}
