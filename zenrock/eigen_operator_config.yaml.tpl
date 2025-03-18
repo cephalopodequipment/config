@@ -28,7 +28,6 @@ aggregator_address: {{ keyOrDefault  (print (env "ZENROCK_SIDECAR_CONSUL_PATH") 
 # avs node spec compliance https://eigen.nethermind.io/docs/spec/intro
 metrics_address: 0.0.0.0:9292
 enable_metrics: true
-metrics_address: 0.0.0.0:9292
 node_api_address: 0.0.0.0:9191
 enable_node_api: true
 
