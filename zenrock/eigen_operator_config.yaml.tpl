@@ -24,7 +24,7 @@ ecdsa_private_key_store_path: /home/zenrock/.zrchain/sidecar/keys/ecdsa.key.json
 bls_private_key_store_path: /home/zenrock/.zrchain/sidecar/keys/bls.key.json
 
 # address which the aggregator listens on for operator signed messages
-aggregator_server_ip_port_address: {{ keyOrDefault  (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/aggregator.server_ip_port_address") "" }}
+aggregator_address: {{ keyOrDefault  (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/aggregator.address") "" }}
 
 # avs node spec compliance https://eigen.nethermind.io/docs/spec/intro
 eigen_metrics_ip_port_address: 0.0.0.0:9292
