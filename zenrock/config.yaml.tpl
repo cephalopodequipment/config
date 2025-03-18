@@ -2,8 +2,8 @@ enabled: {{ keyOrDefault (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/sidecar.en
 grpc_port: {{ env "NOMAD_PORT_grpcS" }}
 zrchain_rpc: "localhost:{{ env "NOMAD_PORT_zrpc" }}"
 state_file: "cache.json"
-operator_config: {{ keyOrDefault (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/operator.config") "\"\"" }}
-network: "{{ keyOrDefault (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/eth.network") "" }}"
+operator_config: "{{ keyOrDefault (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/operator.config") "" }}"
+network: "{{ keyOrDefault (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/eth.network") "mainnet" }}"
 eth_oracle:
   rpc:
     local: "http://127.0.0.1:8545"
