@@ -7,7 +7,7 @@ network: {{ keyOrDefault (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/eth.networ
 eth_oracle:
   rpc:
     local: "http://127.0.0.1:8545"
-    {{- with secret "static_secrets/alchemy" }}
+    {{- with secret "static_secrets/ethereum/alchemy" }}
     testnet: "{{ .Data.data.eth_holesky }}"
     {{- end -}}{{ with secret "static_secrets/ethereum/alchemy" }}
     mainnet: "{{ .Data.data.eth_mainnet }}"
