@@ -9,9 +9,8 @@ eth_oracle:
     local: "http://127.0.0.1:8545"
     {{- with secret "static_secrets/ethereum/alchemy" }}
     testnet: "{{ .Data.data.eth_holesky }}"
-    {{- end -}}{{ with secret "static_secrets/ethereum/alchemy" }}
     mainnet: "{{ .Data.data.eth_mainnet }}"
-    {{- end }}
+    {{- end -}}
   contract_addrs:
     service_manager: {{ keyOrDefault (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/config.service_manager") "\"\"" }}
     price_feeds:
