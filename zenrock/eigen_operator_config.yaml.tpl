@@ -1,6 +1,5 @@
-register_operator_on_startup: true
 register_on_startup: true
-production: {{ keyOrDefault  (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/production") "true" }}
+
 #To be manually updated
 operator_address: {{ keyOrDefault  (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/eigen.operator") "" }}
 operator_validator_address: {{ keyOrDefault  (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/eigen.validator") "" }}
@@ -12,9 +11,9 @@ avs_registry_coordinator_address: {{ keyOrDefault  (print (env "ZENROCK_SIDECAR_
 operator_state_retriever_address: {{ keyOrDefault  (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/eigen.operator_state_retriever_address") "" }}
 
 # ETH RPC URL
-{{ with secret "static_secrets/alchemy" -}}
-eth_rpc_url: {{ .Data.data.holesky_endpoint }}
-eth_ws_url: {{ .Data.data.holesky_ws_endpoint }}
+{{ with secret "static_secrets/ethereum/alchemy" -}}
+eth_rpc_url: {{ .Data.data.eth_mainnet }}
+eth_ws_url: {{ .Data.data.eth_mainnet_ws }}
 {{- end }}
 
 # ECDSA key
@@ -27,13 +26,11 @@ bls_private_key_store_path: /home/zenrock/.zrchain/sidecar/keys/bls.key.json
 aggregator_address: {{ keyOrDefault  (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/aggregator.address") "" }}
 
 # avs node spec compliance https://eigen.nethermind.io/docs/spec/intro
-eigen_metrics_ip_port_address: 0.0.0.0:9292
+metrics_address: 0.0.0.0:9292
 enable_metrics: true
 metrics_address: 0.0.0.0:9292
-node_api_ip_port_address: 0.0.0.0:9191
+node_api_address: 0.0.0.0:9191
 enable_node_api: true
 
 # address of token to deposit tokens into when registering on startup
 token_strategy_addr: {{ keyOrDefault  (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/token.token_strategy_addr") "" }}
-service_manager_address: {{ keyOrDefault  (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/token.service_manager_address") "" }}
-zr_chain_rpc_address: {{ env "NOMAD_HOST_IP_grpc" }}:{{ env "NOMAD_HOST_PORT_grpc" }}
