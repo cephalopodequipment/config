@@ -11,7 +11,7 @@ avs_registry_coordinator_address: {{ keyOrDefault  (print (env "ZENROCK_SIDECAR_
 operator_state_retriever_address: {{ keyOrDefault  (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/eigen.operator_state_retriever_address") "" }}
 
 # ETH RPC URL
-{{ with secret "static_secrets/ethereum/alchemy" -}}
+{{ with secret "static_secrets/ankr" -}}
 eth_rpc_url: {{ .Data.data.eth_mainnet }}
 eth_ws_url: {{ .Data.data.eth_mainnet_ws }}
 {{- end }}
