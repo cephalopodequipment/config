@@ -13,8 +13,8 @@ operator_state_retriever_address: {{ keyOrDefault  (print (env "ZENROCK_SIDECAR_
 # ETH RPC URL
 {{ with secret "static_secrets/ethereum/alchemy" -}}
 eth_rpc_url: {{ .Data.data.eth_mainnet }}
-eth_ws_url: {{ .Data.data.eth_mainnet_ws }}
-{{- end }}
+{{- end -}}
+eth_ws_url: wss://mainnet.infura.io/ws/v3/38b276128e6b4d9681cf4751e0f7d9f8
 
 # ECDSA key
 ecdsa_private_key_store_path: /home/zenrock/.zrchain/sidecar/keys/ecdsa.key.json
