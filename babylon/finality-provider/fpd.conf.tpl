@@ -45,6 +45,9 @@ BufferSize = 1000
 ; The interval between each polling of blocks; the value should be set depending on the block production time but could be set smaller for quick catching up
 PollInterval = 1s
 
+; The poll batch size when polling for blocks
+PollSize = 1000
+
 ; The static height from which we start polling the chain
 StaticChainScanningStartHeight = 1
 
