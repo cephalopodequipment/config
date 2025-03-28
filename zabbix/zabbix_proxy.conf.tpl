@@ -29,7 +29,7 @@
 # Default:
 # Server=
 
-#Server=127.0.0.1
+Server={{ keyOrDefault (print (env "CONSUL_PATH") "/ZBX_SERVER_HOST") "127.0.0.1" }}
 
 ### Option: Hostname
 #	Unique, case sensitive Proxy name. Make sure the Proxy name is known to the server!
@@ -40,6 +40,7 @@
 # Hostname=
 
 #Hostname=Zabbix proxy
+Hostname={{ keyOrDefault (print (env "CONSUL_PATH") "/ZBX_HOSTNAME") "Zabbix proxy" }}
 
 ### Option: HostnameItem
 #	Item used for generating Hostname if it is undefined.
