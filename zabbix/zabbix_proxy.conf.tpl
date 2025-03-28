@@ -311,7 +311,8 @@ StartPollersUnreachable={{ keyOrDefault (print (env "CONSUL_PATH") "/StartPoller
 # Range: 0-1000
 # Default:
 # StartHistoryPollers=1
-StartHistoryPollers={{ keyOrDefault (print (env "CONSUL_PATH") "/StartHistoryPollers") "1" }}
+# **FIX** : zabbix_proxy [7]: unknown parameter "StartHistoryPollers" in config file "/etc/zabbix/zabbix_proxy.conf", line 314
+#StartHistoryPollers={{ keyOrDefault (print (env "CONSUL_PATH") "/StartHistoryPollers") "1" }}
 
 ### Option: StartTrappers
 #	Number of pre-forked instances of trappers.
