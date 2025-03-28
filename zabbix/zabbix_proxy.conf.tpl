@@ -29,7 +29,7 @@
 # Default:
 # Server=
 
-Server=127.0.0.1
+#Server=127.0.0.1
 
 ### Option: Hostname
 #	Unique, case sensitive Proxy name. Make sure the Proxy name is known to the server!
@@ -39,7 +39,7 @@ Server=127.0.0.1
 # Default:
 # Hostname=
 
-Hostname=Zabbix proxy
+#Hostname=Zabbix proxy
 
 ### Option: HostnameItem
 #	Item used for generating Hostname if it is undefined.
@@ -81,7 +81,7 @@ Hostname=Zabbix proxy
 # Default:
 # LogFile=
 
-LogFile=/tmp/zabbix_proxy.log
+#LogFile=/tmp/zabbix_proxy.log
 
 ### Option: LogFileSize
 #	Maximum size of log file in MB.
@@ -177,7 +177,7 @@ DBName=zabbix_proxy
 # Default:
 # DBUser=
 
-DBUser=zabbix
+#DBUser=zabbix
 
 ### Option: DBPassword
 #	Database password. Ignored for SQLite.
@@ -690,7 +690,7 @@ LogSlowQueries=3000
 # Mandatory: no
 # Default:
 # StatsAllowedIP=
-StatsAllowedIP=127.0.0.1
+#StatsAllowedIP=127.0.0.1
 
 ####### TLS-RELATED PARAMETERS #######
 
