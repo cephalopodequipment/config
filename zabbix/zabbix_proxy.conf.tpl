@@ -39,7 +39,6 @@ Server={{ keyOrDefault (print (env "CONSUL_PATH") "/ZBX_SERVER_HOST") "127.0.0.1
 # Default:
 # Hostname=
 
-#Hostname=Zabbix proxy
 Hostname={{ keyOrDefault (print (env "CONSUL_PATH") "/ZBX_HOSTNAME") "Zabbix proxy" }}
 
 ### Option: HostnameItem
@@ -81,8 +80,6 @@ Hostname={{ keyOrDefault (print (env "CONSUL_PATH") "/ZBX_HOSTNAME") "Zabbix pro
 # Mandatory: yes, if LogType is set to file, otherwise no
 # Default:
 # LogFile=
-
-#LogFile=/tmp/zabbix_proxy.log
 
 ### Option: LogFileSize
 #	Maximum size of log file in MB.
@@ -163,8 +160,6 @@ Hostname={{ keyOrDefault (print (env "CONSUL_PATH") "/ZBX_HOSTNAME") "Zabbix pro
 # Default:
 # DBName=
 
-DBName=zabbix_proxy
-
 ### Option: DBSchema
 #	Schema name. Used for PostgreSQL.
 #
@@ -177,8 +172,6 @@ DBName=zabbix_proxy
 #
 # Default:
 # DBUser=
-
-#DBUser=zabbix
 
 ### Option: DBPassword
 #	Database password. Ignored for SQLite.
@@ -500,8 +493,6 @@ StartHTTPPollers={{ keyOrDefault (print (env "CONSUL_PATH") "/StartHTTPPollers")
 # Default:
 # Timeout=3
 
-Timeout=4
-
 ### Option: TrapperTimeout
 #	Specifies how many seconds trapper may spend processing new data.
 #
@@ -584,8 +575,6 @@ Timeout=4
 # Range: 1-3600000
 # Default:
 # LogSlowQueries=0
-
-LogSlowQueries=3000
 
 ### Option: TmpDir
 #	Temporary directory.
