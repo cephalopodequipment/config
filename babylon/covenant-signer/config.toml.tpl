@@ -65,3 +65,8 @@ idle-timeout = 120
 host = "0.0.0.0"
 # The prometheus server port
 port = "{{ env "NOMAD_PORT_prom" }}"
+
+[signer-app-config]
+# The maximum height of staking transaction
+# Max value is 4294967295
+max-staking-transaction-height = 891424
