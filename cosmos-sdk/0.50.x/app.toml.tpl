@@ -225,7 +225,7 @@ stop-node-on-err = true
 #
 # Note, this configuration only applies to SDK built-in app-side mempool
 # implementations.
-max-txs = "5000"
+max-txs = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.max-txs") "\"5000\"" }}
 
 ###############################################################################
 ###                      Osmosis Mempool Configuration                      ###
