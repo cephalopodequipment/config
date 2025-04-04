@@ -9,7 +9,7 @@ ChainType = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split
 NumPubRand = {{ keyOrDefault (print (env "CONSUL_PATH") "/NumPubRand") "70000" }}
 
 ; The upper bound of the number of Schnorr public randomness for each commitment
-NumPubRandMax = {{ keyOrDefault (print (env "CONSUL_PATH") "/NumPubRandMax") "100000" }}
+# NumPubRandMax = {{ keyOrDefault (print (env "CONSUL_PATH") "/NumPubRandMax") "100000" }}
 
 ; The delay, measured in blocks, between a randomness commit submission and the randomness is BTC-timestamped
 TimestampingDelayBlocks = {{ keyOrDefault (print (env "CONSUL_PATH") "/TimestampingDelayBlocks") "6000" }}
