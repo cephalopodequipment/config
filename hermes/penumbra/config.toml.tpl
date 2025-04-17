@@ -80,7 +80,7 @@ id = '{{ $chain_id }}'
 
 {{ if $job_config.public_rpc }}
 rpc_addr = '{{ $job_config.public_rpc }}'
-event_source = { mode = 'pull', interval = '{{ or $chain_config.rpc_interval "1s"}}', max_retries = {{ or $chain_config.rpc_retries "4"}} }
+event_source = { mode = 'push', url = '{{ $job_config.public_ws }}', batch_delay = {{ or $chain_config.batch_delay "'500ms'"}} }
 grpc_addr = '{{ $job_config.public_grpc }}'
 {{ else }}
 {{- range service (printf "%s-%s.cometbft-rpc" $chain_id $job_config.node_service) }}
