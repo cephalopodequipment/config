@@ -77,13 +77,21 @@ kms_config = { spend_key = "{{ .Data.data.rw1 }}" }
         {{ else }}
 [[ chains ]]
 id = '{{ $chain_id }}'
+
+{{ if $job_config.public_rpc }}
+rpc_addr = '{{ $job_config.public_rpc }}'
+event_source = { mode = 'pull', interval = '{{ or $chain_config.rpc_interval "1s"}}', max_retries = {{ or $chain_config.rpc_retries "4"}} }
+grpc_addr = '{{ $job_config.public_grpc }}'
+{{ else }}
 {{- range service (printf "%s-%s.cometbft-rpc" $chain_id $job_config.node_service) }}
 rpc_addr = 'http://{{ .Address }}:{{ .Port }}'
 event_source = { mode = 'push', url = 'ws://{{ .Address }}:{{ .Port }}/websocket', batch_delay = {{ or $chain_config.batch_delay "'500ms'"}} }
 {{- end }}
 {{- range service (printf "%s-%s.cosmos-sdk-grpc" $chain_id $job_config.node_service) }}
 grpc_addr = 'http://{{ .Address }}:{{ .Port }}'
+{{- end -}}
 {{- end }}
+
 rpc_timeout = '8s'
 type = "CosmosSdk"
 {{- if eq $chain_id "celestia" }}
