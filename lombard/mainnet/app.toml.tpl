@@ -44,6 +44,16 @@ chain_id = "0x35834a8a"
 rpc_url = "{{ .Data.data.sui_rpc }}" # replace by your own
 package_id = "0x818430a456ff977f7320f78650d19801f90758d200a01dd3c2c679472c521357"
 
+[solana.mainnet]
+genesis_hash = "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d"
+rpc_url = "https://api.mainnet-beta.solana.com" # replace with your own
+
+[evm.ink]
+rpc_url = "https://rpc-qnd.inkonchain.com" # replace by your own
+chain_id = "0xdef1"
+required_confirmations = 5400
+enabled = true
+
 [sanctions]
 url = "https://mainnet.prod.lombard.finance/"
 
