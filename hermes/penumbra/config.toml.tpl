@@ -146,9 +146,7 @@ grpc_addr = '{{ $job_config.public_grpc }}'
 
 rpc_timeout = '8s'
 type = "CosmosSdk"
-{{- if eq $chain_id "celestia" }}
-compat_mode = '{{ $chain_config.compat_mode }}'
-{{- end }}
+compat_mode = '{{ or $chain_config.compat_mode "0.34" }}'
 trusted_node = {{or $chain_config.trusted_node "false"}}
 account_prefix = '{{ $chain_config.account_prefix }}'
 key_name = '{{ $job_config.key_name }}'
