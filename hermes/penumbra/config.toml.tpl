@@ -130,3 +130,55 @@ packet_filter = { policy = 'allow', list = [
 {{- end -}}] }
 {{if $chain_config.excluded_sequences}}excluded_sequences = {{or $chain_config.excluded_sequences "[]"}}{{end}}
 {{ end }}{{ end }}{{ end }}{{ end }}
+
+
+# Public Node Config
+{{ range $chain_id, $job_config := (key (printf "hermes/relayers/%s/chain_config" (env "JOB_NAME")) | parseJSON) -}}
+  {{ $chain_config := tree (printf "hermes/networks/%s" $chain_id) | explode -}}
+    {{ if $job_config.public_rpc }}
+
+[[ chains ]]
+id = '{{ $chain_id }}'
+
+rpc_addr = '{{ $job_config.public_rpc }}'
+event_source = { mode = 'push', url = '{{ $job_config.public_ws }}', batch_delay = {{ or $chain_config.batch_delay "'500ms'"}} }
+grpc_addr = '{{ $job_config.public_grpc }}'
+
+rpc_timeout = '8s'
+type = "CosmosSdk"
+{{- if eq $chain_id "celestia" }}
+compat_mode = '{{ $chain_config.compat_mode }}'
+{{- end }}
+trusted_node = {{or $chain_config.trusted_node "false"}}
+account_prefix = '{{ $chain_config.account_prefix }}'
+key_name = '{{ $job_config.key_name }}'
+address_type = {{ $chain_config.address_type }}
+store_prefix = 'ibc'
+memo_prefix = 'Connect the Interchain. Stake with Informal 🐙'
+gas_price = {{ $chain_config.gas_price }}
+default_gas = {{or $chain_config.default_gas "200000"}}
+max_gas = {{ $chain_config.max_gas }}
+dynamic_gas_price = { enabled = {{ or $chain_config.enable_dynamic_gas "false" }}, multiplier = {{ or $chain_config.dynamic_gas_multiplier 1 }}, max = {{ or $chain_config.dynamic_max_gas_price 0 }} }
+ccv_consumer_chain = {{or $chain_config.ccv_consumer_chain "false"}}
+max_msg_num = {{ $chain_config.max_msg_num }}
+query_packets_chunk_size = {{ or $chain_config.query_packets_chunk_size 25 }}
+gas_multiplier = {{ $chain_config.gas_multiplier }}
+max_tx_size = {{ $chain_config.max_tx_size }}
+clock_drift = '{{ $chain_config.clock_drift }}'
+trusting_period = '{{ $chain_config.trusting_period }}'
+trust_threshold = {{ $chain_config.trust_threshold }}
+{{- if $chain_config.clear_interval }}
+clear_interval = {{ or $chain_config.clear_interval 123 }}
+{{- end }}
+packet_filter = { policy = 'allow', list = [
+{{- $first := true -}}
+{{- range $job_config.channels -}}
+  {{- if $first -}}
+      {{- $first = false -}}
+  {{- else -}}
+      ,
+  {{- end -}}
+  {{ . }}
+{{- end -}}] }
+{{if $chain_config.excluded_sequences}}excluded_sequences = {{or $chain_config.excluded_sequences "[]"}}{{end}}
+{{ end }}{{ end -}}
