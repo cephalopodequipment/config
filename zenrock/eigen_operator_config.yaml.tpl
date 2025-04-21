@@ -11,7 +11,7 @@ avs_registry_coordinator_address: {{ keyOrDefault  (print (env "ZENROCK_SIDECAR_
 operator_state_retriever_address: {{ keyOrDefault  (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/eigen.operator_state_retriever_address") "" }}
 
 # ETH RPC URL
-{{ with secret "static_secrets/ethereum/alchemy" -}}
+{{ with secret "static_secrets/ankr" -}}
 eth_rpc_url: {{ .Data.data.eth_mainnet }}
 eth_ws_url: {{ .Data.data.eth_mainnet_ws }}
 {{- end }}
@@ -27,10 +27,9 @@ aggregator_address: {{ keyOrDefault  (print (env "ZENROCK_SIDECAR_CONSUL_PATH") 
 
 # avs node spec compliance https://eigen.nethermind.io/docs/spec/intro
 metrics_address: 0.0.0.0:9292
-enable_metrics: true
-metrics_address: 0.0.0.0:9292
+enable_metrics: {{ keyOrDefault  (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/eigen.metrics-enabled") "" }}
 node_api_address: 0.0.0.0:9191
-enable_node_api: true
+enable_node_api: {{ keyOrDefault  (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/eigen.api-enabled") "" }}
 
 # address of token to deposit tokens into when registering on startup
 token_strategy_addr: {{ keyOrDefault  (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/token.token_strategy_addr") "" }}

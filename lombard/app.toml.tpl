@@ -35,6 +35,12 @@ chain_id = "0xdede"
 required_confirmations = 1
 enabled = true
 
+[evm.ink_sepolia]
+rpc_url = "{{ .Data.data.ink_sepolia_rpc }}" # replace by your own
+chain_id = "0x0ba5ed"
+required_confirmations = 1800
+enabled = true
+
 [blacklist]
 rpc_url = "{{ .Data.data.base_sepolia_rpc }}" # replace with your base sepolia rpc
 contract = "0xe705037ce9a9ca7859ee15d04a569783da7121c8"
@@ -43,6 +49,10 @@ contract = "0xe705037ce9a9ca7859ee15d04a569783da7121c8"
 chain_id = "0x4c78adac"
 rpc_url = "{{ .Data.data.sui_testnet_rpc }}" # replace by your own
 package_id = "0x50454d0b0fbad1288a6ab74f2e8ce0905a3317870673ab7787ebcf6f322b45fa"
+
+[solana.devnet]
+rpc_url = "{{ .Data.data.solana_devnet }}" # replace by your own
+genesis_hash = "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG"
 
 {{ end -}}
 [sanctions]

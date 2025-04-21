@@ -257,7 +257,7 @@ chains:
       signer_gas_balance:
         warning_threshold_wei: {{ $job_config.warning_threshold_wei }} # 100 osmo ~ $50
         critical_threshold_wei: {{ $job_config.critical_threshold_wei }} # 40 osmo ~ $20
-      gas_price: 0.0025
+      gas_price: {{ $job_config.gas_price }}
       gas_denom: "uosmo"
     relayer:
       validator_announce_contract_address: "osmo147r8mfdsngswujgkr4tln9rhcrzz6yq0xn448ksd96mlcmp9wg6stvznke"

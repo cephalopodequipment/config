@@ -49,7 +49,7 @@ genesis_hash = "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d"
 rpc_url = "https://api.mainnet-beta.solana.com" # replace with your own
 
 [evm.ink]
-rpc_url = "https://rpc-qnd.inkonchain.com" # replace by your own
+rpc_url = "{{ .Data.data.ink_rpc }}" # replace by your own
 chain_id = "0xdef1"
 required_confirmations = 5400
 enabled = true

@@ -1,17 +1,14 @@
 enabled: {{ keyOrDefault (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/sidecar.enabled") "true" }}
 grpc_port: {{ env "NOMAD_PORT_grpcS" }}
-zrchain_rpc: "localhost:{{ env "NOMAD_PORT_zrpc" }}"
+zrchain_rpc: "0.0.0.0:{{ env "NOMAD_PORT_zrpc" }}"
 state_file: "cache.json"
-operator_config: {{ keyOrDefault (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/operator.config") "\"\"" }}
+operator_config: "/home/zenrock/.zrchain/sidecar/eigen_operator_config.yaml"
 network: {{ keyOrDefault (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/eth.network") "\"mainnet\"" }}
 eth_oracle:
   rpc:
     local: "http://127.0.0.1:8545"
-    {{- with secret "static_secrets/ethereum/alchemy" }}
-    testnet: "{{ .Data.data.eth_holesky }}"
-    {{- end -}}{{ with secret "static_secrets/ethereum/alchemy" }}
-    mainnet: "{{ .Data.data.eth_mainnet }}"
-    {{- end }}
+    testnet: "{{ with secret "static_secrets/ethereum/alchemy" }}{{ .Data.data.eth_holesky }}{{ end }}"
+    mainnet: "{{ with secret "static_secrets/ethereum/alchemy" }}{{ .Data.data.eth_mainnet }}{{ end }}"
   contract_addrs:
     service_manager: {{ keyOrDefault (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/config.service_manager") "\"\"" }}
     price_feeds:

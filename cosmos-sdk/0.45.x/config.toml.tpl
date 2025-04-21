@@ -527,6 +527,7 @@ start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.arbitrum
 name = "celo"
 rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.celo.rpc") "\"\"" }}
 start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.celo.enable") "false" }}
+finality_override = "confirmation"
 
 [[axelar_bridge_evm]]
 name = "kava"
