@@ -44,10 +44,14 @@ chain_id = "0x35834a8a"
 rpc_url = "{{ .Data.data.sui_rpc }}" # replace by your own
 package_id = "0x818430a456ff977f7320f78650d19801f90758d200a01dd3c2c679472c521357"
 
+[solana.mainnet]
+genesis_hash = "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d"
+rpc_url = "{{ .Data.data.solana_rpc }}" 
+
 [evm.ink]
 rpc_url = "{{ .Data.data.ink_rpc }}" # replace by your own
 chain_id = "0xdef1"
-required_confirmations = 1800
+required_confirmations = 5400
 enabled = true
 
 [sanctions]
