@@ -16,4 +16,4 @@ neutrino:
 proxy_rpc:
   url: "https://bitcoin-proxy.gardia.zenrocklabs.io"
   user: "zenrock"
-  password: "{{ with secret "static_secrets/zenrock-gardia" }}{{ .Data.data.proxy_rpc_password }}{{end }}"
+  password: "{{ with secret "static_secrets/zenrock" }}{{ .Data.data.proxy_rpc_password }}{{end }}"
