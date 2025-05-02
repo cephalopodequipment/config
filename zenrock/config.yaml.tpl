@@ -5,7 +5,6 @@ state_file: "cache.json"
 operator_config: "/home/zenrock/.zrchain/sidecar/eigen_operator_config.yaml"
 network: {{ keyOrDefault (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/eth.network") "\"mainnet\"" }}
 eth_rpc:
-  local: "http://127.0.0.1:8545"
   testnet: "{{ with secret "static_secrets/ethereum/alchemy" }}{{ .Data.data.eth_holesky }}{{ end }}"
   mainnet: "{{ with secret "static_secrets/ethereum/alchemy" }}{{ .Data.data.eth_mainnet }}{{ end }}"
 solana_rpc:
@@ -13,7 +12,3 @@ solana_rpc:
   mainnet: "https://api.mainnet-beta.solana.com/"
 neutrino:
   path: "/home/zenrock/.zrchain/neutrino"
-proxy_rpc:
-  url: "https://bitcoin-proxy.gardia.zenrocklabs.io"
-  user: "zenrock"
-  password: "{{ with secret "static_secrets/zenrock" }}{{ .Data.data.proxy_rpc_password }}{{end }}"
