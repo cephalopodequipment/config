@@ -1,29 +1,29 @@
+{{ range $chain_id, $job_config  := (key (printf "hermes-sdk/relayers/%s/starknet_chain_config" (env "JOB_NAME")) | parseJSON) }}
+{{ $chain_config := tree (printf "hermes/networks/%s" $chain_id) | explode }}
+
 [starknet_chain_config]
-poll_interval = "{{ keyOrDefault (printf "hermes-sdk/relayers/%s/poll_interval" (env "JOB_NAME")) "40s" }}"
-block_time    = { secs = 30, nanos = 0 }
+poll_interval = "{{or $chain_config.poll_interval "40s" }}"
+block_time    = { secs = {{or $chain_config.block_time_secs 30 }}, nanos = {{or $chain_config.block_time_nanos 0 }} }
 
 json_rpc_url = "{{ range service "starknet-testnet-rpc" }}http://{{ .Address }}:{{ .Port }}{{ end }}"
 # json_rpc_url = "https://starknet-sepolia.reddio.com/rpc/v0_8"
 
-# -- to be filled
-# private information
-# toml file containing the `account_address`, `public_key` and `signing_key` as Felt
 relayer_wallet = "/home/hermes-sdk/.hermes-sdk/wallets/starknet.json"
 
 [starknet_chain_config.contract_classes]
-# -- to be filled
 erc20      = "{{ env "ERC20_CONTRACT_CLASS" }}"
 ics20      = "{{ env "ICS20_CONTRACT_CLASS" }}"
 ibc_client = "{{ env "IBC_CLIENT_CONTRACT_CLASS" }}"
 
 [starknet_chain_config.contract_addresses]
-# -- to be filled
 ibc_client = "{{ env "IBC_CLIENT_CONTRACT_ADDRESS" }}"
 ibc_core   = "{{ env "IBC_CORE_CONTRACT_ADDRESS" }}"
 ibc_ics20 = "{{ env "IBC_ICS20_CONTRACT_ADDRESS" }}"
 
-{{ range $chain_id,  := (key (printf "hermes-sdk/relayers/%s/chain_config" (env "JOB_NAME")) | parseJSON) -}}
-{{ chain_config := tree (printf "hermes/networks/%s" $chain_id) | explode }}
+{{- end -}}
+
+{{ range $chain_id, $job_config  := (key (printf "hermes-sdk/relayers/%s/cosmos_chain_config" (env "JOB_NAME")) | parseJSON) }}
+{{ $chain_config := tree (printf "hermes/networks/%s" $chain_id) | explode }}
 
 [cosmos_chain_config]
 id             = '{{ $chain_id }}'
@@ -34,17 +34,14 @@ address_type   = 'cosmos'
 max_msg_num    = {{or .max_msg_num 4 }}
 max_tx_size    = {{or .max_tx_size 1048576 }}
 
-rpc_addr     = '{{ service (printf "%s.cometbft-rpc" .consul-service) }}http://{{ .Address }}:{{ .Port }}{{ end }}'
-grpc_addr    = '{{ service (printf "%s.cosmos-sdk-grpc" .consul-service) }}http://{{ .Address }}:{{ .Port }}{{ end }}'
-event_source = { mode = 'push', url = '{{ service (printf "%s.cometbft-rpc" .consul-service) }}ws://{{ .Address }}:{{ .Port }}{{ end }}' }
+rpc_addr     = '{{ range service (printf "%s.cometbft-rpc" $job_config.consul_service) }}http://{{ .Address }}:{{ .Port }}{{ end }}'
+grpc_addr    = '{{ range service (printf "%s.cosmos-sdk-grpc" $job_config.consul_service) }}http://{{ .Address }}:{{ .Port }}{{ end }}'
+event_source = { mode = 'push', url = '{{ range service (printf "%s.cometbft-rpc" $job_config.consul_service) }}ws://{{ .Address }}:{{ .Port }}{{ end }}' }
 
-# -- to be filled
-# private information
 # hermes-v1 key should be present at `<key_store_folder>/<key_name>.json`
 key_store_folder = "/home/hermes-sdk/.hermes-sdk/wallets"
 key_name         = '{{ $job_config.key_name }}'
 
-# https://www.mintscan.io/osmosis-testnet
 block_time        = { secs = 0, nanos = 520000000 }
 clock_drift       = { secs = 1, nanos = 0 }
 max_block_time    = { secs = 10, nanos = 0 }
@@ -59,11 +56,11 @@ gas_multiplier     = {{ .gas_multiplier }}
 gas_price          = { price = '{{ .gas_price }}', denom = '{{ .denom }}' }
 fee_granter        = ''
 {{ if $chain_config.dynamic_gas_enabled }}
-dynamic_gas_config = { multiplier = {{ $chain_config.dynamic_gas_multiplier , max = {{ $chain_config.dynamic_max_gas_price , eip_query_type = "{{or $chain_config.dynamic_gas_eip_query_type "Osmosis" }}", denom = "{{or $chain_config.dynamic_gas_denom "uosmo" }}" }
+dynamic_gas_config = { multiplier = {{ $chain_config.dynamic_gas_multiplier }}, max = {{ $chain_config.dynamic_max_gas_price }}, eip_query_type = "{{or $chain_config.dynamic_gas_eip_query_type "Osmosis" }}", denom = "{{or $chain_config.dynamic_gas_denom "uosmo" }}" }
 {{ end }}
 
 [cosmos_chain_config.gas_config.max_fee]
-amount    = [ { amount = "{{ $chain_config.max_fee }}", denom = '{{ $chain_config.max_fee_denom' } ]
+amount    = [ { amount = "{{ $chain_config.max_fee }}", denom = '{{ $chain_config.max_fee_denom }}' } ]
 gas_limit = {{ $chain_config.max_fee_gas_limit }}
 payer     = ''
 granter   = ''
