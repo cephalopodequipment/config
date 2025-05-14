@@ -2,7 +2,7 @@
 poll_interval = "{{ keyOrDefault (printf "hermes-sdk/relayers/%s/poll_interval" (env "JOB_NAME")) "40s" }}"
 block_time    = { secs = 30, nanos = 0 }
 
-json_rpc_url = "{{ service "starknet-rpc" }}http://{{ .Address }}:{{ .Port }}{{ end }}"
+json_rpc_url = "{{ range service "starknet-testnet-rpc" }}http://{{ .Address }}:{{ .Port }}{{ end }}"
 # json_rpc_url = "https://starknet-sepolia.reddio.com/rpc/v0_8"
 
 # -- to be filled
