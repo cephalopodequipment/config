@@ -11,7 +11,7 @@ json_rpc_url = "{{ $job_config.public_rpc }}"
 json_rpc_url = "{{ range service "starknet-testnet-rpc" }}http://{{ .Address }}:{{ .Port }}{{ end }}"
 {{ end }}
 
-relayer_wallet = "/home/hermes-sdk/.hermes-sdk/wallets/starknet.json"
+relayer_wallet = "/home/hermes-sdk/.hermes-sdk/wallets/starknet.toml"
 
 [starknet_chain_config.contract_classes]
 erc20      = "{{ env "ERC20_CONTRACT_CLASS" }}"
