@@ -11,7 +11,7 @@ json_rpc_url = "{{ $job_config.public_rpc }}"
 json_rpc_url = "{{ range service "starknet-testnet-rpc" }}http://{{ .Address }}:{{ .Port }}{{ end }}"
 {{ end }}
 
-relayer_wallet = "/home/hermes-sdk/.hermes-sdk/wallets/starknet.toml"
+relayer_wallet = "{{ env "HERMES_SDK_STARKNET_WALLET_FILE_PATH" }}"
 
 [starknet_chain_config.contract_classes]
 erc20      = "{{ env "ERC20_CONTRACT_CLASS" }}"
@@ -48,7 +48,7 @@ event_source = { mode = 'push', url = '{{ range service (printf "%s.cometbft-rpc
 {{ end }}
 
 # hermes-v1 key should be present at `<key_store_folder>/<key_name>.json`
-key_store_folder = "/home/hermes-sdk/.hermes-sdk/wallets"
+key_store_folder = "{{ env "HERMES_SDK_WALLET_PATH" }}"
 key_name         = '{{ $job_config.key_name }}'
 
 block_time        = { secs = 0, nanos = 520000000 }
