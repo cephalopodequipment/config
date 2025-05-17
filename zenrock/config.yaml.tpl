@@ -12,3 +12,8 @@ solana_rpc:
   mainnet: "https://api.mainnet-beta.solana.com/"
 neutrino:
   path: "/home/zenrock/.zrchain/neutrino"
+proxy_rpc:
+  url: {{ with secret "static_secrets/zenrock" }}{{ .Data.data.proxy_url }}{{ end }}
+  user: {{ with secret "static_secrets/zenrock" }}{{ .Data.data.proxy_user}}{{ end }}
+  password: {{ with secret "static_secrets/zenrock" }}{{ .Data.data.proxy_password }}{{ end }}
+  
