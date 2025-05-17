@@ -8,12 +8,11 @@ eth_rpc:
   testnet: "{{ with secret "static_secrets/ethereum/alchemy" }}{{ .Data.data.eth_holesky }}{{ end }}"
   mainnet: "{{ with secret "static_secrets/ethereum/alchemy" }}{{ .Data.data.eth_mainnet }}{{ end }}"
 solana_rpc:
-  testnet: {{ keyOrDefault (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/solana_rpc.testnet") "\"\"" }}
-  mainnet: "https://api.mainnet-beta.solana.com/"
+  testnet: {{ with secret "static_secrets/alchemy" }}{{ .Data.data.solana_testnet_rpc }}{{ end }}
+  mainnet: {{ with secret "static_secrets/alchemy" }}{{ .Data.data.solana_mainnet_rpc }}{{ end }}
 neutrino:
   path: "/home/zenrock/.zrchain/neutrino"
 proxy_rpc:
   url: {{ with secret "static_secrets/zenrock" }}{{ .Data.data.proxy_url }}{{ end }}
   user: {{ with secret "static_secrets/zenrock" }}{{ .Data.data.proxy_user}}{{ end }}
   password: {{ with secret "static_secrets/zenrock" }}{{ .Data.data.proxy_password }}{{ end }}
-  
