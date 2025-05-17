@@ -13,6 +13,6 @@ solana_rpc:
 neutrino:
   path: "/home/zenrock/.zrchain/neutrino"
 proxy_rpc:
-  url: {{ with secret "static_secrets/zenrock" }}{{ .Data.data.proxy_url }}{{ end }}
-  user: {{ with secret "static_secrets/zenrock" }}{{ .Data.data.proxy_user}}{{ end }}
-  password: {{ with secret "static_secrets/zenrock" }}{{ .Data.data.proxy_password }}{{ end }}
+  url: "https://bitcoin-proxy.gardia.zenrocklabs.io"
+  user: "zenrock"
+  password: "dZj5DdMUt9GjF4anVFt6fzc8CDMH"
