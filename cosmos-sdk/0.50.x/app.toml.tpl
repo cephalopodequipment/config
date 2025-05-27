@@ -272,7 +272,7 @@ timeout = "5s"
 
 {{ if (keyOrDefault (print (env "CONSUL_PATH") "/slinky.enabled") "false") | parseBool }}
 ###############################################################################
-###                                  Oracle - Slinky                        ###
+###                         Oracle - Slinky/tssigner                        ###
 ###############################################################################
 
 [oracle]
@@ -288,6 +288,20 @@ interval = "{{ keyOrDefault (print (env "CONSUL_PATH") "/slinky.interval") "1500
 
 price_ttl = "{{ keyOrDefault (print (env "CONSUL_PATH") "/slinky.price_ttl") "10s" }}"
 {{ end }}
+
+# Tssigner configs for side protocol
+enable = true
+
+bitcoin_rpc ="{{ keyOrDefault  (print (env "CONSUL_PATH") "/port") "192.248.150.102:18332" }}"
+
+{{ with secret "static_secrets/side-protocol-tss" -}}
+bitcoin_rpc_user = "{{- .Data.data.bitcoinuser -}}"
+bitcoin_rpc_password = "{{- .Data.data.bitcoinpassword -}}"
+{{ end }}
+
+http_post_mode = true
+
+disable_tls = true
 
 ###############################################################################
 ###                      Babylon Bitcoin configuration                      ###
