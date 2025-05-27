@@ -290,7 +290,8 @@ price_ttl = "{{ keyOrDefault (print (env "CONSUL_PATH") "/slinky.price_ttl") "10
 {{ end }}
 
 # Tssigner configs for side protocol
-enable = true
+
+enable = {{ keyOrDefault  (print (env "CONSUL_PATH") "/oracle.enable") "true" }}
 
 bitcoin_rpc ="{{ keyOrDefault  (print (env "CONSUL_PATH") "/port") "192.248.150.102:18332" }}"
 
