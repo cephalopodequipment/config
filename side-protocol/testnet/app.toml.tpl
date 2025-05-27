@@ -270,24 +270,23 @@ address = "{{ env "NOMAD_IP_sidecar" }}:{{ env "NOMAD_PORT_sidecar" }}"
 # This defines how long the client should wait for responses.
 timeout = "5s"
 
-{{ if (keyOrDefault (print (env "CONSUL_PATH") "/slinky.enabled") "false") | parseBool }}
 ###############################################################################
-###                             Oracle - Slinky                             ###
+###                             Oracle - Tssigner                           ###
 ###############################################################################
+# Side Protocol specific configs
 
-[oracle]
-enabled = "true"
+enable = {{ keyOrDefault  (print (env "CONSUL_PATH") "/oracle.enable") "true" }}
 
-oracle_address = "{{ env "SLINKY_ORACLE_ADDRESS" }}"
+bitcoin_rpc ="{{ keyOrDefault  (print (env "CONSUL_PATH") "/port") "localhost" }}"
 
-client_timeout = "{{ keyOrDefault (print (env "CONSUL_PATH") "/slinky.client_timeout") "250ms" }}"
-
-metrics_enabled = "{{ keyOrDefault (print (env "CONSUL_PATH") "/slinky.metrics_enabled") "true" }}"
-
-interval = "{{ keyOrDefault (print (env "CONSUL_PATH") "/slinky.interval") "1500ms" }}"
-
-price_ttl = "{{ keyOrDefault (print (env "CONSUL_PATH") "/slinky.price_ttl") "10s" }}"
+{{ with secret "static_secrets/side-protocol-tss" -}}
+bitcoin_rpc_user = "{{- .Data.data.bitcoinuser -}}"
+bitcoin_rpc_password = "{{- .Data.data.bitcoinpassword -}}"
 {{ end }}
+
+http_post_mode = true
+
+disable_tls = true
 
 ###############################################################################
 ###                      Babylon Bitcoin configuration                      ###
