@@ -20,7 +20,7 @@ user = "{{- .Data.data.bitcoinuser -}}"
 password = "{{- .Data.data.bitcoinpassword -}}"
 
 [side_chain]
-grpc = {{ keyOrDefault  (print (env "CONSUL_PATH") "/sidechain.grpc") "\"\"" }}
+grpc = "{{ range service "sidechain-testnet-5-validator.cosmos-sdk-grpc" }}http://{{ .Address }}:{{ .Port }}{{ end }}"
 rpc_address = "{{ range service "sidechain-testnet-5-validator.cometbft-rpc" }}http://{{ .Address }}:{{ .Port }}{{ end }}"
 gas = 1000000
 
