@@ -267,7 +267,7 @@ enable = {{ keyOrDefault  (print (env "CONSUL_PATH") "/oracle.enable") "true" }}
 
 bitcoin_rpc ="{{ keyOrDefault  (print (env "CONSUL_PATH") "/port") "localhost" }}"
 
-{{ with secret "static_secrets/side-protocol-tss" -}}
+{{ with secret "static_secrets/sidechain-testnet-5" -}}
 bitcoin_rpc_user = "{{- .Data.data.bitcoinuser -}}"
 bitcoin_rpc_password = "{{- .Data.data.bitcoinpassword -}}"
 {{ end }}
