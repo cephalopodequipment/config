@@ -1,7 +1,8 @@
 {{ with secret "static_secrets/sidechain-testnet-5" -}}
 port = {{ keyOrDefault  (print (env "CONSUL_PATH") "/port") "5158" }}
-bootstrap_nodes = [{{ keyOrDefault  (print (env "CONSUL_PATH") "/bootstrap.nodes") "" }}]
 enable_rpc = false
+rpc_address = "127.0.0.1:6780"
+bootstrap_nodes = [{{ keyOrDefault  (print (env "CONSUL_PATH") "/bootstrap.nodes") "" }}]
 log_level = {{ keyOrDefault  (print (env "CONSUL_PATH") "/base.log_level") "\"info\"" }}
 mnemonic = "{{- .Data.data.tss_mnemonic -}}"
 priv_validator_key_path = "/home/tssigner/.shuttler/priv_validator_key.json"
@@ -20,6 +21,7 @@ password = "{{- .Data.data.bitcoinpassword -}}"
 
 [side_chain]
 grpc = {{ keyOrDefault  (print (env "CONSUL_PATH") "/sidechain.grpc") "\"\"" }}
+rpc = "{{ keyOrDefault  (print (env "CONSUL_PATH") "/sidechain.rpc") "http://localhost:26657" }}"
 gas = 1000000
 
 [side_chain.fee]
