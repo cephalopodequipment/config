@@ -21,7 +21,7 @@ password = "{{- .Data.data.bitcoinpassword -}}"
 
 [side_chain]
 grpc = "{{ range service "sidechain-testnet-5-validator.cosmos-sdk-grpc" }}http://{{ .Address }}:{{ .Port }}{{ end }}"
-rpc_address = "{{ range service "sidechain-testnet-5-validator.cometbft-rpc" }}http://{{ .Address }}:{{ .Port }}{{ end }}"
+rpc = "{{ range service "sidechain-testnet-5-validator.cometbft-rpc" }}http://{{ .Address }}:{{ .Port }}{{ end }}"
 gas = 1000000
 
 [side_chain.fee]
