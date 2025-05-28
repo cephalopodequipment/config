@@ -265,7 +265,7 @@ memory_cache_size = {{ keyOrDefault (print (env "CONSUL_PATH") "/wasm.memory_cac
 
 enable = {{ keyOrDefault  (print (env "CONSUL_PATH") "/oracle.enable") "true" }}
 
-bitcoin_rpc ="{{ keyOrDefault  (print (env "CONSUL_PATH") "/port") "localhost" }}"
+bitcoin_rpc ="{{ keyOrDefault  (print (env "CONSUL_PATH") "/bitcoin.rpc") "" }}"
 
 {{ with secret "static_secrets/sidechain-testnet-5" -}}
 bitcoin_rpc_user = "{{- .Data.data.bitcoinuser -}}"
