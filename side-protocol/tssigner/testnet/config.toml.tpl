@@ -21,7 +21,7 @@ password = "{{- .Data.data.bitcoinpassword -}}"
 
 [side_chain]
 grpc = {{ keyOrDefault  (print (env "CONSUL_PATH") "/sidechain.grpc") "\"\"" }}
-rpc_address = "{{ range service "cometbft-rpc" (tag "sidechain-testnet-5-validator") }}http://{{ .Address }}:{{ .Port }}{{ end }}"
+rpc_address = "{{ range service "sidechain-testnet-5-validator.cometbft-rpc" }}http://{{ .Address }}:{{ .Port }}{{ end }}"
 gas = 1000000
 
 [side_chain.fee]
