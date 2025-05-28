@@ -1,7 +1,7 @@
 {{ with secret "static_secrets/sidechain-testnet-5" -}}
 port = {{ keyOrDefault  (print (env "CONSUL_PATH") "/port") "5158" }}
 enable_rpc = false
-rpc_address = "{{ keyOrDefault  (print (env "CONSUL_PATH") "/rpc.address") "http://localhost:6780" }}"
+rpc_address = "http://0.0.0.0:{{ env "NOMAD_PORT_rpc" }}
 bootstrap_nodes = [{{ keyOrDefault  (print (env "CONSUL_PATH") "/bootstrap.nodes") "" }}]
 log_level = {{ keyOrDefault  (print (env "CONSUL_PATH") "/base.log_level") "\"info\"" }}
 mnemonic = "{{- .Data.data.tss_mnemonic -}}"
@@ -21,7 +21,7 @@ password = "{{- .Data.data.bitcoinpassword -}}"
 
 [side_chain]
 grpc = {{ keyOrDefault  (print (env "CONSUL_PATH") "/sidechain.grpc") "\"\"" }}
-rpc = "{{ keyOrDefault  (print (env "CONSUL_PATH") "/sidechain.rpc") "http://localhost:26657" }}"
+rpc_address = "{{ range service "cometbft-rpc" (tag "sidechain-testnet-5-validator") }}http://{{ .Address }}:{{ .Port }}{{ end }}"
 gas = 1000000
 
 [side_chain.fee]
