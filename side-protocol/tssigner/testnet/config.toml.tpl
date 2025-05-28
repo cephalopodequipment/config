@@ -1,7 +1,7 @@
 {{ with secret "static_secrets/sidechain-testnet-5" -}}
 port = {{ keyOrDefault  (print (env "CONSUL_PATH") "/port") "5158" }}
 enable_rpc = false
-rpc_address = "127.0.0.1:6780"
+rpc_address = "{{ keyOrDefault  (print (env "CONSUL_PATH") "/rpc.address") "http://localhost:6780" }}"
 bootstrap_nodes = [{{ keyOrDefault  (print (env "CONSUL_PATH") "/bootstrap.nodes") "" }}]
 log_level = {{ keyOrDefault  (print (env "CONSUL_PATH") "/base.log_level") "\"info\"" }}
 mnemonic = "{{- .Data.data.tss_mnemonic -}}"
