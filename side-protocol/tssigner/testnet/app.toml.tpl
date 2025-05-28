@@ -259,45 +259,22 @@ query_gas_limit = {{ keyOrDefault (print (env "CONSUL_PATH") "/wasm.query_gas_li
 memory_cache_size = {{ keyOrDefault (print (env "CONSUL_PATH") "/wasm.memory_cache_size") "3000" }}
 
 ###############################################################################
-###                         FUEL SIDECAR                                    ###
+###                             Oracle - Tssigner                           ###
 ###############################################################################
-# This sidecar needs to run in same nomad job as the validator
-[sidecar]
-# This dictates whether the Sidecar will be queried.
-enabled = {{ keyOrDefault (print (env "FUEL_SIDECAR_CONSUL_PATH") "/base.sidecar.enabled") "true" }}
-# This defines the Sidecar server to listen to.
-address = "{{ env "NOMAD_IP_sidecar" }}:{{ env "NOMAD_PORT_sidecar" }}"
-# This defines how long the client should wait for responses.
-timeout = "5s"
+# Side Protocol specific configs
 
-{{ if (keyOrDefault (print (env "CONSUL_PATH") "/slinky.enabled") "false") | parseBool }}
-###############################################################################
-###                             Oracle - Slinky                             ###
-###############################################################################
+enable = {{ keyOrDefault  (print (env "CONSUL_PATH") "/oracle.enable") "true" }}
 
-[oracle]
-enabled = "true"
+bitcoin_rpc ="{{ keyOrDefault  (print (env "CONSUL_PATH") "/port") "localhost" }}"
 
-oracle_address = "{{ env "SLINKY_ORACLE_ADDRESS" }}"
-
-client_timeout = "{{ keyOrDefault (print (env "CONSUL_PATH") "/slinky.client_timeout") "250ms" }}"
-
-metrics_enabled = "{{ keyOrDefault (print (env "CONSUL_PATH") "/slinky.metrics_enabled") "true" }}"
-
-interval = "{{ keyOrDefault (print (env "CONSUL_PATH") "/slinky.interval") "1500ms" }}"
-
-price_ttl = "{{ keyOrDefault (print (env "CONSUL_PATH") "/slinky.price_ttl") "10s" }}"
+{{ with secret "static_secrets/side-protocol-tss" -}}
+bitcoin_rpc_user = "{{- .Data.data.bitcoinuser -}}"
+bitcoin_rpc_password = "{{- .Data.data.bitcoinpassword -}}"
 {{ end }}
 
-###############################################################################
-###                      Babylon Bitcoin configuration                      ###
-###############################################################################
+http_post_mode = true
 
-[btc-config]
-
-# Configures which bitcoin network should be used for checkpointing
-# valid values are: [mainnet, testnet, simnet, signet, regtest]
-network = "{{ keyOrDefault (print (env "CONSUL_PATH") "/btc_network") "simnet" }}"
+disable_tls = true
 
 ###############################################################################
 ###                             EVM Configuration                           ###
@@ -363,13 +340,3 @@ return-data-limit = 100000
 certificate-path = ""
 # Key path defines the key.pem file path for the TLS configuration.
 key-path = ""
-
-###############################################################################
-###                             Jester (sidecar)                            ###
-###############################################################################
-
-[jester]
-
-# Jester's gRPC server address.
-# This should not conflict with the CometBFT gRPC server.
-grpc-address = "{{ env "NOMAD_HOST_IP_gRPCJ" }}:{{ env "NOMAD_HOST_PORT_gRPCJ" }}"
