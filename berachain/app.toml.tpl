@@ -181,3 +181,7 @@ address = {{ keyOrDefault (print (env "CONSUL_PATH") "/beacon-kit.node-api.addre
 
 # Logging determines if the node API logging is enabled.
 logging = {{ keyOrDefault (print (env "CONSUL_PATH") "/beacon-kit.node-api.logging") "\"false\"" }}
+
+[beacon-kit]
+# required for bectra upgrade
+chain-spec = "mainnet"
