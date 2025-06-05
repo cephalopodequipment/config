@@ -6,7 +6,7 @@ SECRET="./.secret"
 # Amount of time to wait (in seconds) between bot loops. This can be set to 0 to
 # run once and exit, which is useful for test, or when operating via an
 # automated scheduler (i.e. cron).
-POLLING_DELAY={{ keyOrDefault "static_secrets/across_solver/POLLING_DELAY" "60" }}
+POLLING_DELAY={{ keyOrDefault "networks/across-solver/POLLING_DELAY" "60" }}
 
 
 # Specify RPC provider preferences. The first provider is always used.
@@ -40,7 +40,7 @@ RPC_PROVIDER_ANKR_42161={{ .Data.data.RPC_PROVIDER_ANKR_42161 }}
 # NODE_QUORUM defaults to 1. If NODE_QUORUM is greater than 1, there must be at
 # least NODE_QUORUM number of providers defined in the corresponding
 # RPC_PROVIDERS configuration.
-NODE_QUORUM={{ keyOrDefault "static_secrets/across_solver/NODE_QUORUM" 2 }}
+NODE_QUORUM={{ keyOrDefault "networks/across-solver/NODE_QUORUM" 2 }}
 
 # NODE_QUORUM can also be set per-chain by appending _<CHAIN-ID> to the
 # NODE_QUORUM configurable. In this case, the corresponding
@@ -54,7 +54,7 @@ NODE_QUORUM={{ keyOrDefault "static_secrets/across_solver/NODE_QUORUM" 2 }}
 # (429 responses to RPC requests) then concurrency can be reduced as an
 # alternative to upgrading the RPC provider subscription/quota.
 # NODE_MAX_CONCURRENCY_1=40
-NODE_MAX_CONCURRENCY={{ keyOrDefault "static_secrets/across_solver/NODE_MAX_CONCURRENCY" 25 }}
+NODE_MAX_CONCURRENCY={{ keyOrDefault "networks/across-solver/NODE_MAX_CONCURRENCY" 25 }}
 
 
 # Permit the relayer to fill relays. This is disabled by default and must be
@@ -62,7 +62,7 @@ NODE_MAX_CONCURRENCY={{ keyOrDefault "static_secrets/across_solver/NODE_MAX_CONC
 # SEND_RELAYS is not set to "true", the bot will simulate making fills and will
 # log the results, but will not submit transactions to the RPC provider. It is
 # recommended to test with this before setting SEND_RELAYS to "true".
-SEND_RELAYS={{ key "static_secrets/across_solver/SEND_RELAYS" }}
+SEND_RELAYS={{ key "networks/across-solver/SEND_RELAYS" }}
 
 
 # Permit the finalizer to submit transactions for finalizing cross-chain actions. 
@@ -71,7 +71,7 @@ SEND_RELAYS={{ key "static_secrets/across_solver/SEND_RELAYS" }}
 # set to "true", the bot will simulate making finalizations and will log the
 # results, but will not submit transactions to the RPC provider. It is recommended
 # to test with this before setting SEND_FINALIZATIONS to "true".
-SEND_FINALIZATIONS={{ key "static_secrets/across_solver/SEND_FINALIZATIONS" }}
+SEND_FINALIZATIONS={{ key "networks/across-solver/SEND_FINALIZATIONS" }}
 
 m
 # List of origin and destination chains to be supported by the relayer. If set
@@ -81,15 +81,15 @@ m
 # RELAYER_DESTINATION_CHAINS=[10] # Only fill deposits destined for Ethereum.
 
 # RELAYER_ORIGIN_CHAINS=[1,10,137,324,42161]
-RELAYER_ORIGIN_CHAINS={{ key "static_secrets/across_solver/RELAYER_ORIGIN_CHAINS" }}
+RELAYER_ORIGIN_CHAINS={{ key "networks/across-solver/RELAYER_ORIGIN_CHAINS" }}
 # RELAYER_DESTINATION_CHAINS=[1,10,137,42161]
-RELAYER_DESTINATION_CHAINS={{ key "static_secrets/across_solver/RELAYER_DESTINATION_CHAINS" }}
+RELAYER_DESTINATION_CHAINS={{ key "networks/across-solver/RELAYER_DESTINATION_CHAINS" }}
 
 
 # Deposit lookback window, specified in seconds. This is subtracted from the
 # current time and is resolved to a block number on each chain, effectively
 # controlling how far back in time the relayer will scan for unfilled deposits.
-MAX_RELAYER_DEPOSIT_LOOK_BACK={{ keyOrDefault "static_secrets/across_solver/MAX_RELAYER_DEPOSIT_LOOK_BACK" 300 }}
+MAX_RELAYER_DEPOSIT_LOOK_BACK={{ keyOrDefault "networks/across-solver/MAX_RELAYER_DEPOSIT_LOOK_BACK" 300 }}
 
 
 # The relayer requires a minimum return on capital when filling relays. The
@@ -97,7 +97,7 @@ MAX_RELAYER_DEPOSIT_LOOK_BACK={{ keyOrDefault "static_secrets/across_solver/MAX_
 # each fill. Minimum fees can also be configured per token(symbol)/route
 # combination. Examples:
 # Require 1 bps as the global default.
-MIN_RELAYER_FEE_PCT={{ keyOrDefault "static_secrets/across_solver/MIN_RELAYER_FEE_PCT" 0.00001 }}
+MIN_RELAYER_FEE_PCT={{ keyOrDefault "networks/across-solver/MIN_RELAYER_FEE_PCT" 0.00001 }}
 
 # Override: Require at least 1.5 bps on USDC from Arbitrum to Ethereum.
 # MIN_RELAYER_FEE_PCT_USDC_42161_1=0.00015
@@ -112,9 +112,9 @@ MIN_RELAYER_FEE_PCT={{ keyOrDefault "static_secrets/across_solver/MIN_RELAYER_FE
 # supplies a default priority fee of 1.5 Gwei. This is especially notable on
 # Optimism (chainId 10), and can lead to overpriced transactions. Operators are
 # encouraged to tune these scalers to meet their own needs and risk profile.
-MAX_FEE_PER_GAS_SCALER={{ keyOrDefault "static_secrets/across_solver/MAX_FEE_PER_GAS_SCALER" 1.5 }}
-PRIORITY_FEE_SCALER={{ keyOrDefault "static_secrets/across_solver/PRIORITY_FEE_SCALER" 0.8 }}
-PRIORITY_FEE_SCALER_1={{ keyOrDefault "static_secrets/across_solver/PRIORITY_FEE_SCALER_1" 0.8 }}
+MAX_FEE_PER_GAS_SCALER={{ keyOrDefault "networks/across-solver/MAX_FEE_PER_GAS_SCALER" 1.5 }}
+PRIORITY_FEE_SCALER={{ keyOrDefault "networks/across-solver/PRIORITY_FEE_SCALER" 0.8 }}
+PRIORITY_FEE_SCALER_1={{ keyOrDefault "networks/across-solver/PRIORITY_FEE_SCALER_1" 0.8 }}
 
 
 ################################################################################
@@ -135,7 +135,7 @@ PRIORITY_FEE_SCALER_1={{ keyOrDefault "static_secrets/across_solver/PRIORITY_FEE
 #     https://redis.io/docs/getting-started/
 # Under the hood, the relayer will cache JSON-rpc request data from requests
 # like `eth_getBlock` in the Redis DB.
-REDIS_URL="{{ keyOrDefault "static_secrets/across_solver/REDIS_URL" "redis://localhost:6379" }}"
+REDIS_URL="{{ keyOrDefault "networks/across-solver/REDIS_URL" "redis://localhost:6379" }}"
 
 # A namespace that will be used to prefix all keys in the Redis DB. This is
 # useful if multiple relayers are running on the same Redis instance. This
@@ -160,7 +160,7 @@ PROVIDER_CACHE_TTL=3600
 # the relayer would only fill transfers of USDC. If RELAYER_TOKENS is not set,
 # the relayer will fill transfers of any supported token.
 # RELAYER_TOKENS='["0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2", "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"]'
-RELAYER_TOKENS='{{ keyOrDefault "static_secrets/across_solver/RELAYER_TOKENS" "[]" }}'
+RELAYER_TOKENS='{{ keyOrDefault "networks/across-solver/RELAYER_TOKENS" "[]" }}'
 
 
 # How many blocks to look back per request for a chain. Relayer code will bundle
