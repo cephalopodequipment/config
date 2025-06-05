@@ -40,7 +40,7 @@ RPC_PROVIDER_ANKR_42161={{ .Data.data.RPC_PROVIDER_ANKR_42161 }}
 # NODE_QUORUM defaults to 1. If NODE_QUORUM is greater than 1, there must be at
 # least NODE_QUORUM number of providers defined in the corresponding
 # RPC_PROVIDERS configuration.
-NODE_QUORUM={{ keyOrDefault "networks/across-solver/NODE_QUORUM" 2 }}
+NODE_QUORUM={{ keyOrDefault "networks/across-solver/NODE_QUORUM" "2" }}
 
 # NODE_QUORUM can also be set per-chain by appending _<CHAIN-ID> to the
 # NODE_QUORUM configurable. In this case, the corresponding
@@ -54,7 +54,7 @@ NODE_QUORUM={{ keyOrDefault "networks/across-solver/NODE_QUORUM" 2 }}
 # (429 responses to RPC requests) then concurrency can be reduced as an
 # alternative to upgrading the RPC provider subscription/quota.
 # NODE_MAX_CONCURRENCY_1=40
-NODE_MAX_CONCURRENCY={{ keyOrDefault "networks/across-solver/NODE_MAX_CONCURRENCY" 25 }}
+NODE_MAX_CONCURRENCY={{ keyOrDefault "networks/across-solver/NODE_MAX_CONCURRENCY" "25" }}
 
 
 # Permit the relayer to fill relays. This is disabled by default and must be
@@ -89,7 +89,7 @@ RELAYER_DESTINATION_CHAINS={{ key "networks/across-solver/RELAYER_DESTINATION_CH
 # Deposit lookback window, specified in seconds. This is subtracted from the
 # current time and is resolved to a block number on each chain, effectively
 # controlling how far back in time the relayer will scan for unfilled deposits.
-MAX_RELAYER_DEPOSIT_LOOK_BACK={{ keyOrDefault "networks/across-solver/MAX_RELAYER_DEPOSIT_LOOK_BACK" 300 }}
+MAX_RELAYER_DEPOSIT_LOOK_BACK={{ keyOrDefault "networks/across-solver/MAX_RELAYER_DEPOSIT_LOOK_BACK" "300" }}
 
 
 # The relayer requires a minimum return on capital when filling relays. The
@@ -97,7 +97,7 @@ MAX_RELAYER_DEPOSIT_LOOK_BACK={{ keyOrDefault "networks/across-solver/MAX_RELAYE
 # each fill. Minimum fees can also be configured per token(symbol)/route
 # combination. Examples:
 # Require 1 bps as the global default.
-MIN_RELAYER_FEE_PCT={{ keyOrDefault "networks/across-solver/MIN_RELAYER_FEE_PCT" 0.00001 }}
+MIN_RELAYER_FEE_PCT={{ keyOrDefault "networks/across-solver/MIN_RELAYER_FEE_PCT" "0.00001" }}
 
 # Override: Require at least 1.5 bps on USDC from Arbitrum to Ethereum.
 # MIN_RELAYER_FEE_PCT_USDC_42161_1=0.00015
@@ -112,9 +112,9 @@ MIN_RELAYER_FEE_PCT={{ keyOrDefault "networks/across-solver/MIN_RELAYER_FEE_PCT"
 # supplies a default priority fee of 1.5 Gwei. This is especially notable on
 # Optimism (chainId 10), and can lead to overpriced transactions. Operators are
 # encouraged to tune these scalers to meet their own needs and risk profile.
-MAX_FEE_PER_GAS_SCALER={{ keyOrDefault "networks/across-solver/MAX_FEE_PER_GAS_SCALER" 1.5 }}
-PRIORITY_FEE_SCALER={{ keyOrDefault "networks/across-solver/PRIORITY_FEE_SCALER" 0.8 }}
-PRIORITY_FEE_SCALER_1={{ keyOrDefault "networks/across-solver/PRIORITY_FEE_SCALER_1" 0.8 }}
+MAX_FEE_PER_GAS_SCALER={{ keyOrDefault "networks/across-solver/MAX_FEE_PER_GAS_SCALER" "1.5" }}
+PRIORITY_FEE_SCALER={{ keyOrDefault "networks/across-solver/PRIORITY_FEE_SCALER" "0.8" }}
+PRIORITY_FEE_SCALER_1={{ keyOrDefault "networks/across-solver/PRIORITY_FEE_SCALER_1" "0.8" }}
 
 
 ################################################################################
