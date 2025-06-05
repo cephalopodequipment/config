@@ -6,7 +6,7 @@ SECRET="./.secret"
 # Amount of time to wait (in seconds) between bot loops. This can be set to 0 to
 # run once and exit, which is useful for test, or when operating via an
 # automated scheduler (i.e. cron).
-POLLING_DELAY={{ keyOrDefault "static_secrets/across_solver/POLLING_DELAY" 60 }}
+POLLING_DELAY={{ keyOrDefault "static_secrets/across_solver/POLLING_DELAY" "60" }}
 
 
 # Specify RPC provider preferences. The first provider is always used.
