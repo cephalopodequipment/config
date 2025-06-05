@@ -1,7 +1,7 @@
 # SECRET identifies a file containing a mnemonic or private key. The file can
 # reside anywhere in the accessible filesystem, and may have more restrictive
 # permissions. This is the preferred method of configuring a wallet.
-SECRET="./.secret"
+SECRET="/app/relayer-v3/.secret"
 
 # Amount of time to wait (in seconds) between bot loops. This can be set to 0 to
 # run once and exit, which is useful for test, or when operating via an
