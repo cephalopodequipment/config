@@ -73,7 +73,6 @@ SEND_RELAYS={{ key "networks/across-solver/SEND_RELAYS" }}
 # to test with this before setting SEND_FINALIZATIONS to "true".
 SEND_FINALIZATIONS={{ key "networks/across-solver/SEND_FINALIZATIONS" }}
 
-m
 # List of origin and destination chains to be supported by the relayer. If set
 # to a non-empty list, only transfers complying with the specified origin and
 # destination chains will be filled. For example:
