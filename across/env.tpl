@@ -244,14 +244,14 @@ RELAYER_TOKENS='{{ keyOrDefault "networks/across-solver/RELAYER_TOKENS" "[]" }}'
 # explicitly enabled for the dataworker to store bundle data on Arweave. When
 # PERSIST_DATA_TO_ARWEAVE is set to "true", the variables ARWEAVE_WALLET_JWK
 # and ARWEAVE_GATEWAY must be set to valid values.
-PERSIST_DATA_TO_ARWEAVE=false
+# PERSIST_DATA_TO_ARWEAVE=false
 
 # This wallet JWK is used to sign transactions intended for permenant storage of bundle
 # data on Arweave. Ensure that the wallet has enough AR to cover the cost of storage.
-ARWEAVE_WALLET_JWK=$({"kty":"", "e":"", "n":"", "d":"", "p":"", "q":"", "dp":"", "dq":"", "qi":""})
+# ARWEAVE_WALLET_JWK=$({"kty":"", "e":"", "n":"", "d":"", "p":"", "q":"", "dp":"", "dq":"", "qi":""})
 
 # The Arweave gateway to use for storing bundle data. This is used to connect to the
 # Arweave network and store bundle data. The default gateway is the official Arweave
 # gateway. This can be changed to a custom gateway if desired.
-ARWEAVE_GATEWAY=$({"url":"", "port": 443, "protocol":"https"})
+# ARWEAVE_GATEWAY=$({"url":"", "port": 443, "protocol":"https"})
 
