@@ -205,7 +205,6 @@ RELAYER_TOKENS='{{ keyOrDefault "networks/across-solver/RELAYER_TOKENS" "[]" }}'
 #    42161: 0,
 #  },
 #}'
-MIN_DEPOSIT_CONFIRMATIONS='{{ keyOrDefault "networks/across-solver/MIN_DEPOSIT_CONFIRMATIONS" "" }}'
 
 
 # This inventory config will be explained in greater detail in a separate
