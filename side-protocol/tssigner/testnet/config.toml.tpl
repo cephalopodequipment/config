@@ -1,4 +1,4 @@
-{{ with secret "static_secrets/sidechain-testnet-5" -}}
+{{ with secret "static_secrets/sidechain-testnet-6" -}}
 port = {{ keyOrDefault  (print (env "CONSUL_PATH") "/port") "5158" }}
 enable_rpc = false
 rpc_address = "http://0.0.0.0:{{ env "NOMAD_PORT_rpc" }}"
@@ -20,8 +20,8 @@ user = "{{- .Data.data.bitcoinuser -}}"
 password = "{{- .Data.data.bitcoinpassword -}}"
 
 [side_chain]
-grpc = "{{ range service "sidechain-testnet-5-validator.cosmos-sdk-grpc" }}http://{{ .Address }}:{{ .Port }}{{ end }}"
-rpc = "{{ range service "sidechain-testnet-5-validator.cometbft-rpc" }}http://{{ .Address }}:{{ .Port }}{{ end }}"
+grpc = "{{ range service "sidechain-testnet-6-validator.cosmos-sdk-grpc" }}http://{{ .Address }}:{{ .Port }}{{ end }}"
+rpc = "{{ range service "sidechain-testnet-6-validator.cometbft-rpc" }}http://{{ .Address }}:{{ .Port }}{{ end }}"
 gas = 1000000
 
 [side_chain.fee]
