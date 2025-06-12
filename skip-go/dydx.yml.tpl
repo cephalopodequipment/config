@@ -105,6 +105,7 @@ chains:
     min_fee_bps: {{ $job_config.min_fee_bps }}
     batch_uusdc_settle_up_threshold: {{ $job_config.batch_uusdc_settle_up_threshold }} # 1/2 of destination inventory evenly distributed across source chains
     min_profit_margin_bps: {{ $job_config.min_profit_margin_bps }} #MUST BE GREATER THAN min_fee_bps
+    skip_settlement_profitability_checks: {{ key "networks/skip-go-dydx/skip_settlement_profitability_checks" | parseBool }}
     evm:
       rpc: {{ with secret "solvers/skip-go-dydx"}}{{ .Data.data.eth_rpc }}{{ end }}
       signer_gas_balance:
@@ -134,6 +135,7 @@ chains:
     min_fee_bps: {{ $job_config.min_fee_bps }}
     batch_uusdc_settle_up_threshold: {{ $job_config.batch_uusdc_settle_up_threshold }} # 1/2 of destination inventory evenly distributed across source chains
     min_profit_margin_bps: {{ $job_config.min_profit_margin_bps }} #MUST BE GREATER THAN min_fee_bps
+    skip_settlement_profitability_checks: {{ key "networks/skip-go-dydx/skip_settlement_profitability_checks" | parseBool }}
     evm:
       rpc: {{ with secret "solvers/skip-go-dydx"}}{{ .Data.data.optimism_rpc }}{{ end }}
       signer_gas_balance:
@@ -163,6 +165,7 @@ chains:
     min_fee_bps: {{ $job_config.min_fee_bps }}
     batch_uusdc_settle_up_threshold: {{ $job_config.batch_uusdc_settle_up_threshold }} # 1/2 of destination inventory evenly distributed across source chains
     min_profit_margin_bps: {{ $job_config.min_profit_margin_bps }} #MUST BE GREATER THAN min_fee_bps
+    skip_settlement_profitability_checks: {{ key "networks/skip-go-dydx/skip_settlement_profitability_checks" | parseBool }}
     evm:
       rpc: {{ with secret "solvers/skip-go-dydx"}}{{ .Data.data.avalanche_rpc }}{{ end }}
       signer_gas_balance:
@@ -191,6 +194,7 @@ chains:
     min_fee_bps: {{ $job_config.min_fee_bps }}
     batch_uusdc_settle_up_threshold: {{ $job_config.batch_uusdc_settle_up_threshold }} # 1/2 of destination inventory evenly distributed across source chains
     min_profit_margin_bps: {{ $job_config.min_profit_margin_bps }}
+    skip_settlement_profitability_checks: {{ key "networks/skip-go-dydx/skip_settlement_profitability_checks" | parseBool }}
     evm:
       rpc: {{ with secret "solvers/skip-go-dydx"}}{{ .Data.data.arbitrum_rpc }}{{ end }}
       rpc_basic_auth_var: <env_var_with_server_password>
@@ -220,6 +224,7 @@ chains:
     min_fee_bps: {{ $job_config.min_fee_bps }}
     batch_uusdc_settle_up_threshold: {{ $job_config.batch_uusdc_settle_up_threshold }} # 1/2 of destination inventory evenly distributed across source chains
     min_profit_margin_bps: {{ $job_config.min_profit_margin_bps }}
+    skip_settlement_profitability_checks: {{ key "networks/skip-go-dydx/skip_settlement_profitability_checks" | parseBool }}
     evm:
       rpc: {{ with secret "solvers/skip-go-dydx"}}{{ .Data.data.polygon_rpc }}{{ end }}
       rpc_basic_auth_var: <env_var_with_server_password>
@@ -286,6 +291,7 @@ chains:
     min_fee_bps: {{ $job_config.min_fee_bps }}
     batch_uusdc_settle_up_threshold: {{ $job_config.batch_uusdc_settle_up_threshold }} # 1/2 of destination inventory evenly distributed across source chains
     min_profit_margin_bps: {{ $job_config.min_profit_margin_bps }} #MUST BE GREATER THAN min_fee_bps
+    skip_settlement_profitability_checks: {{ key "networks/skip-go-dydx/skip_settlement_profitability_checks" | parseBool }}
     evm:
       rpc: {{ with secret "solvers/skip-go-dydx"}}{{ .Data.data.base_rpc }}{{ end }}
       signer_gas_balance:
