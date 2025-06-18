@@ -36,7 +36,7 @@ OP_NODE_L1_TRUST_RPC="false"
 
 # ENGINE CONFIGURATION
 # -------------------
-OP_NODE_L2_ENGINE_KIND={{ keyOrDefault  (print (env "BASE_RETH_CONSUL_PATH") "/engine.op_node_l2_engine_kind") "base" }}
+OP_NODE_L2_ENGINE_KIND={{ keyOrDefault  (print (env "BASE_RETH_CONSUL_PATH") "/engine.op_node_l2_engine_kind") "reth" }}
 OP_NODE_L2_ENGINE_RPC=http://0.0.0.0:{{ env "NOMAD_HOST_PORT_rpc" }}
 OP_NODE_L2_ENGINE_AUTH=/data/.eth/jwt.hex
 
