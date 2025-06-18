@@ -23,11 +23,13 @@ OP_NODE_ROLLUP_LOAD_PROTOCOL_VERSIONS=true
 # [REQUIRED] L1 CONFIGURATION
 # --------------------------
 # Replace these values with your L1 (Ethereum) node endpoints
+
 {{ with secret "static_secrets/ankr" -}}
 OP_NODE_L1_ETH_RPC={{ .Data.data.eth_mainnet }}
 OP_NODE_L1_BEACON={{ .Data.data.eth_mainnet_beacon }}
 OP_NODE_L1_BEACON_ARCHIVER={{ .Data.data.eth_mainnet_beacon }}
 {{ end }}
+
 OP_NODE_L1_BEACON_FETCH_ALL_SIDECARS="true"
 OP_NODE_L1_RPC_KIND="debug_geth"
 OP_NODE_L1_TRUST_RPC="false"
@@ -35,9 +37,12 @@ OP_NODE_L1_TRUST_RPC="false"
 # ENGINE CONFIGURATION
 # -------------------
 OP_NODE_L2_ENGINE_KIND={{ keyOrDefault  (print (env "BASE_RETH_CONSUL_PATH") "/engine.op_node_l2_engine_kind") "base" }}
-OP_NODE_L2_ENGINE_RPC=ws://execution:8551
-OP_NODE_L2_ENGINE_AUTH=/tmp/engine-auth-jwt
-OP_NODE_L2_ENGINE_AUTH_RAW=688f5d737bad920bdfb2fc2f488d6b6209eebda1dae949a8de91398d932c517a
+OP_NODE_L2_ENGINE_RPC=ws://0.0.0.0:{{ env "NOMAD_PORT_p2p" }}
+OP_NODE_L2_ENGINE_AUTH=/.eth/jwt.hex
+
+{{ with secret "static_secrets/ethereum/auth_rpc_token" }}
+OP_NODE_L2_ENGINE_AUTH_RAW={{ .Data.data.jwt0 }}
+{{ end }}
 
 # P2P CONFIGURATION
 # ---------------
