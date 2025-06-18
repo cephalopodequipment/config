@@ -98,3 +98,6 @@ STATSD_ADDRESS="172.17.0.1"
 
 # FLASHBLOCKS (OPTIONAL - UNCOMMENT TO ENABLE)
 # RETH_FB_WEBSOCKET_URL=wss://mainnet.flashblocks.base.org/ws
+{{ with secret "static_secrets/ankr" }}
+RETH_FB_WEBSOCKET_URL = "{{ .Data.data.eth_mainnet_ws }}"
+{{ end }}
