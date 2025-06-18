@@ -50,7 +50,7 @@ OP_NODE_P2P_BOOTNODES=enr:-J24QNz9lbrKbN4iSmmjtnr7SjUMk4zB7f1krHZcTZx-JRKZd0kA2g
 
 # RETH CONFIGURATION
 # ----------------
-OP_RETH_DISABLE_DISCOVERY="{{ keyOrDefault  (print (env "BASE_RETH_CONSUL_PATH") "/reth.op_reth_disable_discovery") "true" }}"
+OP_RETH_DISABLE_DISCOVERY="{{ keyOrDefault  (print (env "BASE_RETH_CONSUL_PATH") "/reth.op_reth_disable_discovery") "false" }}"
 OP_RETH_DISABLE_TX_POOL_GOSSIP="true"
 OP_RETH_OP_NETWORK="base"
 
@@ -97,4 +97,4 @@ STATSD_ADDRESS="172.17.0.1"
 # OP_GETH_SYNCMODE=snap
 
 # FLASHBLOCKS (OPTIONAL - UNCOMMENT TO ENABLE)
-RETH_FB_WEBSOCKET_URL=wss://mainnet.flashblocks.base.org/ws
+# RETH_FB_WEBSOCKET_URL=wss://mainnet.flashblocks.base.org/ws
