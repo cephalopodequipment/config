@@ -21,7 +21,7 @@
     "/dns4/{{ env "EXTERNAL_DNS" }}/tcp/2121"
   ]
 
-  NoAnnounceAddresses = ["/ip4/127.0.0.1/udp/2121/quic-v1/webtransport", "/ip4/0.0.0.0/udp/2121/quic-v1/webtransport", "/ip6/::/udp/2121/quic-v1/webtransport", "/ip4/0.0.0.0/udp/2121/quic-v1", "/ip4/127.0.0.1/udp/2121/quic-v1", "/ip6/::/udp/2121/quic-v1", "/ip4/0.0.0.0/tcp/2121", "/ip4/127.0.0.1/tcp/2121", "/ip6/::/tcp/2121"]
+  NoAnnounceAddresses = ["/ip4/{{ env "EXTERNAL_IP" }}/tcp/1083", "/ip4/127.0.0.1/udp/2121/quic-v1/webtransport", "/ip4/0.0.0.0/udp/2121/quic-v1/webtransport", "/ip6/::/udp/2121/quic-v1/webtransport", "/ip4/0.0.0.0/udp/2121/quic-v1", "/ip4/127.0.0.1/udp/2121/quic-v1", "/ip6/::/udp/2121/quic-v1", "/ip4/0.0.0.0/tcp/2121", "/ip4/127.0.0.1/tcp/2121", "/ip6/::/tcp/2121"]
   MutualPeers = []
   PeerExchange = true
   [P2P.ConnManager]
