@@ -61,8 +61,8 @@ OP_RETH_OP_NETWORK="base"
 
 # RPC CONFIGURATION
 # ---------------
-OP_NODE_RPC_ADDR={{ env "NOMAD_HOST_IP_rpc"}}
-OP_NODE_RPC_PORT={{ env "NOMAD_HOST_PORT_rpc" }}
+OP_NODE_RPC_ADDR={{ env "NOMAD_HOST_IP_onrpc"}}
+OP_NODE_RPC_PORT={{ env "NOMAD_HOST_PORT_onrpc" }}
 
 # GETH CACHE SETTINGS
 # -----------------
