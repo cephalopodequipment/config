@@ -37,7 +37,7 @@ OP_NODE_L1_TRUST_RPC="false"
 # ENGINE CONFIGURATION
 # -------------------
 OP_NODE_L2_ENGINE_KIND={{ keyOrDefault  (print (env "BASE_RETH_CONSUL_PATH") "/engine.op_node_l2_engine_kind") "reth" }}
-OP_NODE_L2_ENGINE_RPC=ws://{{ env "NOMAD_HOST_IP_ws"}}:{{ env "NOMAD_HOST_PORT_ws" }}
+OP_NODE_L2_ENGINE_RPC=http://{{ env "NOMAD_HOST_IP_rpc"}}:{{ env "NOMAD_HOST_PORT_rpc" }}
 OP_NODE_L2_ENGINE_AUTH=/mainnet/.eth/jwt.hex
 
 {{ with secret "static_secrets/ethereum/auth_rpc_token" }}
@@ -75,7 +75,7 @@ OP_GETH_NET_RESTRICT="10.0.0.0/8"
 
 # LOGGING & MONITORING
 # ------------------
-OP_NODE_LOG_LEVEL=info
+OP_NODE_LOG_LEVEL=debug
 OP_NODE_LOG_FORMAT="json"
 OP_NODE_SNAPSHOT_LOG=/tmp/op-node-snapshot-log
 OP_NODE_METRICS_ENABLED="true"
