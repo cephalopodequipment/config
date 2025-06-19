@@ -18,7 +18,7 @@ OP_RETH_SEQUENCER_HTTP=https://mainnet-sequencer.base.org
 # -----------------
 OP_NODE_SYNCMODE=execution-layer
 OP_NODE_VERIFIER_L1_CONFS=4
-OP_NODE_ROLLUP_LOAD_PROTOCOL_VERSIONS=true
+OP_NODE_ROLLUP_LOAD_PROTOCOL_VERSIONS=false #true
 
 # [REQUIRED] L1 CONFIGURATION
 # --------------------------
