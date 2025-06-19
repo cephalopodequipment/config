@@ -31,7 +31,7 @@ OP_NODE_L1_BEACON_ARCHIVER={{ .Data.data.eth_mainnet_beacon }}
 {{ end }}
 
 OP_NODE_L1_BEACON_FETCH_ALL_SIDECARS="true"
-OP_NODE_L1_RPC_KIND="reth"
+OP_NODE_L1_RPC_KIND="geth"
 OP_NODE_L1_TRUST_RPC="false"
 
 # ENGINE CONFIGURATION
