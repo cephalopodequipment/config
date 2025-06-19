@@ -4,7 +4,7 @@
 # NETWORK CONFIGURATION
 # --------------------
 RETH_CHAIN=base
-#OP_NODE_NETWORK=base-mainnet
+OP_NODE_NETWORK=base-mainnet
 OP_GETH_OP_NETWORK=base-mainnet
 
 # BASE SEQUENCER ENDPOINTS
