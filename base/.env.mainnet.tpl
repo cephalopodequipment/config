@@ -31,7 +31,7 @@ OP_NODE_L1_BEACON_ARCHIVER={{ .Data.data.eth_mainnet_beacon }}
 {{ end }}
 
 OP_NODE_L1_BEACON_FETCH_ALL_SIDECARS="true"
-OP_NODE_L1_RPC_KIND="debug_geth"
+OP_NODE_L1_RPC_KIND="any"
 OP_NODE_L1_TRUST_RPC="false"
 
 # ENGINE CONFIGURATION
@@ -40,9 +40,9 @@ OP_NODE_L2_ENGINE_KIND={{ keyOrDefault  (print (env "BASE_RETH_CONSUL_PATH") "/e
 OP_NODE_L2_ENGINE_RPC=http://{{ env "NOMAD_HOST_IP_authrpc"}}:{{ env "NOMAD_HOST_PORT_authrpc" }}
 OP_NODE_L2_ENGINE_AUTH=/tmp/engine-auth-jwt
 
-{{ with secret "static_secrets/ethereum/auth_rpc_token" }}
-#OP_NODE_L2_ENGINE_AUTH_RAW={{ .Data.data.jwt0 -}}
-{{- end -}}
+#{{ with secret "static_secrets/ethereum/auth_rpc_token" }}
+OP_NODE_L2_ENGINE_AUTH_RAW={{ .Data.data.jwt0 -}}
+#{{- end -}}
 
 # P2P CONFIGURATION
 # ---------------
@@ -50,7 +50,7 @@ OP_NODE_P2P_AGENT=base
 OP_NODE_P2P_LISTEN_IP=0.0.0.0
 OP_NODE_P2P_LISTEN_TCP_PORT={{ env "NOMAD_HOST_PORT_p2p" }}
 OP_NODE_P2P_LISTEN_UDP_PORT={{ env "NOMAD_HOST_PORT_p2p" }}
-#OP_NODE_INTERNAL_IP="true"
+OP_NODE_INTERNAL_IP="true"
 OP_NODE_P2P_BOOTNODES=enr:-J24QNz9lbrKbN4iSmmjtnr7SjUMk4zB7f1krHZcTZx-JRKZd0kA2gjufUROD6T3sOWDVDnFJRvqBBo62zuF-hYCohOGAYiOoEyEgmlkgnY0gmlwhAPniryHb3BzdGFja4OFQgCJc2VjcDI1NmsxoQKNVFlCxh_B-716tTs-h1vMzZkSs1FTu_OYTNjgufplG4N0Y3CCJAaDdWRwgiQG,enr:-J24QH-f1wt99sfpHy4c0QJM-NfmsIfmlLAMMcgZCUEgKG_BBYFc6FwYgaMJMQN5dsRBJApIok0jFn-9CS842lGpLmqGAYiOoDRAgmlkgnY0gmlwhLhIgb2Hb3BzdGFja4OFQgCJc2VjcDI1NmsxoQJ9FTIv8B9myn1MWaC_2lJ-sMoeCDkusCsk4BYHjjCq04N0Y3CCJAaDdWRwgiQG,enr:-J24QDXyyxvQYsd0yfsN0cRr1lZ1N11zGTplMNlW4xNEc7LkPXh0NAJ9iSOVdRO95GPYAIc6xmyoCCG6_0JxdL3a0zaGAYiOoAjFgmlkgnY0gmlwhAPckbGHb3BzdGFja4OFQgCJc2VjcDI1NmsxoQJwoS7tzwxqXSyFL7g0JM-KWVbgvjfB8JA__T7yY_cYboN0Y3CCJAaDdWRwgiQG,enr:-J24QHmGyBwUZXIcsGYMaUqGGSl4CFdx9Tozu-vQCn5bHIQbR7On7dZbU61vYvfrJr30t0iahSqhc64J46MnUO2JvQaGAYiOoCKKgmlkgnY0gmlwhAPnCzSHb3BzdGFja4OFQgCJc2VjcDI1NmsxoQINc4fSijfbNIiGhcgvwjsjxVFJHUstK9L1T8OTKUjgloN0Y3CCJAaDdWRwgiQG,enr:-J24QG3ypT4xSu0gjb5PABCmVxZqBjVw9ca7pvsI8jl4KATYAnxBmfkaIuEqy9sKvDHKuNCsy57WwK9wTt2aQgcaDDyGAYiOoGAXgmlkgnY0gmlwhDbGmZaHb3BzdGFja4OFQgCJc2VjcDI1NmsxoQIeAK_--tcLEiu7HvoUlbV52MspE0uCocsx1f_rYvRenIN0Y3CCJAaDdWRwgiQG
 
 # RETH CONFIGURATION
