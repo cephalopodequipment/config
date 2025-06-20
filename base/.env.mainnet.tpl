@@ -40,9 +40,9 @@ OP_NODE_L2_ENGINE_KIND={{ keyOrDefault  (print (env "BASE_RETH_CONSUL_PATH") "/e
 OP_NODE_L2_ENGINE_RPC=ws://10.10.90.106:32988
 OP_NODE_L2_ENGINE_AUTH=/tmp/engine-auth-jwt
 
-{{- with secret "static_secrets/ethereum/auth_rpc_token" -}}
+{{ with secret "static_secrets/ethereum/auth_rpc_token" }}
 OP_NODE_L2_ENGINE_AUTH_RAW={{ .Data.data.jwt0 }}
-{{- end }}
+{{ end }}
 
 # P2P CONFIGURATION
 # ---------------
