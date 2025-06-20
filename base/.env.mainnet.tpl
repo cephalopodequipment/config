@@ -37,7 +37,7 @@ OP_NODE_L1_TRUST_RPC="false"
 # ENGINE CONFIGURATION
 # -------------------
 OP_NODE_L2_ENGINE_KIND={{ keyOrDefault  (print (env "BASE_RETH_CONSUL_PATH") "/engine.op_node_l2_engine_kind") "reth" }}
-OP_NODE_L2_ENGINE_RPC=ws://base-reth-reth-authrpc
+OP_NODE_L2_ENGINE_RPC=ws://10.10.90.106:32988
 OP_NODE_L2_ENGINE_AUTH=/tmp/engine-auth-jwt
 
 {{ with secret "static_secrets/ethereum/auth_rpc_token" }}
