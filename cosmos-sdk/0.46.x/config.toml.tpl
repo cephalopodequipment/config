@@ -15,7 +15,7 @@
 
 # TCP or UNIX socket address of the ABCI application,
 # or the name of an ABCI application compiled in with the Tendermint binary
-proxy_app = "tcp://127.0.0.1:26658"
+proxy_app = {{ keyOrDefault (print (env "CONSUL_PATH") "/base.proxy_app") "\"tcp://127.0.0.1:26658\"" }}
 
 # A custom human readable name for this node
 moniker = {{ keyOrDefault (print (env "CONSUL_PATH") "/base.moniker") "\"20k leagues under the sea\"" }}
