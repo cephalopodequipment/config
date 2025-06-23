@@ -11,7 +11,7 @@ version = "1.2.3"
 
 # TCP or UNIX socket address of the ABCI application,
 # or the name of an ABCI application compiled in with the Tendermint binary
-proxy_app = "tcp://127.0.0.1:26658"
+proxy_app = "tcp://0.0.0.0:26658"
 
 # A custom human readable name for this node
 moniker = "{{ keyOrDefault "networks/polygon/heimdall/moniker" "polygon-full-node0" }}"
@@ -42,10 +42,10 @@ db_backend = "goleveldb"
 db_dir = "data"
 
 # Output level for logging, including package level options
-log_level = "info"
+log_level = {{ keyOrDefault (print (env "CONSUL_PATH") "/base.log_level") "\"info\"" }}
 
 # Output format: 'plain' (colored text) or 'json'
-log_format = "plain"
+log_format = {{ keyOrDefault (print (env "CONSUL_PATH") "/base.log_format") "\"json\"" }}
 
 ##### additional base config options #####
 
@@ -85,7 +85,7 @@ filter_peers = false
 [rpc]
 
 # TCP or UNIX socket address for the RPC server to listen on
-laddr = "tcp://0.0.0.0:{{ env "NOMAD_PORT_heimdall_rpc" }}"
+laddr = "tcp://0.0.0.0:${NOMAD_PORT_heimdall_rpc}"
 
 # A list of origins a cross-domain request can be executed from
 # Default value '[]' disables cors support
@@ -145,7 +145,7 @@ timeout_broadcast_tx_commit = "10s"
 [p2p]
 
 # Address to listen for incoming connections
-laddr = "tcp://0.0.0.0:{{ env "NOMAD_PORT_heimdall_p2p" }}"
+laddr = "tcp://0.0.0.0:${NOMAD_PORT_heimdall_p2p}"
 
 # Address to advertise to peers for them to dial
 # If empty, will use the same port as the laddr,
@@ -170,10 +170,10 @@ addr_book_file = "config/addrbook.json"
 addr_book_strict = true
 
 # Maximum number of inbound peers
-max_num_inbound_peers = 40
+max_num_inbound_peers = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.max_num_inbound_peers") "40" }}
 
 # Maximum number of outbound peers to connect to, excluding persistent peers
-max_num_outbound_peers = 10
+max_num_outbound_peers = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.max_num_outbound_peers") "10" }}
 
 # Time to wait before flushing messages out on the connection
 flush_throttle_timeout = "100ms"
@@ -216,15 +216,15 @@ broadcast = true
 wal_dir = ""
 
 # Maximum number of transactions in the mempool
-size = 5000
+size = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.size") "5000" }}
 
 # Limit the total size of all txs in the mempool.
 # This only accounts for raw transactions (e.g. given 1MB transactions and
 # max_txs_bytes=5MB, mempool will only accept 5 transactions).
-max_txs_bytes = 1073741824
+max_txs_bytes = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.max_txs_bytes") "1073741824" }}
 
 # Size of the cache (used to filter transactions we saw earlier) in transactions
-cache_size = 10000
+cache_size = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.cache_size") "10000" }}
 
 #######################################################
 ###         State Sync Configuration Options        ###
@@ -235,7 +235,7 @@ cache_size = 10000
 # the network to take and serve state machine snapshots. State sync is not attempted if the node
 # has any local state (LastBlockHeight > 0). The node will have a truncated block history,
 # starting from the height of the snapshot.
-enable = false
+enable = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.enable") "false" }}
 
 # RPC servers (comma-separated) for light client verification of the synced state machine and
 # retrieval of state data for node bootstrapping. Also needs a trusted height and corresponding
@@ -273,13 +273,13 @@ version = "v0"
 
 wal_file = "data/cs.wal/wal"
 
-timeout_propose = "3s"
-timeout_propose_delta = "500ms"
-timeout_prevote = "1s"
-timeout_prevote_delta = "500ms"
-timeout_precommit = "1s"
-timeout_precommit_delta = "500ms"
-timeout_commit = "5s"
+timeout_propose = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_propose") "\"3s\"" }}
+timeout_propose_delta = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_propose_delta") "\"500ms\"" }}
+timeout_prevote = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_prevote") "\"1s\"" }}
+timeout_prevote_delta = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_prevote_delta") "\"500ms\"" }}
+timeout_precommit = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_precommit") "\"1s\"" }}
+timeout_precommit_delta = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_precommit_delta") "\"500ms\"" }}
+timeout_commit = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_commit") "\"5s\"" }}
 
 # Make progress as soon as we have all the precommits (as if TimeoutCommit = 0)
 skip_timeout_commit = false
@@ -328,7 +328,7 @@ index_all_tags = false
 # When true, Prometheus metrics are served under /metrics on
 # PrometheusListenAddr.
 # Check out the documentation for the list of available metrics.
-prometheus = true
+prometheus = {{ keyOrDefault (print (env "CONSUL_PATH") "/instrumentation.prometheus") "true" }}
 
 # Address to listen for Prometheus collector(s) connections
 prometheus_listen_addr = ":26660"
@@ -340,4 +340,4 @@ prometheus_listen_addr = ":26660"
 max_open_connections = 3
 
 # Instrumentation namespace
-namespace = "tendermint" 
+namespace = "tendermint"

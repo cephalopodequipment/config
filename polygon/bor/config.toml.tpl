@@ -8,22 +8,22 @@ identity = "{{ keyOrDefault "networks/polygon/bor/identity" "polygon-full-node0"
 datadir = "/bor-home"
 
 # Port to listen for incoming P2P connections
-port = {{ env "BOR_P2P_PORT" }}
+port = ${BOR_P2P_PORT}
 
 # Sync mode for the node
 # Options: "full", "fast", "light", "snap"
-syncmode = "full"
+syncmode = "{{ keyOrDefault "networks/polygon/bor/syncmode" "full" }}"
 
 # Garbage collection mode
 # Options: "full", "archive"
-gcmode = "full"
+gcmode = "{{ keyOrDefault "networks/polygon/bor/gcmode" "full" }}"
 
 # Chain ID for the network (137 for Polygon mainnet)
 networkid = 137
 
 # Verbosity level for logging
 # 0=silent, 1=error, 2=warn, 3=info, 4=debug, 5=detail
-verbosity = 3
+verbosity = {{ keyOrDefault (print (env "CONSUL_PATH") "/bor.verbosity") "3" }}
 
 # Enable mining (set to false for full nodes)
 mine = false
@@ -34,7 +34,7 @@ mine = false
   [jsonrpc.http]
     enabled = true
     host = "0.0.0.0"
-    port = {{ env "BOR_RPC_PORT" }}
+    port = ${BOR_RPC_PORT}
     api = ["eth", "net", "web3", "txpool", "bor"]
     corsdomain = ["*"]
     vhosts = ["*"]
@@ -43,7 +43,7 @@ mine = false
   [jsonrpc.ws]
     enabled = true
     host = "0.0.0.0"
-    port = {{ env "BOR_WS_PORT" }}
+    port = ${BOR_WS_PORT}
     api = ["eth", "net", "web3", "txpool", "bor"]
     origins = ["*"]
 
@@ -54,7 +54,7 @@ mine = false
 # P2P networking configuration
 [p2p]
   # Maximum number of peers to connect to
-  maxpeers = 100
+  maxpeers = {{ keyOrDefault (print (env "CONSUL_PATH") "/bor.maxpeers") "100" }}
 
   # Discovery configuration
   [p2p.discovery]
@@ -70,54 +70,54 @@ mine = false
 # Heimdall configuration
 [heimdall]
   # URL of the Heimdall REST server
-  url = {{ env "HEIMDALL_REST_URL" }}
+  url = "${HEIMDALL_REST_URL}"
   
   # Number of blocks to wait for confirmation from Heimdall
   # Default is 64, can be adjusted based on network conditions
-  "bor.without-heimdall" = false
+  "bor.without-heimdall" = {{ keyOrDefault (print (env "CONSUL_PATH") "/bor.without-heimdall") "false" }}
 
 # Telemetry and metrics configuration
 [telemetry]
   # Enable metrics collection
-  metrics = true
+  metrics = {{ keyOrDefault (print (env "CONSUL_PATH") "/bor.telemetry.metrics") "true" }}
   
   # Address to bind the metrics server
   addr = "0.0.0.0"
   
   # Port for the metrics server
-  port = {{ env "BOR_PROM_PORT" }}
+  port = ${BOR_PROM_PORT}
 
 # Transaction pool configuration
 [txpool]
   # Maximum number of pending transactions
-  globals = 32768
+  globals = {{ keyOrDefault (print (env "CONSUL_PATH") "/bor.txpool.globals") "32768" }}
   
   # Maximum number of transactions from a single account
-  locals = 4096
+  locals = {{ keyOrDefault (print (env "CONSUL_PATH") "/bor.txpool.locals") "4096" }}
   
   # Minimum gas price for transaction acceptance (in wei)
-  pricelimit = 1000000000
+  pricelimit = {{ keyOrDefault (print (env "CONSUL_PATH") "/bor.txpool.pricelimit") "1000000000" }}
 
 # Cache configuration for better performance
 [cache]
   # Cache size in MB
-  cache = 4096
+  cache = {{ keyOrDefault (print (env "CONSUL_PATH") "/bor.cache") "4096" }}
   
   # Cache configuration for contract state
-  trie-cache-gens = 120
+  trie-cache-gens = {{ keyOrDefault (print (env "CONSUL_PATH") "/bor.trie-cache-gens") "120" }}
 
 # Snapshot configuration (for fast sync)
 [snapshot]
   # Enable snapshot generation
-  snapshot = true
+  snapshot = {{ keyOrDefault (print (env "CONSUL_PATH") "/bor.snapshot") "true" }}
 
 # Logging configuration
 [log]
   # Log level: 0=silent, 1=error, 2=warn, 3=info, 4=debug, 5=detail
-  level = 3
+  level = {{ keyOrDefault (print (env "CONSUL_PATH") "/bor.log.level") "3" }}
   
   # Enable JSON formatted logs
-  json = true
+  json = {{ keyOrDefault (print (env "CONSUL_PATH") "/bor.log.json") "true" }}
 
 # Node telemetry reporting to Polygon telemetry dashboard
 # Set your unique node identity in the identity field above
@@ -137,8 +137,8 @@ mine = false
   # Garbage collection configuration
   "gcmode" = "full"
   
-  # State scheme configuration
-  "state.scheme" = "hash"
+  # State scheme configuration - "path" required for PebbleDB snapshots
+  "state.scheme" = "{{ keyOrDefault "networks/polygon/bor/state-scheme" "path" }}"
 
 # Developer mode (should be false for production)
 dev = false
@@ -146,4 +146,4 @@ dev = false
 # Network configuration
 [network]
   # Enable UPnP port mapping
-  nat = "any" 
+  nat = "any"
