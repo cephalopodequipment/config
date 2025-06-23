@@ -106,7 +106,7 @@ cors_allowed_headers = ["Origin", "Accept", "Content-Type", "X-Requested-With", 
 
 # TCP or UNIX socket address for the gRPC server to listen on
 # NOTE: This server only supports /broadcast_tx_commit
-grpc_laddr = ""
+grpc_laddr = {{ keyOrDefault (print (env "CONSUL_PATH") "/rpc.grpc_laddr") "\"\"" }}
 
 # Maximum number of simultaneous connections.
 # Does not include RPC (HTTP&WebSocket) connections. See max_open_connections
