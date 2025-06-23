@@ -15,7 +15,7 @@
 
 # TCP or UNIX socket address of the ABCI application,
 # or the name of an ABCI application compiled in with the Tendermint binary
-proxy_app = {{ keyOrDefault (print (env "CONSUL_PATH") "/base.proxy_app") "\"tcp://127.0.0.1:26658\"" }}
+proxy_app = "tcp://127.0.0.1:26658"
 
 # A custom human readable name for this node
 moniker = {{ keyOrDefault (print (env "CONSUL_PATH") "/base.moniker") "\"20k leagues under the sea\"" }}
@@ -106,7 +106,7 @@ cors_allowed_headers = ["Origin", "Accept", "Content-Type", "X-Requested-With", 
 
 # TCP or UNIX socket address for the gRPC server to listen on
 # NOTE: This server only supports /broadcast_tx_commit
-grpc_laddr = {{ keyOrDefault (print (env "CONSUL_PATH") "/rpc.grpc_laddr") "\"\"" }}
+grpc_laddr = ""
 
 # Maximum number of simultaneous connections.
 # Does not include RPC (HTTP&WebSocket) connections. See max_open_connections
