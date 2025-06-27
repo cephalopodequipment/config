@@ -54,6 +54,16 @@ chain_id = "0xdef1"
 required_confirmations = 5400
 enabled = true
 
+[evm.katana]
+rpc_url = "https://rpc-katana.t.conduit.xyz/6Kx2yUoN5AXEZe68PSdPgMPZQtZStLy7m"
+chain_id = "0xb67d2"
+required_confirmations = 3600
+enabled = true
+
+[katana]
+chain_id = "0x00000000000000000000000000000000000000000000000000000000000b67d2"
+native_lbtc_address = "0xB0F70C0bD6FD87dbEb7C10dC692a2a6106817072"
+
 [sanctions]
 url = "https://mainnet.prod.lombard.finance/"
 
