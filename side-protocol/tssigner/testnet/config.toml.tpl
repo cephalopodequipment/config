@@ -5,8 +5,6 @@
 # Setting `enable_rpc` to `true` allows you to retrieve metrics from the `/metrics` endpoint.
 port = {{ env "NOMAD_PORT_p2p" }}
 enable_rpc = {{ keyOrDefault  (print (env "CONSUL_PATH") "/base.enable_rpc") "false" }}
-rpc_address = "0.0.0.0:{{ env "NOMAD_PORT_rpc" }}"port = {{ env "NOMAD_PORT_p2p" }}
-enable_rpc = {{ keyOrDefault  (print (env "CONSUL_PATH") "/base.enable_rpc") "false" }}
 rpc_address = "0.0.0.0:{{ env "NOMAD_PORT_rpc" }}"
 
 bootstrap_nodes = [{{ keyOrDefault  (print (env "CONSUL_PATH") "/bootstrap.nodes") "" }}]
