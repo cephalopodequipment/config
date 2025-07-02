@@ -129,7 +129,7 @@ datadog-hostname = ""
 [api]
 
 # Enable defines if the API server should be enabled.
-enable = false
+enable = true
 
 # Swagger defines if swagger documentation should automatically be registered.
 swagger = {{ keyOrDefault (print (env "CONSUL_PATH") "/api.swagger") "false" }}
