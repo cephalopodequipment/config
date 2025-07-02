@@ -22,32 +22,32 @@ transfer_monitor:
 
 ws_listeners:
   "1":
-    ws_url: "{{ with secret "solvers/skip-go-dydx"}}{{ .Data.data.eth_wss }}{{ end }}"
+    ws_url: "{{ with secret "static_secrets/skip-go"}}{{ .Data.data.eth_wss }}{{ end }}"
     contract_address: "0xe7935104c9670015b21c6300e5b95d2f75474cda"
     chain_id: "1"
     chain_name: "ethereum"
   "42161":
-    ws_url: "{{ with secret "solvers/skip-go-dydx"}}{{ .Data.data.arb_wss }}{{ end }}"
+    ws_url: "{{ with secret "static_secrets/skip-go"}}{{ .Data.data.arb_wss }}{{ end }}"
     contract_address: "0x23cb6147e5600c23d1fb5543916d3d5457c9b54c"
     chain_id: "42161"
     chain_name: "arbitrum"
   "8453":
-    ws_url: "{{ with secret "solvers/skip-go-dydx"}}{{ .Data.data.base_wss }}{{ end }}"
+    ws_url: "{{ with secret "static_secrets/skip-go"}}{{ .Data.data.base_wss }}{{ end }}"
     contract_address: "0x43d090025aaa6c8693b71952b910ac55ccb56bbb"
     chain_id: "8453"
     chain_name: "base"
   "43114":
-    ws_url: "{{ with secret "solvers/skip-go-dydx"}}{{ .Data.data.avalanche_wss }}{{ end }}"
+    ws_url: "{{ with secret "static_secrets/skip-go"}}{{ .Data.data.avalanche_wss }}{{ end }}"
     contract_address: "0xD415B02A7E91dBAf92EAa4721F9289CFB7f4E1cF"
     chain_id: "43114"
     chain_name: "avalanche"
   "137":
-    ws_url: "{{ with secret "solvers/skip-go-dydx"}}{{ .Data.data.polygon_wss }}{{ end }}"
+    ws_url: "{{ with secret "static_secrets/skip-go"}}{{ .Data.data.polygon_wss }}{{ end }}"
     contract_address: "0x3ffaf8d0d33226302e3a0ae48367cf1dd2023b1f"
     chain_id: "137"
     chain_name: "polygon"
   "10":
-    ws_url: "{{ with secret "solvers/skip-go-dydx"}}{{ .Data.data.optimism_wss }}{{ end }}"
+    ws_url: "{{ with secret "static_secrets/skip-go"}}{{ .Data.data.optimism_wss }}{{ end }}"
     contract_address: "0x0f479de4fd3144642f1af88e3797b1821724f703"
     chain_id: "10"
     chain_name: "optimism"
