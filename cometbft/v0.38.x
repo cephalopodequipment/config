@@ -244,10 +244,10 @@ flush_throttle_timeout = {{ keyOrDefault (print "networks/" (index (env "CONSUL_
 max_packet_msg_payload_size = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/p2p.max_packet_msg_payload_size") "1024" }}
 
 # Rate at which packets can be sent, in bytes/second
-send_rate = 51200000
+send_rate = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.send_rate") "5120000" }}
 
 # Rate at which packets can be received, in bytes/second
-recv_rate = 51200000
+recv_rate = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.recv_rate") "5120000" }}
 
 # Set true to enable the peer-exchange reactor
 pex = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.pex") "true" }}
@@ -410,18 +410,21 @@ version = "v0"
 
 wal_file = "data/cs.wal/wal"
 
+# How long we wait for a proposal block before prevoting nil
 timeout_propose = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_propose") "\"3s\"" }}
-
+# How much timeout_propose increases with each round
 timeout_propose_delta = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_propose_delta") "\"500ms\"" }}
-
+# How long we wait after receiving +2/3 prevotes for “anything” (ie. not a single block or nil)
 timeout_prevote = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_prevote") "\"1s\"" }}
-
+# How much the timeout_prevote increases with each round
 timeout_prevote_delta = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_prevote_delta") "\"500ms\"" }}
-
+# How long we wait after receiving +2/3 precommits for “anything” (ie. not a single block or nil)
 timeout_precommit = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_precommit") "\"1s\"" }}
-
+# How much the timeout_precommit increases with each round
 timeout_precommit_delta = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_precommit_delta") "\"500ms\"" }}
-
+# How long we wait after committing a block, before starting on the new
+# height (this gives us a chance to receive some more precommits, even
+# though we already have +2/3).
 timeout_commit = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_commit") "\"5s\"" }}
 
 # How many blocks to look back to check existence of the node's consensus votes before joining consensus
