@@ -104,9 +104,14 @@ else
     first_wallet=$(echo "$wallets" | jq -r '.[0]')
     log "Wallet loaded: $first_wallet - will unlock the wallet so it is available for $wallet_timeout seconds"
     unlock_wallet "$passphrase" $wallet_timeout
+    log "Sleeping for 5 seconds after unlock_wallet"
+    sleep 5
 fi
 # confirm from the wallet info that the wallet is unlocked and the time remaining in days
+log "Completed unlock_wallet command"
 wallet_info=$(get_wallet_info $wallet_name)
+log "Wallet sleeping for 5 seconds"
+sleep 5
 wallet_unlocked_until=$(echo $wallet_info | jq -r '.unlocked_until')
 log "Wallet [$wallet_name] unlocked until $(date -d @$wallet_unlocked_until)"
 
