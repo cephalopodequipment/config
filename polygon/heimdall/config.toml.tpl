@@ -14,7 +14,7 @@ version = "1.2.0"
 proxy_app = "tcp://0.0.0.0:26658"
 
 # A custom human readable name for this node
-moniker = "{{ keyOrDefault "networks/polygon/heimdall/moniker" "polygon-full-node0" }}"
+moniker = {{ keyOrDefault (print (env "CONSUL_PATH") "/base.moniker") "\"20k leagues under the sea\"" }}
 
 # If this node is many blocks behind the tip of the chain, FastSync
 # allows them to catchup quickly by downloading blocks in parallel
@@ -85,7 +85,7 @@ filter_peers = false
 [rpc]
 
 # TCP or UNIX socket address for the RPC server to listen on
-laddr = "tcp://0.0.0.0:${NOMAD_PORT_heimdall_rpc}"
+laddr = "tcp://0.0.0.0:26657"
 
 # A list of origins a cross-domain request can be executed from
 # Default value '[]' disables cors support
@@ -112,7 +112,7 @@ grpc_laddr = "tcp://0.0.0.0:9090"
 grpc_max_open_connections = 900
 
 # Activate unsafe RPC commands like /dial_seeds and /unsafe_flush_mempool
-unsafe = false
+unsafe = {{ keyOrDefault (print (env "CONSUL_PATH") "/rpc.unsafe") "false" }}
 
 # Maximum number of simultaneous connections (including WebSocket).
 # Does not include gRPC connections. See grpc_max_open_connections
@@ -145,7 +145,7 @@ timeout_broadcast_tx_commit = "10s"
 [p2p]
 
 # Address to listen for incoming connections
-laddr = "tcp://0.0.0.0:${NOMAD_PORT_heimdall_p2p}"
+laddr = "tcp://0.0.0.0:{{ env "NOMAD_PORT_p2p" }}"
 
 # Address to advertise to peers for them to dial
 # If empty, will use the same port as the laddr,
@@ -153,8 +153,8 @@ laddr = "tcp://0.0.0.0:${NOMAD_PORT_heimdall_p2p}"
 # to figure out the address.
 external_address = ""
 
-# Official Polygon mainnet seeds - Updated January 2025
-seeds = "{{ keyOrDefault "networks/polygon/heimdall/seeds" "e019e16d4e376723f3adc58eb1761809fea9bee0@35.234.150.253:26656,7f3049e88ac7f820fd86d9120506aaec0dc54b27@34.89.75.187:26656,1f5aff3b4f3193404423c3dd1797ce60cd9fea43@34.142.43.240:26656,2d5484feef4257e56ece025633a6ea132d8cadca@35.246.99.203:26656,17e9efcbd173e81a31579310c502e8cdd8b8ff2e@35.197.233.249:26656,72a83490309f9f63fdca3a0bef16c290e5cbb09c@35.246.95.65:26656,00677b1b2c6282fb060b7bb6e9cc7d2d05cdd599@34.105.180.11:26656,721dd4cebfc4b78760c7ee5d7b1b44d29a0aa854@34.147.169.102:26656,4760b3fc04648522a0bcb2d96a10aadee141ee89@34.89.55.74:26656" }}"
+# Comma separated list of seed nodes to connect to
+seeds = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/p2p.seeds") "\"\"" }}
 
 # Comma separated list of nodes to keep persistent connections to
 persistent_peers = ""
@@ -216,7 +216,7 @@ broadcast = true
 wal_dir = ""
 
 # Maximum number of transactions in the mempool
-size = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.size") "5000" }}
+size = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.size") "50000" }}
 
 # Limit the total size of all txs in the mempool.
 # This only accounts for raw transactions (e.g. given 1MB transactions and
@@ -224,7 +224,7 @@ size = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.size") "5000" }}
 max_txs_bytes = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.max_txs_bytes") "1073741824" }}
 
 # Size of the cache (used to filter transactions we saw earlier) in transactions
-cache_size = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.cache_size") "10000" }}
+cache_size = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.cache_size") "20000" }}
 
 #######################################################
 ###         State Sync Configuration Options        ###
@@ -243,10 +243,10 @@ enable = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.enable") "false"
 #
 # For Cosmos SDK-based chains, trust_period should usually be about 2/3 of the unbonding time (~2
 # weeks) during which they can be financially punished (slashed) for misbehavior.
-rpc_servers = ""
-trust_height = 0
-trust_hash = ""
-trust_period = "168h0m0s"
+rpc_servers = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.rpc_servers") "\"\"" }}
+trust_height = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.trust_height") "0" }}
+trust_hash = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.trust_hash") "\"\"" }}
+trust_period = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/statesync.trust_period") "\"168h0m0s\"" }}
 
 # Time to spend discovering snapshots before initiating a restore.
 discovery_time = "15s"
