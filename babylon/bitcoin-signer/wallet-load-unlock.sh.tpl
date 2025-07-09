@@ -35,8 +35,10 @@ get_wallets() {
 # Returns:
 #   A json object with information about the wallet - for unlocking the most relavant key is the "unlocked_until" key   
 get_wallet_info() {
+    log "Entering get_wallet_info"
     local wallet_name=$1
     bitcoin_cli  -rpcwallet="$wallet_name" getwalletinfo
+    log $(echo $?)
 }
 
 # This function restores and loads a wallet - note that the created wallet is not unlocked
@@ -113,6 +115,7 @@ wallet_info=$(get_wallet_info $wallet_name)
 log "Wallet sleeping for 5 seconds"
 sleep 5
 wallet_unlocked_until=$(echo $wallet_info | jq -r '.unlocked_until')
+log $wallet_unlocked_until
 log "Wallet [$wallet_name] unlocked until $(date -d @$wallet_unlocked_until)"
 
 log "Successfully finished wallet management tasks..."
