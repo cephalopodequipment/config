@@ -38,7 +38,6 @@ get_wallet_info() {
     log "Entering get_wallet_info"
     local wallet_name=$1
     bitcoin_cli  -rpcwallet="$wallet_name" getwalletinfo
-    log $(echo $?)
 }
 
 # This function restores and loads a wallet - note that the created wallet is not unlocked
