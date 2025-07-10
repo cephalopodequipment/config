@@ -1,17 +1,11 @@
-# This is a TOML config file for Heimdall.
+# This is a TOML config file.
 # For more information, see https://github.com/toml-lang/toml
 
-# The version of the Heimdall binary that created or
-# last modified the config file.
-version = "1.2.0"
-
-#######################################################################
-###                   Main Base Config Options                     ###
-#######################################################################
+##### main base config options #####
 
 # TCP or UNIX socket address of the ABCI application,
 # or the name of an ABCI application compiled in with the Tendermint binary
-proxy_app = "tcp://0.0.0.0:26658"
+proxy_app = "tcp://127.0.0.1:26658"
 
 # A custom human readable name for this node
 moniker = "{{ keyOrDefault (print (env "CONSUL_PATH") "/base.moniker") "20k leagues under the sea" }}"
@@ -21,31 +15,28 @@ moniker = "{{ keyOrDefault (print (env "CONSUL_PATH") "/base.moniker") "20k leag
 # and verifying their commits
 fast_sync = true
 
-# Database backend: goleveldb | cleveldb | boltdb | rocksdb
+# Database backend: goleveldb | cleveldb | boltdb
 # * goleveldb (github.com/syndtr/goleveldb - most popular implementation)
 #   - pure go
 #   - stable
 # * cleveldb (uses levigo wrapper)
 #   - fast
 #   - requires gcc
+#   - use cleveldb build tag (go build -tags cleveldb)
 # * boltdb (uses etcd's fork of bolt - github.com/etcd-io/bbolt)
 #   - EXPERIMENTAL
 #   - may be faster is some use-cases (random reads - indexer)
 #   - use boltdb build tag (go build -tags boltdb)
-# * rocksdb (uses github.com/tecbot/gorocksdb)
-#   - EXPERIMENTAL
-#   - requires gcc
-#   - use rocksdb build tag (go build -tags rocksdb)
 db_backend = "goleveldb"
 
 # Database directory
 db_dir = "data"
 
 # Output level for logging, including package level options
-log_level = "{{ keyOrDefault (print (env "CONSUL_PATH") "/base.log_level") "info" }}"
+log_level = "{{ keyOrDefault (print (env "CONSUL_PATH") "/base.log_level") "main:info,state:info,*:error" }}"
 
 # Output format: 'plain' (colored text) or 'json'
-log_format = "{{ keyOrDefault (print (env "CONSUL_PATH") "/base.log_format") "json" }}"
+log_format = "{{ keyOrDefault (print (env "CONSUL_PATH") "/base.log_format") "plain" }}"
 
 ##### additional base config options #####
 
@@ -69,23 +60,19 @@ node_key_file = "config/node_key.json"
 abci = "socket"
 
 # TCP or UNIX socket address for the profiling server to listen on
-prof_laddr = ""
+prof_laddr = "localhost:6060"
 
 # If true, query the ABCI app on connecting to a new peer
 # so the app can decide if we should keep the connection or not
 filter_peers = false
 
-#######################################################################
-###                 Advanced Configuration Options                  ###
-#######################################################################
+##### advanced configuration options #####
 
-#######################################################
-###       RPC Server Configuration Options          ###
-#######################################################
+##### rpc server configuration options #####
 [rpc]
 
 # TCP or UNIX socket address for the RPC server to listen on
-laddr = "tcp://0.0.0.0:26657"
+laddr = "tcp://0.0.0.0:{{ env "NOMAD_PORT_rpc" }}"
 
 # A list of origins a cross-domain request can be executed from
 # Default value '[]' disables cors support
@@ -100,7 +87,7 @@ cors_allowed_headers = ["Origin", "Accept", "Content-Type", "X-Requested-With", 
 
 # TCP or UNIX socket address for the gRPC server to listen on
 # NOTE: This server only supports /broadcast_tx_commit
-grpc_laddr = "tcp://0.0.0.0:9090"
+grpc_laddr = ""
 
 # Maximum number of simultaneous connections.
 # Does not include RPC (HTTP&WebSocket) connections. See max_open_connections
@@ -112,7 +99,7 @@ grpc_laddr = "tcp://0.0.0.0:9090"
 grpc_max_open_connections = 900
 
 # Activate unsafe RPC commands like /dial_seeds and /unsafe_flush_mempool
-unsafe = {{ keyOrDefault (print (env "CONSUL_PATH") "/rpc.unsafe") "false" }}
+unsafe = {{ keyOrDefault (print (env "CONSUL_PATH") "/rpc.unsafe") false }}
 
 # Maximum number of simultaneous connections (including WebSocket).
 # Does not include gRPC connections. See grpc_max_open_connections
@@ -139,9 +126,26 @@ max_subscriptions_per_client = 5
 # See https://github.com/tendermint/tendermint/issues/3435
 timeout_broadcast_tx_commit = "10s"
 
-#######################################################
-###           P2P Configuration Options             ###
-#######################################################
+# Maximum size of request body, in bytes
+max_body_bytes = 1000000
+
+# Maximum size of request header, in bytes
+max_header_bytes = 1048576
+
+# The path to a file containing certificate that is used to create the HTTPS server.
+# Migth be either absolute path or path related to tendermint's config directory.
+# If the certificate is signed by a certificate authority,
+# the certFile should be the concatenation of the server's certificate, any intermediates,
+# and the CA's certificate.
+# NOTE: both tls_cert_file and tls_key_file must be present for Tendermint to create HTTPS server. Otherwise, HTTP server is run.
+tls_cert_file = ""
+
+# The path to a file containing matching private key that is used to create the HTTPS server.
+# Migth be either absolute path or path related to tendermint's config directory.
+# NOTE: both tls_cert_file and tls_key_file must be present for Tendermint to create HTTPS server. Otherwise, HTTP server is run.
+tls_key_file = ""
+
+##### peer to peer configuration options #####
 [p2p]
 
 # Address to listen for incoming connections
@@ -170,10 +174,10 @@ addr_book_file = "config/addrbook.json"
 addr_book_strict = true
 
 # Maximum number of inbound peers
-max_num_inbound_peers = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.max_num_inbound_peers") "40" }}
+max_num_inbound_peers = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.max_num_inbound_peers") 100 }}
 
 # Maximum number of outbound peers to connect to, excluding persistent peers
-max_num_outbound_peers = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.max_num_outbound_peers") "10" }}
+max_num_outbound_peers = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.max_num_outbound_peers") 100 }}
 
 # Time to wait before flushing messages out on the connection
 flush_throttle_timeout = "100ms"
@@ -206,9 +210,7 @@ allow_duplicate_ip = false
 handshake_timeout = "20s"
 dial_timeout = "3s"
 
-#######################################################
-###          Mempool Configuration Option          ###
-#######################################################
+##### mempool configuration options #####
 [mempool]
 
 recheck = true
@@ -216,59 +218,29 @@ broadcast = true
 wal_dir = ""
 
 # Maximum number of transactions in the mempool
-size = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.size") "50000" }}
+size = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.size") 5000 }}
 
 # Limit the total size of all txs in the mempool.
 # This only accounts for raw transactions (e.g. given 1MB transactions and
 # max_txs_bytes=5MB, mempool will only accept 5 transactions).
-max_txs_bytes = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.max_txs_bytes") "1073741824" }}
+max_txs_bytes = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.max_txs_bytes") 1073741824 }}
 
 # Size of the cache (used to filter transactions we saw earlier) in transactions
-cache_size = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.cache_size") "20000" }}
+cache_size = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.cache_size") 10000 }}
 
-#######################################################
-###         State Sync Configuration Options        ###
-#######################################################
-[statesync]
-# State sync rapidly bootstraps a new node by discovering, fetching, and restoring a state machine
-# snapshot from peers instead of fetching and replaying historical blocks. Requires some peers in
-# the network to take and serve state machine snapshots. State sync is not attempted if the node
-# has any local state (LastBlockHeight > 0). The node will have a truncated block history,
-# starting from the height of the snapshot.
-enable = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.enable") "false" }}
+# Maximum size of a single transaction.
+# NOTE: the max size of a tx transmitted over the network is {max_tx_bytes} + {amino overhead}.
+max_tx_bytes = 1048576
 
-# RPC servers (comma-separated) for light client verification of the synced state machine and
-# retrieval of state data for node bootstrapping. Also needs a trusted height and corresponding
-# header hash obtained from a trusted source, and a period during which validators can be trusted.
-#
-# For Cosmos SDK-based chains, trust_period should usually be about 2/3 of the unbonding time (~2
-# weeks) during which they can be financially punished (slashed) for misbehavior.
-rpc_servers = "{{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.rpc_servers") "" }}"
-trust_height = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.trust_height") "0" }}
-trust_hash = "{{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.trust_hash") "" }}"
-trust_period = "{{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/statesync.trust_period") "168h0m0s" }}"
-
-# Time to spend discovering snapshots before initiating a restore.
-discovery_time = "15s"
-
-# Temporary directory for state sync snapshot chunks, defaults to the OS tempdir (typically /tmp).
-# Will create a new, randomly named directory within, and remove it when done.
-temp_dir = ""
-
-#######################################################
-###       Fast Sync Configuration Connections       ###
-#######################################################
+##### fast sync configuration options #####
 [fastsync]
 
 # Fast Sync version to use:
 #   1) "v0" (default) - the legacy fast sync implementation
 #   2) "v1" - refactor of v0 version for better testability
-#   3) "v2" - complete redesign of v0, optimized for testability & readability
 version = "v0"
 
-#######################################################
-###         Consensus Configuration Options         ###
-#######################################################
+##### consensus configuration options #####
 [consensus]
 
 wal_file = "data/cs.wal/wal"
@@ -292,9 +264,7 @@ create_empty_blocks_interval = "0s"
 peer_gossip_sleep_duration = "100ms"
 peer_query_maj23_sleep_duration = "2s"
 
-#######################################################
-###   Transaction Indexer Configuration Options     ###
-#######################################################
+##### transactions indexer configuration options #####
 [tx_index]
 
 # What indexer to use for transactions
@@ -308,8 +278,9 @@ indexer = "kv"
 #
 # You can also index transactions by height by adding "tx.height" tag here.
 #
-# It's recommended to index only the tags you need as it will slow down transaction
-# indexing and increase storage requirements.
+# It's recommended to index only a subset of tags due to possible memory
+# bloat. This is, of course, depends on the indexer's DB and the volume of
+# transactions.
 index_tags = ""
 
 # When set to true, tells indexer to index all tags (predefined tags:
@@ -318,17 +289,15 @@ index_tags = ""
 # Note this may be not desirable (see the comment above). IndexTags has a
 # precedence over IndexAllTags (i.e. when given both, IndexTags will be
 # indexed).
-index_all_tags = false
+index_all_tags = true
 
-#######################################################
-###       Instrumentation Configuration Options     ###
-#######################################################
+##### instrumentation configuration options #####
 [instrumentation]
 
 # When true, Prometheus metrics are served under /metrics on
 # PrometheusListenAddr.
 # Check out the documentation for the list of available metrics.
-prometheus = {{ keyOrDefault (print (env "CONSUL_PATH") "/instrumentation.prometheus") "true" }}
+prometheus = {{ keyOrDefault (print (env "CONSUL_PATH") "/instrumentation.prometheus") false }}
 
 # Address to listen for Prometheus collector(s) connections
 prometheus_listen_addr = ":26660"
