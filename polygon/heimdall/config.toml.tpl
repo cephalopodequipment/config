@@ -113,6 +113,7 @@ grpc_max_open_connections = 900
 
 # Activate unsafe RPC commands like /dial_seeds and /unsafe_flush_mempool
 unsafe = {{ keyOrDefault (print (env "CONSUL_PATH") "/rpc.unsafe") "false" }}
+
 # Maximum number of simultaneous connections (including WebSocket).
 # Does not include gRPC connections. See grpc_max_open_connections
 # If you want to accept a larger number than the default, make sure
