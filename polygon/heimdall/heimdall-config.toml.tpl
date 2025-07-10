@@ -24,7 +24,7 @@ sub_graph_url = ""
 #### Bridge configs ####
 
 # Heimdall REST server endpoint, which is used by bridge
-heimdall_rest_server = "http://127.0.0.1:{{ env "NOMAD_PORT_heimdall_rest" }}"
+heimdall_rest_server = "http://127.0.0.1:31317"
 
 # AMQP endpoint
 amqp_url = "amqp://guest:guest@localhost:5672/"
