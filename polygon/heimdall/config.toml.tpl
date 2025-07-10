@@ -169,10 +169,10 @@ addr_book_file = "config/addrbook.json"
 addr_book_strict = true
 
 # Maximum number of inbound peers
-max_num_inbound_peers = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.max_num_inbound_peers") "40" }}
+max_num_inbound_peers = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.max_num_inbound_peers") 40 }}
 
 # Maximum number of outbound peers to connect to, excluding persistent peers
-max_num_outbound_peers = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.max_num_outbound_peers") "10" }}
+max_num_outbound_peers = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.max_num_outbound_peers") 10 }}
 
 # Time to wait before flushing messages out on the connection
 flush_throttle_timeout = "100ms"
@@ -215,15 +215,15 @@ broadcast = true
 wal_dir = ""
 
 # Maximum number of transactions in the mempool
-size = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.size") "50000" }}
+size = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.size") 50000 }}
 
 # Limit the total size of all txs in the mempool.
 # This only accounts for raw transactions (e.g. given 1MB transactions and
 # max_txs_bytes=5MB, mempool will only accept 5 transactions).
-max_txs_bytes = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.max_txs_bytes") "1073741824" }}
+max_txs_bytes = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.max_txs_bytes") 1073741824 }}
 
 # Size of the cache (used to filter transactions we saw earlier) in transactions
-cache_size = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.cache_size") "20000" }}
+cache_size = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.cache_size") 20000 }}
 
 #######################################################
 ###         State Sync Configuration Options        ###
@@ -243,7 +243,7 @@ enable = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.enable") "false"
 # For Cosmos SDK-based chains, trust_period should usually be about 2/3 of the unbonding time (~2
 # weeks) during which they can be financially punished (slashed) for misbehavior.
 rpc_servers = "{{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.rpc_servers") "" }}"
-trust_height = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.trust_height") "0" }}
+trust_height = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.trust_height") 0 }}
 trust_hash = "{{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.trust_hash") "" }}"
 trust_period = "{{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/statesync.trust_period") "168h0m0s" }}"
 
