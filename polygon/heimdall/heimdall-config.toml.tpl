@@ -10,10 +10,11 @@ eth_rpc_url = "{{ env "ETH_RPC_URL" }}"
 bor_rpc_url = "http://127.0.0.1:8545"
 
 # GRPC flag for bor chain
-bor_grpc_flag = false
+bor_grpc_flag = "false"
 
 # GRPC endpoint for bor chain
 bor_grpc_url = "localhost:3131"
+
 # RPC endpoint for tendermint
 tendermint_rpc_url = "http://127.0.0.1:{{ env "NOMAD_PORT_rpc" }}"
 
@@ -35,17 +36,18 @@ noack_poll_interval = "16m50s"
 clerk_poll_interval = "10s"
 span_poll_interval = "1m0s"
 milestone_poll_interval = "30s"
-milestone_poll_interval = "30s"
-enable_self_heal = false
+enable_self_heal = "false"
 sh_state_synced_interval = "15m0s"
 sh_stake_update_interval = "3h0m0s"
+sh_max_depth_duration = "1h0m0s"
 
 #### gas limits ####
-#### gas limits ####
-main_chain_gas_limit = 5000000
+main_chain_gas_limit = "5000000"
 
 #### gas price ####
-main_chain_max_gas_price = 400000000000
+main_chain_max_gas_price = "400000000000"
+
+##### Timeout Config #####
 no_ack_wait_time = "30m0s"
 
 ##### chain - newSelectionAlgoHeight depends on this #####
