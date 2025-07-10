@@ -8,7 +8,7 @@
 proxy_app = "tcp://127.0.0.1:26658"
 
 # A custom human readable name for this node
-moniker = "{{ keyOrDefault (print (env "CONSUL_PATH") "/base.moniker") "20k leagues under the sea" }}"
+moniker = "polygon-heimdall-homelab"
 
 # If this node is many blocks behind the tip of the chain, FastSync
 # allows them to catchup quickly by downloading blocks in parallel
@@ -33,10 +33,10 @@ db_backend = "goleveldb"
 db_dir = "data"
 
 # Output level for logging, including package level options
-log_level = "{{ keyOrDefault (print (env "CONSUL_PATH") "/base.log_level") "main:info,state:info,*:error" }}"
+log_level = "main:info,state:info,*:error"
 
 # Output format: 'plain' (colored text) or 'json'
-log_format = "{{ keyOrDefault (print (env "CONSUL_PATH") "/base.log_format") "plain" }}"
+log_format = "plain"
 
 ##### additional base config options #####
 
@@ -99,7 +99,7 @@ grpc_laddr = ""
 grpc_max_open_connections = 900
 
 # Activate unsafe RPC commands like /dial_seeds and /unsafe_flush_mempool
-unsafe = {{ keyOrDefault (print (env "CONSUL_PATH") "/rpc.unsafe") false }}
+unsafe = false
 
 # Maximum number of simultaneous connections (including WebSocket).
 # Does not include gRPC connections. See grpc_max_open_connections
@@ -174,10 +174,10 @@ addr_book_file = "config/addrbook.json"
 addr_book_strict = true
 
 # Maximum number of inbound peers
-max_num_inbound_peers = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.max_num_inbound_peers") 100 }}
+max_num_inbound_peers = 100
 
 # Maximum number of outbound peers to connect to, excluding persistent peers
-max_num_outbound_peers = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.max_num_outbound_peers") 100 }}
+max_num_outbound_peers = 100
 
 # Time to wait before flushing messages out on the connection
 flush_throttle_timeout = "100ms"
@@ -218,15 +218,15 @@ broadcast = true
 wal_dir = ""
 
 # Maximum number of transactions in the mempool
-size = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.size") 5000 }}
+size = 5000
 
 # Limit the total size of all txs in the mempool.
 # This only accounts for raw transactions (e.g. given 1MB transactions and
 # max_txs_bytes=5MB, mempool will only accept 5 transactions).
-max_txs_bytes = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.max_txs_bytes") 1073741824 }}
+max_txs_bytes = 1073741824
 
 # Size of the cache (used to filter transactions we saw earlier) in transactions
-cache_size = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.cache_size") 10000 }}
+cache_size = 10000
 
 # Maximum size of a single transaction.
 # NOTE: the max size of a tx transmitted over the network is {max_tx_bytes} + {amino overhead}.
@@ -245,13 +245,13 @@ version = "v0"
 
 wal_file = "data/cs.wal/wal"
 
-timeout_propose = "{{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_propose") "3s" }}"
-timeout_propose_delta = "{{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_propose_delta") "500ms" }}"
-timeout_prevote = "{{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_prevote") "1s" }}"
-timeout_prevote_delta = "{{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_prevote_delta") "500ms" }}"
-timeout_precommit = "{{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_precommit") "1s" }}"
-timeout_precommit_delta = "{{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_precommit_delta") "500ms" }}"
-timeout_commit = "{{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_commit") "5s" }}"
+timeout_propose = "3s"
+timeout_propose_delta = "500ms"
+timeout_prevote = "1s"
+timeout_prevote_delta = "500ms"
+timeout_precommit = "1s"
+timeout_precommit_delta = "500ms"
+timeout_commit = "5s"
 
 # Make progress as soon as we have all the precommits (as if TimeoutCommit = 0)
 skip_timeout_commit = false
@@ -297,7 +297,7 @@ index_all_tags = true
 # When true, Prometheus metrics are served under /metrics on
 # PrometheusListenAddr.
 # Check out the documentation for the list of available metrics.
-prometheus = {{ keyOrDefault (print (env "CONSUL_PATH") "/instrumentation.prometheus") false }}
+prometheus = true
 
 # Address to listen for Prometheus collector(s) connections
 prometheus_listen_addr = ":26660"
