@@ -260,8 +260,8 @@ max-txs = 5000
 # RPC endpoint for ethereum chain - using fallback URL
 eth_rpc_url = "https://ethereum.publicnode.com"
 
-# RPC endpoint for bor chain - using service discovery with fallback
-bor_rpc_url = "{{ range service "polygon-execution-rpc" }}http://{{ .Address }}:{{ .Port }}{{ else }}http://127.0.0.1:8545{{ end }}"
+# RPC endpoint for bor chain - using fallback URL
+bor_rpc_url = "http://127.0.0.1:8545"
 
 # GRPC flag for bor chain
 bor_grpc_flag = false
