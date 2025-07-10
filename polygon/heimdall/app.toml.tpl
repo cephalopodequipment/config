@@ -257,8 +257,8 @@ max-txs = 5000
 
 [custom]
 
-# RPC endpoint for ethereum chain - using Consul key or service discovery
-eth_rpc_url = "{{ keyOrDefault (print (env "CONSUL_PATH") "/eth_rpc_url") \"\" }}{{ if not (keyExists (print (env "CONSUL_PATH") "/eth_rpc_url")) }}{{ range service "eth-execution" }}http://{{ .Address }}:{{ index .ServiceMeta "PortRpc" }}{{ end }}{{ end }}"
+# RPC endpoint for ethereum chain - using Consul key or service discovery with fallback
+eth_rpc_url = "{{ keyOrDefault (print (env "CONSUL_PATH") "/eth_rpc_url") "https://ethereum.publicnode.com" }}"
 
 # RPC endpoint for bor chain - using service discovery with fallback
 bor_rpc_url = "{{ range service "polygon-execution-rpc" }}http://{{ .Address }}:{{ .Port }}{{ else }}http://127.0.0.1:8545{{ end }}"
