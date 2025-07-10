@@ -3,11 +3,11 @@
 
 ##### RPC and REST configs #####
 
-# RPC endpoint for ethereum chain - using Consul service discovery
-eth_rpc_url = "{{ range service "eth-execution" }}http://{{ .Address }}:{{ index .ServiceMeta "PortRpc" }}{{ end }}"
+# RPC endpoint for ethereum chain - using environment variable
+eth_rpc_url = "{{ env "ETH_RPC_URL" }}"
 
-# RPC endpoint for bor chain
-bor_rpc_url = "http://127.0.0.1:${NOMAD_PORT_bor_rpc}"
+# RPC endpoint for bor chain (will be set when Bor is running)
+bor_rpc_url = "http://127.0.0.1:8545"
 
 # GRPC flag for bor chain
 bor_grpc_flag = "false"
@@ -16,7 +16,7 @@ bor_grpc_flag = "false"
 bor_grpc_url = "localhost:3131"
 
 # RPC endpoint for tendermint
-tendermint_rpc_url = "http://127.0.0.1:${NOMAD_PORT_heimdall_rpc}"
+tendermint_rpc_url = "http://127.0.0.1:{{ env "NOMAD_PORT_rpc" }}"
 
 # Polygon Sub Graph URL for self-heal mechanism (optional)
 sub_graph_url = ""
@@ -24,7 +24,7 @@ sub_graph_url = ""
 #### Bridge configs ####
 
 # Heimdall REST server endpoint, which is used by bridge
-heimdall_rest_server = "http://127.0.0.1:${NOMAD_PORT_heimdall_rest}"
+heimdall_rest_server = "http://127.0.0.1:{{ env "NOMAD_PORT_heimdall_rest" }}"
 
 # AMQP endpoint
 amqp_url = "amqp://guest:guest@localhost:5672/"

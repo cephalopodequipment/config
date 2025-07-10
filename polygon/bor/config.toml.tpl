@@ -23,7 +23,7 @@ snapshot = true
   maxpeers = {{ keyOrDefault (print (env "CONSUL_PATH") "/bor.maxpeers") "2000" }}
   maxpendpeers = {{ keyOrDefault (print (env "CONSUL_PATH") "/bor.maxpendpeers") "500" }}
   bind = "0.0.0.0"
-  port = ${BOR_P2P_PORT}
+  port = {{ env "BOR_P2P_PORT" }}
   nat = "any"
   
   [p2p.discovery]
@@ -36,7 +36,7 @@ snapshot = true
 
 # Heimdall configuration
 [heimdall]
-  url = "${HEIMDALL_REST_URL}"
+  url = "{{ env "HEIMDALL_REST_URL" }}"
   "bor.without" = false
 
 # Transaction pool configuration (using defaults for fullnode)
@@ -56,7 +56,7 @@ snapshot = true
 [jsonrpc]
   [jsonrpc.http]
     enabled = true
-    port = ${BOR_RPC_PORT}
+    port = {{ env "BOR_RPC_PORT" }}
     host = "0.0.0.0"
     api = ["eth", "net", "web3", "txpool", "bor"]
     vhosts = ["*"]
@@ -64,7 +64,7 @@ snapshot = true
   
   [jsonrpc.ws]
     enabled = true
-    port = ${BOR_WS_PORT}
+    port = {{ env "BOR_WS_PORT" }}
     host = "0.0.0.0"
     api = ["eth", "net", "web3", "txpool", "bor"]
     origins = ["*"]
@@ -72,7 +72,7 @@ snapshot = true
 # Telemetry and metrics configuration
 [telemetry]
   metrics = true
-  prometheus-addr = "0.0.0.0:${BOR_PROM_PORT}"
+  prometheus-addr = "0.0.0.0:{{ env "BOR_PROM_PORT" }}"
 
 # Cache configuration (using defaults for fullnode)
 [cache]
