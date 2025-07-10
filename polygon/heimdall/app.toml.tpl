@@ -134,7 +134,7 @@ swagger = true
 
 # Address defines the API server to listen on. Use localhost if bor and heimdall run on the same machine.
 # Otherwise, use a protected IP or leave as 0.0.0.0 (e.g. if services run behind docker).
-address = "tcp://0.0.0.0:1317"
+address = "tcp://0.0.0.0:{{ env "NOMAD_PORT_heimdall_rest" }}"
 
 # MaxOpenConnections defines the number of maximum open connections.
 max-open-connections = 1000
