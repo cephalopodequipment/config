@@ -234,7 +234,7 @@ cache_size = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.cache_size") "
 # the network to take and serve state machine snapshots. State sync is not attempted if the node
 # has any local state (LastBlockHeight > 0). The node will have a truncated block history,
 # starting from the height of the snapshot.
-enable = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.enable") "false" }}
+enable = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.enable") false }}
 
 # RPC servers (comma-separated) for light client verification of the synced state machine and
 # retrieval of state data for node bootstrapping. Also needs a trusted height and corresponding
@@ -327,7 +327,7 @@ index_all_tags = false
 # When true, Prometheus metrics are served under /metrics on
 # PrometheusListenAddr.
 # Check out the documentation for the list of available metrics.
-prometheus = {{ keyOrDefault (print (env "CONSUL_PATH") "/instrumentation.prometheus") "true" }}
+prometheus = {{ keyOrDefault (print (env "CONSUL_PATH") "/instrumentation.prometheus") true }}
 
 # Address to listen for Prometheus collector(s) connections
 prometheus_listen_addr = ":26660"
