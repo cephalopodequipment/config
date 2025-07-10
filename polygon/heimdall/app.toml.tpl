@@ -1,14 +1,18 @@
-# This is a TOML config file for Heimdall v2 application settings.
+# This is a TOML config file.
 # For more information, see https://github.com/toml-lang/toml
 
 ###############################################################################
-###                           Base Configuration                            ###
+### Base Configuration ###
 ###############################################################################
 
 # The minimum gas prices a validator is willing to accept for processing a
 # transaction. A transaction's fees must meet the minimum of any denomination
-# specified in this config (e.g. 0.25token1;0.0001token2).
+# specified in this config (e.g. 0.25token1,0.0001token2).
 minimum-gas-prices = ""
+
+# The maximum gas a query coming over rest/grpc may consume.
+# If this is set to zero, the query can consume an unbounded amount of gas.
+query-gas-limit = "0"
 
 # default: the last 362880 states are kept, pruning at 10 block intervals
 # nothing: all historic states will be saved, nothing will be deleted (i.e. archiving node)
@@ -23,18 +27,14 @@ pruning-interval = "0"
 # HaltHeight contains a non-zero block height at which a node will gracefully
 # halt and shutdown that can be used to assist upgrades and testing.
 #
-# Note: Commitment of state will be attempted even if the node is configured to
-# halt during BeginBlock. However, it is not guaranteed. Thus, it is recommended
-# to leave this value empty and manually shut down the node when needed.
+# Note: Commitment of state will be attempted on the corresponding block.
 halt-height = 0
 
 # HaltTime contains a non-zero minimum block time (in Unix seconds) at which
 # a node will gracefully halt and shutdown that can be used to assist upgrades
 # and testing.
 #
-# Note: Commitment of state will be attempted even if the node is configured to
-# halt during BeginBlock. However, it is not guaranteed. Thus, it is recommended
-# to leave this value empty and manually shut down the node when needed.
+# Note: Commitment of state will be attempted on the corresponding block.
 halt-time = 0
 
 # MinRetainBlocks defines the minimum block height offset from the current
@@ -66,7 +66,7 @@ index-events = []
 # IavlCacheSize set the size of the iavl tree cache (in number of nodes).
 iavl-cache-size = 781250
 
-# IAVLDisableFastNode enables or disables the fast node feature of IAVL. 
+# IAVLDisableFastNode enables or disables the fast node feature of IAVL.
 # Default is false.
 iavl-disable-fastnode = false
 
@@ -76,7 +76,7 @@ iavl-disable-fastnode = false
 app-db-backend = ""
 
 ###############################################################################
-###                         Telemetry Configuration                        ###
+### Telemetry Configuration ###
 ###############################################################################
 
 [telemetry]
@@ -109,8 +109,19 @@ prometheus-retention-time = 0
 global-labels = [
 ]
 
+# MetricsSink defines the type of metrics sink to use.
+metrics-sink = ""
+
+# StatsdAddr defines the address of a statsd server to send metrics to.
+# Only utilized if MetricsSink is set to "statsd" or "dogstatsd".
+statsd-addr = ""
+
+# DatadogHostname defines the hostname to use when emitting metrics to
+# Datadog. Only utilized if MetricsSink is set to "dogstatsd".
+datadog-hostname = ""
+
 ###############################################################################
-###                           API Configuration                            ###
+### API Configuration ###
 ###############################################################################
 
 [api]
@@ -119,9 +130,10 @@ global-labels = [
 enable = true
 
 # Swagger defines if swagger documentation should automatically be registered.
-swagger = false
+swagger = true
 
-# Address defines the API server to listen on.
+# Address defines the API server to listen on. Use localhost if bor and heimdall run on the same machine.
+# Otherwise, use a protected IP or leave as 0.0.0.0 (e.g. if services run behind docker).
 address = "tcp://0.0.0.0:1317"
 
 # MaxOpenConnections defines the number of maximum open connections.
@@ -140,43 +152,7 @@ rpc-max-body-bytes = 1000000
 enabled-unsafe-cors = false
 
 ###############################################################################
-###                           Rosetta Configuration                        ###
-###############################################################################
-
-[rosetta]
-
-# Enable defines if the Rosetta API server should be enabled.
-enable = false
-
-# Address defines the Rosetta API server to listen on.
-address = ":8080"
-
-# Network defines the name of the blockchain that will be returned in Rosetta interface.
-blockchain = "app"
-
-# Network defines the name of the network that will be returned in Rosetta interface.
-network = "network"
-
-# Retries defines the number of retries when connecting to the node before failing.
-retries = 3
-
-# Offline defines if Rosetta server should run in offline mode.
-offline = false
-
-# EnableDefaultSuggestedFee defines if the server should suggest fee by default.
-# If 'construction/medata' is called without gas limit and gas price,
-# suggested fee based on gas-to-suggest and denom-to-suggest will be given.
-enable-fee-suggestion = false
-
-# GasToSuggest defines gas limit when calculating the fee
-gas-to-suggest = 210000
-
-# DenomToSuggest defines the defult denom for fee suggestion.
-# Price must be in minimum-gas-prices.
-denom-to-suggest = "uatom"
-
-###############################################################################
-###                           gRPC Configuration                           ###
+### gRPC Configuration ###
 ###############################################################################
 
 [grpc]
@@ -185,7 +161,7 @@ denom-to-suggest = "uatom"
 enable = true
 
 # Address defines the gRPC server address to bind to.
-address = "0.0.0.0:9090"
+address = "localhost:9090"
 
 # MaxRecvMsgSize defines the max message size in bytes the server can receive.
 # The default value is 10MB.
@@ -196,23 +172,18 @@ max-recv-msg-size = "10485760"
 max-send-msg-size = "2147483647"
 
 ###############################################################################
-###                        gRPC Web Configuration                          ###
+### gRPC Web Configuration ###
 ###############################################################################
 
 [grpc-web]
 
 # GRPCWebEnable defines if the gRPC-web should be enabled.
 # NOTE: gRPC must also be enabled, otherwise, this configuration is a no-op.
+# NOTE: gRPC-Web uses the same address as the API server.
 enable = true
 
-# Address defines the gRPC-web server address to bind to.
-address = "0.0.0.0:9091"
-
-# EnableUnsafeCORS defines if CORS should be enabled (unsafe - use it at your own risk).
-enable-unsafe-cors = false
-
 ###############################################################################
-###                        State Sync Configuration                        ###
+### State Sync Configuration ###
 ###############################################################################
 
 # State sync snapshots allow other nodes to rapidly join the network without replaying historical
@@ -227,66 +198,76 @@ snapshot-interval = 0
 snapshot-keep-recent = 2
 
 ###############################################################################
-###                         Store / State Streaming                        ###
+### State Streaming ###
 ###############################################################################
 
+# Streaming allows nodes to stream state to external systems.
 [streaming]
 
-# ABCI.Listen defines the list of ABCI listeners to invoke during ABCI method calls.
-abci.listen = []
+# streaming.abci specifies the configuration for the ABCI Listener streaming service.
+[streaming.abci]
 
-# ABCI.Plugin defines the list of plugins to load for ABCI streaming.
-abci.plugin = []
+# List of kv store keys to stream out via gRPC.
+# The store key names MUST match the module's StoreKey name.
+#
+# Example:
+# ["acc", "bank", "gov", "staking", "mint"[,...]]
+# ["*"] to expose all keys.
+keys = []
 
-# ABCI.StopNodeOnErr defines whether to stop the node on message delivery error.
-abci.stop-node-on-err = true
+# The plugin name used for streaming via gRPC.
+# Streaming is only enabled if this is set.
+# Supported plugins: abci
+plugin = ""
+
+# stop-node-on-err specifies whether to stop the node on message delivery error.
+stop-node-on-err = true
 
 ###############################################################################
-###                             Mempool                                    ###
+### Mempool ###
 ###############################################################################
 
 [mempool]
 # Setting max-txs to 0 will allow for a unbounded amount of transactions in the mempool.
-# Setting max_txs to negative will disable transactions from being inserted into the mempool.
-# Setting max_txs to a positive number (n) will limit the number of transactions in the mempool to n.
-max-txs = 5000
-
-###############################################################################
-###                         Custom Heimdall Configuration                  ###
-###############################################################################
+# Setting max_txs to negative 1 (-1) will disable transactions from being inserted into the mempool (no-op mempool).
+# Setting max_txs to a positive number (> 0) will limit the number of transactions in the mempool, by the specified amount.
+#
+# Note, this configuration only applies to SDK built-in app-side mempool
+# implementations.
+max-txs = -1
 
 [custom]
+# This is a TOML config file.
+# For more information, see https://github.com/toml-lang/toml
 
-# RPC endpoint for ethereum chain - using fallback URL
+bor_rpc_timeout = "1s"
+
+##### RPC and REST configs #####
+
+# RPC endpoint for ethereum chain
 eth_rpc_url = "https://ethereum.publicnode.com"
 
-# RPC endpoint for bor chain - using fallback URL
+# RPC endpoint for bor chain
 bor_rpc_url = "http://127.0.0.1:8545"
 
 # GRPC flag for bor chain
-bor_grpc_flag = false
+bor_grpc_flag = "false"
 
 # GRPC endpoint for bor chain
 bor_grpc_url = "localhost:3131"
 
-# RPC timeout for bor
-bor_rpc_timeout = "1s"
-
-# RPC endpoint for tendermint
-tendermint_rpc_url = "http://127.0.0.1:{{ env "NOMAD_PORT_rpc" }}"
+# RPC endpoint for cometBFT
+comet_bft_rpc_url = "http://0.0.0.0:{{ env "NOMAD_PORT_rpc" }}"
 
 # Polygon Sub Graph URL for self-heal mechanism (optional)
 sub_graph_url = ""
 
 #### Bridge configs ####
 
-# Heimdall REST server endpoint, which is used by bridge
-heimdall_rest_server = "http://127.0.0.1:{{ env "NOMAD_PORT_heimdall_rest" }}"
-
 # AMQP endpoint
 amqp_url = "amqp://guest:guest@localhost:5672/"
 
-## Poll intervals (using defaults for fullnode)
+## Poll intervals
 checkpoint_poll_interval = "5m0s"
 syncer_poll_interval = "1m0s"
 noack_poll_interval = "16m50s"
@@ -294,9 +275,10 @@ clerk_poll_interval = "10s"
 span_poll_interval = "1m0s"
 milestone_poll_interval = "30s"
 enable_self_heal = "false"
-sh_state_synced_interval = "15m0s"
+sh_state_synced_interval = "3h0m0s"
 sh_stake_update_interval = "3h0m0s"
-sh_max_depth_duration = "1h0m0s"
+sh_checkpoint_ack_interval = "30m0s"
+sh_max_depth_duration = "24h0m0s"
 
 #### gas limits ####
 main_chain_gas_limit = "5000000"
@@ -307,5 +289,5 @@ main_chain_max_gas_price = "400000000000"
 ##### Timeout Config #####
 no_ack_wait_time = "30m0s"
 
-##### chain - newSelectionAlgoHeight depends on this #####
+##### chain #####
 chain = "mainnet"
