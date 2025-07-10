@@ -14,7 +14,7 @@ version = "1.2.0"
 proxy_app = "tcp://0.0.0.0:26658"
 
 # A custom human readable name for this node
-moniker = {{ keyOrDefault (print (env "CONSUL_PATH") "/base.moniker") "\"20k leagues under the sea\"" }}
+moniker = "{{ keyOrDefault (print (env "CONSUL_PATH") "/base.moniker") "20k leagues under the sea" }}"
 
 # If this node is many blocks behind the tip of the chain, FastSync
 # allows them to catchup quickly by downloading blocks in parallel
@@ -42,10 +42,10 @@ db_backend = "goleveldb"
 db_dir = "data"
 
 # Output level for logging, including package level options
-log_level = {{ keyOrDefault (print (env "CONSUL_PATH") "/base.log_level") "\"info\"" }}
+log_level = "{{ keyOrDefault (print (env "CONSUL_PATH") "/base.log_level") "info" }}"
 
 # Output format: 'plain' (colored text) or 'json'
-log_format = {{ keyOrDefault (print (env "CONSUL_PATH") "/base.log_format") "\"json\"" }}
+log_format = "{{ keyOrDefault (print (env "CONSUL_PATH") "/base.log_format") "json" }}"
 
 ##### additional base config options #####
 
@@ -154,7 +154,7 @@ laddr = "tcp://0.0.0.0:{{ env "NOMAD_PORT_p2p" }}"
 external_address = ""
 
 # Comma separated list of seed nodes to connect to
-seeds = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/p2p.seeds") "\"\"" }}
+seeds = "{{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/p2p.seeds") "" }}"
 
 # Comma separated list of nodes to keep persistent connections to
 persistent_peers = ""
@@ -243,10 +243,10 @@ enable = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.enable") "false"
 #
 # For Cosmos SDK-based chains, trust_period should usually be about 2/3 of the unbonding time (~2
 # weeks) during which they can be financially punished (slashed) for misbehavior.
-rpc_servers = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.rpc_servers") "\"\"" }}
+rpc_servers = "{{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.rpc_servers") "" }}"
 trust_height = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.trust_height") "0" }}
-trust_hash = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.trust_hash") "\"\"" }}
-trust_period = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/statesync.trust_period") "\"168h0m0s\"" }}
+trust_hash = "{{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.trust_hash") "" }}"
+trust_period = "{{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/statesync.trust_period") "168h0m0s" }}"
 
 # Time to spend discovering snapshots before initiating a restore.
 discovery_time = "15s"
@@ -273,13 +273,13 @@ version = "v0"
 
 wal_file = "data/cs.wal/wal"
 
-timeout_propose = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_propose") "\"3s\"" }}
-timeout_propose_delta = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_propose_delta") "\"500ms\"" }}
-timeout_prevote = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_prevote") "\"1s\"" }}
-timeout_prevote_delta = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_prevote_delta") "\"500ms\"" }}
-timeout_precommit = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_precommit") "\"1s\"" }}
-timeout_precommit_delta = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_precommit_delta") "\"500ms\"" }}
-timeout_commit = {{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_commit") "\"5s\"" }}
+timeout_propose = "{{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_propose") "3s" }}"
+timeout_propose_delta = "{{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_propose_delta") "500ms" }}"
+timeout_prevote = "{{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_prevote") "1s" }}"
+timeout_prevote_delta = "{{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_prevote_delta") "500ms" }}"
+timeout_precommit = "{{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_precommit") "1s" }}"
+timeout_precommit_delta = "{{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_precommit_delta") "500ms" }}"
+timeout_commit = "{{ keyOrDefault (print (env "CONSUL_PATH") "/consensus.timeout_commit") "5s" }}"
 
 # Make progress as soon as we have all the precommits (as if TimeoutCommit = 0)
 skip_timeout_commit = false
