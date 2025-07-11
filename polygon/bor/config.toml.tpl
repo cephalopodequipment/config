@@ -38,6 +38,8 @@ snapshot = true
 [heimdall]
   url = "{{ env "HEIMDALL_REST_URL" }}"
   "bor.without" = false
+  # WebSocket address for Heimdall v2 communication (required for v2)
+  ws-address = "ws://127.0.0.1:26657/websocket"
 
 # Transaction pool configuration (using defaults for fullnode)
 [txpool]
