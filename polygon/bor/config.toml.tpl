@@ -20,8 +20,8 @@ snapshot = true
 
 # P2P networking configuration
 [p2p]
-  maxpeers = {{ keyOrDefault (print (env "CONSUL_PATH") "/bor.maxpeers") 2000 }}
-  maxpendpeers = {{ keyOrDefault (print (env "CONSUL_PATH") "/bor.maxpendpeers") 500 }}
+  maxpeers = {{ keyOrDefault (print (env "CONSUL_PATH") "/bor.maxpeers") "2000" }}
+  maxpendpeers = {{ keyOrDefault (print (env "CONSUL_PATH") "/bor.maxpendpeers") "500" }}
   bind = "0.0.0.0"
   port = {{ env "BOR_P2P_PORT" }}
   nat = "any"
