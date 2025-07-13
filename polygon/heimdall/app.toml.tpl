@@ -161,7 +161,7 @@ enabled-unsafe-cors = false
 enable = true
 
 # Address defines the gRPC server address to bind to.
-address = "localhost:9090"
+address = "localhost:{{ env "NOMAD_PORT_grpc" }}"
 
 # MaxRecvMsgSize defines the max message size in bytes the server can receive.
 # The default value is 10MB.
@@ -245,10 +245,10 @@ bor_rpc_timeout = "1s"
 ##### RPC and REST configs #####
 
 # RPC endpoint for ethereum chain
-eth_rpc_url = "https://ethereum.publicnode.com"
+eth_rpc_url = "{{ env "ETH_RPC_URL" }}"
 
 # RPC endpoint for bor chain
-bor_rpc_url = "http://127.0.0.1:8545"
+bor_rpc_url = "{{ with service "polygon-execution" }}{{ range . }}http://{{ .Address }}:{{ .Port }}{{ end }}{{ else }}http://127.0.0.1:8545{{ end }}"
 
 # GRPC flag for bor chain
 bor_grpc_flag = "false"

@@ -194,7 +194,7 @@ tls_cert_file = ""
 tls_key_file = ""
 
 # pprof listen address (https://golang.org/pkg/net/http/pprof)
-pprof_laddr = "localhost:6060"
+pprof_laddr = "localhost:{{ env "NOMAD_PORT_pprof" }}"
 
 #######################################################
 ### P2P Configuration Options ###
