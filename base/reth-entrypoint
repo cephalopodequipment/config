@@ -30,6 +30,7 @@ else
     BINARY="./op-reth"
 fi
 
+mkdir -p $RETH_DATA_DIR
 echo "$OP_NODE_L2_ENGINE_AUTH_RAW" > "$OP_NODE_L2_ENGINE_AUTH"
 
 exec $BINARY node \

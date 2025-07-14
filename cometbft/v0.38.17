@@ -1,4 +1,4 @@
-## CONFIG FOR COMETBFT v0.38.x
+## CONFIG FOR COMETBFT v0.38.17
 
 # This is a TOML config file.
 # For more information, see https://github.com/toml-lang/toml
@@ -10,7 +10,7 @@
 
 # The version of the CometBFT binary that created or
 # last modified the config file. Do not modify this.
-version = "0.38.10"
+version = "0.38.17"
 
 #######################################################################
 ###                   Main Base Config Options                      ###
@@ -244,10 +244,10 @@ flush_throttle_timeout = {{ keyOrDefault (print "networks/" (index (env "CONSUL_
 max_packet_msg_payload_size = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/p2p.max_packet_msg_payload_size") "1024" }}
 
 # Rate at which packets can be sent, in bytes/second
-send_rate = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.send_rate") "51200000" }}
+send_rate = 5120000
 
 # Rate at which packets can be received, in bytes/second
-recv_rate = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.recv_rate") "51200000" }}
+recv_rate = 5120000
 
 # Set true to enable the peer-exchange reactor
 pex = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.pex") "true" }}

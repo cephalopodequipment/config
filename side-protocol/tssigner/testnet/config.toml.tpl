@@ -1,7 +1,8 @@
 {{ with secret "static_secrets/sidechain-testnet-6" -}}
-port = {{ keyOrDefault  (print (env "CONSUL_PATH") "/port") "5158" }}
-enable_rpc = false
-rpc_address = "http://0.0.0.0:{{ env "NOMAD_PORT_rpc" }}"
+# Port defaults to 5158
+port = {{ env "NOMAD_PORT_p2p" }}
+enable_rpc = {{ keyOrDefault  (print (env "CONSUL_PATH") "/base.enable_rpc") "false" }}
+rpc_address = "0.0.0.0:{{ env "NOMAD_PORT_rpc" }}"
 bootstrap_nodes = [{{ keyOrDefault  (print (env "CONSUL_PATH") "/bootstrap.nodes") "" }}]
 log_level = {{ keyOrDefault  (print (env "CONSUL_PATH") "/base.log_level") "\"info\"" }}
 mnemonic = "{{- .Data.data.tss_mnemonic -}}"

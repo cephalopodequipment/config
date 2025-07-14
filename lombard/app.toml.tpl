@@ -41,6 +41,16 @@ chain_id = "0x0ba5ed"
 required_confirmations = 1800
 enabled = true
 
+[evm.katana_testnet]
+rpc_url = "https://rpc.tatara.katanarpc.com/6Kx2yUoN5AXEZe68PSdPgMPZQtZStLy7m"
+chain_id = "0x1F977"
+required_confirmations = 3600
+enabled = true
+
+[katana]
+chain_id = "0x000000000000000000000000000000000000000000000000000000000001F977"
+native_lbtc_address = "0x20eA7b8ABb4B583788F1DFC738C709a2d9675681"
+
 [blacklist]
 rpc_url = "{{ .Data.data.base_sepolia_rpc }}" # replace with your base sepolia rpc
 contract = "0xe705037ce9a9ca7859ee15d04a569783da7121c8"
@@ -55,5 +65,6 @@ rpc_url = "{{ .Data.data.solana_devnet }}" # replace by your own
 genesis_hash = "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG"
 
 {{ end -}}
+
 [sanctions]
 url = "https://staging.prod.lombard.finance/"
