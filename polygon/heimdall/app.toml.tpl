@@ -161,7 +161,7 @@ enabled-unsafe-cors = false
 enable = true
 
 # Address defines the gRPC server address to bind to.
-address = "0.0.0.0:{{ env "NOMAD_PORT_grpc" }}"
+address = "localhost:{{ env "NOMAD_PORT_grpc" }}"
 
 # MaxRecvMsgSize defines the max message size in bytes the server can receive.
 # The default value is 10MB.
