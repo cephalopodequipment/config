@@ -95,3 +95,12 @@ terraform.rc
 .terraform.lock.hcl
 crash.log
 crash.*.log
+
+# Claude AI generated files
+CLAUDE.md
+.claude/
+claude_*
+*.claude
+.anthropic/
+anthropic_*
+*.anthropic

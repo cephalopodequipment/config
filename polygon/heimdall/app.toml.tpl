@@ -245,7 +245,7 @@ bor_rpc_timeout = "1s"
 ##### RPC and REST configs #####
 
 # RPC endpoint for ethereum chain
-eth_rpc_url = "{{ env "ETH_RPC_URL" }}"
+eth_rpc_url = "http://{{ range service "eth-execution" }}{{ .Address }}:{{ index .ServiceMeta "PortRpc" }}{{ end }}"
 
 # RPC endpoint for bor chain
 bor_rpc_url = "{{ with service "polygon-execution" }}{{ range . }}http://{{ .Address }}:{{ .Port }}{{ end }}{{ else }}http://127.0.0.1:8545{{ end }}"
