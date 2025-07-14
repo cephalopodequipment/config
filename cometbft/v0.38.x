@@ -244,10 +244,10 @@ flush_throttle_timeout = {{ keyOrDefault (print "networks/" (index (env "CONSUL_
 max_packet_msg_payload_size = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/p2p.max_packet_msg_payload_size") "1024" }}
 
 # Rate at which packets can be sent, in bytes/second
-send_rate = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.send_rate") "5120000" }}
+send_rate = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.send_rate") "51200000" }}
 
 # Rate at which packets can be received, in bytes/second
-recv_rate = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.recv_rate") "5120000" }}
+recv_rate = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.recv_rate") "51200000" }}
 
 # Set true to enable the peer-exchange reactor
 pex = {{ keyOrDefault (print (env "CONSUL_PATH") "/p2p.pex") "true" }}
