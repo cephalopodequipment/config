@@ -20,6 +20,8 @@ order_filler:
 transfer_monitor:
   poll_interval: {{ key "networks/skip-go-dydx/base.poll_interval" }}
 
+{{ keyOrDefault "networks/skip-go-dydx/tx-rpc-config" "" }}
+
 ws_listeners:
   "1":
     ws_url: "{{ with secret "static_secrets/skip-go"}}{{ .Data.data.eth_wss }}{{ end }}"
