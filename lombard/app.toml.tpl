@@ -10,6 +10,7 @@ pass = "1"
 params = "{{ keyOrDefault (print (env "CONSUL_PATH") "/btc_network") "mainnet" }}"
 disable_tls = false # set true if http
 required_confirmations = 6
+timeout = "10s"
       
 [evm.holesky]
 rpc_url = "{{ .Data.data.eth_holesky_rpc }}" # replace by your own
@@ -65,6 +66,14 @@ rpc_url = "{{ .Data.data.solana_devnet }}" # replace by your own
 genesis_hash = "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG"
 
 {{ end -}}
+
+[cosmos.ledger_mainet] # for mainnet
+rpc_url = "{{ range service "lombard-mainnet-validator.cometbft-rpc" }}http://{{ .Address }}:{{ .Port }}{{ end }}"
+chain_id = "ledger-mainnet-1"
+
+[cosmos.ledger_testnet] # for testnet
+rpc_url = "{{ range service "lombard-testnet-validator.cometbft-rpc" }}http://{{ .Address }}:{{ .Port }}{{ end }}"
+chain_id = "ledger-testnet-1"
 
 [sanctions]
 url = "https://staging.prod.lombard.finance/"
