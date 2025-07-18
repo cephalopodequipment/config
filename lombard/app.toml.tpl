@@ -68,11 +68,11 @@ genesis_hash = "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG"
 {{ end -}}
 
 [cosmos.ledger_mainet] # for mainnet
-rpc_url = "{{ range service "lombard-mainnet-validator.cometbft-rpc" }}{{ .Address }}{{ .Port }}{{ end }}"
+rpc_url = "{{ range service "lombard-mainnet-validator.cometbft-rpc" }}http://{{ .Address }}:{{ .Port }}{{ end }}"
 chain_id = "ledger-mainnet-1"
 
 [cosmos.ledger_testnet] # for testnet
-rpc_url = "{{ range service "lombard-testnet-validator.cometbft-rpc" }}{{ .Address }}{{ .Port }}{{ end }}"
+rpc_url = "{{ range service "lombard-testnet-validator.cometbft-rpc" }}http://{{ .Address }}:{{ .Port }}{{ end }}"
 chain_id = "ledger-testnet-1"
 
 [sanctions]
