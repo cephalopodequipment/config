@@ -74,6 +74,7 @@ chain_id = "ledger-mainnet-1"
 [cosmos.ledger_testnet] # for testnet
 rpc_url = "{{ range service "lombard-testnet-validator.cometbft-rpc" }}http://{{ .Address }}:{{ .Port }}{{ end }}"
 chain_id = "ledger-testnet-1"
+enabled = true
 
 [sanctions]
 url = "https://staging.prod.lombard.finance/"
