@@ -10,6 +10,7 @@ pass = "1"
 params = "{{ keyOrDefault (print (env "CONSUL_PATH") "/btc_network") "mainnet" }}"
 disable_tls = false # set true if http
 required_confirmations = 6
+timeout = "10s"
       
 [evm.holesky]
 rpc_url = "{{ .Data.data.eth_holesky_rpc }}" # replace by your own
