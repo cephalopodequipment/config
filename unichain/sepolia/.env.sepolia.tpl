@@ -9,7 +9,7 @@ OP_NODE_L1_BEACON={{ .Data.data.eth_sepolia_beacon }}
 
 OP_NODE_NETWORK=unichain-sepolia
 OP_NODE_L2_ENGINE_AUTH=/shared/jwt.hex
-OP_NODE_L2_ENGINE_RPC=http://127.0.0.1:32988
+OP_NODE_L2_ENGINE_RPC={{ env "NOMAD_HOST_IP_rpc" }}:32988
 OP_NODE_LOG_LEVEL=info
 OP_NODE_LOG_FORMAT=logfmt
 OP_NODE_METRICS_ADDR=0.0.0.0
@@ -22,9 +22,9 @@ OP_NODE_RPC_ADDR=0.0.0.0
 OP_NODE_RPC_PORT={{ env "NOMAD_PORT_op_rpc" }}
 OP_NODE_VERIFIER_L1_CONFS=4
 OP_NODE_P2P_NAT=true
-OP_NODE_P2P_DISCOVERY_PATH=/data/opnode_discovery_db
-OP_NODE_P2P_PEERSTORE_PATH=/data/opnode_peerstore_db
-OP_NODE_P2P_PRIV_PATH=/data/opnode_p2p_priv.txt
+OP_NODE_P2P_DISCOVERY_PATH=/opnode-data/opnode_discovery_db
+OP_NODE_P2P_PEERSTORE_PATH=/opnode-data/opnode_peerstore_db
+OP_NODE_P2P_PRIV_PATH=/opnode-data/opnode_p2p_priv.txt
 
 OP_NODE_P2P_BOOTNODES={{ key (print (env "CONSUL_PATH") "/p2p.bootnodes") }}
 
