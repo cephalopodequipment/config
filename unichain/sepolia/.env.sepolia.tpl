@@ -9,7 +9,7 @@ OP_NODE_L1_BEACON={{ .Data.data.eth_sepolia_beacon }}
 
 OP_NODE_NETWORK=unichain-sepolia
 OP_NODE_L2_ENGINE_AUTH=/shared/jwt.hex
-OP_NODE_L2_ENGINE_RPC={{ env "NOMAD_HOST_IP_rpc" }}:32988
+OP_NODE_L2_ENGINE_RPC={{ env "NOMAD_HOST_IP_op_rpc" }}:32988
 OP_NODE_LOG_LEVEL=info
 OP_NODE_LOG_FORMAT=logfmt
 OP_NODE_METRICS_ADDR=0.0.0.0
