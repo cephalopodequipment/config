@@ -17,7 +17,7 @@ required_confirmations = 6
 timeout = "10s"
 
 [cosmos.ledger_mainet]
-rpc_url = "{{ .Data.data.cosmos_rpc }}" # replace by your own Ledger rpc
+rpc_url = "{{ range service "cosmoshub-sentry0.cometbft-rpc" }}http://{{ .Address }}:{{ .Port }}"
 chain_id = "ledger-mainnet-1"
 enabled = true
 
