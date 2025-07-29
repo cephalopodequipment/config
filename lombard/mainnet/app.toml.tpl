@@ -17,7 +17,7 @@ required_confirmations = 6
 timeout = "10s"
 
 [cosmos.ledger_mainet]
-rpc_url = "{{ range service "lombard-mainnet-validator.cometbft-rpc" }}http://{{ .Address }}:{{ .Port }}"
+rpc_url = "{{ range service "lombard-mainnet-validator.cometbft-rpc" }}http://{{ .Address }}:{{ .Port }}{{ end }}"
 chain_id = "ledger-mainnet-1"
 enabled = true
 
