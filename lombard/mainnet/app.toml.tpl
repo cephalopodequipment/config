@@ -14,6 +14,12 @@ pass = "1"
 params = "mainnet"
 disable_tls = false # set true if http
 required_confirmations = 6
+timeout = "10s"
+
+[cosmos.ledger_mainet]
+rpc_url = "{{ range service "lombard-mainnet-validator.cometbft-rpc" }}http://{{ .Address }}:{{ .Port }}"
+chain_id = "ledger-mainnet-1"
+enabled = true
 
 [evm.mainnet]
 rpc_url = "{{ .Data.data.eth_rpc }}" # replace by your own
