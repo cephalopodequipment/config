@@ -36,7 +36,7 @@ snapshot = true
 
 # Heimdall configuration
 [heimdall]
-  url = "{{ env "NOMAD_IP_rpc" }}{{ env "NOMAD_HOST_PORT_rpc" }}"
+  url = "{{ env "NOMAD_IP_rpc" }}:{{ env "NOMAD_HOST_PORT_rpc" }}"
   "bor.without" = false
   # WebSocket address for Heimdall v2 communication (required for v2)
   ws-address = "{{ env "NOMAD_IP_ws" }}:{{ env "NOMAD_HOST_PORT_ws" }}"
