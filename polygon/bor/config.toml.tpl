@@ -36,10 +36,10 @@ snapshot = true
 
 # Heimdall configuration
 [heimdall]
-  url = "{{ env "NOMAD_HOST_IP" }}{{ env "NOMAD_HOST_PORT_rpc" }}"
+  url = "{{ env "NOMAD_IP_rpc" }}{{ env "NOMAD_HOST_PORT_rpc" }}"
   "bor.without" = false
   # WebSocket address for Heimdall v2 communication (required for v2)
-  ws-address = "{{ env "NOMAD_HOST_IP" }}:{{ env "NOMAD_HOST_PORT_ws" }}"
+  ws-address = "{{ env "NOMAD_IP_ws" }}:{{ env "NOMAD_HOST_PORT_ws" }}"
 
 # Transaction pool configuration (using defaults for fullnode)
 [txpool]
