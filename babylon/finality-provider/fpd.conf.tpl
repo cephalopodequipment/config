@@ -3,7 +3,8 @@
 LogLevel = {{ keyOrDefault (print (env "CONSUL_PATH") "/LogLevel") "info" }}
 
 ; the type of the consumer chain
-ChainType = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/ChainType") "babylon" }}
+; NOTE: this is being remove as per release note for v2.0.0-rc.1 upgrade
+;ChainType = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/ChainType") "babylon" }}
 
 ; The number of Schnorr public randomness for each commitment
 NumPubRand = {{ keyOrDefault (print (env "CONSUL_PATH") "/NumPubRand") "70000" }}
@@ -33,7 +34,8 @@ SubmissionRetryInterval = {{ keyOrDefault (print (env "CONSUL_PATH") "/Submissio
 SignatureSubmissionInterval = {{ keyOrDefault (print (env "CONSUL_PATH") "/SignatureSubmissionInterval") "1s" }}
 
 ; Bitcoin network to run on
-BitcoinNetwork = {{ keyOrDefault (print (env "CONSUL_PATH") "/BitcoinNetwork") "signet" }}
+; NOTE: this is being remove as per release note for v2.0.0-rc.1 upgrade
+;BitcoinNetwork = {{ keyOrDefault (print (env "CONSUL_PATH") "/BitcoinNetwork") "signet" }}
 
 ; the listener for RPC connections, e.g., 127.0.0.1:1234
 RPCListener = 0.0.0.0:12581
