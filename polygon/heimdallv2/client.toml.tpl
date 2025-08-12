@@ -1,0 +1,21 @@
+# This is a TOML config file.
+# For more information, see https://github.com/toml-lang/toml
+
+###############################################################################
+### Client Configuration ###
+###############################################################################
+
+# The network chain ID
+chain-id = "heimdallv2-137"
+
+# The keyring's backend, where the keys are stored (os|file|kwallet|pass|test|memory)
+keyring-backend = "os"
+
+# CLI output format (text|json)
+output = "text"
+
+# <host>:<port> to CometBFT RPC interface for this chain
+node = "tcp://0.0.0.0:{{ env "NOMAD_PORT_rpc" }}"
+
+# Transaction broadcasting mode (sync|async)
+broadcast-mode = "sync"
