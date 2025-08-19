@@ -64,6 +64,9 @@ NODE_MAX_CONCURRENCY={{ keyOrDefault "networks/across-solver/NODE_MAX_CONCURRENC
 # recommended to test with this before setting SEND_RELAYS to "true".
 SEND_RELAYS={{ key "networks/across-solver/SEND_RELAYS" }}
 
+# Set it to "true" to enable executing transactions and filling relays otherwise
+# transactions will simulated 
+SEND_TRANSACTIONS={{ keyOrDefault "networks/across-solver/SEND_TRANSACTIONS" "true" }}
 
 # Permit the finalizer to submit transactions for finalizing cross-chain actions. 
 # This is disabled by default and must be explicitly enabled for the finalizer to
@@ -84,6 +87,12 @@ RELAYER_ORIGIN_CHAINS={{ key "networks/across-solver/RELAYER_ORIGIN_CHAINS" }}
 # RELAYER_DESTINATION_CHAINS=[1,10,137,42161]
 RELAYER_DESTINATION_CHAINS={{ key "networks/across-solver/RELAYER_DESTINATION_CHAINS" }}
 
+# If true, the relayer will request slow fills for any deposits that it
+# cannot fill due to insufficient balance. There is no direct incentive
+# to the individual relayer for do this and Across functions correctly
+# as long as at least one relayer requests slow fills. Operators are
+# recommend to use the default setting of false.
+SEND_SLOW_RELAYS=false
 
 # Deposit lookback window, specified in seconds. This is subtracted from the
 # current time and is resolved to a block number on each chain, effectively
@@ -96,7 +105,7 @@ MAX_RELAYER_DEPOSIT_LOOK_BACK={{ keyOrDefault "networks/across-solver/MAX_RELAYE
 # each fill. Minimum fees can also be configured per token(symbol)/route
 # combination. Examples:
 # Require 1 bps as the global default.
-MIN_RELAYER_FEE_PCT={{ keyOrDefault "networks/across-solver/MIN_RELAYER_FEE_PCT" "0.00001" }}
+MIN_RELAYER_FEE_PCT={{ keyOrDefault "networks/across-solver/MIN_RELAYER_FEE_PCT" "0.0001" }}
 
 # Override: Require at least 1.5 bps on USDC from Arbitrum to Ethereum.
 # MIN_RELAYER_FEE_PCT_USDC_42161_1=0.00015
@@ -111,9 +120,9 @@ MIN_RELAYER_FEE_PCT={{ keyOrDefault "networks/across-solver/MIN_RELAYER_FEE_PCT"
 # supplies a default priority fee of 1.5 Gwei. This is especially notable on
 # Optimism (chainId 10), and can lead to overpriced transactions. Operators are
 # encouraged to tune these scalers to meet their own needs and risk profile.
-MAX_FEE_PER_GAS_SCALER={{ keyOrDefault "networks/across-solver/MAX_FEE_PER_GAS_SCALER" "1.5" }}
+MAX_FEE_PER_GAS_SCALER={{ keyOrDefault "networks/across-solver/MAX_FEE_PER_GAS_SCALER" "1.1" }}
 PRIORITY_FEE_SCALER={{ keyOrDefault "networks/across-solver/PRIORITY_FEE_SCALER" "0.8" }}
-PRIORITY_FEE_SCALER_1={{ keyOrDefault "networks/across-solver/PRIORITY_FEE_SCALER_1" "0.8" }}
+PRIORITY_FEE_SCALER_1={{ keyOrDefault "networks/across-solver/PRIORITY_FEE_SCALER_1" "0.1" }}
 
 
 ################################################################################
@@ -254,4 +263,8 @@ RELAYER_TOKENS='{{ keyOrDefault "networks/across-solver/RELAYER_TOKENS" "[]" }}'
 # Arweave network and store bundle data. The default gateway is the official Arweave
 # gateway. This can be changed to a custom gateway if desired.
 # ARWEAVE_GATEWAY=$({"url":"", "port": 443, "protocol":"https"})
+
+# Skip to check enabled chains during every relayer execution loop.
+# TODO: Check how much latency is saved by using this.
+SPOKE_POOL_CHAINS_OVERRIDE=[1, 10, 137, 8453, 42161] 
 
