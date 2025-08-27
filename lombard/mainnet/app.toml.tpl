@@ -14,7 +14,7 @@ pass = "1"
 params = "mainnet"
 disable_tls = false # set true if http
 required_confirmations = 6
-timeout = "10s"
+timeout = "15s" # Increase timeout to recommended value by Mikhail
 
 [cosmos.ledger_mainet]
 rpc_url = "{{ range service "lombard-mainnet-validator.cometbft-rpc" }}http://{{ .Address }}:{{ .Port }}{{ end }}"
