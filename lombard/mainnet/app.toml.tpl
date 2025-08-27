@@ -2,6 +2,8 @@
 ###                         Notaryd                                         ###
 ###############################################################################
 
+notarization_timeout = "120s" # Recommended change from Mikhail
+
 {{- with secret "static_secrets/lombard-mainnet" }}
 [blacklist]
 rpc_url = "{{ .Data.data.base_rpc }}" # replace by your own
@@ -14,7 +16,7 @@ pass = "1"
 params = "mainnet"
 disable_tls = false # set true if http
 required_confirmations = 6
-timeout = "15s" # Increase timeout to recommended value by Mikhail
+timeout = "60s" # Increase timeout to recommended value by Mikhail
 
 [cosmos.ledger_mainet]
 rpc_url = "{{ range service "lombard-mainnet-validator.cometbft-rpc" }}http://{{ .Address }}:{{ .Port }}{{ end }}"
