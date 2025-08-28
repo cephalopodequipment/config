@@ -25,10 +25,10 @@ OP_NODE_ROLLUP_LOAD_PROTOCOL_VERSIONS=true
 # Replace these values with your L1 (Ethereum) node endpoints
 
 {{ with secret "static_secrets/ankr" -}}
-OP_NODE_L1_ETH_RPC={{ .Data.data.eth_mainnet -}}
-OP_NODE_L1_BEACON={{ .Data.data.eth_mainnet_beacon -}}
+OP_NODE_L1_ETH_RPC={{ .Data.data.eth_mainnet }}
+OP_NODE_L1_BEACON={{ .Data.data.eth_mainnet_beacon }}
 OP_NODE_L1_BEACON_ARCHIVER={{ .Data.data.eth_mainnet_beacon }}
-{{end}}
+{{- end }}
 
 OP_NODE_L1_BEACON_FETCH_ALL_SIDECARS="true"
 OP_NODE_L1_RPC_KIND="any"
