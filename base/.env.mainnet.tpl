@@ -26,8 +26,6 @@ OP_NODE_ROLLUP_LOAD_PROTOCOL_VERSIONS=true
 
 {{ with secret "static_secrets/ankr" -}}
 OP_NODE_L1_ETH_RPC={{ .Data.data.eth_mainnet -}}
-
-# change this
 OP_NODE_L1_BEACON={{ .Data.data.eth_mainnet_beacon -}}
 OP_NODE_L1_BEACON_ARCHIVER={{ .Data.data.eth_mainnet_beacon }}
 {{end}}
