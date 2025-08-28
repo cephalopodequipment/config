@@ -28,8 +28,8 @@ OP_NODE_ROLLUP_LOAD_PROTOCOL_VERSIONS=true
 OP_NODE_L1_ETH_RPC={{ .Data.data.eth_mainnet -}}
 
 # change this
-OP_NODE_L1_BEACON={{ .Data.data.eth_mainnet -}}
-OP_NODE_L1_BEACON_ARCHIVER={{ .Data.data.eth_mainnet }}
+OP_NODE_L1_BEACON={{ .Data.data.eth_mainnet_beacon -}}
+OP_NODE_L1_BEACON_ARCHIVER={{ .Data.data.eth_mainnet_beacon }}
 {{end}}
 
 OP_NODE_L1_BEACON_FETCH_ALL_SIDECARS="true"
