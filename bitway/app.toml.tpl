@@ -259,22 +259,26 @@ query_gas_limit = {{ keyOrDefault (print (env "CONSUL_PATH") "/wasm.query_gas_li
 memory_cache_size = {{ keyOrDefault (print (env "CONSUL_PATH") "/wasm.memory_cache_size") "3000" }}
 
 ###############################################################################
-###                             Oracle - Tssigner                           ###
+###                         FUEL SIDECAR                                    ###
 ###############################################################################
-# Side Protocol specific configs
+# This sidecar needs to run in same nomad job as the validator
+[sidecar]
+# This dictates whether the Sidecar will be queried.
+enabled = {{ keyOrDefault (print (env "FUEL_SIDECAR_CONSUL_PATH") "/base.sidecar.enabled") "true" }}
+# This defines the Sidecar server to listen to.
+address = "{{ env "NOMAD_IP_sidecar" }}:{{ env "NOMAD_PORT_sidecar" }}"
+# This defines how long the client should wait for responses.
+timeout = "5s"
 
-enable = {{ keyOrDefault  (print (env "CONSUL_PATH") "/oracle.enable") "true" }}
+###############################################################################
+###                      Babylon Bitcoin configuration                      ###
+###############################################################################
 
-bitcoin_rpc ="{{ keyOrDefault  (print (env "CONSUL_PATH") "/bitcoin.rpc") "" }}"
+[btc-config]
 
-{{ with secret "static_secrets/sidechain-testnet-5" -}}
-bitcoin_rpc_user = "{{- .Data.data.bitcoinuser -}}"
-bitcoin_rpc_password = "{{- .Data.data.bitcoinpassword -}}"
-{{ end }}
-
-http_post_mode = true
-
-disable_tls = true
+# Configures which bitcoin network should be used for checkpointing
+# valid values are: [mainnet, testnet, simnet, signet, regtest]
+network = "{{ keyOrDefault (print (env "CONSUL_PATH") "/btc_network") "simnet" }}"
 
 ###############################################################################
 ###                             EVM Configuration                           ###
@@ -340,3 +344,26 @@ return-data-limit = 100000
 certificate-path = ""
 # Key path defines the key.pem file path for the TLS configuration.
 key-path = ""
+
+###############################################################################
+###                             Jester (noble sidecar)                     ###
+###############################################################################
+
+[jester]
+
+# Jester's gRPC server address.
+# This should not conflict with the CometBFT gRPC server.
+grpc-address = "{{ env "NOMAD_HOST_IP_gRPCJ" }}:{{ env "NOMAD_HOST_PORT_gRPCJ" }}"
+
+###############################################################################
+###                      Shuttler/tssigner (bitway sidecar)                 ###
+###############################################################################
+
+[oracle]
+# If this node will act as a validator, set to true. For non-validator (full) nodes, set to false.
+enable = {{ keyOrDefault (print (env "CONSUL_PATH") "/oracle.enable") "false" }}
+bitcoin_rpc = "{{ keyOrDefault (print (env "CONSUL_PATH") "/oracle.bitcoin.rpc") "192.248.180.245:8332" }}"
+bitcoin_rpc_user = "{{ keyOrDefault (print (env "CONSUL_PATH") "/oracle.bitcoin.rpc") "bitway" }}"
+bitcoin_rpc_password = "{{ keyOrDefault (print (env "CONSUL_PATH") "/oracle.bitcoin.rpc") "12345678" }}"
+http_post_mode = {{ keyOrDefault (print (env "CONSUL_PATH") "/oracle.http.post.mode") "true" }}
+disable_tls = {{ keyOrDefault (print (env "CONSUL_PATH") "/oracle.disable.tls") "true" }}
