@@ -30,6 +30,17 @@ chain_id = "0x014a34"
 required_confirmations = 72
 enabled = true
 
+[evm.sepolia]
+rpc_url = "https://ethereum-sepolia-rpc.publicnode.com" # can use this or replace with your own
+chain_id = "0xaa36a7"
+required_confirmations = 64
+enabled = true
+
+[starknet.sepolia]
+chain_id = "SN_SEPOLIA"
+rpc_url = "https://starknet-sepolia.drpc.org" # can use this or replace with your own
+timeout = "10s"
+
 [evm.sonic_testnet]
 rpc_url = "{{ .Data.data.sonic_testnet_rpc }}"  # replace by your own
 chain_id = "0xdede"
