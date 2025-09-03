@@ -270,25 +270,6 @@ address = "{{ env "NOMAD_IP_sidecar" }}:{{ env "NOMAD_PORT_sidecar" }}"
 # This defines how long the client should wait for responses.
 timeout = "5s"
 
-{{ if (keyOrDefault (print (env "CONSUL_PATH") "/slinky.enabled") "false") | parseBool }}
-###############################################################################
-###                             Oracle - Slinky                             ###
-###############################################################################
-
-[oracle]
-enabled = "true"
-
-oracle_address = "{{ env "SLINKY_ORACLE_ADDRESS" }}"
-
-client_timeout = "{{ keyOrDefault (print (env "CONSUL_PATH") "/slinky.client_timeout") "250ms" }}"
-
-metrics_enabled = "{{ keyOrDefault (print (env "CONSUL_PATH") "/slinky.metrics_enabled") "true" }}"
-
-interval = "{{ keyOrDefault (print (env "CONSUL_PATH") "/slinky.interval") "1500ms" }}"
-
-price_ttl = "{{ keyOrDefault (print (env "CONSUL_PATH") "/slinky.price_ttl") "10s" }}"
-{{ end }}
-
 ###############################################################################
 ###                      Babylon Bitcoin configuration                      ###
 ###############################################################################
