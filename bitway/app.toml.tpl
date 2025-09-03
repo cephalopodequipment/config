@@ -259,22 +259,28 @@ query_gas_limit = {{ keyOrDefault (print (env "CONSUL_PATH") "/wasm.query_gas_li
 memory_cache_size = {{ keyOrDefault (print (env "CONSUL_PATH") "/wasm.memory_cache_size") "3000" }}
 
 ###############################################################################
-###                             Oracle - Tssigner                           ###
+###                         FUEL SIDECAR                                    ###
 ###############################################################################
-# Side Protocol specific configs
+# This sidecar needs to run in same nomad job as the validator
+[sidecar]
+# This dictates whether the Sidecar will be queried.
+enabled = {{ keyOrDefault (print (env "FUEL_SIDECAR_CONSUL_PATH") "/base.sidecar.enabled") "true" }}
+# This defines the Sidecar server to listen to.
+address = "{{ env "NOMAD_IP_sidecar" }}:{{ env "NOMAD_PORT_sidecar" }}"
+# This defines how long the client should wait for responses.
+timeout = "5s"
 
-enable = {{ keyOrDefault  (print (env "CONSUL_PATH") "/oracle.enable") "true" }}
+## Slinky configs have been removed to avoid conflict
 
-bitcoin_rpc ="{{ keyOrDefault  (print (env "CONSUL_PATH") "/bitcoin.rpc") "" }}"
+###############################################################################
+###                      Babylon Bitcoin configuration                      ###
+###############################################################################
 
-{{ with secret "static_secrets/sidechain-testnet-5" -}}
-bitcoin_rpc_user = "{{- .Data.data.bitcoinuser -}}"
-bitcoin_rpc_password = "{{- .Data.data.bitcoinpassword -}}"
-{{ end }}
+[btc-config]
 
-http_post_mode = true
-
-disable_tls = true
+# Configures which bitcoin network should be used for checkpointing
+# valid values are: [mainnet, testnet, simnet, signet, regtest]
+network = "{{ keyOrDefault (print (env "CONSUL_PATH") "/btc_network") "simnet" }}"
 
 ###############################################################################
 ###                             EVM Configuration                           ###
@@ -340,3 +346,14 @@ return-data-limit = 100000
 certificate-path = ""
 # Key path defines the key.pem file path for the TLS configuration.
 key-path = ""
+
+###############################################################################
+###                             Jester (sidecar)                            ###
+###############################################################################
+
+[jester]
+
+# Jester's gRPC server address.
+# This should not conflict with the CometBFT gRPC server.
+grpc-address = "{{ env "NOMAD_HOST_IP_gRPCJ" }}:{{ env "NOMAD_HOST_PORT_gRPCJ" }}"
+
