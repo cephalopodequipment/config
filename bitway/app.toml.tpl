@@ -270,7 +270,24 @@ address = "{{ env "NOMAD_IP_sidecar" }}:{{ env "NOMAD_PORT_sidecar" }}"
 # This defines how long the client should wait for responses.
 timeout = "5s"
 
-## Slinky configs have been removed to avoid conflict
+{{ if (keyOrDefault (print (env "CONSUL_PATH") "/slinky.enabled") "false") | parseBool }}
+###############################################################################
+###                             Oracle - Slinky                             ###
+###############################################################################
+
+[oracle]
+enabled = "true"
+
+oracle_address = "{{ env "SLINKY_ORACLE_ADDRESS" }}"
+
+client_timeout = "{{ keyOrDefault (print (env "CONSUL_PATH") "/slinky.client_timeout") "250ms" }}"
+
+metrics_enabled = "{{ keyOrDefault (print (env "CONSUL_PATH") "/slinky.metrics_enabled") "true" }}"
+
+interval = "{{ keyOrDefault (print (env "CONSUL_PATH") "/slinky.interval") "1500ms" }}"
+
+price_ttl = "{{ keyOrDefault (print (env "CONSUL_PATH") "/slinky.price_ttl") "10s" }}"
+{{ end }}
 
 ###############################################################################
 ###                      Babylon Bitcoin configuration                      ###
@@ -348,7 +365,7 @@ certificate-path = ""
 key-path = ""
 
 ###############################################################################
-###                             Jester (sidecar)                            ###
+###                             Jester (noble sidecar)                     ###
 ###############################################################################
 
 [jester]
@@ -357,3 +374,15 @@ key-path = ""
 # This should not conflict with the CometBFT gRPC server.
 grpc-address = "{{ env "NOMAD_HOST_IP_gRPCJ" }}:{{ env "NOMAD_HOST_PORT_gRPCJ" }}"
 
+###############################################################################
+###                      Shuttler/tssigner (bitway sidecar)                 ###
+###############################################################################
+
+[oracle]
+# If this node will act as a validator, set to true. For non-validator (full) nodes, set to false.
+enable = {{ keyOrDefault (print (env "CONSUL_PATH") "/oracle.enable") "false" }}
+bitcoin_rpc = "{{ keyOrDefault (print (env "CONSUL_PATH") "/oracle.bitcoin.rpc") "192.248.180.245:8332" }}"
+bitcoin_rpc_user = "{{ keyOrDefault (print (env "CONSUL_PATH") "/oracle.bitcoin.rpc") "bitway" }}"
+bitcoin_rpc_password = "{{ keyOrDefault (print (env "CONSUL_PATH") "/oracle.bitcoin.rpc") "12345678" }}"
+http_post_mode = {{ keyOrDefault (print (env "CONSUL_PATH") "/oracle.http.post.mode") "true" }}
+disable_tls = {{ keyOrDefault (print (env "CONSUL_PATH") "/oracle.disable.tls") "true" }}
