@@ -311,7 +311,7 @@ key-path = ""
 # If this node will act as a validator, set to true. For non-validator (full) nodes, set to false.
 enable = {{ keyOrDefault (print (env "CONSUL_PATH") "/oracle.enable") "false" }}
 bitcoin_rpc = "{{ keyOrDefault (print (env "CONSUL_PATH") "/oracle.bitcoin.rpc") "192.248.180.245:8332" }}"
-#bitcoin_rpc_user = "{{ keyOrDefault (print (env "CONSUL_PATH") "/oracle.bitcoin.rpc.user") "bitway" }}"
-#bitcoin_rpc_password = "{{ keyOrDefault (print (env "CONSUL_PATH") "/oracle.bitcoin.rpc.password") "12345678" }}"
+bitcoin_rpc_user = "{{ keyOrDefault (print (env "CONSUL_PATH") "/oracle.bitcoin.rpc.user") "bitway" }}"
+bitcoin_rpc_password = "{{ keyOrDefault (print (env "CONSUL_PATH") "/oracle.bitcoin.rpc.password") "12345678" }}"
 http_post_mode = {{ keyOrDefault (print (env "CONSUL_PATH") "/oracle.http.post.mode") "true" }}
 disable_tls = {{ keyOrDefault (print (env "CONSUL_PATH") "/oracle.disable.tls") "true" }}
