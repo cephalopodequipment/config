@@ -1,4 +1,4 @@
-7###
+###
 # SDK 0.50.x
 ###
 # This is a TOML config file.
