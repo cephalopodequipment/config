@@ -48,7 +48,7 @@ halt-time = 0
 # with the unbonding (safety threshold) period, state pruning and state sync
 # snapshot parameters to determine the correct minimum value of
 # ResponseCommit.RetainHeight.
-{{ keyOrDefault (print (env "CONSUL_PATH") "/base.min-retain-blocks") "0" }}
+min-retain-blocks = {{ keyOrDefault (print (env "CONSUL_PATH") "/base.min-retain-blocks") "0" }}
 
 # InterBlockCache enables inter-block caching.
 inter-block-cache = true
