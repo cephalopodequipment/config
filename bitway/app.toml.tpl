@@ -5,27 +5,27 @@
 # The minimum gas prices a validator is willing to accept for processing a
 # transaction. A transaction's fees must meet the minimum of any denomination
 # specified in this config (e.g. 0.25token1,0.0001token2).
-minimum-gas-prices = "0.0006ubtw,0.000001sat"
+minimum-gas-prices = "{{ key (print (env "CONSUL_PATH") "/base.minimum-gas-prices") }}"
 
 # The maximum gas a query coming over rest/grpc may consume.
 # If this is set to zero, the query can consume an unbounded amount of gas.
-query-gas-limit = "0"
+query-gas-limit = {{ key (print (env "CONSUL_PATH") "/base.query-gas-limit") }}
 
 # default: the last 362880 states are kept, pruning at 10 block intervals
 # nothing: all historic states will be saved, nothing will be deleted (i.e. archiving node)
 # everything: 2 latest states will be kept; pruning at 10 block intervals.
 # custom: allow pruning options to be manually specified through 'pruning-keep-recent', and 'pruning-interval'
-pruning = "default"
+pruning = {{ keyOrDefault (print (env "CONSUL_PATH") "/base.pruning") "\"default\"" }}
 
 # These are applied if and only if the pruning strategy is custom.
-pruning-keep-recent = "0"
-pruning-interval = "0"
+pruning-keep-recent = {{ keyOrDefault (print (env "CONSUL_PATH") "/base.pruning-keep-recent") "0" }}
+pruning-interval = {{ keyOrDefault (print (env "CONSUL_PATH") "/base.pruning-interval") "0" }}
 
 # HaltHeight contains a non-zero block height at which a node will gracefully
 # halt and shutdown that can be used to assist upgrades and testing.
 #
 # Note: Commitment of state will be attempted on the corresponding block.
-halt-height = 0
+{{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/base.halt-height") "0" }}
 
 # HaltTime contains a non-zero minimum block time (in Unix seconds) at which
 # a node will gracefully halt and shutdown that can be used to assist upgrades
@@ -48,7 +48,7 @@ halt-time = 0
 # with the unbonding (safety threshold) period, state pruning and state sync
 # snapshot parameters to determine the correct minimum value of
 # ResponseCommit.RetainHeight.
-min-retain-blocks = 0
+{{ keyOrDefault (print (env "CONSUL_PATH") "/base.min-retain-blocks") "0" }}
 
 # InterBlockCache enables inter-block caching.
 inter-block-cache = true
@@ -84,7 +84,7 @@ service-name = ""
 # Enabled enables the application telemetry functionality. When enabled,
 # an in-memory sink is also enabled by default. Operators may also enabled
 # other sinks such as Prometheus.
-enabled = false
+enabled = { keyOrDefault (print (env "CONSUL_PATH") "/telemetry.enabled") "false" }}
 
 # Enable prefixing gauge values with hostname.
 enable-hostname = false
@@ -96,7 +96,7 @@ enable-hostname-label = false
 enable-service-label = false
 
 # PrometheusRetentionTime, when positive, enables a Prometheus metrics sink.
-prometheus-retention-time = 0
+prometheus-retention-time = {{ keyOrDefault (print (env "CONSUL_PATH") "/telemetry.prometheus-retention-time") "0" }}
 
 # GlobalLabels defines a global set of name/value label tuples applied to all
 # metrics emitted using the wrapper functions defined in telemetry package.
@@ -124,13 +124,13 @@ datadog-hostname = ""
 [api]
 
 # Enable defines if the API server should be enabled.
-enable = false
+enable = true
 
 # Swagger defines if swagger documentation should automatically be registered.
-swagger = false
+swagger = {{ keyOrDefault (print (env "CONSUL_PATH") "/api.swagger") "false" }}
 
 # Address defines the API server to listen on.
-address = "tcp://localhost:1317"
+address = "tcp://0.0.0.0:1317"
 
 # MaxOpenConnections defines the number of maximum open connections.
 max-open-connections = 1000
@@ -157,7 +157,7 @@ enabled-unsafe-cors = false
 enable = true
 
 # Address defines the gRPC server address to bind to.
-address = "localhost:9090"
+address = "0.0.0.0:9090"
 
 # MaxRecvMsgSize defines the max message size in bytes the server can receive.
 # The default value is 10MB.
@@ -188,10 +188,10 @@ enable = true
 
 # snapshot-interval specifies the block interval at which local state sync snapshots are
 # taken (0 to disable).
-snapshot-interval = 0
+snapshot-interval = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.snapshot-interval") "0" }}
 
 # snapshot-keep-recent specifies the number of recent snapshots to keep and serve (0 to keep all).
-snapshot-keep-recent = 2
+snapshot-keep-recent = {{ keyOrDefault (print (env "CONSUL_PATH") "/statesync.snapshot-keep-recent") "2" }}
 
 ###############################################################################
 ###                              State Streaming                            ###
@@ -230,14 +230,14 @@ stop-node-on-err = true
 #
 # Note, this configuration only applies to SDK built-in app-side mempool
 # implementations.
-max-txs = -1
+max-txs = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.max-txs") "-1" }}
 
 [oracle]
 # If this node will act as a validator, set to true. For non-validator (full) nodes, set to false.
-enable = true
+enable = {{ keyOrDefault (print (env "CONSUL_PATH") "/oracle.enable") "false" }}
 
-bitcoin_rpc = "https://bitcoin-mainnet.g.alchemy.com/v2/b9IwcZs-IpmHL-4vGWcU5KXe35CbJfJe"
-#bitcoin_rpc_user = ""
-#bitcoin_rpc_password = ""
-http_post_mode = true
-disable_tls = false
+bitcoin_rpc = "{{ keyOrDefault (print (env "CONSUL_PATH") "/oracle.bitcoin.rpc") "" }}"
+bitcoin_rpc_user = "{{ keyOrDefault (print (env "CONSUL_PATH") "/oracle.bitcoin.rpc.user") "" }}"
+bitcoin_rpc_password = "{{ keyOrDefault (print (env "CONSUL_PATH") "/oracle.bitcoin.rpc.password") "" }}"
+http_post_mode = {{ keyOrDefault (print (env "CONSUL_PATH") "/oracle.http.post.mode") "true" }}
+disable_tls = {{ keyOrDefault (print (env "CONSUL_PATH") "/oracle.disable.tls") "true" }}
