@@ -235,7 +235,6 @@ max-txs = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.max-txs") "-1" }}
 [oracle]
 # If this node will act as a validator, set to true. For non-validator (full) nodes, set to false.
 enable = {{ keyOrDefault (print (env "CONSUL_PATH") "/oracle.enable") "false" }}
-
 bitcoin_rpc = "{{ keyOrDefault (print (env "CONSUL_PATH") "/oracle.bitcoin.rpc") "" }}"
 bitcoin_rpc_user = "{{ keyOrDefault (print (env "CONSUL_PATH") "/oracle.bitcoin.rpc.user") "" }}"
 bitcoin_rpc_password = "{{ keyOrDefault (print (env "CONSUL_PATH") "/oracle.bitcoin.rpc.password") "" }}"
