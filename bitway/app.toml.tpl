@@ -1,9 +1,3 @@
-###
-# SDK 0.50.x
-###
-# This is a TOML config file.
-# For more information, see https://github.com/toml-lang/toml
-
 ###############################################################################
 ###                           Base Configuration                            ###
 ###############################################################################
@@ -11,7 +5,7 @@
 # The minimum gas prices a validator is willing to accept for processing a
 # transaction. A transaction's fees must meet the minimum of any denomination
 # specified in this config (e.g. 0.25token1,0.0001token2).
-minimum-gas-prices = {{ key (print (env "CONSUL_PATH") "/base.minimum-gas-prices") }}
+minimum-gas-prices = "{{ key (print (env "CONSUL_PATH") "/base.minimum-gas-prices") }}"
 
 # The maximum gas a query coming over rest/grpc may consume.
 # If this is set to zero, the query can consume an unbounded amount of gas.
@@ -67,11 +61,11 @@ inter-block-cache = true
 index-events = []
 
 # IavlCacheSize set the size of the iavl tree cache (in number of nodes).
-iavl-cache-size = {{ keyOrDefault (print (env "CONSUL_PATH") "/base.iavl-cache-size") "781250" }}
+iavl-cache-size = 781250
 
 # IAVLDisableFastNode enables or disables the fast node feature of IAVL. 
 # Default is false.
-iavl-disable-fastnode = {{ keyOrDefault (print (env "CONSUL_PATH") "/base.iavl-disable-fastnode") "false" }}
+iavl-disable-fastnode = false
 
 # AppDBBackend defines the database backend type to use for the application and snapshots DBs.
 # An empty string indicates that a fallback will be used.
@@ -111,6 +105,17 @@ prometheus-retention-time = {{ keyOrDefault (print (env "CONSUL_PATH") "/telemet
 # [["chain_id", "cosmoshub-1"]]
 global-labels = [
 ]
+
+# MetricsSink defines the type of metrics sink to use.
+metrics-sink = ""
+
+# StatsdAddr defines the address of a statsd server to send metrics to.
+# Only utilized if MetricsSink is set to "statsd" or "dogstatsd".
+statsd-addr = ""
+
+# DatadogHostname defines the hostname to use when emitting metrics to
+# Datadog. Only utilized if MetricsSink is set to "dogstatsd".
+datadog-hostname = ""
 
 ###############################################################################
 ###                           API Configuration                             ###
@@ -220,150 +225,19 @@ stop-node-on-err = true
 
 [mempool]
 # Setting max-txs to 0 will allow for a unbounded amount of transactions in the mempool.
-# Setting max_txs to negative 1 (-1) will disable transactions from being inserted into the mempool.
+# Setting max_txs to negative 1 (-1) will disable transactions from being inserted into the mempool (no-op mempool).
 # Setting max_txs to a positive number (> 0) will limit the number of transactions in the mempool, by the specified amount.
 #
 # Note, this configuration only applies to SDK built-in app-side mempool
 # implementations.
-max-txs = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.max-txs") "\"5000\"" }}
-
-###############################################################################
-###                      Osmosis Mempool Configuration                      ###
-###############################################################################
-
-[osmosis-mempool]
-# This is the max allowed gas any tx.
-# This is only for local mempool purposes, and thus	is only ran on check tx.
-max-gas-wanted-per-tx = {{ keyOrDefault (print (env "CONSUL_PATH") "/osmo-mempool.max-gas-wanted-per-tx") "\"25000000\"" }}
-
-# This is the minimum gas fee any arbitrage tx should have, denominated in uosmo per gas
-# Default value of ".1" then means that a tx with 1 million gas costs (.1 uosmo/gas) * 1_000_000 gas = .1 osmo
-arbitrage-min-gas-fee = {{ keyOrDefault (print (env "CONSUL_PATH") "/osmo-mempool.arbitrage-min-gas-fee") "\"10\"" }}
-
-# This is the minimum gas fee any tx with high gas demand should have, denominated in uosmo per gas
-# Default value of ".0025" then means that a tx with 1 million gas costs (.0025 uosmo/gas) * 1_000_000 gas = .0025 osmo
-min-gas-price-for-high-gas-tx = {{ keyOrDefault (print (env "CONSUL_PATH") "/osmo-mempool.min-gas-price-for-high-gas-tx") "\"0.01\"" }}
-
-# This parameter enables EIP-1559 like fee market logic in the mempool
-adaptive-fee-enabled = {{ keyOrDefault (print (env "CONSUL_PATH") "/osmo-mempool.adaptive-fee-enabled") "\"true\"" }}
-
-###############################################################################
-###                         WASM                                            ###
-###############################################################################
-
-[wasm]
-# This is the maximum sdk gas (wasm and storage) that we allow for any x/wasm "smart" queries
-query_gas_limit = {{ keyOrDefault (print (env "CONSUL_PATH") "/wasm.query_gas_limit") "300000" }}
-# This defines the memory size for Wasm modules that we can keep cached to speed-up instantiation
-# The value is in MiB not bytes
-memory_cache_size = {{ keyOrDefault (print (env "CONSUL_PATH") "/wasm.memory_cache_size") "3000" }}
-
-###############################################################################
-###                         FUEL SIDECAR                                    ###
-###############################################################################
-# This sidecar needs to run in same nomad job as the validator
-[sidecar]
-# This dictates whether the Sidecar will be queried.
-enabled = {{ keyOrDefault (print (env "FUEL_SIDECAR_CONSUL_PATH") "/base.sidecar.enabled") "true" }}
-# This defines the Sidecar server to listen to.
-address = "{{ env "NOMAD_IP_sidecar" }}:{{ env "NOMAD_PORT_sidecar" }}"
-# This defines how long the client should wait for responses.
-timeout = "5s"
-
-###############################################################################
-###                      Babylon Bitcoin configuration                      ###
-###############################################################################
-
-[btc-config]
-
-# Configures which bitcoin network should be used for checkpointing
-# valid values are: [mainnet, testnet, simnet, signet, regtest]
-network = "{{ keyOrDefault (print (env "CONSUL_PATH") "/btc_network") "simnet" }}"
-
-###############################################################################
-###                             EVM Configuration                           ###
-###############################################################################
-[evm]
-# Tracer defines the 'vm.Tracer' type that the EVM will use when the node is run in
-# debug mode. To enable tracing use the '--evm.tracer' flag when starting your node.
-# Valid types are: json|struct|access_list|markdown
-tracer = ""
-# MaxTxGasWanted defines the gas wanted for each eth tx returned in ante handler in check tx mode.
-max-tx-gas-wanted = 0
-###############################################################################
-###                           JSON RPC Configuration                        ###
-###############################################################################
-[json-rpc]
-# Enable defines if the gRPC server should be enabled.
-enable = true
-# Address defines the EVM RPC HTTP server address to bind to.
-address = "{{ keyOrDefault (print (env "CONSUL_PATH") "/json-rpc.address") "127.0.0.1:8545" }}"
-# Address defines the EVM WebSocket server address to bind to.
-ws-address = "{{ keyOrDefault (print (env "CONSUL_PATH") "/json-rpc.ws-address") "127.0.0.1:8546" }}"
-# API defines a list of JSON-RPC namespaces that should be enabled
-# Example: "eth,txpool,personal,net,debug,web3"
-api = "eth,net,web3"
-# GasCap sets a cap on gas that can be used in eth_call/estimateGas (0=infinite). Default: 25,000,000.
-gas-cap = 25000000
-# EVMTimeout is the global timeout for eth_call. Default: 5s.
-evm-timeout = "5s"
-# TxFeeCap is the global tx-fee cap for send transaction. Default: 1eth.
-txfee-cap = 1
-# FilterCap sets the global cap for total number of filters that can be created
-filter-cap = 200
-# FeeHistoryCap sets the global cap for total number of blocks that can be fetched
-feehistory-cap = 100
-# LogsCap defines the max number of results can be returned from single 'eth_getLogs' query.
-logs-cap = 10000
-# BlockRangeCap defines the max block range allowed for 'eth_getLogs' query.
-block-range-cap = 10000
-# HTTPTimeout is the read/write timeout of http json-rpc server.
-http-timeout = "30s"
-# HTTPIdleTimeout is the idle timeout of http json-rpc server.
-http-idle-timeout = "2m0s"
-# AllowUnprotectedTxs restricts unprotected (non EIP155 signed) transactions to be submitted via
-# the node's RPC when the global parameter is disabled.
-allow-unprotected-txs = false
-# MaxOpenConnections sets the maximum number of simultaneous connections
-# for the server listener.
-max-open-connections = 0
-# EnableIndexer enables the custom transaction indexer for the EVM (ethereum transactions).
-enable-indexer = false
-# MetricsAddress defines the EVM Metrics server address to bind to. Pass --metrics in CLI to enable
-# Prometheus metrics path: /debug/metrics/prometheus
-metrics-address = "0.0.0.0:6065"
-# Upgrade height for fix of revert gas refund logic when transaction reverted.
-fix-revert-gas-refund-height = 0
-# Maximum number of bytes returned from eth_call or similar invocations.
-return-data-limit = 100000
-###############################################################################
-###                             TLS Configuration                           ###
-###############################################################################
-[tls]
-# Certificate path defines the cert.pem file path for the TLS configuration.
-certificate-path = ""
-# Key path defines the key.pem file path for the TLS configuration.
-key-path = ""
-
-###############################################################################
-###                             Jester (noble sidecar)                     ###
-###############################################################################
-
-[jester]
-
-# Jester's gRPC server address.
-# This should not conflict with the CometBFT gRPC server.
-grpc-address = "{{ env "NOMAD_HOST_IP_gRPCJ" }}:{{ env "NOMAD_HOST_PORT_gRPCJ" }}"
-
-###############################################################################
-###                      Shuttler/tssigner (bitway sidecar)                 ###
-###############################################################################
+max-txs = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.max-txs") "-1" }}
 
 [oracle]
 # If this node will act as a validator, set to true. For non-validator (full) nodes, set to false.
 enable = {{ keyOrDefault (print (env "CONSUL_PATH") "/oracle.enable") "false" }}
-bitcoin_rpc = "{{ keyOrDefault (print (env "CONSUL_PATH") "/oracle.bitcoin.rpc") "192.248.180.245:8332" }}"
-bitcoin_rpc_user = "{{ keyOrDefault (print (env "CONSUL_PATH") "/oracle.bitcoin.rpc.user") "bitway" }}"
-bitcoin_rpc_password = "{{ keyOrDefault (print (env "CONSUL_PATH") "/oracle.bitcoin.rpc.password") "12345678" }}"
+
+bitcoin_rpc = "{{ keyOrDefault (print (env "CONSUL_PATH") "/oracle.bitcoin.rpc") "" }}"
+bitcoin_rpc_user = "{{ keyOrDefault (print (env "CONSUL_PATH") "/oracle.bitcoin.rpc.user") "" }}"
+bitcoin_rpc_password = "{{ keyOrDefault (print (env "CONSUL_PATH") "/oracle.bitcoin.rpc.password") "" }}"
 http_post_mode = {{ keyOrDefault (print (env "CONSUL_PATH") "/oracle.http.post.mode") "true" }}
 disable_tls = {{ keyOrDefault (print (env "CONSUL_PATH") "/oracle.disable.tls") "true" }}
