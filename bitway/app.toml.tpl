@@ -25,7 +25,7 @@ pruning-interval = {{ keyOrDefault (print (env "CONSUL_PATH") "/base.pruning-int
 # halt and shutdown that can be used to assist upgrades and testing.
 #
 # Note: Commitment of state will be attempted on the corresponding block.
-{{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/base.halt-height") "0" }}
+halt-time = {{ keyOrDefault (print "networks/" (index (env "CONSUL_PATH" | split "/") 1) "/base.halt-height") "0" }}
 
 # HaltTime contains a non-zero minimum block time (in Unix seconds) at which
 # a node will gracefully halt and shutdown that can be used to assist upgrades
@@ -84,7 +84,7 @@ service-name = ""
 # Enabled enables the application telemetry functionality. When enabled,
 # an in-memory sink is also enabled by default. Operators may also enabled
 # other sinks such as Prometheus.
-enabled = { keyOrDefault (print (env "CONSUL_PATH") "/telemetry.enabled") "false" }}
+enabled = {{ keyOrDefault (print (env "CONSUL_PATH") "/telemetry.enabled") "false" }}
 
 # Enable prefixing gauge values with hostname.
 enable-hostname = false
