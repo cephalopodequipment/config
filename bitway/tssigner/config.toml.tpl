@@ -2,7 +2,7 @@
 port = {{ keyOrDefault  (print (env "CONSUL_PATH") "/port") "5158" }}
 enable_rpc = false
 rpc_address = "127.0.0.1:6780"
-[{{ keyOrDefault  (print (env "CONSUL_PATH") "/bootstrap.nodes") "" }}]
+bootstrap_nodes = [{{ keyOrDefault  (print (env "CONSUL_PATH") "/bootstrap.nodes") "" }}]
 max_peers = 10
 log_level = {{ keyOrDefault  (print (env "CONSUL_PATH") "/base.log_level") "\"debug\"" }}
 mnemonic = "{{- .Data.data.mnemonic -}}"
