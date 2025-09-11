@@ -42,7 +42,7 @@ required_confirmations = 72
 enabled = true
 
 [starknet.mainnet]
-chain_id = "SN_MAIN"
+chain_id = "0x534e5f4d41494e"
 rpc_url = "{{ .Data.data.starknet_mainnet_rpc }}" # replace with your own
 timeout = "10s"
 
