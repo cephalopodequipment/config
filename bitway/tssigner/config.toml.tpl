@@ -21,8 +21,8 @@ user = "side"
 password = "12345678"
 
 [bitway]
-grpc = {{ keyOrDefault  (print (env "CONSUL_PATH") "/sidechain.grpc") "\"\"" }}
-rpc = {{ keyOrDefault  (print (env "CONSUL_PATH") "/sidechain.rpc") "\"\"" }}
+grpc = {{ env "NOMAD_IP_bitwaygrpc" }}:{{ env "NOMAD_PORT_bitwaygrpc" }}
+rpc = {{ env "NOMAD_IP_bitwayrpc" }}:{{ env "NOMAD_PORT_bitwayrpc" }}
 gas = 1000000
 
 [bitway.fee]
