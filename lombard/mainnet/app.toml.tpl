@@ -41,6 +41,11 @@ chain_id = "0x2105"
 required_confirmations = 72
 enabled = true
 
+[starknet.mainnet]
+chain_id = "0x534e5f4d41494e"
+rpc_url = "{{ .Data.data.starknet_mainnet_rpc }}" # replace with your own
+timeout = "10s"
+
 [evm.sonic]
 rpc_url = "{{ .Data.data.sonic_mainnet_rpc }}"  # replace by your own
 chain_id = "0x92"
