@@ -16,7 +16,7 @@ max_attempts = 5
 
 [bitcoin]
 network = "bitcoin"
-rpc =  "http://192.248.180.245:8332"
+rpc = "http://192.248.180.245:8332"
 user = "bitway"
 password = "12345678"
 
