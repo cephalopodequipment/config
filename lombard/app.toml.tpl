@@ -38,7 +38,7 @@ enabled = true
 
 [starknet.sepolia]
 chain_id = "SN_SEPOLIA"
-rpc_url = "https://starknet-sepolia.drpc.org" # can use this or replace with your own
+rpc_url = "{{ .Data.data.starknet_sepolia_drpc }}"
 timeout = "10s"
 
 [evm.sonic_testnet]
