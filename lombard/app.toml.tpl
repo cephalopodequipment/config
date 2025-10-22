@@ -11,6 +11,12 @@ params = "{{ keyOrDefault (print (env "CONSUL_PATH") "/btc_network") "mainnet" }
 disable_tls = false # set true if http
 required_confirmations = 6
 timeout = "10s"
+
+[evm.avalanche_fuji]
+rpc_url = "https://avalanche-fuji-c-chain-rpc.publicnode.com" # replace by your own
+chain_id = "0xa869"
+required_confirmations = 20
+enabled = true
       
 [evm.holesky]
 rpc_url = "{{ .Data.data.eth_holesky_rpc }}" # replace by your own
@@ -38,7 +44,7 @@ enabled = true
 
 [starknet.sepolia]
 chain_id = "SN_SEPOLIA"
-rpc_url = "https://starknet-sepolia.drpc.org" # can use this or replace with your own
+rpc_url = "{{ .Data.data.starknet_sepolia_drpc }}"
 timeout = "10s"
 
 [evm.sonic_testnet]
