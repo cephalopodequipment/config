@@ -12,7 +12,7 @@ solana_rpc:
   testnet: {{ with secret "static_secrets/alchemy" }}{{ .Data.data.solana_testnet_rpc }}{{ end }}
   mainnet: {{ with secret "static_secrets/alchemy" }}{{ .Data.data.solana_mainnet_rpc }}{{ end }}
 neutrino:
-  path: "/home/zenrock/.zrchain/root-data/neutrino"
+  path: "/home/zenrock/.zrchain/neutrino"
 zcash_rpc:
   testnet: "http://65.21.67.137:18232/"
 proxy_rpc:
