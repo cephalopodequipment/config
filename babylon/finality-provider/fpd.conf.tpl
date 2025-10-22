@@ -21,6 +21,9 @@ MaxSubmissionRetries = {{ keyOrDefault (print (env "CONSUL_PATH") "/MaxSubmissio
 ; The address of the remote EOTS manager; Empty if the EOTS manager is running locally
 EOTSManagerAddress = {{ env "NOMAD_HOST_IP_eotsdrpc" }}:{{ env "NOMAD_HOST_PORT_eotsdrpc" }}
 
+; The HMAC key for authentication with EOTSD. If not provided, will use HMAC_KEY environment variable.
+HMACKey =
+
 ; The size of a batch in one submission
 BatchSubmissionSize = {{ keyOrDefault (print (env "CONSUL_PATH") "/BatchSubmissionSize") "1000" }}
 
@@ -39,6 +42,12 @@ SignatureSubmissionInterval = {{ keyOrDefault (print (env "CONSUL_PATH") "/Signa
 
 ; the listener for RPC connections, e.g., 127.0.0.1:1234
 RPCListener = 0.0.0.0:12581
+
+; The height at which the context signing will start
+ContextSigningHeight = 0
+
+; The maximum size of the gRPC message in bytes.
+GRPCMaxContentLength = 16777216
 
 [chainpollerconfig]
 ; The maximum number of Babylon blocks that can be stored in the buffer
