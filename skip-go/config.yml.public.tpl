@@ -210,7 +210,7 @@ chains:
     environment: "mainnet"
     gas_token_symbol: "MATIC"
     gas_token_decimals: 18
-    gas_token_coingecko_id: "matic-network"
+    gas_token_coingecko_id: "polygon-ecosystem-token"
     fast_transfer_contract_address: "0x3ffaf8d0d33226302e3a0ae48367cf1dd2023b1f"
     solver_address: {{ $job_config.solver_address }}
     usdc_denom: "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359"
