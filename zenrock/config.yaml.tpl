@@ -12,3 +12,5 @@ solana_rpc:
   mainnet: {{ with secret "static_secrets/alchemy" }}{{ .Data.data.solana_mainnet_rpc }}{{ end }}
 neutrino:
   path: "/home/zenrock/.zrchain/neutrino"
+zcash_rpc:
+  mainnet: "http://65.21.67.137:8232/"
