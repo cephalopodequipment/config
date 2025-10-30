@@ -29,7 +29,7 @@ ws_listeners:
     chain_id: "1"
     chain_name: "ethereum"
   "42161":
-    ws_url: "{{ with secret "static_secrets/skip-go"}}{{ .Data.data.arb_wss }}{{ end }}"
+    ws_url: "{{ with secret "static_secrets/skip-go-temp"}}{{ .Data.data.arb_wss }}{{ end }}"
     contract_address: "0x23cb6147e5600c23d1fb5543916d3d5457c9b54c"
     chain_id: "42161"
     chain_name: "arbitrum"
