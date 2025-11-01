@@ -87,12 +87,12 @@ genesis_hash = "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG"
 [cosmos.ledger_mainet] # for mainnet
 rpc_url = "{{ range service "lombard-mainnet-validator.cometbft-rpc" }}http://{{ .Address }}:{{ .Port }}{{ end }}"
 chain_id = "ledger-mainnet-1"
-enabled = {{ keyOrDefault (print (env "CONSUL_PATH") "/enabled") "false" }}
+enabled = {{ keyOrDefault (print (env "CONSUL_PATH") "/cosmos_ledger_testnet_enabled") "false" }}
 
 [cosmos.ledger_testnet] # for testnet
 rpc_url = "{{ range service "lombard-testnet-validator.cometbft-rpc" }}http://{{ .Address }}:{{ .Port }}{{ end }}"
 chain_id = "ledger-testnet-1"
-enabled = {{ keyOrDefault (print (env "CONSUL_PATH") "/enabled") "false" }}
+enabled = {{ keyOrDefault (print (env "CONSUL_PATH") "/cosmos_ledger_testnet_enabled") "false" }}
 
 [sanctions]
 url = "https://staging.prod.lombard.finance/"
