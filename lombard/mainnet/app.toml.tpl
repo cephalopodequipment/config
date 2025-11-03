@@ -85,4 +85,10 @@ enabled = false
 
 [evm.holesky]
 enabled = false
+
+[evm.avalanche]
+rpc_url = "{{ .Data.data.avalanche_rpc }}" # replace with your own rpc
+chain_id = "0xa86a"
+required_confirmations = 2
+enabled = true
 {{ end -}}
