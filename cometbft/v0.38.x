@@ -354,6 +354,13 @@ max_batch_bytes = 0
 experimental_max_gossip_connections_to_persistent_peers = 0
 experimental_max_gossip_connections_to_non_persistent_peers = 0
 
+# max-gossip-delay is the maximum allotted time that the reactor expects a transaction to
+# arrive before issuing a new request to a different peer
+# Only applicable to the v2 / CAT mempool
+# Default is 200ms
+# DEPRECATED: max-gossip-delay is deprecated and will be removed in a future version.
+max-gossip-delay = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.max_gossip-delay") "\"1m0s\"" }}
+
 #######################################################
 ###         State Sync Configuration Options        ###
 #######################################################
