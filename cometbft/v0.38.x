@@ -359,7 +359,7 @@ experimental_max_gossip_connections_to_non_persistent_peers = 0
 # Only applicable to the v2 / CAT mempool
 # Default is 200ms
 # DEPRECATED: max-gossip-delay is deprecated and will be removed in a future version.
-max-gossip-delay = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.max_gossip-delay") "\"1m0s\"" }}
+max-gossip-delay = {{ keyOrDefault (print (env "CONSUL_PATH") "/mempool.max_gossip-delay") "\"200ms\"" }}
 
 #######################################################
 ###         State Sync Configuration Options        ###
