@@ -35,10 +35,28 @@ chain_id = "0x38"
 required_confirmations = 15
 enabled = true
 
+[evm.berachain]
+rpc_url = "{{ .Data.data.berachain_rpc }}" # replace with your own rpc
+chain_id = "0x138de"
+required_confirmations = 2
+enabled = true
+
 [evm.base]
 rpc_url = "{{ .Data.data.base_rpc }}" # replace by your own
 chain_id = "0x2105"
 required_confirmations = 72
+enabled = true
+
+[evm.corn]
+rpc_url = "{{ .Data.data.corn_rpc }}" # replace with your own rpc
+chain_id = "0x1406f40"
+required_confirmations = 1200
+enabled = true
+
+[evm.etherlink]
+rpc_url = "{{ .Data.data.etherlink_rpc }}" # replace with your own rpc
+chain_id = "0xa729"
+required_confirmations = 21
 enabled = true
 
 [starknet.mainnet]
@@ -91,4 +109,12 @@ rpc_url = "{{ .Data.data.avalanche_rpc }}" # replace with your own rpc
 chain_id = "0xa86a"
 required_confirmations = 2
 enabled = true
+
+[evm.tac]
+rpc_url = "{{ .Data.data.tac_rpc }}" # replace with your own rpc
+chain_id = "0xef"
+required_confirmations = 2
+enabled = true
 {{ end -}}
+
+
