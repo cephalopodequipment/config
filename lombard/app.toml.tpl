@@ -95,4 +95,4 @@ chain_id = "ledger-testnet-1"
 enabled = {{ keyOrDefault (print (env "CONSUL_PATH") "/cosmos_ledger_testnet_enabled") "false" }}
 
 [sanctions]
-url = "https://staging.prod.lombard.finance/"
+url = "https://staging.prod.lombard-fi.com/"
