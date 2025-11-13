@@ -278,5 +278,4 @@ RELAYER_TOKENS='{{ keyOrDefault "networks/across-solver/RELAYER_TOKENS" "[]" }}'
 
 # Skip to check enabled chains during every relayer execution loop.
 # TODO: Check how much latency is saved by using this.
-SPOKE_POOL_CHAINS_OVERRIDE=[1, 10, 137, 8453, 42161, 130, 56] 
 
