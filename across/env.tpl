@@ -36,6 +36,8 @@ RPC_PROVIDER_ALCHEMY_137={{ .Data.data.RPC_PROVIDER_ALCHEMY_137 }}
 RPC_PROVIDER_ALCHEMY_10={{ .Data.data.RPC_PROVIDER_ALCHEMY_10 }}
 RPC_PROVIDER_ALCHEMY_8453={{ .Data.data.RPC_PROVIDER_ALCHEMY_8453 }}
 RPC_PROVIDER_ALCHEMY_130={{ .Data.data.RPC_PROVIDER_ALCHEMY_130 }}
+RPC_PROVIDER_ALCHEMY_56={{ .Data.data.RPC_PROVIDER_ALCHEMY_56 }}
+
 
 RPC_PROVIDER_ANKR_1={{ .Data.data.RPC_PROVIDER_ANKR_1 }}
 RPC_PROVIDER_ANKR_42161={{ .Data.data.RPC_PROVIDER_ANKR_42161 }}
@@ -107,7 +109,7 @@ SEND_SLOW_RELAYS=false
 # Deposit lookback window, specified in seconds. This is subtracted from the
 # current time and is resolved to a block number on each chain, effectively
 # controlling how far back in time the relayer will scan for unfilled deposits.
-MAX_RELAYER_DEPOSIT_LOOK_BACK={{ keyOrDefault "networks/across-solver/MAX_RELAYER_DEPOSIT_LOOK_BACK" "300" }}
+MAX_RELAYER_DEPOSIT_LOOK_BACK={{ keyOrDefault "networks/across-solver/MAX_RELAYER_DEPOSIT_LOOK_BACK" "10" }}
 
 
 # The relayer requires a minimum return on capital when filling relays. The
@@ -115,7 +117,7 @@ MAX_RELAYER_DEPOSIT_LOOK_BACK={{ keyOrDefault "networks/across-solver/MAX_RELAYE
 # each fill. Minimum fees can also be configured per token(symbol)/route
 # combination. Examples:
 # Require 1 bps as the global default.
-MIN_RELAYER_FEE_PCT={{ keyOrDefault "networks/across-solver/MIN_RELAYER_FEE_PCT" "0.0001" }}
+MIN_RELAYER_FEE_PCT={{ keyOrDefault "networks/across-solver/MIN_RELAYER_FEE_PCT" "0.00005" }}
 
 # Override: Require at least 1.5 bps on USDC from Arbitrum to Ethereum.
 # MIN_RELAYER_FEE_PCT_USDC_42161_1=0.00015
@@ -276,5 +278,5 @@ RELAYER_TOKENS='{{ keyOrDefault "networks/across-solver/RELAYER_TOKENS" "[]" }}'
 
 # Skip to check enabled chains during every relayer execution loop.
 # TODO: Check how much latency is saved by using this.
-SPOKE_POOL_CHAINS_OVERRIDE=[1, 10, 137, 8453, 42161, 130] 
+SPOKE_POOL_CHAINS_OVERRIDE=[1, 10, 137, 8453, 42161, 130, 56] 
 
