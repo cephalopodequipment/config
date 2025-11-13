@@ -8,12 +8,6 @@ KeyringBackend = {{ keyOrDefault (print (env "CONSUL_PATH") "/keyring.backend") 
 ; the listener for RPC connections, e.g., 127.0.0.1:1234
 RPCListener = 0.0.0.0:12582
 
-; The HMAC key for authentication with FPD. If not provided, will use HMAC_KEY environment variable.
-HMACKey =
-
-; The maximum size of the gRPC message in bytes.
-GRPCMaxContentLength = 16777216
-
 [metrics]
 ; IP of the Prometheus server
 Host = 0.0.0.0
