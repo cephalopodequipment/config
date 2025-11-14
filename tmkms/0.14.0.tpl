@@ -17,5 +17,5 @@ sign_extensions = {{ envOrDefault "SIGN_EXTENSIONS" "false" }}
 chain_id = "{{ env "CHAIN_ID" }}"
 addr = "{{ env "NODE_LADDR" }}"
 secret_key = "/home/tmkms/secrets/kms-identity.key"
-protocol_version = "v0.34"
+protocol_version = "{{ envOrDefault "PROTOCOL_VERSION" "v0.34" }}"
 reconnect = true
