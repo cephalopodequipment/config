@@ -1,11 +1,11 @@
 # Core op-geth Configuration
 # Base settings for the op-geth node, including network and rollup integration.
 
-GETH_OP_NETWORK=unichain-sepolia
 # Target network (e.g., Unichain Sepolia testnet).
+GETH_OP_NETWORK=unichain-mainnet
 
-GETH_ROLLUP_SEQUENCERHTTP=https://sepolia-sequencer.unichain.org
 # Rollup sequencer HTTP endpoint for transaction submission.
+GETH_ROLLUP_SEQUENCERHTTP=https://mainnet-sequencer.unichain.org
 
 # Logging & Verbosity
 # Configure logging format and verbosity level for debugging and monitoring.
