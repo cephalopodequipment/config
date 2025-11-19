@@ -3,16 +3,16 @@
 
 {{ with secret "static_secrets/ankr" }}
 # [required] replace with your preferred L1 (Ethereum, not Unichain) node RPC URL:
-OP_NODE_L1_ETH_RPC={{ .Data.data.eth_sepolia_rpc }}
+OP_NODE_L1_ETH_RPC={{ .Data.data.eth_mainnet }}
 # [required] replace with your preferred L1 CL beacon endpoint:
-OP_NODE_L1_BEACON={{ .Data.data.eth_sepolia_beacon }}
+OP_NODE_L1_BEACON={{ .Data.data.eth_mainnet_beacon }}
 {{ end }}
 
 # Define the target network (e.g., Unichain Sepolia testnet).
-OP_NODE_NETWORK=unichain-sepolia
+OP_NODE_NETWORK=unichain-mainnet
 
-OP_NODE_L2_ENGINE_AUTH=/shared/jwt.hex
 # JWT authentication path for L2 engine communication.
+OP_NODE_L2_ENGINE_AUTH=/shared/jwt.hex
 
 # L2 engine RPC endpoint for communication with the execution layer.
 OP_NODE_L2_ENGINE_RPC={{ env "NOMAD_IP_ex_rpc" }}:{{ env "NOMAD_PORT_ex_rpc" }}
