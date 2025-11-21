@@ -15,7 +15,7 @@ OP_NODE_NETWORK=unichain-mainnet
 OP_NODE_L2_ENGINE_AUTH=/shared/jwt.hex
 
 # L2 engine RPC endpoint for communication with the execution layer.
-OP_NODE_L2_ENGINE_RPC={{ env "NOMAD_IP_ex_rpc" }}:{{ env "NOMAD_PORT_ex_rpc" }}
+#OP_NODE_L2_ENGINE_RPC={{ env "NOMAD_IP_ex_rpc" }}:{{ env "NOMAD_PORT_ex_rpc" }}
 
 # Logging & Metrics
 # Configure logging format and enable metrics for monitoring. Metrics are exposed on the specified port for external tools.
