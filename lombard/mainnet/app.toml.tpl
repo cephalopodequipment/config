@@ -121,12 +121,11 @@ rpc_url = "{{ .Data.data.monad_rpc }}" # replace with your own rpc
 chain_id = "0x8f"
 required_confirmations = 3
 enabled = true
-{{ end -}}
 
 [evm.stable]
-rpc_url = "https://partners-rpc.stable.xyz/lombard.075830647a2c30190712a9d102011ffe5a2a01d24ff3405f711d6ea8aca10baf"
+rpc_url = "{{ .Data.data.stable_rpc }}"
 chain_id = "0x03dc"
 required_confirmations = 80
 enabled = true
-
+{{ end -}}
 
