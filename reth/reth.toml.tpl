@@ -1,19 +1,19 @@
 [stages.headers]
-downloader_max_concurrent_requests = 100
+downloader_max_concurrent_requests = 75
 downloader_min_concurrent_requests = 5
 downloader_max_buffered_responses = 100
 downloader_request_limit = 1000
-commit_threshold = 10000
+commit_threshold = 50000  # up from 10000
 
 [stages.bodies]
 downloader_request_limit = 200
 downloader_stream_batch_size = 1000
 downloader_max_buffered_blocks_size_bytes = 2147483648
 downloader_min_concurrent_requests = 5
-downloader_max_concurrent_requests = 100
+downloader_max_concurrent_requests = 75
 
 [stages.sender_recovery]
-commit_threshold = 5000000
+commit_threshold = 10000000  # up from 5000000
 
 [stages.execution]
 max_blocks = 1000000
@@ -22,30 +22,30 @@ max_cumulative_gas = 1500000000000
 max_duration = "10m"
 
 [stages.prune]
-commit_threshold = 1000000
+commit_threshold = 5000000  # up from 1000000
 
 [stages.account_hashing]
 clean_threshold = 500000
-commit_threshold = 100000
+commit_threshold = 500000  # up from 100000
 
 [stages.storage_hashing]
 clean_threshold = 500000
-commit_threshold = 100000
+commit_threshold = 500000  # up from 100000
 
 [stages.merkle]
 clean_threshold = 5000
 
 [stages.transaction_lookup]
-chunk_size = 5000000
+chunk_size = 10000000  # up from 5000000
 
 [stages.index_account_history]
-commit_threshold = 100000
+commit_threshold = 500000  # up from 100000
 
 [stages.index_storage_history]
-commit_threshold = 100000
+commit_threshold = 500000  # up from 100000
 
 [stages.etl]
-file_size = 524288000
+file_size = 1073741824  # 1GB, up from 500MB
 
 [prune]
 block_interval = 5
