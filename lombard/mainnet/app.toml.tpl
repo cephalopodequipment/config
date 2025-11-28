@@ -127,5 +127,11 @@ rpc_url = "{{ .Data.data.stable_rpc }}"
 chain_id = "0x03dc"
 required_confirmations = 80
 enabled = true
+
+[evm.megaeth]
+rpc_url = "{{ .Data.data.megaeth_rpc }}"
+chain_id = "0x10e6"
+required_confirmations = 1800
+enabled = true
 {{ end -}}
 
