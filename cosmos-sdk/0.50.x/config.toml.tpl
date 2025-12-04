@@ -479,3 +479,178 @@ max_open_connections = 3
 
 # Instrumentation namespace
 namespace = "tendermint"
+
+#######################################################
+###            Axelar Bridge Configuration          ###
+#######################################################
+
+##### Axelar EVM bridges options #####
+# Each EVM chain needs the following
+# 1. `[[axelar_bridge_evm]]` # header
+# 2. `name`                  # chain name (eg. "Ethereum")
+# 3. 'rpc_addr'              # EVM RPC endpoint URL; chain maintainers set their own endpoint
+# 4. `start-with-bridge`     # `true` to support this chain
+#
+# see https://docs.axelar.dev/#/validator-zone/external-chains/overview
+
+[[axelar_bridge_evm]]
+name = "Ethereum"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.eth.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.eth.enable") "false" }}
+
+[[axelar_bridge_evm]]
+name = "ethereum-sepolia"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.eth-sepolia.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.eth-sepolia.enable") "false" }}
+
+[[axelar_bridge_evm]]
+name = "Avalanche"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.avalanche.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.avalanche.enable") "false" }}
+
+[[axelar_bridge_evm]]
+name = "Fantom"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.fantom.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.fantom.enable") "false" }}
+
+[[axelar_bridge_evm]]
+name = "Moonbeam"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.moonbeam.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.moonbeam.enable") "false" }}
+
+[[axelar_bridge_evm]]
+name = "Polygon"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.polygon.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.polygon.enable") "false" }}
+
+[[axelar_bridge_evm]]
+name = "polygon-sepolia"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.polygon-sepolia.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.polygon-sepolia.enable") "false" }}
+
+[[axelar_bridge_evm]]
+name = "binance"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.binance.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.binance.enable") "false" }}
+
+[[axelar_bridge_evm]]
+name = "arbitrum"
+l1_chain_name = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.arbitrum.l1_chain_name") "\"\"" }}
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.arbitrum.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.arbitrum.enable") "false" }}
+
+[[axelar_bridge_evm]]
+name = "arbitrum-sepolia"
+l1_chain_name = "arbitrum-sepolia"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.arbitrum-sepolia.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.arbitrum-sepolia.enable") "false" }}
+
+[[axelar_bridge_evm]]
+name = "celo"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.celo.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.celo.enable") "false" }}
+finality_override = "confirmation"
+
+[[axelar_bridge_evm]]
+name = "celo-sepolia"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.celo-sepolia.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.celo-sepolia.enable") "false" }}
+finality_override = "confirmation"
+
+[[axelar_bridge_evm]]
+name = "kava"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.kava.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.kava.enable") "false" }}
+
+[[axelar_bridge_evm]]
+name = "filecoin"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.filecoin.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.filecoin.enable") "false" }}
+
+[[axelar_bridge_evm]]
+name = "filecoin-2"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.filecoin-2.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.filecoin-2.enable") "false" }}
+
+[[axelar_bridge_evm]]
+name = "optimism"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.optimism.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.optimism.enable") "false" }}
+
+[[axelar_bridge_evm]]
+name = "optimism-sepolia"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.optimism-sepolia.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.optimism-sepolia.enable") "false" }}
+
+[[axelar_bridge_evm]]
+name = "base"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.base.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.base.enable") "false" }}
+
+[[axelar_bridge_evm]]
+name = "base-sepolia"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.base-sepolia.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.base-sepolia.enable") "false" }}
+
+[[axelar_bridge_evm]]
+name = "linea"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.linea.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.linea.enable") "false" }}
+
+[[axelar_bridge_evm]]
+name = "linea-sepolia"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.linea-sepolia.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.linea-sepolia.enable") "false" }}
+
+[[axelar_bridge_evm]]
+name = "mantle"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.mantle.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.mantle.enable") "false" }}
+
+[[axelar_bridge_evm]]
+name = "mantle-sepolia"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.mantle-sepolia.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.mantle-sepolia.enable") "false" }}
+
+[[axelar_bridge_evm]]
+name = "blast"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.blast.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.blast.enable") "false" }}
+
+[[axelar_bridge_evm]]
+name = "blast-sepolia"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.blast-sepolia.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.blast-sepolia.enable") "false" }}
+
+[[axelar_bridge_evm]]
+name = "scroll"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.scroll.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.scroll.enable") "false" }}
+
+[[axelar_bridge_evm]]
+name = "fraxtal"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.fraxtal.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.fraxtal.enable") "false" }}
+
+[[axelar_bridge_evm]]
+name = "immutable"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.immutable.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.immutable.enable") "false" }}
+
+[[axelar_bridge_evm]]
+name = "centrifuge"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.centrifuge.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.centrifuge.enable") "false" }}
+
+[[axelar_bridge_evm]]
+name = "centrifuge-2"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.centrifuge-2.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.centrifuge-2.enable") "false" }}
+
+##### message broadcasting options #####
+[broadcast]
+
+broadcaster-account = "broadcaster"
+gas-adjustment = 1.0
+max-retries = 10
+min-timeout = "4s"
