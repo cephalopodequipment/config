@@ -509,6 +509,11 @@ rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.avalanche.rpc") 
 start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.avalanche.enable") "false" }}
 
 [[axelar_bridge_evm]]
+name = "test-avalanche"
+rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.test-avalanche.rpc") "\"\"" }}
+start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.test-avalanche.enable") "false" }}
+
+[[axelar_bridge_evm]]
 name = "Fantom"
 rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.fantom.rpc") "\"\"" }}
 start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.fantom.enable") "false" }}
@@ -541,7 +546,6 @@ start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.arbitrum
 
 [[axelar_bridge_evm]]
 name = "arbitrum-sepolia"
-l1_chain_name = "arbitrum-sepolia"
 rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.arbitrum-sepolia.rpc") "\"\"" }}
 start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.arbitrum-sepolia.enable") "false" }}
 
