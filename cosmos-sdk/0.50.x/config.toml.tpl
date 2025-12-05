@@ -546,7 +546,6 @@ start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.arbitrum
 
 [[axelar_bridge_evm]]
 name = "arbitrum-sepolia"
-l1_chain_name = "arbitrum-sepolia"
 rpc_addr = {{ keyOrDefault  (print (env "CONSUL_PATH") "/bridge.arbitrum-sepolia.rpc") "\"\"" }}
 start-with-bridge = {{ keyOrDefault (print (env "CONSUL_PATH") "/bridge.arbitrum-sepolia.enable") "false" }}
 
