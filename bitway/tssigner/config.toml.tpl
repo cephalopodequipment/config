@@ -1,7 +1,7 @@
 {{ with secret "static_secrets/side-protocol-tss" -}}
-port = {{ keyOrDefault  (print (env "CONSUL_PATH") "/port") "5158" }}
+port = 5158
 enable_rpc = true
-rpc_address = "0.0.0.0:32780"
+rpc_address = "0.0.0.0:6780"
 bootstrap_nodes = [{{ keyOrDefault  (print (env "CONSUL_PATH") "/bootstrap.nodes") "" }}]
 max_peers = 10
 log_level = {{ keyOrDefault  (print (env "CONSUL_PATH") "/base.log_level") "\"debug\"" }}
@@ -21,8 +21,8 @@ user = "bitway"
 password = "12345678"
 
 [bitway]
-grpc = {{ keyOrDefault  (print (env "CONSUL_PATH") "/sidechain.grpc") "\"\"" }}
-rpc = {{ keyOrDefault  (print (env "CONSUL_PATH") "/sidechain.rpc") "\"\"" }}
+grpc = {{ range service "bitway-1-validator.cosmos-sdk-grpc" }}"http://{{ .Address }}:{{ .Port }}"{{ end }}
+rpc = {{ range service "bitway-1-validator.cometbft-rpc" }}"http://{{ .Address }}:{{ .Port }}"{{ end }}
 gas = 1000000
 
 [bitway.fee]
