@@ -1,7 +1,7 @@
 {{ with secret "static_secrets/side-protocol-tss" -}}
 port = 5158
 enable_rpc = true
-rpc_address = "{{ env "NOMAD_IP_rpc" }}:6780"
+rpc_address = "0.0.0.0:6780"
 bootstrap_nodes = [{{ keyOrDefault  (print (env "CONSUL_PATH") "/bootstrap.nodes") "" }}]
 max_peers = 10
 log_level = {{ keyOrDefault  (print (env "CONSUL_PATH") "/base.log_level") "\"debug\"" }}
