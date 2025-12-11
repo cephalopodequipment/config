@@ -21,8 +21,8 @@ user = "bitway"
 password = "12345678"
 
 [bitway]
-grpc = "{{ range service "bitway-1-validator.cosmos-sdk-grpc" }}"{{ .Address }}:{{ .Port }}"{{ end }}"
-rpc = "{{ range service "bitway-1-validator.cosmos-sdk-rest" }}"{{ .Address }}:{{ .Port }}"{{ end }}"
+grpc = {{ range service "bitway-1-validator.cosmos-sdk-grpc" }}"{{ .Address }}:{{ .Port }}"{{ end }}
+rpc = {{ range service "bitway-1-validator.cosmos-sdk-rest" }}"{{ .Address }}:{{ .Port }}"{{ end }}
 gas = 1000000
 
 [bitway.fee]
