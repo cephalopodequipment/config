@@ -22,7 +22,7 @@ password = "12345678"
 
 [bitway]
 grpc = {{ range service "bitway-1-validator.cosmos-sdk-grpc" }}"http://{{ .Address }}:{{ .Port }}"{{ end }}
-rpc = {{ range service "bitway-1-validator.cosmos-sdk-rest" }}"http://{{ .Address }}:{{ .Port }}"{{ end }}
+rpc = {{ range service "bitway-1-validator.cometbft-rpc" }}"http://{{ .Address }}:{{ .Port }}"{{ end }}
 gas = 1000000
 
 [bitway.fee]
