@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmos Snapshot Service</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh; padding: 20px; color: #333;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header { text-align: center; color: white; margin-bottom: 40px; padding: 40px 20px; }
+        .header h1 { font-size: 3rem; font-weight: 700; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+        .header p { font-size: 1.2rem; opacity: 0.9; }
+        .info-card { background: white; border-radius: 12px; padding: 30px; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .info-card h2 { color: #667eea; margin-bottom: 15px; font-size: 1.5rem; }
+        .info-card p { color: #666; line-height: 1.6; margin-bottom: 10px; }
+        .chains-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .chain-card { background: white; border-radius: 12px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer; text-decoration: none; color: inherit; display: block; }
+        .chain-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.15); }
+        .chain-card h3 { color: #667eea; margin-bottom: 10px; font-size: 1.4rem; display: flex; align-items: center; gap: 10px; }
+        .chain-card .chain-id { color: #888; font-size: 0.9rem; font-family: 'Courier New', monospace; margin-bottom: 15px; }
+        .chain-card .stats { display: flex; gap: 20px; margin-top: 15px; padding-top: 15px; border-top: 1px solid #eee; }
+        .stat { flex: 1; }
+        .stat-label { font-size: 0.8rem; color: #999; text-transform: uppercase; letter-spacing: 0.5px; }
+        .stat-value { font-size: 1.1rem; font-weight: 600; color: #333; margin-top: 5px; }
+        .loading { text-align: center; padding: 40px; color: white; }
+        .spinner { border: 3px solid rgba(255,255,255,0.3); border-radius: 50%; border-top: 3px solid white;
+            width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto 20px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .footer { text-align: center; color: white; opacity: 0.8; margin-top: 40px; padding: 20px; }
+        .no-snapshots { text-align: center; padding: 60px 20px; background: white; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .no-snapshots h3 { color: #667eea; margin-bottom: 15px; }
+        .no-snapshots p { color: #666; }
+        @media (max-width: 768px) { .header h1 { font-size: 2rem; } .chains-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Cosmos Snapshot Service</h1>
+            <p>Automated blockchain snapshots for Cosmos SDK chains</p>
+        </div>
+        <div class="info-card">
+            <h2>📦 Available Snapshots</h2>
+            <p>Browse and download the latest chain snapshots. Each snapshot is pruned, compressed, and ready to use for quick node synchronization.</p>
+        </div>
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p>Loading available snapshots...</p>
+        </div>
+        <div id="chains" class="chains-grid" style="display: none;"></div>
+        <div id="no-snapshots" class="no-snapshots" style="display: none;">
+            <h3>No Snapshots Available Yet</h3>
+            <p>Snapshots are being created. Please check back later.</p>
+        </div>
+        <div class="footer">
+            <p>Powered by Cosmos Snapshot Service | Updated automatically</p>
+        </div>
+    </div>
+    <script>
+        async function loadSnapshots() {
+            try {
+                const response = await fetch('/backups/');
+                const html = await response.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const links = doc.querySelectorAll('a');
+                const chains = [];
+                links.forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (href && href.endsWith('/') && href !== '../' && !href.startsWith('/')) {
+                        const chainId = href.replace('/', '');
+                        chains.push({ id: chainId, name: formatChainName(chainId), url: `/backups/${href}` });
+                    }
+                });
+                displayChains(chains);
+            } catch (error) {
+                console.error('Failed to load snapshots:', error);
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('no-snapshots').style.display = 'block';
+            }
+        }
+        function formatChainName(chainId) {
+            const names = { 'injective-1': 'Injective', 'osmosis-1': 'Osmosis', 'cosmoshub-4': 'Cosmos Hub',
+                'juno-1': 'Juno', 'stargaze-1': 'Stargaze', 'bitway-1': 'Bitway' };
+            return names[chainId] || chainId.split('-')[0].charAt(0).toUpperCase() + chainId.split('-')[0].slice(1);
+        }
+        function displayChains(chains) {
+            const loading = document.getElementById('loading');
+            const chainsContainer = document.getElementById('chains');
+            const noSnapshots = document.getElementById('no-snapshots');
+            loading.style.display = 'none';
+            if (chains.length === 0) { noSnapshots.style.display = 'block'; return; }
+            chainsContainer.style.display = 'grid';
+            chains.forEach(chain => {
+                const card = document.createElement('a');
+                card.className = 'chain-card';
+                card.href = chain.url;
+                card.innerHTML = `<h3>${chain.name}</h3><div class="chain-id">${chain.id}</div>
+                    <p>Click to browse available snapshots</p>
+                    <div class="stats"><div class="stat"><div class="stat-label">Status</div>
+                    <div class="stat-value">✓ Available</div></div></div>`;
+                chainsContainer.appendChild(card);
+            });
+        }
+        loadSnapshots();
+    </script>
+</body>
+</html>
+
