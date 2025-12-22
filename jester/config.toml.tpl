@@ -4,8 +4,8 @@ testnet = {{ keyOrDefault (print (env "JESTER_CONSUL_PATH") "/jester.testnet") "
 server-address = "0.0.0.0:{{ env "NOMAD_PORT_gRPCJ" }}"
 
 [ethereum]
-{{- with secret "static_secrets/jester" }}
-websocket-url = "{{ .Data.data.ws_endpoint }}"
+{{- with secret "static_secrets/ankr" }}
+websocket-url = "{{ .Data.data.eth_mainnet_ws }}"
 rpc-url = "{{ .Data.data.rpc_endpoint }}"
 {{- end }}
 
