@@ -6,7 +6,7 @@ server-address = "0.0.0.0:{{ env "NOMAD_PORT_gRPCJ" }}"
 [ethereum]
 {{- with secret "static_secrets/ankr" }}
 websocket-url = "{{ .Data.data.eth_mainnet_ws }}"
-rpc-url = "{{ .Data.data.rpc_endpoint }}"
+rpc-url = "{{ .Data.data.eth_mainnet }}"
 {{- end }}
 
 [metrics]
