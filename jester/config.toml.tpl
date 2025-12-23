@@ -4,8 +4,8 @@ testnet = {{ keyOrDefault (print (env "JESTER_CONSUL_PATH") "/jester.testnet") "
 server-address = "0.0.0.0:{{ env "NOMAD_PORT_gRPCJ" }}"
 
 [ethereum]
-websocket-url = "ws://10.10.11.110:54004"
-rpc-url = "http://10.10.11.110:53001"
+websocket-url = "{{ range service "eth-full-node3.geth-ws" }}ws://{{ .Address }}:{{ .Port }}{{ end }}"
+rpc-url = "{{ range service "eth-full-node3.geth-rpc" }}http://{{ .Address }}:{{ .Port }}{{ end }}"
 
 [metrics]
 enabled = true
