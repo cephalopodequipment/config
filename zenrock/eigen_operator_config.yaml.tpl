@@ -11,10 +11,8 @@ avs_registry_coordinator_address: {{ keyOrDefault  (print (env "ZENROCK_SIDECAR_
 operator_state_retriever_address: {{ keyOrDefault  (print (env "ZENROCK_SIDECAR_CONSUL_PATH") "/eigen.operator_state_retriever_address") "" }}
 
 # ETH RPC URL
-{{ with secret "static_secrets/ankr" -}}
-eth_rpc_url: {{ .Data.data.eth_mainnet }}
-eth_ws_url: {{ .Data.data.eth_mainnet_ws }}
-{{- end }}
+eth_rpc_url: {{ range service "eth-full-node3.geth-rpc" }}http://{{ .Address }}:{{ .Port }}{{ end }}
+eth_ws_url: {{ range service "eth-full-node3.geth-ws" }}ws://{{ .Address }}:{{ .Port }}{{ end }}
 
 # ECDSA key
 ecdsa_private_key_store_path: /home/zenrock/.zrchain/sidecar/keys/ecdsa.key.json
