@@ -1,7 +1,7 @@
 receivers:
   tcplog/docker:
     listen_address: "0.0.0.0:2256"
-    max_log_size: 128KB
+    max_log_size: 1MiB
     operators:
       - type: json_parser
         id: logspout_parser
