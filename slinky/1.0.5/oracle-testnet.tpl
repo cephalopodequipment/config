@@ -7,7 +7,7 @@
             "url":  {{ range service "dydx-testnet-validator.cosmos-sdk-rest" }}"http://{{ .Address }}:{{ .Port }}"{{ end }}
           },
           {
-            "url":  {{ range service "dydx-testnet-validator.cosmos-sdk-grpc" }}"{{ .Address }}:{{ .Port }}"{{ end }}
+            "url":  {{ range service "dydx-testnet-validator.cosmos-sdk-grpc" }}"http://{{ .Address }}:{{ .Port }}"{{ end }}
           }
         ]
       }
