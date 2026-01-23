@@ -97,9 +97,11 @@ telemetrystore:
   dial_timeout: 5s
   # Specifies the telemetrystore provider to use.
   provider: clickhouse
+  {{- range service "server1.clickhouse-client" }}
   clickhouse:
     # The DSN to use for clickhouse.
-    dsn: tcp://localhost:9000
+    dsn: tcp://{{ .Address }}:{{ .Port }}
+  {{ end }}
     # The query settings for clickhouse.
     settings:
       max_execution_time: 0
@@ -177,18 +179,19 @@ emailing:
     directory: /opt/signoz/conf/templates/email
   smtp:
     # The SMTP server address.
-    address: localhost:25
+    address: {{ keyOrDefault "signoz/smtp.address" "no smtp.address key found" }}
     # The email address to use for the SMTP server.
-    from:
+    from: {{ keyOrDefault "signoz/smpt.from" "no smpt.from key found" }}
     # The hello message to use for the SMTP server.
     hello:
     # The static headers to send with the email.
     headers: {}
     auth:
-      # The username to use for the SMTP server.
-      username:
+{{- with secret "static_secrets/smtp" -}}
+      username: {{ .Data.data.user }}
       # The password to use for the SMTP server.
-      password:
+      password: {{ .Data.data.password }}
+{{ end }}
       # The secret to use for the SMTP server.
       secret:
       # The identity to use for the SMTP server.
