@@ -187,7 +187,8 @@ emailing:
     # The static headers to send with the email.
     headers: {}
     auth:
-{{- with secret "static_secrets/smtp" -}}
+{{ with secret "static_secrets/smtp" -}}
+      # The username to use for the SMTP server.
       username: {{ .Data.data.user }}
       # The password to use for the SMTP server.
       password: {{ .Data.data.password }}
