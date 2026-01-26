@@ -23,7 +23,7 @@
         <signoz>
             <no_password/>
             <networks>
-                <ip>10.10.12.106</ip>
+                <ip>172.17.0.1/16</ip>
             </networks>
             <profile>default</profile>
             <quota>default</quota>
