@@ -63,7 +63,7 @@ extensions:
 exporters:
   {{- range service "server1.clickhouse-client" }}
   clickhouselogsexporter:
-    dsn: tcp://{{ .Address }}:{{ .Port }}/signoz_logs
+    dsn: tcp://signoz@{{ .Address }}:{{ .Port }}/signoz_logs
     timeout: 10s
   # logging: {}
   {{ end }}
