@@ -13,18 +13,14 @@
     </profiles>
 
     <users>
-        <default>
-            <password></password>
-
+        <signoz>
+            <no_password/>
             <networks>
-                <ip>::/0</ip>
+                <ip>10.10.12.106</ip>
             </networks>
-
             <profile>default</profile>
-
             <quota>default</quota>
-
-        </default>
+        </signoz>
     </users>
 
     <quotas>
