@@ -67,6 +67,17 @@ exporters:
     timeout: 10s
   # logging: {}
   {{ end }}
+  {{- range service "server1.clickhouse-client" }}
+  signozclickhousemetrics:
+    dsn: tcp://signoz@{{ .Address }}:{{ .Port }}/signoz_metrics
+  {{ end }}
+  {{- range service "server1.clickhouse-client" }}
+  signozclickhousemeter:
+    dsn: tcp://signoz@{{ .Address }}:{{ .Port }}/signoz_meter
+    timeout: 45s
+    sending_queue:
+      enabled: false
+  {{ end }}
 
 service:
   extensions:
@@ -78,3 +89,7 @@ service:
       receivers: [otlp, tcplog/docker]
       processors: [batch]
       exporters: [clickhouselogsexporter]
+    metrics:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [signozclickhousemetrics]
