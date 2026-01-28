@@ -14,17 +14,20 @@
 
     <users>
         <default>
-            <password></password>
-
+            <no_password/>
             <networks>
-                <ip>::/0</ip>
+                <ip>::1</ip>
+                <ip>127.0.0.1</ip>
             </networks>
-
-            <profile>default</profile>
-
-            <quota>default</quota>
-
         </default>
+        <signoz>
+            <no_password/>
+            <networks>
+                <ip>172.17.0.1/16</ip>
+            </networks>
+            <profile>default</profile>
+            <quota>default</quota>
+        </signoz>
     </users>
 
     <quotas>
