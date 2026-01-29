@@ -16,7 +16,7 @@ neutrino:
 cipherowl:
       oauth_url: "https://cipherowl-prod.us.auth0.com/oauth/token"
       client_id: "tlgs6tHCJbVvKEG5Bq5LxNu068tOe1vZ"
-      client_secret: "{{ with secret "static_secrets/zenrock-gardia" }}{{ .Data.data.client_secret }}"
+      client_secret: "{{ with secret "static_secrets/zenrock-gardia" }}{{ .Data.data.client_secret }}{{end }}"
       sanctions_url: "https://api.cipherowl.ai/api/v1/sanction/batch"
 zcash_rpc:
   testnet: "http://65.21.67.137:18232/"
