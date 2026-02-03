@@ -12,5 +12,10 @@ solana_rpc:
   mainnet: {{ with secret "static_secrets/alchemy" }}{{ .Data.data.solana_mainnet_rpc }}{{ end }}
 neutrino:
   path: "/home/zenrock/.zrchain/neutrino"
+cipherowl:
+  oauth_url: "https://cipherowl-prod.us.auth0.com/oauth/token"
+  client_id: "{{ with secret "static_secrets/zenrock" }}{{ .Data.data.client_id }}{{end }}"
+  client_secret: "{{ with secret "static_secrets/zenrock" }}{{ .Data.data.client_secret }}{{end }}"
+  sanctions_url: "https://api.cipherowl.ai/api/v1/sanction/batch"
 zcash_rpc:
   mainnet: "http://65.21.67.137:8232/"
