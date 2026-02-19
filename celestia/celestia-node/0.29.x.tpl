@@ -67,7 +67,7 @@
     IndexCacheSize = 4096
     WriteBatchSize = 64
   [Header.Syncer]
-    PruningWindow = "0s"
+    PruningWindow = "169h0m0s"
     SyncFromHash = ""
     SyncFromHeight = 0
   [Header.Server]
