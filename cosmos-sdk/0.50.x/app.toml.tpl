@@ -309,6 +309,9 @@ network = "{{ keyOrDefault (print (env "CONSUL_PATH") "/btc_network") "simnet" }
 tracer = ""
 # MaxTxGasWanted defines the gas wanted for each eth tx returned in ante handler in check tx mode.
 max-tx-gas-wanted = 0
+{{ with $value := key (print (env "CONSUL_PATH") "/evm-chain-id") }}
+evm-chain-id = "{{ $value }}"
+{{- end }}
 ###############################################################################
 ###                           JSON RPC Configuration                        ###
 ###############################################################################
