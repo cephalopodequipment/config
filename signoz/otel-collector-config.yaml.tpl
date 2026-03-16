@@ -27,18 +27,67 @@ receivers:
       - type: move
         from: body.labels
         to: attributes.container_labels
+      
+      # Try to parse raw_log as JSON first
       - type: json_parser
         id: raw_log_parser
         parse_from: body.raw_log
-        if: 'body.raw_log matches "^{.*}$"'
+        if: 'body.raw_log matches "^\\s*\\{.*\\}\\s*$"'
+        on_error: send
+      
+      # If raw_log is pipe-delimited format, parse it
+      - type: regex_parser
+        id: pipe_delimited_parser
+        regex: '^(?P<local_timestamp>[^\|]+) \| (?P<timestamp>[^\s]+) (?P<severity_text>\w+) (?P<message>.*)$'
+        parse_from: body.raw_log
+        parse_to: attributes.parsed_log
+        if: 'body.raw_log matches "^[0-9]{4}-[0-9]{2}-[0-9]{2}.*\\|"'
+        on_error: send
+      
+      # Extract severity from parsed pipe-delimited logs
+      - type: move
+        from: attributes.parsed_log.severity_text
+        to: attributes.severity_text
+        if: 'attributes.parsed_log.severity_text != nil'
+      
+      # Extract timestamp from parsed pipe-delimited logs
+      - type: move
+        from: attributes.parsed_log.timestamp
+        to: attributes.log_timestamp
+        if: 'attributes.parsed_log.timestamp != nil'
+      
+      # Extract message from parsed pipe-delimited logs
+      - type: move
+        from: attributes.parsed_log.message
+        to: attributes.log_message
+        if: 'attributes.parsed_log.message != nil'
+      
+      # Clean up temporary parsed_log object
+      - type: remove
+        field: attributes.parsed_log
+        if: 'attributes.parsed_log != nil'
+      
+      # Move raw_log to attributes for reference
       - type: move
         from: body.raw_log
         to: attributes.raw_log
+      
+      # Set body based on what we have
+      - type: copy
+        from: attributes.log_message
+        to: body
+        if: 'attributes.log_message != nil'
+      
+      # If no log_message (JSON logs), use raw_log as body
       - type: copy
         from: attributes.raw_log
         to: body
+        if: 'attributes.log_message == nil'
+      
+      # Clean up raw_log from attributes after copying to body
       - type: remove
         field: attributes.raw_log
+
   otlp:
     protocols:
       grpc:
